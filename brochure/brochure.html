@@ -35,9 +35,7 @@ html, body {
 }
 
 /* ──────────────────────────────────────────────────────────────
-   Page system (3 pages × A4 · 297mm)
-   Strict editorial aire: 30mm top + 32mm bottom margins
-   so frame-rules NEVER collide with content.
+   Page system (4 pages × A4 · 297mm)
    ────────────────────────────────────────────────────────────── */
 .page {
   width: 210mm;
@@ -52,47 +50,34 @@ html, body {
 }
 .page:last-child { page-break-after: auto; margin-bottom: 0; }
 
-/* Editorial frame: top + bottom rules ───────────────────────── */
+/* Editorial frame ──────────────────────────────────────────── */
 .frame-top {
   position: absolute;
   top: 16mm; left: 18mm; right: 18mm;
   border-top: 1px solid var(--brass);
   padding-top: 8px;
-  display: flex;
-  justify-content: space-between;
+  display: flex; justify-content: space-between;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--ink-700);
-  font-weight: 500;
+  font-size: 9px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--ink-700); font-weight: 500;
 }
 .frame-bottom {
   position: absolute;
   bottom: 16mm; left: 18mm; right: 18mm;
   border-top: 1px solid var(--ink-200);
   padding-top: 8px;
-  display: flex;
-  justify-content: space-between;
+  display: flex; justify-content: space-between;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 8px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--ink-500);
-  font-weight: 500;
+  font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--ink-500); font-weight: 500;
 }
-
-/* Content container: leaves 30mm top + 32mm bottom for frames */
 .page-body {
   position: absolute;
   top: 30mm; left: 18mm; right: 18mm; bottom: 32mm;
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   Shared editorial typography
-   ────────────────────────────────────────────────────────────── */
+/* Shared editorial typography ──────────────────────────────── */
 .wordmark {
   font-family: 'Fraunces', Georgia, serif;
   font-weight: 600;
@@ -107,20 +92,15 @@ html, body {
 
 .marker {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--brass);
-  font-weight: 500;
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--brass); font-weight: 500;
 }
 
 .h1 {
   font-family: 'Fraunces', Georgia, serif;
   font-weight: 600;
   font-variation-settings: 'opsz' 144;
-  font-size: 56px;
-  line-height: 1.0;
-  letter-spacing: -0.028em;
+  font-size: 56px; line-height: 1.0; letter-spacing: -0.028em;
   color: var(--ink-black);
 }
 .h1 em { font-style: normal; color: var(--forest); }
@@ -130,49 +110,33 @@ html, body {
   font-family: 'Fraunces', Georgia, serif;
   font-weight: 600;
   font-variation-settings: 'opsz' 72;
-  font-size: 32px;
-  letter-spacing: -0.022em;
-  line-height: 1.04;
-  color: var(--ink-black);
+  font-size: 32px; letter-spacing: -0.022em;
+  line-height: 1.04; color: var(--ink-black);
 }
 .h2 em { font-style: normal; color: var(--forest); }
 .h2 .period { color: var(--brass); }
 
 .lead {
   font-family: 'Inter', sans-serif;
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--ink-700);
-  font-weight: 400;
+  font-size: 13.5px; line-height: 1.6;
+  color: var(--ink-700); font-weight: 400;
+}
+
+.cover-head {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 14mm;
 }
 
 .spacer { flex: 1 1 auto; }
 
 /* ──────────────────────────────────────────────────────────────
-   PAGE 1 · Cover + posicionamiento + 3 pilares
+   PAGE 1 · Cover + 3 pilares
    ────────────────────────────────────────────────────────────── */
-.cover-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 22mm;
-}
-.cover-head .marker { margin-bottom: 6px; }
-
-.cover-h1 {
-  margin-bottom: 14mm;
-  max-width: 165mm;
-}
-
-.cover-lead {
-  margin-bottom: 22mm;
-  max-width: 160mm;
-}
+.cover-h1 { margin-bottom: 12mm; max-width: 165mm; }
+.cover-lead { margin-bottom: 18mm; max-width: 160mm; }
 
 .pillars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6mm;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm;
 }
 .pillar {
   padding: 9mm 7mm;
@@ -181,40 +145,67 @@ html, body {
 }
 .pillar .num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 2.5px;
-  color: var(--brass);
-  margin-bottom: 5mm;
-  font-weight: 500;
+  font-size: 9px; letter-spacing: 2.5px;
+  color: var(--brass); margin-bottom: 5mm; font-weight: 500;
 }
 .pillar h3 {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--ink-black);
-  letter-spacing: -0.012em;
-  margin-bottom: 3mm;
-  line-height: 1.2;
+  font-size: 15px; font-weight: 700;
+  color: var(--ink-black); letter-spacing: -0.012em;
+  margin-bottom: 3mm; line-height: 1.2;
 }
-.pillar p {
-  font-size: 11px;
-  line-height: 1.6;
-  color: var(--ink-700);
+.pillar p { font-size: 11px; line-height: 1.6; color: var(--ink-700); }
+
+/* ──────────────────────────────────────────────────────────────
+   PAGE 2 · El producto, en vivo (4 screenshots)
+   ────────────────────────────────────────────────────────────── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6mm;
+  margin-top: 8mm;
+}
+.shot {
+  display: flex; flex-direction: column;
+}
+.shot-frame {
+  background: var(--paper);
+  border: 1px solid var(--ink-200);
+  padding: 4px;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+.shot-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  display: block;
+}
+.shot .h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--brass); font-weight: 500;
+  margin-top: 4mm; margin-bottom: 1.5mm;
+}
+.shot .t {
+  font-size: 12px; font-weight: 700;
+  color: var(--ink-black); letter-spacing: -0.012em;
+  margin-bottom: 1mm; line-height: 1.2;
+}
+.shot p {
+  font-size: 10px; line-height: 1.5; color: var(--ink-700);
 }
 
 /* ──────────────────────────────────────────────────────────────
-   PAGE 2 · Capacidades + stack + pipeline mockup
+   PAGE 3 · Capacidades + stack
    ────────────────────────────────────────────────────────────── */
 .feature-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4mm;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 4mm;
   margin-top: 6mm;
 }
 .feature-cell {
-  display: flex; gap: 4mm;
-  padding: 5mm;
-  background: var(--paper);
-  border: 1px solid var(--ink-200);
+  display: flex; gap: 4mm; padding: 5mm;
+  background: var(--paper); border: 1px solid var(--ink-200);
   border-left: 2px solid var(--forest);
 }
 .feature-cell .ico {
@@ -224,198 +215,138 @@ html, body {
 }
 .feature-cell .ico img { width: 26px; height: 26px; }
 .feature-cell h3 {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: -0.012em;
-  color: var(--ink-black);
-  margin-bottom: 1.5mm;
-  line-height: 1.2;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: -0.012em; color: var(--ink-black);
+  margin-bottom: 1.5mm; line-height: 1.2;
 }
-.feature-cell p {
-  font-size: 10px;
-  line-height: 1.5;
-  color: var(--ink-700);
-}
+.feature-cell p { font-size: 10px; line-height: 1.5; color: var(--ink-700); }
 
 .stack-row {
-  display: flex; flex-wrap: wrap; gap: 4px;
-  margin-top: 5mm;
+  display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5mm;
 }
 .stack-pill {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  font-size: 9px; font-weight: 500; letter-spacing: 0.5px;
   padding: 4px 10px;
-  background: var(--paper);
-  border: 1px solid var(--ink-200);
+  background: var(--paper); border: 1px solid var(--ink-200);
   color: var(--ink-900);
 }
 
-.cadastral {
-  margin-top: 6mm;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 3mm;
-  padding: 5mm;
-  background: var(--paper);
-  border: 1px solid var(--ink-200);
-}
-.cad-cell {
-  border: 1px solid var(--ink-200);
-  padding: 3.5mm;
-  position: relative;
-}
-.cad-cell .h {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 7.5px;
-  letter-spacing: 1.8px;
-  color: var(--ink-500);
-  margin-bottom: 2.5mm;
-}
-.cad-cell .row {
-  display: flex; justify-content: space-between;
-  font-size: 9.5px;
-  color: var(--ink-700);
-  padding: 1.8mm 0;
-  border-top: 1px solid var(--ink-200);
-}
-.cad-cell .row:first-of-type { border-top: none; padding-top: 0; }
-.cad-cell .name { font-weight: 600; color: var(--ink-black); }
-.cad-cell .meta { font-family: 'JetBrains Mono', monospace; color: var(--brass); font-size: 9px; }
-.cad-cell.hot::after  {
-  content: ''; position: absolute; top: 3.5mm; right: 3.5mm;
-  width: 4px; height: 4px; background: var(--terracota);
-}
-.cad-cell.warm::after {
-  content: ''; position: absolute; top: 3.5mm; right: 3.5mm;
-  width: 4px; height: 4px; background: var(--brass);
-}
+.section + .section { margin-top: 14mm; }
 
 /* ──────────────────────────────────────────────────────────────
-   PAGE 3 · Caso AGNOR + CTA
+   PAGE 4 · Caso + testimonio + CTA
    ────────────────────────────────────────────────────────────── */
-.page-3 .page-body { background: transparent; }
-.page-3 { background: var(--bone-deep); }
+.page-4 { background: var(--bone-deep); }
 
 .case-study {
   background: var(--paper);
   border: 1px solid var(--ink-200);
   border-left: 4px solid var(--brass);
-  padding: 12mm 13mm;
+  padding: 10mm 11mm;
 }
 .case-study .label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--brass);
-  margin-bottom: 5mm;
-  font-weight: 500;
+  font-size: 10px; letter-spacing: 3px; color: var(--brass);
+  margin-bottom: 4mm; font-weight: 500;
 }
 .case-study h2 {
   font-family: 'Fraunces', Georgia, serif;
   font-variation-settings: 'opsz' 72;
-  font-weight: 600;
-  font-size: 30px;
-  letter-spacing: -0.022em;
-  line-height: 1.06;
-  color: var(--ink-black);
-  margin-bottom: 8mm;
+  font-weight: 600; font-size: 26px;
+  letter-spacing: -0.022em; line-height: 1.06;
+  color: var(--ink-black); margin-bottom: 6mm;
 }
 .case-study h2 em { font-style: normal; color: var(--forest); }
 .case-study h2 .period { color: var(--brass); }
 .case-study p {
-  font-size: 12.5px;
-  line-height: 1.65;
-  color: var(--ink-700);
-  margin-bottom: 5mm;
+  font-size: 11.5px; line-height: 1.65;
+  color: var(--ink-700); margin-bottom: 4mm;
 }
 .case-study code {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 10.5px;
   background: var(--bone-deep);
   padding: 2px 6px;
   color: var(--forest);
 }
+
+.quote {
+  margin: 6mm 0 4mm;
+  padding-left: 6mm;
+  border-left: 3px solid var(--brass);
+}
+.quote .text {
+  font-family: 'Fraunces', Georgia, serif;
+  font-variation-settings: 'opsz' 72;
+  font-weight: 500; font-size: 17px;
+  letter-spacing: -0.014em; line-height: 1.32;
+  color: var(--ink-black);
+  margin-bottom: 3mm;
+}
+.quote .attr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--ink-500);
+}
+
 .case-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--ink-200);
-  padding-top: 6mm;
-  margin-top: 4mm;
+  padding-top: 5mm; margin-top: 4mm;
 }
 .case-stat { padding-right: 4mm; border-right: 1px solid var(--ink-200); }
 .case-stat:last-child { border-right: none; }
 .case-stat .num {
   font-family: 'Fraunces', Georgia, serif;
   font-variation-settings: 'opsz' 72;
-  font-weight: 500;
-  font-size: 38px;
-  line-height: 1;
-  color: var(--forest);
+  font-weight: 500; font-size: 32px;
+  line-height: 1; color: var(--forest);
   letter-spacing: -0.025em;
   font-variant-numeric: tabular-nums lining-nums;
 }
 .case-stat .lab {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 8.5px;
-  letter-spacing: 2px;
-  color: var(--ink-500);
-  margin-top: 3mm;
+  font-size: 8.5px; letter-spacing: 2px;
+  color: var(--ink-500); margin-top: 2.5mm;
 }
 
 .cta-banner {
   background: var(--forest);
   color: var(--bone);
-  padding: 12mm 13mm;
+  padding: 10mm 11mm;
+  margin-top: 8mm;
 }
 .cta-banner h2 {
   font-family: 'Fraunces', Georgia, serif;
   font-variation-settings: 'opsz' 72;
-  font-weight: 600;
-  font-size: 30px;
-  letter-spacing: -0.022em;
-  line-height: 1.04;
-  color: var(--bone);
-  margin-bottom: 4mm;
+  font-weight: 600; font-size: 28px;
+  letter-spacing: -0.022em; line-height: 1.04;
+  color: var(--bone); margin-bottom: 3mm;
 }
 .cta-banner h2 .period { color: var(--brass-soft); }
 .cta-banner > p {
-  font-size: 12px;
-  color: var(--bone);
-  opacity: 0.7;
-  margin-bottom: 9mm;
-  line-height: 1.55;
-  max-width: 130mm;
+  font-size: 11.5px; color: var(--bone); opacity: 0.7;
+  margin-bottom: 7mm; line-height: 1.55; max-width: 130mm;
 }
-.cta-rows {
-  border-top: 1px solid rgba(247,242,232,0.25);
-}
+.cta-rows { border-top: 1px solid rgba(247,242,232,0.25); }
 .cta-row {
-  display: grid;
-  grid-template-columns: 32mm 1fr;
-  gap: 8mm;
-  padding: 5mm 0;
+  display: grid; grid-template-columns: 32mm 1fr;
+  gap: 8mm; padding: 5mm 0;
   border-bottom: 1px solid rgba(247,242,232,0.15);
   align-items: baseline;
 }
 .cta-row .label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--brass-soft);
-  font-weight: 500;
+  font-size: 10px; letter-spacing: 3px;
+  color: var(--brass-soft); font-weight: 500;
 }
 .cta-row .val {
   font-family: 'Fraunces', Georgia, serif;
   font-variation-settings: 'opsz' 72;
-  font-weight: 500;
-  font-size: 22px;
-  letter-spacing: -0.018em;
-  color: var(--bone);
+  font-weight: 500; font-size: 22px;
+  letter-spacing: -0.018em; color: var(--bone);
 }
-
-.section + .section { margin-top: 14mm; }
 </style>
 </head>
 <body>
@@ -426,7 +357,7 @@ html, body {
 <div class="page">
   <div class="frame-top">
     <span>INMOBI.AI · CRM INMOBILIARIO</span>
-    <span>BROCHURE 2026 · PÁG. 01 / 03</span>
+    <span>BROCHURE 2026 · PÁG. 01 / 04</span>
   </div>
 
   <div class="page-body">
@@ -467,18 +398,75 @@ html, body {
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
-     PAGE 2 — CAPACIDADES · STACK · MOCKUP
+     PAGE 2 — EL PRODUCTO, EN VIVO (4 capturas reales)
      ════════════════════════════════════════════════════════════ -->
 <div class="page">
   <div class="frame-top">
-    <span>CAPACIDADES · STACK</span>
-    <span>BROCHURE 2026 · PÁG. 02 / 03</span>
+    <span>EL PRODUCTO, EN VIVO</span>
+    <span>BROCHURE 2026 · PÁG. 02 / 04</span>
   </div>
 
   <div class="page-body">
     <div class="cover-head">
       <div class="wordmark sm">Inmobi<span class="period">.</span>ai</div>
-      <div class="marker">№ 02 — CAPACIDADES</div>
+      <div class="marker">№ 02 — CAPTURAS REALES</div>
+    </div>
+
+    <h2 class="h2">Esto es lo que <em>tu equipo va a ver<span class="period">.</span></em></h2>
+    <p class="lead" style="max-width: 165mm; margin-top: 4mm;">No son mockups. Es el CRM corriendo en producción con datos demo. Lo que ves abajo es exactamente la herramienta que vas a usar el primer día.</p>
+
+    <div class="product-grid">
+      <div class="shot">
+        <div class="shot-frame"><img src="../screenshots/01-dashboard.png" alt="Command Center"/></div>
+        <div class="h">№ 01 · COMMAND CENTER</div>
+        <div class="t">15 leads HOT que requieren atención hoy.</div>
+        <p>Tu asesor abre la app y sabe qué hacer en los próximos 60 minutos. Pipeline activo en pesos, conversión IA y leads sin contactar — todo en vivo.</p>
+      </div>
+
+      <div class="shot">
+        <div class="shot-frame"><img src="../screenshots/03-pipeline-kanban.png" alt="Pipeline kanban"/></div>
+        <div class="h">№ 02 · PIPELINE VISUAL</div>
+        <div class="t">Drag-and-drop por etapa. Una pantalla, todos los asesores.</div>
+        <p>Calificado · Cita · Visita · Oferta · Cierre. La transición se registra sola en el timeline del lead. El coordinador ve a 15 asesores a la vez.</p>
+      </div>
+
+      <div class="shot">
+        <div class="shot-frame"><img src="../screenshots/04-lead-detail.png" alt="Lead 360"/></div>
+        <div class="h">№ 03 · LEAD 360°</div>
+        <div class="t">Perfil completo + tabs (Citas, Notas, AI Insights).</div>
+        <p>Llamar, WhatsApp, Email a un click. Privacidad LFPDPPP integrada. El asesor entra y sabe quién es el cliente sin abrir cinco apps.</p>
+      </div>
+
+      <div class="shot">
+        <div class="shot-frame"><img src="../screenshots/06-analytics.png" alt="Analytics"/></div>
+        <div class="h">№ 04 · ANALYTICS</div>
+        <div class="t">Embudo de conversión por etapa, en tiempo real.</div>
+        <p>Pipeline · Equipo · Canales · Pérdidas. El coordinador no espera al lunes para saber qué pasó. Las cifras viven, no se calculan.</p>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+  </div>
+
+  <div class="frame-bottom">
+    <span>POR ORZATECH · MX 🇲🇽</span>
+    <span>INMOBI.AI</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 3 — CAPACIDADES + STACK
+     ════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="frame-top">
+    <span>CAPACIDADES · STACK</span>
+    <span>BROCHURE 2026 · PÁG. 03 / 04</span>
+  </div>
+
+  <div class="page-body">
+    <div class="cover-head">
+      <div class="wordmark sm">Inmobi<span class="period">.</span>ai</div>
+      <div class="marker">№ 03 — CAPACIDADES</div>
     </div>
 
     <h2 class="h2">Ocho funciones <em>core<span class="period">.</span></em></h2>
@@ -519,7 +507,7 @@ html, body {
     </div>
 
     <div class="section">
-      <div class="marker" style="margin-bottom: 4mm;">№ 03 — STACK</div>
+      <div class="marker" style="margin-bottom: 4mm;">№ 04 — STACK</div>
       <h2 class="h2" style="font-size: 22px;">Construido <em>production-grade<span class="period">.</span></em></h2>
       <div class="stack-row">
         <span class="stack-pill">FastAPI</span>
@@ -547,25 +535,31 @@ html, body {
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
-     PAGE 3 — CASO · CTA
+     PAGE 4 — CASO AGNOR + TESTIMONIO + CTA
      ════════════════════════════════════════════════════════════ -->
-<div class="page page-3">
+<div class="page page-4">
   <div class="frame-top">
     <span>CASO DE ESTUDIO · CONTACTO</span>
-    <span>BROCHURE 2026 · PÁG. 03 / 03</span>
+    <span>BROCHURE 2026 · PÁG. 04 / 04</span>
   </div>
 
   <div class="page-body">
     <div class="cover-head">
       <div class="wordmark sm">Inmobi<span class="period">.</span>ai</div>
-      <div class="marker">№ 04 — CASO DE ESTUDIO</div>
+      <div class="marker">№ 05 — CASO DE ESTUDIO</div>
     </div>
 
     <div class="case-study">
       <div class="label">CDMX · 2025-2026</div>
-      <h2>AGNOR Inmobiliaria<br/>opera <em>100%<span class="period">.</span></em><br/>sobre Inmobi.ai.</h2>
-      <p>Especialistas en remates bancarios en la Ciudad de México. Antes: Excel, WhatsApps en celulares de asesores, doble captura en Mercado Libre, SLA invisible.</p>
-      <p>Hoy: pipeline unificado en <code>crm.agnorinmobiliaria.com</code>, agente de voz IA, sync con ML, analytics en vivo. No nació en un garage. Nació en piso.</p>
+      <h2>AGNOR Inmobiliaria opera <em>100%<span class="period">.</span></em> sobre Inmobi.ai.</h2>
+
+      <p>Especialistas en remates bancarios en la Ciudad de México. Antes: Excel, WhatsApps en celulares de asesores, doble captura en Mercado Libre, SLA invisible. Hoy: pipeline unificado en <code>crm.agnorinmobiliaria.com</code>, agente de voz IA, sync con ML, analytics en vivo.</p>
+
+      <div class="quote">
+        <div class="text">"Antes le dedicaba dos horas al lunes haciendo el reporte semanal en Excel. Ahora abro Analytics y todo está. Y si un asesor está dejando enfriar leads, el sistema me avisa antes que el cliente reclame."</div>
+        <div class="attr">COORDINADORA · AGNOR INMOBILIARIA · CDMX</div>
+      </div>
+
       <div class="case-stats">
         <div class="case-stat"><div class="num">15+</div><div class="lab">Asesores</div></div>
         <div class="case-stat"><div class="num">04</div><div class="lab">Roles</div></div>
@@ -574,11 +568,9 @@ html, body {
       </div>
     </div>
 
-    <div class="spacer"></div>
-
     <div class="cta-banner">
       <h2>¿Hablamos<span class="period">?</span></h2>
-      <p>Demo en vivo de 30 minutos. Trial 14 días con tu data real. Onboarding con migración desde tu sistema actual.</p>
+      <p>Demo en vivo de 30 minutos. Trial 14 días con tu data real. Onboarding en 4 semanas con migración desde tu sistema actual.</p>
       <div class="cta-rows">
         <div class="cta-row">
           <span class="label">WHATSAPP</span>
@@ -590,6 +582,8 @@ html, body {
         </div>
       </div>
     </div>
+
+    <div class="spacer"></div>
   </div>
 
   <div class="frame-bottom">

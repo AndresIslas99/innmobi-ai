@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-label="WhatsApp Business con plantillas Meta">
+  <defs>
+    <style><![CDATA[
+      .canvas { fill: #FEFCF7; }
+      .canvas-frame { fill: none; stroke: #D4D2CB; stroke-width: 1; }
+      .marker { font: 500 13px 'JetBrains Mono', monospace; fill: #A77E2B; letter-spacing: 3px; text-transform: uppercase; }
+      .h1 { font: 600 38px 'Fraunces', Georgia, serif; fill: #0F0F10; letter-spacing: -0.022em; }
+      .h1 .accent { fill: #1F3A2D; }
+      .h1 .period { fill: #A77E2B; }
+
+      .panel { fill: #F2EFE9; stroke: #D4D2CB; stroke-width: 1; }
+      .panel-h { font: 500 12px 'JetBrains Mono', monospace; fill: #A77E2B; letter-spacing: 2.5px; text-transform: uppercase; }
+      .label { font: 500 11px 'JetBrains Mono', monospace; fill: #7C7C82; letter-spacing: 2px; text-transform: uppercase; }
+
+      .trigger-card { fill: #FEFCF7; stroke: #D4D2CB; }
+      .trigger-name { font: 700 18px 'Inter', sans-serif; fill: #0F0F10; letter-spacing: -0.012em; }
+      .trigger-meta { font: 500 13px 'JetBrains Mono', monospace; fill: #7C7C82; }
+      .badge { font: 600 11px 'Inter', sans-serif; fill: #FEFCF7; letter-spacing: 0.5px; text-transform: uppercase; }
+
+      .phone-frame { fill: #0F0F10; }
+      .phone-screen { fill: #ECE5DD; }
+      .phone-header { fill: #075E54; }
+      .phone-header-text { font: 600 14px 'Inter', sans-serif; fill: white; }
+      .phone-header-sub { font: 400 11px 'Inter', sans-serif; fill: rgba(255,255,255,0.7); }
+
+      .bubble-out { fill: #DCF8C6; }
+      .bubble-in { fill: white; }
+      .bubble-text { font: 400 12px 'Inter', sans-serif; fill: #0F0F10; }
+      .bubble-time { font: 400 9px 'Inter', sans-serif; fill: #7C7C82; }
+      .bubble-name { font: 600 10px 'Inter', sans-serif; fill: #075E54; }
+      .check-blue { font: 600 10px 'JetBrains Mono', monospace; fill: #34B7F1; }
+
+      /* AI bubble (template fired) appears mid-loop */
+      @keyframes appear-template {
+        0%, 30% { opacity: 0; }
+        35%, 100% { opacity: 1; }
+      }
+      .b-template { animation: appear-template 7s ease-in-out infinite; }
+
+      /* Delivered checkmark */
+      @keyframes appear-check {
+        0%, 50% { opacity: 0; }
+        55%, 100% { opacity: 1; }
+      }
+      .b-check { animation: appear-check 7s ease-in-out infinite; }
+
+      /* Client confirms reply */
+      @keyframes appear-reply {
+        0%, 70% { opacity: 0; }
+        75%, 100% { opacity: 1; }
+      }
+      .b-reply { animation: appear-reply 7s ease-in-out infinite; }
+
+      /* Status badge transition: from CITA AGENDADA → CITA CONFIRMADA */
+      @keyframes status-pre {
+        0%, 80% { opacity: 1; }
+        85%, 100% { opacity: 0; }
+      }
+      @keyframes status-post {
+        0%, 80% { opacity: 0; }
+        85%, 100% { opacity: 1; }
+      }
+      .status-pre { animation: status-pre 7s steps(1) infinite; }
+      .status-post { animation: status-post 7s steps(1) infinite; }
+
+      /* Template selector flash */
+      @keyframes selector-flash {
+        0%, 18% { opacity: 0; }
+        22%, 32% { opacity: 1; }
+        36%, 100% { opacity: 0; }
+      }
+      .selector { animation: selector-flash 7s ease-in-out infinite; }
+    ]]></style>
+  </defs>
+
+  <rect class="canvas" width="1280" height="720"/>
+  <rect class="canvas-frame" x="0.5" y="0.5" width="1279" height="719"/>
+
+  <!-- Header -->
+  <line x1="60" y1="56" x2="1220" y2="56" stroke="#A77E2B" stroke-width="1"/>
+  <text x="60" y="80" class="marker">№ 04 — WHATSAPP BUSINESS</text>
+  <text x="60" y="140" class="h1">21 plantillas Meta-aprobadas, <tspan class="accent">una sola consola</tspan><tspan class="period">.</tspan></text>
+
+  <!-- Left panel: Lead + selector (60–600 wide, 200–660 tall) -->
+  <rect class="panel" x="60" y="200" width="540" height="460" rx="2"/>
+  <text x="84" y="232" class="panel-h">[ LEAD · CONFIRMACIÓN DE CITA ]</text>
+
+  <!-- Lead card -->
+  <rect class="trigger-card" x="84" y="260" width="492" height="120" rx="2"/>
+  <text x="108" y="300" class="trigger-name">Mariana López</text>
+  <text x="108" y="324" class="trigger-meta">+52 55 1839 4421 · Polanco · $9.0M</text>
+
+  <!-- Status badges (cross-fade) -->
+  <g class="status-pre">
+    <rect x="108" y="338" width="120" height="22" rx="2" fill="#A77E2B"/>
+    <text x="168" y="353" class="badge" text-anchor="middle">CITA AGENDADA</text>
+  </g>
+  <g class="status-post">
+    <rect x="108" y="338" width="130" height="22" rx="2" fill="#1F3A2D"/>
+    <text x="173" y="353" class="badge" text-anchor="middle">CITA CONFIRMADA</text>
+  </g>
+
+  <!-- Template selector (flashes briefly) -->
+  <g class="selector">
+    <rect x="84" y="404" width="492" height="208" rx="2" fill="#FEFCF7" stroke="#A77E2B" stroke-width="2"/>
+    <text x="108" y="436" class="label">SELECCIONA PLANTILLA META</text>
+
+    <rect x="108" y="452" width="444" height="36" rx="2" fill="#F2EFE9" stroke="#D4D2CB"/>
+    <text x="124" y="475" style="font: 600 13px Inter, sans-serif; fill: #0F0F10;">cita_recordatorio_24h</text>
+    <text x="538" y="475" text-anchor="end" style="font: 500 9px JetBrains Mono, monospace; fill: #A77E2B; letter-spacing: 2px;">META APPROVED</text>
+
+    <rect x="108" y="496" width="444" height="36" rx="2" fill="#1F3A2D"/>
+    <text x="124" y="519" style="font: 600 13px Inter, sans-serif; fill: #FEFCF7;">cita_recordatorio_1h ✓</text>
+    <text x="538" y="519" text-anchor="end" style="font: 500 9px JetBrains Mono, monospace; fill: #C9A661; letter-spacing: 2px;">SELECCIONADA</text>
+
+    <rect x="108" y="540" width="444" height="36" rx="2" fill="#F2EFE9" stroke="#D4D2CB"/>
+    <text x="124" y="563" style="font: 600 13px Inter, sans-serif; fill: #0F0F10;">visita_post_seguimiento</text>
+    <text x="538" y="563" text-anchor="end" style="font: 500 9px JetBrains Mono, monospace; fill: #A77E2B; letter-spacing: 2px;">META APPROVED</text>
+  </g>
+
+  <text x="84" y="638" class="label">SE DISPARA AUTOMÁTICAMENTE 1H ANTES DE LA CITA</text>
+
+  <!-- Right panel: Phone mockup (660–1220 wide, 200–660 tall) -->
+  <rect class="panel" x="660" y="200" width="560" height="460" rx="2"/>
+  <text x="684" y="232" class="panel-h">[ CHAT · WHATSAPP BUSINESS ]</text>
+
+  <!-- Phone frame -->
+  <rect class="phone-frame" x="800" y="248" width="280" height="362" rx="22"/>
+  <rect class="phone-screen" x="806" y="254" width="268" height="350" rx="16"/>
+
+  <!-- Phone header bar -->
+  <rect class="phone-header" x="806" y="254" width="268" height="46"/>
+  <circle cx="828" cy="277" r="13" fill="#FEFCF7"/>
+  <text x="828" y="281" text-anchor="middle" style="font: 700 11px Inter, sans-serif; fill: #075E54;">ML</text>
+  <text x="852" y="273" class="phone-header-text">Mariana López</text>
+  <text x="852" y="289" class="phone-header-sub">en línea</text>
+
+  <!-- Bubble 1: Client question (always visible) -->
+  <rect class="bubble-in" x="816" y="316" width="180" height="44" rx="6"/>
+  <text x="828" y="336" class="bubble-text">Hola, mi cita es a las 6pm?</text>
+  <text x="988" y="352" class="bubble-time" text-anchor="end">5:55 pm</text>
+
+  <!-- Bubble 2: AI template response (appears mid-loop) -->
+  <g class="b-template">
+    <rect class="bubble-out" x="884" y="372" width="180" height="92" rx="6"/>
+    <text x="896" y="390" class="bubble-name">Inmobi.ai · plantilla</text>
+    <text x="896" y="408" class="bubble-text" style="font-size: 11px;">Hola Mariana,</text>
+    <text x="896" y="424" class="bubble-text" style="font-size: 11px;">tu cita en Polanco es a las</text>
+    <text x="896" y="440" class="bubble-text" style="font-size: 11px;">18:00. Tu asesor: D. Mendoza.</text>
+    <text x="1056" y="458" class="check-blue" text-anchor="end">5:56 pm ✓✓</text>
+  </g>
+
+  <!-- Bubble 3: Client confirms (appears late) -->
+  <g class="b-reply">
+    <rect class="bubble-in" x="816" y="476" width="160" height="36" rx="6"/>
+    <text x="828" y="498" class="bubble-text">Confirmado 👍</text>
+  </g>
+
+  <!-- Bottom label clear of phone -->
+  <text x="940" y="640" class="label" text-anchor="middle">SIN INTERVENCIÓN MANUAL · 21 PLANTILLAS</text>
+</svg>

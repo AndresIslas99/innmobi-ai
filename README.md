@@ -74,7 +74,26 @@ No se diseñó en un Notion. Se construyó en piso, vendiendo remates bancarios,
 
 ---
 
-## № 04 — El producto, en vivo
+## № 04 — En movimiento
+
+> Tres flujos en bucle. SVG animado puro — sin video, sin hosting, autoplay everywhere.
+
+<table>
+<tr>
+<td width="33%"><img src="images/animations/kanban-drag.svg" alt="Pipeline kanban con drag-and-drop"/></td>
+<td width="33%"><img src="images/animations/ai-qualification.svg" alt="IA califica al lead en 90s"/></td>
+<td width="33%"><img src="images/animations/whatsapp-template.svg" alt="WhatsApp template send"/></td>
+</tr>
+<tr>
+<td><b>№ 01 — Pipeline</b><br/>El asesor mueve a Carlos Méndez de Calificado a Cita. La transición se registra sola.</td>
+<td><b>№ 02 — Inteligencia</b><br/>Llamada entrante → Claude perfila en 90 segundos → asesor recibe lead pre-trabajado.</td>
+<td><b>№ 03 — WhatsApp</b><br/>Cita confirmada → recordatorio 1h antes → cliente confirma. Sin manual.</td>
+</tr>
+</table>
+
+---
+
+## № 05 — El producto, en vivo
 
 > Capturas reales del CRM corriendo. Generadas con Playwright sobre el dev server con datos demo. Para verlo con tu propia data → [agenda por WhatsApp](https://wa.me/525620595320).
 
@@ -129,7 +148,7 @@ No se diseñó en un Notion. Se construyó en piso, vendiendo remates bancarios,
 
 ---
 
-## № 05 — Stack técnico
+## № 06 — Stack técnico
 
 `FastAPI` `Python 3.12` `React 18` `TypeScript` `PostgreSQL 16` `SQLAlchemy` `Tailwind CSS` `Anthropic Claude` `Retell LLM` `Meta WhatsApp Cloud API` `Google Calendar API` `Mercado Libre API` `Docker` `Coolify CD`
 
@@ -137,7 +156,7 @@ No se diseñó en un Notion. Se construyó en piso, vendiendo remates bancarios,
 
 ---
 
-## № 06 — Probado en piso
+## № 07 — Probado en piso
 
 > No nació en un garage. Nació en piso, vendiendo remates en CDMX.
 
@@ -145,9 +164,106 @@ No se diseñó en un Notion. Se construyó en piso, vendiendo remates bancarios,
 
 Cada feature en este producto fue construida para resolver un problema que vivimos en piso. Cuando lo instalas en tu inmobiliaria, no estás financiando experimentos. Estás usando algo que ya gana dinero.
 
+### Lo que dicen quienes ya lo usan
+
+> *"Antes le dedicaba dos horas al lunes haciendo el reporte semanal en Excel. Ahora abro Analytics y todo está. Si un asesor está dejando enfriar leads, el sistema me avisa antes que el cliente reclame."*
+>
+> — **Coordinadora**, AGNOR Inmobiliaria · CDMX
+
+> *"Cuando entra una llamada, mi celular ya tiene el contexto del cliente antes de que yo conteste. Eso cambió cómo vendo. Ya no llego a frío a una conversación."*
+>
+> — **Asesor**, AGNOR Inmobiliaria · CDMX
+
 ---
 
-## № 07 — Para quién es
+## № 08 — Migración en 4 semanas
+
+Sin "rip and replace" caótico. Migración paralela con tu sistema actual hasta que confíes 100%.
+
+| Semana | Foco | Qué pasa |
+|---|---|---|
+| **01** | Discovery + Data | Auditamos tu pipeline. Exportamos data desde Hubspot/Pipedrive/Excel. Mapeamos roles, verticales, plantillas WhatsApp. KPIs de éxito a 30 días. |
+| **02** | Configuración | Setup WhatsApp Business API (te ayudamos con Meta). Conexión Mercado Libre. Sync Google Calendar. Importación de inventario. |
+| **03** | Entrenamiento + Paralelo | Sesiones live con asesores y coordinadores (1.5h × rol). Una semana corriendo en paralelo. Tu equipo califica y reporta. Iteramos. |
+| **04** | Cutover + Soporte | Migración total. Soporte directo del CEO de OrzaTech vía WhatsApp. Reporte de adopción a los 30 días. Roadmap a 3 meses. |
+
+---
+
+## № 09 — Preguntas frecuentes
+
+<details>
+<summary><b>¿Cuánto cuesta?</b></summary>
+
+Pricing por asesor activo, ajustado al tamaño de tu equipo y volumen de leads. No publicamos lista pública porque las inmobiliarias chicas pagan distinto que las que cierran 100M al año. Hablemos 30 minutos y te damos un número específico para tu caso.
+
+</details>
+
+<details>
+<summary><b>¿Cómo migro desde Hubspot, Pipedrive o Excel?</b></summary>
+
+Importadores nativos para los 3. Te ayudamos a exportar tu data, mapearla a la estructura de Inmobi.ai (leads, propiedades, asesores, citas), y validar que nada se pierda. La migración completa toma 4 semanas con tu equipo trabajando normal en paralelo.
+
+</details>
+
+<details>
+<summary><b>¿Necesito WhatsApp Business API? ¿Cómo lo consigo?</b></summary>
+
+Sí, pero te acompañamos en el alta con Meta (proceso de ~10 días que se hace una sola vez). Si ya tienes WhatsApp Business standard, te ayudamos a migrar al Business API sin perder tu número actual.
+
+</details>
+
+<details>
+<summary><b>¿Cumple con la LFPDPPP (Ley de Privacidad de Datos)?</b></summary>
+
+Sí. AGNOR Inmobiliaria ya opera bajo cumplimiento. El sistema incluye gestión de avisos de privacidad por lead, consentimiento explícito antes de cada cita, y export/borrado de data cuando un cliente lo solicita.
+
+</details>
+
+<details>
+<summary><b>¿Funciona con Mercado Libre?</b></summary>
+
+Integración nativa con la API de Mercado Libre Inmuebles. Publica con un click, sincroniza precio y status automáticamente, despublica al marcar como vendida. Las llamadas que entran por ML llegan al CRM ya etiquetadas con la fuente.
+
+</details>
+
+<details>
+<summary><b>¿Y si mis asesores no son técnicos?</b></summary>
+
+Es la regla, no la excepción. La UI fue diseñada con asesores no-técnicos en piso de AGNOR. La curva de aprendizaje es ~2 horas — y el agente de voz reduce la dependencia de que el asesor capture cosas manualmente.
+
+</details>
+
+<details>
+<summary><b>¿Quién es dueño de mi data?</b></summary>
+
+Tú. Siempre. Export completo en CSV y JSON disponible en cualquier momento desde admin. Si decides irte, te exportamos toda la data y la borramos de nuestros servidores en menos de 30 días.
+
+</details>
+
+<details>
+<summary><b>¿En qué idioma está?</b></summary>
+
+Español 100%, mexicano específicamente. UI, plantillas WhatsApp, agente de voz Claude, copy interno — todo escrito para CDMX. No es traducción, es producto nativo.
+
+</details>
+
+<details>
+<summary><b>¿Funciona en mobile?</b></summary>
+
+Mobile-first responsive. Tu asesor en campo abre el lead desde el celular, marca la cita, registra notas, manda WhatsApp — todo desde la misma URL del CRM, sin app aparte que instalar.
+
+</details>
+
+<details>
+<summary><b>¿Cuánto tarda en estar funcionando?</b></summary>
+
+Cuatro semanas con onboarding completo. Si necesitas algo más rápido, te subimos a la versión core en 5 días — sin integración WhatsApp ni ML — y agregamos lo demás después.
+
+</details>
+
+---
+
+## № 10 — Para quién es
 
 - Inmobiliarias con cinco o más asesores que necesitan visibilidad central del pipeline
 - Equipos que reciben leads por múltiples canales y los pierden por falta de seguimiento
@@ -159,7 +275,7 @@ No es para freelancers solos, ni para flippers de un proyecto, ni para quien bus
 
 ---
 
-## № 08 — Cómo empezar
+## № 11 — Cómo empezar
 
 1. **Demo en vivo de 30 minutos** — te enseñamos el sistema corriendo, tú decides
 2. **Trial de 14 días** con tu data real importada

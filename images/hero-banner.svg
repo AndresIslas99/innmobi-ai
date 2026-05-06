@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 480" role="img" aria-label="Inmobi.ai — CRM Inmobiliario con Inteligencia Artificial">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="60%" stop-color="#1E1B4B"/>
+      <stop offset="100%" stop-color="#312E81"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#4338CA"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.2" r="0.6">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="480" fill="url(#bg)"/>
+  <rect width="1280" height="480" fill="url(#grid)" opacity="0.5"/>
+  <rect width="1280" height="480" fill="url(#glow)"/>
+
+  <!-- Logomark -->
+  <g transform="translate(72,72)">
+    <rect x="0" y="0" width="72" height="72" rx="16" fill="url(#mark)"/>
+    <path d="M16 56 V36 L36 20 L56 36 V56 H44 V42 H28 V56 Z" fill="#FFFFFF"/>
+    <circle cx="36" cy="11" r="4" fill="#E0E7FF"/>
+  </g>
+
+  <!-- Wordmark next to logomark -->
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-weight="800" letter-spacing="-2">
+    <text x="168" y="124" font-size="56" fill="#F8FAFC">inmobi</text>
+    <text x="368" y="124" font-size="56" fill="#A5B4FC">.ai</text>
+  </g>
+
+  <!-- Eyebrow -->
+  <g font-family="'JetBrains Mono','Menlo',monospace" font-size="16" letter-spacing="4" fill="#A5B4FC">
+    <text x="72" y="218">CRM INMOBILIARIO · IA · MÉXICO</text>
+  </g>
+
+  <!-- Headline -->
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" letter-spacing="-2" fill="#F8FAFC">
+    <text x="72" y="288" font-size="72" font-weight="800">Del primer lead</text>
+    <text x="72" y="368" font-size="72" font-weight="800">al cierre, <tspan fill="#A5B4FC">automatizado.</tspan></text>
+  </g>
+
+  <!-- Subhead -->
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="22" font-weight="400" fill="#CBD5E1">
+    <text x="72" y="420">IA que califica leads en la primera llamada · WhatsApp + voz + web · Pipeline visual · Analytics en vivo</text>
+  </g>
+
+  <!-- Decorative dots cluster -->
+  <g fill="#6366F1">
+    <circle cx="1180" cy="80" r="3"/>
+    <circle cx="1208" cy="100" r="2"/>
+    <circle cx="1160" cy="120" r="2"/>
+    <circle cx="1224" cy="60" r="2"/>
+    <circle cx="1140" cy="60" r="3"/>
+    <circle cx="1196" cy="140" r="3" fill="#A5B4FC"/>
+  </g>
+
+  <!-- Origin tag bottom-right -->
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="14" fill="#94A3B8">
+    <text x="1208" y="448" text-anchor="end">probado en producción · AGNOR Inmobiliaria · CDMX</text>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+{
+  "name": "inmobi-ai-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Marketing showcase for Inmobi.ai — CRM Inmobiliario con IA",
+  "scripts": {
+    "render:carousels": "node scripts/render-carousels.mjs",
+    "render:brochure": "node scripts/render-brochure.mjs",
+    "capture:screenshots": "node scripts/capture-screenshots.mjs",
+    "render:all": "bash scripts/render-all.sh"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  },
+  "license": "UNLICENSED",
+  "author": "OrzaTech <aibravo@orzatech.com>"
+}

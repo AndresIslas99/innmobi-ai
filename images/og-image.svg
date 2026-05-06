@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Inmobi.ai — CRM Inmobiliario con IA">
+  <defs>
+    <linearGradient id="ogBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#312E81"/>
+    </linearGradient>
+    <linearGradient id="ogMark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#4338CA"/>
+    </linearGradient>
+    <radialGradient id="ogGlow" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#ogBg)"/>
+  <rect width="1200" height="630" fill="url(#ogGlow)"/>
+
+  <!-- Centered logomark -->
+  <g transform="translate(540,80)">
+    <rect x="0" y="0" width="120" height="120" rx="26" fill="url(#ogMark)"/>
+    <path d="M28 96 V60 L60 36 L92 60 V96 H72 V72 H48 V96 Z" fill="#FFFFFF"/>
+    <circle cx="60" cy="20" r="6" fill="#E0E7FF"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-weight="800" letter-spacing="-3" text-anchor="middle">
+    <text x="600" y="288" font-size="92" fill="#F8FAFC">inmobi<tspan fill="#A5B4FC">.ai</tspan></text>
+  </g>
+
+  <!-- Tagline -->
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" text-anchor="middle">
+    <text x="600" y="360" font-size="32" font-weight="600" fill="#CBD5E1">CRM Inmobiliario con Inteligencia Artificial</text>
+    <text x="600" y="412" font-size="22" font-weight="400" fill="#94A3B8">Del primer lead al cierre, automatizado.</text>
+  </g>
+
+  <!-- Feature pills -->
+  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="500" fill="#E0E7FF">
+    <g>
+      <rect x="240" y="470" width="200" height="40" rx="20" fill="#1E1B4B" stroke="#4338CA" stroke-width="1.5"/>
+      <text x="340" y="496" text-anchor="middle">IA califica leads</text>
+    </g>
+    <g>
+      <rect x="460" y="470" width="180" height="40" rx="20" fill="#1E1B4B" stroke="#4338CA" stroke-width="1.5"/>
+      <text x="550" y="496" text-anchor="middle">Multi-canal</text>
+    </g>
+    <g>
+      <rect x="660" y="470" width="220" height="40" rx="20" fill="#1E1B4B" stroke="#4338CA" stroke-width="1.5"/>
+      <text x="770" y="496" text-anchor="middle">Pipeline visual</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <g font-family="'JetBrains Mono','Menlo',monospace" font-size="14" letter-spacing="3" fill="#64748B" text-anchor="middle">
+    <text x="600" y="580">BY ORZATECH · MÉXICO · INMOBI.AI</text>
+  </g>
+</svg>

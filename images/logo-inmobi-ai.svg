@@ -1,19 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" role="img" aria-label="Inmobi.ai">
-  <defs>
-    <linearGradient id="markGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#6366F1"/>
-      <stop offset="100%" stop-color="#4338CA"/>
-    </linearGradient>
-  </defs>
-  <!-- Logomark: rounded square with house silhouette and AI dot -->
-  <rect x="8" y="16" width="64" height="64" rx="14" fill="url(#markGrad)"/>
-  <!-- House body -->
-  <path d="M24 64 V44 L40 32 L56 44 V64 H46 V52 H34 V64 Z" fill="#FFFFFF" fill-opacity="0.96"/>
-  <!-- AI dot above the house (the "i" tittle / signal) -->
-  <circle cx="40" cy="24" r="3.5" fill="#A5B4FC"/>
-  <!-- Wordmark -->
-  <g font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-weight="700" font-size="40" letter-spacing="-1.2">
-    <text x="92" y="62" fill="#0F172A">inmobi</text>
-    <text x="244" y="62" fill="#4338CA">.ai</text>
-  </g>
+  <text x="0" y="68"
+        font-family="'Fraunces', 'Cormorant Garamond', 'Times New Roman', Georgia, serif"
+        font-size="72"
+        font-weight="600"
+        letter-spacing="-2"
+        style="font-variation-settings: 'opsz' 144;"
+        fill="#0F0F10">Inmobi<tspan fill="#A77E2B">.</tspan>ai</text>
 </svg>

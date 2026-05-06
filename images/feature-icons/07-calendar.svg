@@ -1,7 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#4338CA" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="8" y="14" width="48" height="42" rx="5"/>
-  <path d="M8 26 h48"/>
-  <path d="M20 8 v10 M44 8 v10"/>
-  <circle cx="32" cy="40" r="8" fill="#A5B4FC" stroke="none"/>
-  <path d="M28 40 l3 3 l5 -6" stroke="#4338CA" stroke-width="2.4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#1F3A2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="10" y="14" width="44" height="40" rx="2"/>
+  <line x1="10" y1="24" x2="54" y2="24"/>
+  <line x1="22" y1="10" x2="22" y2="18"/>
+  <line x1="42" y1="10" x2="42" y2="18"/>
+  <!-- Day grid -->
+  <line x1="22" y1="32" x2="22" y2="50" stroke-opacity="0.25"/>
+  <line x1="32" y1="32" x2="32" y2="50" stroke-opacity="0.25"/>
+  <line x1="42" y1="32" x2="42" y2="50" stroke-opacity="0.25"/>
+  <line x1="14" y1="40" x2="50" y2="40" stroke-opacity="0.25"/>
+  <!-- Brass dot on a day = appointment -->
+  <circle cx="37" cy="44" r="3" fill="#A77E2B" stroke="none"/>
 </svg>

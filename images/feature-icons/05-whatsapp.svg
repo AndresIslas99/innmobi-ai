@@ -1,4 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#4338CA" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M12 52 l3 -8 a20 20 0 1 1 5 5 z"/>
-  <path d="M24 30 c0 6 4 10 10 10 l4 -2 q2 -1 4 1 l2 2 q1 1 0 2 l-3 3 c-2 2 -6 1 -10 -1 c-6 -3 -11 -8 -14 -14 c-2 -4 -3 -8 -1 -10 l3 -3 q1 -1 2 0 l2 2 q2 2 1 4 l-2 4 z" fill="#A5B4FC" stroke="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#1F3A2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Speech bubble -->
+  <path d="M14 14 H50 a4 4 0 0 1 4 4 V42 a4 4 0 0 1 -4 4 H30 L18 56 V46 H14 a4 4 0 0 1 -4 -4 V18 a4 4 0 0 1 4 -4 z"/>
+  <!-- Lines inside -->
+  <line x1="20" y1="24" x2="44" y2="24"/>
+  <line x1="20" y1="32" x2="38" y2="32"/>
+  <!-- Brass status dot -->
+  <circle cx="46" cy="32" r="2.5" fill="#A77E2B" stroke="none"/>
 </svg>

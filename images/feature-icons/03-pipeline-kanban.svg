@@ -1,6 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#4338CA" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="8" y="12" width="14" height="40" rx="3"/>
-  <rect x="25" y="12" width="14" height="28" rx="3"/>
-  <rect x="42" y="12" width="14" height="20" rx="3"/>
-  <path d="M11 20 h8 M11 28 h8 M28 20 h8 M28 28 h8 M45 20 h8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#1F3A2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 3 columns descending in height -->
+  <rect x="8" y="14" width="14" height="36" rx="1.5"/>
+  <rect x="25" y="22" width="14" height="28" rx="1.5"/>
+  <rect x="42" y="30" width="14" height="20" rx="1.5"/>
+  <!-- Cards (lines) -->
+  <line x1="11" y1="22" x2="19" y2="22"/>
+  <line x1="11" y1="28" x2="19" y2="28"/>
+  <line x1="28" y1="30" x2="36" y2="30"/>
+  <!-- Brass dot indicating "active" lead -->
+  <circle cx="49" cy="38" r="2.5" fill="#A77E2B" stroke="none"/>
 </svg>

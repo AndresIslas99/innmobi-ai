@@ -74,28 +74,58 @@ No se diseñó en un Notion. Se construyó en piso, vendiendo remates bancarios,
 
 ---
 
-## № 04 — Vista previa
+## № 04 — El producto, en vivo
 
-> Mockups fieles del UI. Para una demo en vivo con tu data → [agenda por WhatsApp](https://wa.me/525620595320).
+> Capturas reales del CRM corriendo. Generadas con Playwright sobre el dev server con datos demo. Para verlo con tu propia data → [agenda por WhatsApp](https://wa.me/525620595320).
 
 <table>
 <tr>
-<td width="50%"><img src="screenshots/01-dashboard.png" alt="Analytics ejecutivo"/></td>
-<td width="50%"><img src="screenshots/02-pipeline-kanban.png" alt="Pipeline kanban"/></td>
+<td width="50%"><img src="screenshots/01-dashboard.png" alt="Command Center"/></td>
+<td width="50%"><img src="screenshots/03-pipeline-kanban.png" alt="Pipeline kanban"/></td>
 </tr>
 <tr>
-<td><b>Analytics ejecutivo</b><br/>Conversión, velocity, forecast, ROI por canal — en tiempo real, sin esperar al lunes.</td>
-<td><b>Pipeline kanban</b><br/>Drag-and-drop por etapa. Una pantalla. Quince asesores. Visible para el coordinador.</td>
+<td><b>Command Center</b><br/>El asesor abre la app y sabe qué leads requieren atención hoy. KPIs en vivo: pipeline activo, conversión IA, leads sin contactar.</td>
+<td><b>Pipeline visual</b><br/>Drag-and-drop por etapa. Una pantalla, todos los asesores. Calificado · Cita · Visita · Oferta · Cierre.</td>
 </tr>
 <tr>
-<td><img src="screenshots/03-lead-detail.png" alt="IA califica el lead"/></td>
-<td><img src="screenshots/04-analytics-funnel.png" alt="Timeline multi-canal"/></td>
+<td><img src="screenshots/04-lead-detail.png" alt="Lead 360°"/></td>
+<td><img src="screenshots/06-analytics.png" alt="Analytics ejecutivo"/></td>
 </tr>
 <tr>
-<td><b>IA califica el lead</b><br/>Claude perfila al prospecto en 90 segundos: zona, presupuesto, urgencia, scoring HOT/WARM/COLD.</td>
-<td><b>Timeline multi-canal</b><br/>Llamadas, WhatsApp, citas y notas — todo en un solo hilo cronológico, buscable, exportable.</td>
+<td><b>Lead 360°</b><br/>Perfil del prospecto + tabs (Citas, Notas, Actividades, Propiedades, Ventas, AI Insights). Llamar, WhatsApp, Email a un click.</td>
+<td><b>Analytics ejecutivo</b><br/>Embudo de conversión por etapa, leads totales, conversión general. Pipeline / Equipo / Canales / Pérdidas.</td>
 </tr>
 </table>
+
+<details>
+<summary><b>Ver más capturas</b> (lista de leads, propiedades, calendario, citas, mobile)</summary>
+
+<table>
+<tr>
+<td width="50%"><img src="screenshots/02-leads-list.png" alt="Leads list"/></td>
+<td width="50%"><img src="screenshots/05-properties.png" alt="Catálogo de propiedades"/></td>
+</tr>
+<tr>
+<td><b>Lista de leads</b><br/>32 prospectos, filtros por status / temperatura / canal / asesor. Status badges en colores: Nuevo, Cita Confirmada, Sin Respuesta, Completado.</td>
+<td><b>Catálogo</b><br/>11 propiedades vivas. 6 verticales con filtros: Remates · Preventa · Corretaje · Recuperadas · Reventa · Rentas. Cada vertical con su color.</td>
+</tr>
+<tr>
+<td><img src="screenshots/07-calendar.png" alt="Calendario"/></td>
+<td><img src="screenshots/08-appointments.png" alt="Lista de citas"/></td>
+</tr>
+<tr>
+<td><b>Calendario</b><br/>Vista mensual de citas. Sync bidireccional con Google Calendar. Marcado por status: Completada · Pendiente.</td>
+<td><b>Citas</b><br/>Agrupadas por día. Lead, asesor, hora, status, propiedad, ubicación. Recordatorios automáticos por WhatsApp.</td>
+</tr>
+<tr>
+<td colspan="2" align="center"><img src="screenshots/09-mobile-dashboard.png" alt="Mobile" width="50%"/></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><b>Mobile-first</b> · Asesor en campo con todo a la mano · Mismo Command Center, optimizado para 390px</td>
+</tr>
+</table>
+
+</details>
 
 ---
 

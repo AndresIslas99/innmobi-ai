@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 480" role="img" aria-label="Innmobi.ai — El sistema operativo para inmobiliarias que cierran de verdad">
+  <!-- Bone canvas -->
+  <rect width="1280" height="480" fill="#F2EFE9"/>
+
+  <!-- Subtle topographic contours, ultra low opacity -->
+  <g stroke="#1F3A2D" stroke-width="0.6" fill="none" opacity="0.06">
+    <path d="M0 380 Q 320 340, 640 380 T 1280 380"/>
+    <path d="M0 410 Q 280 370, 600 410 T 1280 410"/>
+    <path d="M0 440 Q 360 400, 720 440 T 1280 440"/>
+  </g>
+
+  <!-- Top rule -->
+  <line x1="72" y1="56" x2="1208" y2="56" stroke="#A77E2B" stroke-width="1"/>
+
+  <!-- Eyebrow row: brand + tag -->
+  <g font-family="'JetBrains Mono','Menlo',monospace" font-size="13" letter-spacing="3.5" fill="#4A4A52">
+    <text x="72" y="80">INNMOBI.AI · CDMX · 2026</text>
+    <text x="1208" y="80" text-anchor="end">CRM INMOBILIARIO</text>
+  </g>
+
+  <!-- Section marker -->
+  <g font-family="'JetBrains Mono','Menlo',monospace" font-size="14" letter-spacing="3" fill="#A77E2B">
+    <text x="72" y="160">№ 01 — POSICIONAMIENTO</text>
+  </g>
+
+  <!-- Headline (Fraunces preferred, Georgia fallback) -->
+  <g font-family="'Fraunces','Cormorant Garamond','Times New Roman',Georgia,serif"
+     style="font-variation-settings: 'opsz' 144;"
+     fill="#0F0F10">
+    <text x="72" y="244" font-size="72" font-weight="600" letter-spacing="-1.6">El sistema operativo</text>
+    <text x="72" y="324" font-size="72" font-weight="600" letter-spacing="-1.6">para inmobiliarias</text>
+    <text x="72" y="404" font-size="72" font-weight="600" letter-spacing="-1.6">que cierran <tspan fill="#1F3A2D">de verdad<tspan fill="#A77E2B">.</tspan></tspan></text>
+  </g>
+
+  <!-- Bottom rule -->
+  <line x1="72" y1="436" x2="1208" y2="436" stroke="#D4D2CB" stroke-width="1"/>
+
+  <!-- Footer row -->
+  <g font-family="'JetBrains Mono','Menlo',monospace" font-size="12" letter-spacing="3" fill="#7C7C82">
+    <text x="72" y="460">PROBADO EN PISO · AGNOR INMOBILIARIA</text>
+    <text x="1208" y="460" text-anchor="end">ORZATECH · MX 🇲🇽</text>
+  </g>
+</svg>

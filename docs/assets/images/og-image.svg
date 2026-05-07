@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Innmobi.ai">
+  <rect width="1200" height="630" fill="#F2EFE9"/>
+
+  <!-- Subtle topo lines -->
+  <g stroke="#1F3A2D" stroke-width="0.6" fill="none" opacity="0.05">
+    <path d="M0 540 Q 300 500, 600 540 T 1200 540"/>
+    <path d="M0 570 Q 320 530, 640 570 T 1200 570"/>
+  </g>
+
+  <!-- Frame rules -->
+  <line x1="80" y1="80" x2="1120" y2="80" stroke="#A77E2B" stroke-width="1"/>
+  <line x1="80" y1="550" x2="1120" y2="550" stroke="#D4D2CB" stroke-width="1"/>
+
+  <!-- Top eyebrow -->
+  <g font-family="'JetBrains Mono','Menlo',monospace" font-size="14" letter-spacing="4" fill="#4A4A52">
+    <text x="80" y="106">INNMOBI.AI</text>
+    <text x="1120" y="106" text-anchor="end">CRM · MÉXICO · 2026</text>
+  </g>
+
+  <!-- Section marker -->
+  <g font-family="'JetBrains Mono','Menlo',monospace" font-size="14" letter-spacing="3" fill="#A77E2B">
+    <text x="80" y="180">№ 01</text>
+  </g>
+
+  <!-- Headline -->
+  <g font-family="'Fraunces','Cormorant Garamond','Times New Roman',Georgia,serif"
+     style="font-variation-settings: 'opsz' 144;"
+     fill="#0F0F10">
+    <text x="80" y="280" font-size="78" font-weight="600" letter-spacing="-1.8">El sistema operativo</text>
+    <text x="80" y="368" font-size="78" font-weight="600" letter-spacing="-1.8">para inmobiliarias</text>
+    <text x="80" y="456" font-size="78" font-weight="600" letter-spacing="-1.8">que cierran <tspan fill="#1F3A2D">de verdad<tspan fill="#A77E2B">.</tspan></tspan></text>
+  </g>
+
+  <!-- Footer -->
+  <g font-family="'JetBrains Mono','Menlo',monospace" font-size="13" letter-spacing="3" fill="#7C7C82">
+    <text x="80" y="582">ORZATECH · CDMX 🇲🇽</text>
+    <text x="1120" y="582" text-anchor="end">INNMOBI.AI</text>
+  </g>
+</svg>

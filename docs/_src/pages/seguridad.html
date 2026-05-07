@@ -1,0 +1,146 @@
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">№ 01 — SEGURIDAD Y CUMPLIMIENTO</span>
+    <h1 class="page-title">Tu data está <em>en buenas manos<span class="period">.</span></em></h1>
+    <p class="page-lead">LFPDPPP-compliant, encriptación end-to-end, audit logs por usuario, backups diarios fuera de sitio. Lo que un director responsable necesita ver antes de firmar.</p>
+  </div>
+</section>
+
+<section class="section section-deep">
+  <div class="container">
+    <span class="eyebrow">№ 02 — CUMPLIMIENTO LFPDPPP</span>
+    <h2 class="section-title">Cumplimos la <em>Ley Federal de Protección de Datos Personales<span class="period">.</span></em></h2>
+    <div class="security-grid">
+      <div class="security-item">
+        <h3>Aviso de privacidad por lead</h3>
+        <p>Cada prospecto se carga al sistema con consentimiento explícito documentado. El asesor solo puede capturar datos después de que el lead acepte el aviso de privacidad enviado vía WhatsApp/SMS.</p>
+      </div>
+      <div class="security-item">
+        <h3>Propósito limitado</h3>
+        <p>La data de leads se usa exclusivamente para gestión comercial declarada en el aviso. Sin venta a terceros, sin marketing externo, sin "enrichment" con servicios sospechosos.</p>
+      </div>
+      <div class="security-item">
+        <h3>Derechos ARCO</h3>
+        <p>Acceso, Rectificación, Cancelación y Oposición — atendidos en menos de 20 días hábiles según la ley. Panel de admin permite responder solicitudes con un click.</p>
+      </div>
+      <div class="security-item">
+        <h3>Export y borrado por solicitud</h3>
+        <p>Si un cliente pide su data o pide ser borrado, exportamos en CSV/JSON o eliminamos del sistema y backups en 30 días. Documentamos cada solicitud.</p>
+      </div>
+      <div class="security-item">
+        <h3>Retención de datos</h3>
+        <p>Leads inactivos: anonimización a los 24 meses. Histórico de cierres: retención fiscal mexicana (5 años). Configurable según políticas internas.</p>
+      </div>
+      <div class="security-item">
+        <h3>Sub-procesadores transparentes</h3>
+        <p>Lista pública: Anthropic (LLM), Meta (WhatsApp), Mercado Libre (publicación), Google (Calendar). Cada uno con DPA firmado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">№ 03 — INFRAESTRUCTURA</span>
+    <h2 class="section-title">Sin caja negra. <em>Sin "cloud mágico"<span class="period">.</span></em></h2>
+    <div class="security-grid">
+      <div class="security-item">
+        <h3>Encriptación at-rest</h3>
+        <p>PostgreSQL 16 con encriptación AES-256 en disco. Volúmenes cifrados a nivel hipervisor. Las llaves de encriptación no viven en la misma máquina que los datos.</p>
+      </div>
+      <div class="security-item">
+        <h3>Encriptación in-transit</h3>
+        <p>TLS 1.3 obligatorio en todo endpoint público. Certificados Let's Encrypt con renovación automática. HSTS preload activado.</p>
+      </div>
+      <div class="security-item">
+        <h3>Backups diarios fuera de sitio</h3>
+        <p>Snapshot completo cada 24h, retención 30 días. Geo-replicación a una región distinta de la primaria. Tests de restore automáticos cada semana.</p>
+      </div>
+      <div class="security-item">
+        <h3>RBAC granular</h3>
+        <p>Cuatro roles base (Director, Coordinador, Asesor Senior, Asesor) y permisos por feature. Un asesor no ve los leads de otro a menos que explícitamente se le asigne.</p>
+      </div>
+      <div class="security-item">
+        <h3>Audit logs inmutables</h3>
+        <p>Cada login, cada cambio, cada export. Quién, cuándo, qué. Los logs no se pueden borrar desde el panel — solo se exportan para compliance.</p>
+      </div>
+      <div class="security-item">
+        <h3>Webhook fail-closed</h3>
+        <p>Si un webhook (WhatsApp, ML, Retell) llega sin firma válida o sin idempotencia, se rechaza. No procesamos payloads dudosos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-deep">
+  <div class="container">
+    <span class="eyebrow">№ 04 — DEPLOY + MONITOREO</span>
+    <h2 class="section-title">Producción real. <em>No prototipos<span class="period">.</span></em></h2>
+    <div class="security-grid">
+      <div class="security-item">
+        <h3>Blue/green deploy</h3>
+        <p>Cada release sube a un slot paralelo, se valida, y se hace switch atómico. Rollback automático ante healthcheck fail.</p>
+      </div>
+      <div class="security-item">
+        <h3>Tests contra PostgreSQL real</h3>
+        <p>Sin SQLite mocks que mienten. Cada PR pasa contra un PostgreSQL idéntico al de producción. Si el test miente, no hace merge.</p>
+      </div>
+      <div class="security-item">
+        <h3>Domain-Driven Design</h3>
+        <p>Unit of Work pattern, repositorios desacoplados, eventos de dominio versionados. Cuando algo se rompe, lo encontramos rápido.</p>
+      </div>
+      <div class="security-item">
+        <h3>Uptime SLA</h3>
+        <p>99.5% en Starter / Growth (incluye downtime planeado). 99.9% en Scale (con créditos por incumplimiento). Status page público próximamente en <code>status.innmobi.ai</code>.</p>
+      </div>
+      <div class="security-item">
+        <h3>Incident response</h3>
+        <p>Run-book documentado. Notificación al admin del cliente en menos de 15 min ante incidente Sev1. Postmortem público al cierre.</p>
+      </div>
+      <div class="security-item">
+        <h3>Secret management</h3>
+        <p>API keys, tokens y secretos en vault aislado. Rotación trimestral. Credenciales de cliente nunca en logs ni en errores expuestos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow">
+    <span class="eyebrow">№ 05 — DOCUMENTACIÓN PARA TU EQUIPO LEGAL</span>
+    <h2>Lo que pedirá tu abogado.</h2>
+    <ul>
+      <li><a href="/legal/privacidad/">Aviso de privacidad LFPDPPP completo</a></li>
+      <li><a href="/legal/terminos/">Términos de servicio (B2B SaaS MX)</a></li>
+      <li>Acuerdo de tratamiento de datos (DPA) — disponible al firmar</li>
+      <li>Lista de sub-procesadores actualizada — bajo solicitud</li>
+      <li>Reporte de pruebas de seguridad (pentest anual) — bajo NDA</li>
+      <li>Plan de continuidad de negocio (BCP) — bajo solicitud</li>
+    </ul>
+    <p style="margin-top: 32px;">Si tu equipo de TI o legal tiene un cuestionario de proveedor, mándalo a <a href="mailto:seguridad@innmobi.ai">seguridad@innmobi.ai</a> y respondemos en menos de 5 días hábiles.</p>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div>
+      <span class="eyebrow">№ 06 — REVISIÓN TÉCNICA</span>
+      <h2>Si tu CTO <em>quiere ver código<span class="period">.</span></em></h2>
+      <p class="lead">Hacemos una sesión técnica de 60 minutos con tu equipo de tecnología. Repasamos arquitectura, modelo de amenazas, deploy pipeline, plan de respuesta a incidentes. Sin marketing.</p>
+    </div>
+    <div class="cta-contacts">
+      <a href="/demo/?type=technical" class="cta-contact primary">
+        <span class="label">REVISIÓN TÉCNICA · 60 MIN</span>
+        <span class="val">Reservar →</span>
+      </a>
+      <a href="mailto:seguridad@innmobi.ai" class="cta-contact">
+        <span class="label">EMAIL · CUESTIONARIO</span>
+        <span class="val">seguridad@innmobi.ai</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>

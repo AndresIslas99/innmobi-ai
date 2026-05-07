@@ -1,0 +1,149 @@
+{
+  "site": {
+    "name": "Innmobi.ai",
+    "url": "https://innmobi.ai",
+    "tagline": "El sistema operativo para inmobiliarias que cierran de verdad.",
+    "description": "CRM construido desde cero para inmobiliarias mexicanas. Inteligencia que califica leads en la primera llamada, pipeline visual, integración nativa con WhatsApp y Mercado Libre.",
+    "lang": "es-MX",
+    "author": "OrzaTech",
+    "email": "hola@innmobi.ai",
+    "whatsapp": "525620595320",
+    "calendly": null,
+    "plausibleDomain": "innmobi.ai",
+    "social": {
+      "linkedin": "https://www.linkedin.com/company/innmobi-ai",
+      "x": "https://x.com/innmobiai",
+      "instagram": "https://www.instagram.com/innmobi.ai"
+    }
+  },
+  "pages": [
+    {
+      "slug": "",
+      "title": "Innmobi.ai — El sistema operativo para inmobiliarias que cierran de verdad",
+      "description": "CRM construido para inmobiliarias mexicanas. Inteligencia que califica leads en la primera llamada, pipeline visual, integración nativa con WhatsApp y Mercado Libre. Probado en producción en CDMX.",
+      "ogImage": "/og/home.png",
+      "navHide": true,
+      "priority": 1.0
+    },
+    {
+      "slug": "producto",
+      "title": "Producto · Innmobi.ai",
+      "description": "Recorrido detallado del CRM: lead qualification con IA, pipeline kanban, multi-canal, WhatsApp Business, Mercado Libre, analytics, agente de voz.",
+      "ogImage": "/og/producto.png",
+      "navLabel": "Producto",
+      "priority": 0.9
+    },
+    {
+      "slug": "precios",
+      "title": "Precios · Innmobi.ai",
+      "description": "Tres tiers para inmobiliarias mexicanas. Pricing por asesor activo, sin sorpresas. Migración asistida en 4 semanas.",
+      "ogImage": "/og/precios.png",
+      "navLabel": "Precios",
+      "priority": 0.9
+    },
+    {
+      "slug": "casos-de-exito",
+      "title": "Casos de éxito · Innmobi.ai",
+      "description": "Inmobiliarias mexicanas que operan diariamente sobre Innmobi.ai. Métricas reales, problemas reales, resultados reales.",
+      "ogImage": "/og/casos.png",
+      "navLabel": "Casos",
+      "priority": 0.8
+    },
+    {
+      "slug": "casos-de-exito/agnor",
+      "title": "Caso AGNOR Inmobiliaria — Innmobi.ai",
+      "description": "Cómo automatizamos el pipeline de una inmobiliaria de remates bancarios en CDMX. 15 asesores · 4 roles · 6 verticales · 100% en producción.",
+      "ogImage": "/og/caso-agnor.png",
+      "priority": 0.8
+    },
+    {
+      "slug": "seguridad",
+      "title": "Seguridad y cumplimiento · Innmobi.ai",
+      "description": "LFPDPPP, encriptación end-to-end, audit logs, RBAC, backups diarios, sub-procesadores. Cómo Innmobi.ai cuida la data de tu inmobiliaria.",
+      "ogImage": "/og/seguridad.png",
+      "navLabel": "Seguridad",
+      "priority": 0.7
+    },
+    {
+      "slug": "sobre-nosotros",
+      "title": "Sobre nosotros · Innmobi.ai",
+      "description": "Innmobi.ai nació en piso, vendiendo remates en CDMX. Un producto de OrzaTech construido para corredores mexicanos.",
+      "ogImage": "/og/sobre.png",
+      "navLabel": "Empresa",
+      "priority": 0.6
+    },
+    {
+      "slug": "recursos",
+      "title": "Recursos · Innmobi.ai",
+      "description": "Guías, checklists y análisis para directores de inmobiliarias mexicanas. Cómo evaluar un CRM, integrar WhatsApp, exportar datos correctamente.",
+      "ogImage": "/og/recursos.png",
+      "navLabel": "Recursos",
+      "priority": 0.7
+    },
+    {
+      "slug": "demo",
+      "title": "Reservar demo · Innmobi.ai",
+      "description": "30 minutos. Te mostramos el CRM corriendo con datos reales. Si tu inmobiliaria tiene 5+ asesores, hablemos.",
+      "ogImage": "/og/demo.png",
+      "navLabel": "Reservar demo",
+      "navCta": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "legal/terminos",
+      "title": "Términos de servicio · Innmobi.ai",
+      "description": "Términos de servicio para inmobiliarias mexicanas que usan Innmobi.ai como su sistema operativo de ventas.",
+      "ogImage": "/og/legal.png",
+      "priority": 0.3
+    },
+    {
+      "slug": "legal/privacidad",
+      "title": "Aviso de privacidad · Innmobi.ai",
+      "description": "Aviso de privacidad LFPDPPP-compliant. Qué datos recopilamos, para qué los usamos, y cómo los proteges en Innmobi.ai.",
+      "ogImage": "/og/legal.png",
+      "priority": 0.3
+    }
+  ],
+  "posts": [
+    {
+      "slug": "recursos/por-que-60-leads-mueren-en-24-horas",
+      "title": "Por qué el 60% de los leads inmobiliarios mueren en las primeras 24 horas",
+      "description": "Análisis de la velocidad de respuesta en el mercado inmobiliario mexicano y por qué un CRM con IA cambia la ecuación.",
+      "publishedAt": "2026-05-12",
+      "ogImage": "/og/blog-lead-rot.png",
+      "priority": 0.6
+    },
+    {
+      "slug": "recursos/checklist-evaluar-crm-inmobiliaria-mexico",
+      "title": "Checklist: 27 puntos para evaluar un CRM inmobiliario en México",
+      "description": "Lista práctica para directores que están comparando CRMs. Qué pedir, qué exigir, qué ignorar.",
+      "publishedAt": "2026-05-19",
+      "ogImage": "/og/blog-checklist.png",
+      "priority": 0.6
+    },
+    {
+      "slug": "recursos/whatsapp-business-api-pipeline",
+      "title": "WhatsApp Business API en tu pipeline: lo que ningún proveedor te dice",
+      "description": "Cómo se aprueba, cuánto cuesta, cómo se integra al CRM y qué hacer cuando Meta te suspende.",
+      "publishedAt": "2026-05-26",
+      "ogImage": "/og/blog-whatsapp.png",
+      "priority": 0.6
+    },
+    {
+      "slug": "recursos/mercado-libre-inmuebles-integracion",
+      "title": "Mercado Libre Inmuebles: integración nativa vs scraping vs publicación manual",
+      "description": "Las 3 formas de publicar inventario en ML, comparadas con honestidad. Cuándo usar cada una.",
+      "publishedAt": "2026-06-02",
+      "ogImage": "/og/blog-mercadolibre.png",
+      "priority": 0.6
+    },
+    {
+      "slug": "recursos/caso-agnor-remates-bancarios-cdmx",
+      "title": "Caso AGNOR: cómo automatizamos un pipeline de remates bancarios en CDMX",
+      "description": "El long-form completo de la implementación que hoy corre todos los días en producción. Métricas, decisiones, errores.",
+      "publishedAt": "2026-06-09",
+      "ogImage": "/og/blog-agnor.png",
+      "priority": 0.6
+    }
+  ]
+}

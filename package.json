@@ -1,18 +1,25 @@
 {
   "name": "innmobi-ai-showcase",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "description": "Marketing showcase for Innmobi.ai — CRM Inmobiliario con IA",
   "scripts": {
+    "build:site": "node scripts/build-site.mjs",
+    "build:favicons": "node scripts/render-favicons.mjs",
+    "build:og": "node scripts/render-og-images.mjs",
+    "build:brochure": "node scripts/render-brochure.mjs",
+    "build:carousels": "node scripts/render-carousels.mjs",
+    "build:all": "npm run build:favicons && npm run build:og && npm run build:site && npm run build:brochure && npm run build:carousels",
     "render:carousels": "node scripts/render-carousels.mjs",
     "render:brochure": "node scripts/render-brochure.mjs",
+    "render:all": "bash scripts/render-all.sh",
     "capture:screenshots": "node scripts/capture-screenshots.mjs",
-    "render:all": "bash scripts/render-all.sh"
+    "dev": "npx serve docs"
   },
   "devDependencies": {
-    "playwright": "1.56"
+    "playwright": "^1.56.0"
   },
   "license": "UNLICENSED",
-  "author": "OrzaTech <aibravo@orzatech.com>"
+  "author": "OrzaTech <hola@innmobi.ai>"
 }

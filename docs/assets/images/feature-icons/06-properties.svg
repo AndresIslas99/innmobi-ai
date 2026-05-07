@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#1F3A2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Property grid: 3 buildings -->
+  <rect x="8" y="32" width="14" height="22"/>
+  <rect x="25" y="20" width="14" height="34"/>
+  <rect x="42" y="26" width="14" height="28"/>
+  <!-- Windows -->
+  <line x1="12" y1="38" x2="18" y2="38"/>
+  <line x1="12" y1="44" x2="18" y2="44"/>
+  <line x1="29" y1="26" x2="35" y2="26"/>
+  <line x1="29" y1="34" x2="35" y2="34"/>
+  <line x1="29" y1="42" x2="35" y2="42"/>
+  <line x1="46" y1="32" x2="52" y2="32"/>
+  <line x1="46" y1="40" x2="52" y2="40"/>
+  <!-- Ground line -->
+  <line x1="6" y1="54" x2="58" y2="54"/>
+  <!-- Brass dot on tallest building (active listing) -->
+  <circle cx="32" cy="14" r="2" fill="#A77E2B" stroke="none"/>
+</svg>

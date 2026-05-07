@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-label="IA califica al lead en 90 segundos">
+  <defs>
+    <style><![CDATA[
+      .canvas { fill: #FEFCF7; }
+      .canvas-frame { fill: none; stroke: #D4D2CB; stroke-width: 1; }
+      .marker { font: 500 13px 'JetBrains Mono', monospace; fill: #A77E2B; letter-spacing: 3px; text-transform: uppercase; }
+      .h1 { font: 600 38px 'Fraunces', Georgia, serif; fill: #0F0F10; letter-spacing: -0.022em; }
+      .h1 .accent { fill: #1F3A2D; }
+      .h1 .period { fill: #A77E2B; }
+
+      .panel { fill: #F2EFE9; stroke: #D4D2CB; stroke-width: 1; }
+      .panel-h { font: 500 12px 'JetBrains Mono', monospace; fill: #A77E2B; letter-spacing: 2.5px; text-transform: uppercase; }
+      .label-mono { font: 500 16px 'JetBrains Mono', monospace; fill: #4A4A52; }
+      .value-mono { font: 600 16px 'JetBrains Mono', monospace; fill: #0F0F10; }
+      .value-hot { fill: #9A4521; }
+      .value-forest { fill: #1F3A2D; }
+      .timer { font: 500 80px 'Fraunces', Georgia, serif; fill: #1F3A2D; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+      .timer-unit { font: 500 28px 'JetBrains Mono', monospace; fill: #A77E2B; letter-spacing: 2px; }
+
+      /* Phone ring pulse */
+      @keyframes ring-pulse {
+        0%   { r: 40; opacity: 0.5; }
+        100% { r: 90; opacity: 0; }
+      }
+      .ring-1 { animation: ring-pulse 1.6s ease-out infinite; }
+      .ring-2 { animation: ring-pulse 1.6s ease-out infinite 0.5s; }
+
+      /* Audio waveform — opacity flicker (no transform issues) */
+      @keyframes wave-pulse {
+        0%, 100% { opacity: 0.25; }
+        50% { opacity: 1; }
+      }
+      .bar { animation: wave-pulse 0.7s ease-in-out infinite; }
+      .bar-2 { animation-delay: 0.1s; }
+      .bar-3 { animation-delay: 0.2s; }
+      .bar-4 { animation-delay: 0.05s; }
+      .bar-5 { animation-delay: 0.25s; }
+      .bar-6 { animation-delay: 0.15s; }
+      .bar-7 { animation-delay: 0.3s; }
+      .bar-8 { animation-delay: 0.1s; }
+      .bar-9 { animation-delay: 0.2s; }
+      .bar-10 { animation-delay: 0.05s; }
+      .bar-11 { animation-delay: 0.15s; }
+
+      /* Lines appear sequentially (typing effect) */
+      .line { opacity: 0; animation: appear 8s ease-in-out infinite; }
+      .line.l1 { animation-delay: 0.5s; }
+      .line.l2 { animation-delay: 1.5s; }
+      .line.l3 { animation-delay: 2.5s; }
+      .line.l4 { animation-delay: 3.5s; }
+      .line.l5 { animation-delay: 4.5s; }
+      .line.l6 { animation-delay: 5.5s; }
+      @keyframes appear {
+        0%   { opacity: 0; }
+        5%   { opacity: 1; }
+        85%  { opacity: 1; }
+        100% { opacity: 0; }
+      }
+    ]]></style>
+  </defs>
+
+  <rect class="canvas" width="1280" height="720"/>
+  <rect class="canvas-frame" x="0.5" y="0.5" width="1279" height="719"/>
+
+  <!-- Header -->
+  <line x1="60" y1="56" x2="1220" y2="56" stroke="#A77E2B" stroke-width="1"/>
+  <text x="60" y="80" class="marker">№ 01 — INTELIGENCIA QUE NO SE CANSA</text>
+  <text x="60" y="140" class="h1">Califica al lead en la <tspan class="accent">primera llamada</tspan><tspan class="period">.</tspan></text>
+
+  <!-- Left column: Phone + audio (panel from y=200 to y=660) -->
+  <rect class="panel" x="60" y="200" width="500" height="460" rx="2"/>
+  <text x="84" y="232" class="panel-h">[ LLAMADA ENTRANTE ]</text>
+
+  <!-- Phone icon with pulsing rings (centered horizontally at x=310, vertically at y=340) -->
+  <circle class="ring-1" cx="310" cy="340" r="40" fill="none" stroke="#1F3A2D" stroke-width="2"/>
+  <circle class="ring-2" cx="310" cy="340" r="40" fill="none" stroke="#1F3A2D" stroke-width="2"/>
+  <circle cx="310" cy="340" r="40" fill="#1F3A2D"/>
+  <path d="M296 326 q-4 0 -4 4 q0 16 14 30 q14 14 30 14 q4 0 4 -4 v-8 q0 -4 -4 -4 l-6 -2 q-3 -1 -5 1 l-3 3 q-9 -5 -14 -14 l3 -3 q2 -2 1 -5 l-2 -6 q0 -4 -4 -4 z" fill="#FEFCF7"/>
+
+  <!-- Caller info -->
+  <text x="310" y="430" class="value-mono" text-anchor="middle" style="font-size: 22px;">+52 55 2045 9338</text>
+  <text x="310" y="456" class="label-mono" text-anchor="middle" style="font-size: 13px; letter-spacing: 2px;">CARLOS MÉNDEZ · LLAMANDO</text>
+
+  <!-- Audio waveform (constrained between y=500 and y=560, max height 60) -->
+  <rect class="bar"     x="190" y="510" width="6" height="40" fill="#1F3A2D"/>
+  <rect class="bar bar-2"  x="210" y="500" width="6" height="60" fill="#1F3A2D"/>
+  <rect class="bar bar-3"  x="230" y="515" width="6" height="30" fill="#1F3A2D"/>
+  <rect class="bar bar-4"  x="250" y="495" width="6" height="70" fill="#A77E2B"/>
+  <rect class="bar bar-5"  x="270" y="505" width="6" height="50" fill="#1F3A2D"/>
+  <rect class="bar bar-6"  x="290" y="515" width="6" height="30" fill="#1F3A2D"/>
+  <rect class="bar bar-7"  x="310" y="500" width="6" height="60" fill="#1F3A2D"/>
+  <rect class="bar bar-8"  x="330" y="490" width="6" height="80" fill="#A77E2B"/>
+  <rect class="bar bar-9"  x="350" y="505" width="6" height="50" fill="#1F3A2D"/>
+  <rect class="bar bar-10" x="370" y="510" width="6" height="40" fill="#1F3A2D"/>
+  <rect class="bar bar-11" x="390" y="515" width="6" height="30" fill="#1F3A2D"/>
+  <rect class="bar"        x="410" y="500" width="6" height="60" fill="#1F3A2D"/>
+  <rect class="bar bar-2"  x="430" y="510" width="6" height="40" fill="#1F3A2D"/>
+
+  <!-- Status line at bottom of panel -->
+  <text x="310" y="630" class="label-mono" text-anchor="middle" style="font-size: 12px; letter-spacing: 3px;">EN CURSO · CLAUDE ANALIZANDO</text>
+
+  <!-- Right column: Live profile (lines appearing) -->
+  <rect class="panel" x="620" y="200" width="600" height="460" rx="2"/>
+  <text x="644" y="232" class="panel-h">[ ANÁLISIS DE LLAMADA · 90s ]</text>
+
+  <!-- Lines container (each appears with delay) -->
+  <text class="line l1" x="660" y="290">
+    <tspan class="label-mono">nombre........ </tspan>
+    <tspan class="value-mono">Carlos Méndez</tspan>
+  </text>
+  <text class="line l2" x="660" y="328">
+    <tspan class="label-mono">zona.......... </tspan>
+    <tspan class="value-mono">Coyoacán, Del Valle</tspan>
+  </text>
+  <text class="line l3" x="660" y="366">
+    <tspan class="label-mono">presupuesto... </tspan>
+    <tspan class="value-mono">3.2M – 4.5M MXN</tspan>
+  </text>
+  <text class="line l4" x="660" y="404">
+    <tspan class="label-mono">tipo.......... </tspan>
+    <tspan class="value-mono">Casa, 3 recámaras</tspan>
+  </text>
+  <text class="line l5" x="660" y="442">
+    <tspan class="label-mono">urgencia...... </tspan>
+    <tspan class="value-mono value-forest">Alta · mudanza 60 días</tspan>
+  </text>
+  <text class="line l6" x="660" y="480">
+    <tspan class="label-mono">scoring....... </tspan>
+    <tspan class="value-mono value-hot" style="font-weight: 700;">🔥 HOT · top asesor</tspan>
+  </text>
+
+  <!-- Timer (visual proof: 90 seconds) -->
+  <text x="660" y="568" class="label-mono" style="font-size: 11px; letter-spacing: 2.5px;">TIEMPO TOTAL</text>
+  <text x="660" y="630" class="timer">90<tspan class="timer-unit"> seg</tspan></text>
+</svg>

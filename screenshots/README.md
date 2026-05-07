@@ -2,6 +2,11 @@
 
 Capturas reales del CRM Innmobi.ai corriendo con datos demo seeded.
 
+> **TODO post-rebrand:** Las capturas actuales fueron tomadas cuando el CRM aún
+> mostraba "Inmobi.ai" en su UI. Después de actualizar el repo del CRM
+> (`../inmobi-ai/agnor-crm-dev`) para mostrar "Innmobi.ai" en navbar/títulos,
+> hay que volver a correr `npm run capture:screenshots` y reemplazar los 9 PNGs.
+
 ## Inventario
 
 | Archivo | Vista | Viewport |

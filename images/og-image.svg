@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Inmobi.ai">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Innmobi.ai">
   <rect width="1200" height="630" fill="#F2EFE9"/>
 
   <!-- Subtle topo lines -->
@@ -13,7 +13,7 @@
 
   <!-- Top eyebrow -->
   <g font-family="'JetBrains Mono','Menlo',monospace" font-size="14" letter-spacing="4" fill="#4A4A52">
-    <text x="80" y="106">INMOBI.AI</text>
+    <text x="80" y="106">INNMOBI.AI</text>
     <text x="1120" y="106" text-anchor="end">CRM · MÉXICO · 2026</text>
   </g>
 
@@ -34,6 +34,6 @@
   <!-- Footer -->
   <g font-family="'JetBrains Mono','Menlo',monospace" font-size="13" letter-spacing="3" fill="#7C7C82">
     <text x="80" y="582">ORZATECH · CDMX 🇲🇽</text>
-    <text x="1120" y="582" text-anchor="end">INMOBI.AI</text>
+    <text x="1120" y="582" text-anchor="end">INNMOBI.AI</text>
   </g>
 </svg>

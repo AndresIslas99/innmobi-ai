@@ -11,7 +11,7 @@ const HTML = path.join(ROOT, 'brochure', 'brochure.html');
 const PDF = path.join(ROOT, 'brochure', 'brochure.pdf');
 
 async function main() {
-  console.log('Inmobi.ai — Rendering brochure to PDF');
+  console.log('Innmobi.ai — Rendering brochure to PDF');
 
   const browser = await chromium.launch();
   const ctx = await browser.newContext();

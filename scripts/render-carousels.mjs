@@ -51,7 +51,7 @@ async function renderOne(browser, file) {
 }
 
 async function main() {
-  console.log('Inmobi.ai — Rendering carousels');
+  console.log('Innmobi.ai — Rendering carousels');
   console.log(`Viewport: ${VIEWPORT.width}×${VIEWPORT.height} @${DEVICE_SCALE}x\n`);
 
   const browser = await chromium.launch();

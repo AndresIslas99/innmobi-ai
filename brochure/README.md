@@ -1,6 +1,6 @@
 # Brochure
 
-Brochure imprimible de 2 páginas (A4) para Inmobi.ai.
+Brochure imprimible de 2 páginas (A4) para Innmobi.ai.
 
 ## Archivos
 - `brochure.html` — fuente editable (HTML + CSS, fonts via Google)

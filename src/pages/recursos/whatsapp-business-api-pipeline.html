@@ -1,0 +1,130 @@
+<main id="main">
+<article class="blog-post">
+  <div class="container narrow">
+    <nav class="breadcrumb"><a href="/recursos/">Recursos</a> · Guía técnica</nav>
+    <div class="post-meta">
+      <span class="post-eyebrow">GUÍA TÉCNICA · 10 MIN DE LECTURA</span>
+      <time datetime="2026-05-26">26 mayo 2026</time>
+    </div>
+    <h1>WhatsApp Business API en tu pipeline: <em>lo que ningún proveedor te dice</em>.</h1>
+    <p class="post-lead">Cómo se aprueba con Meta, cuánto cuesta realmente, qué se rompe en la integración con CRM, y qué hacer cuando Meta te suspende sin previo aviso. Aprendizaje de varias implementaciones en MX.</p>
+
+    <div class="post-body">
+      <p>Si gestionas una inmobiliaria mexicana, ya sabes que WhatsApp es <em>el canal</em>. Cierras más conversaciones por WhatsApp que por email y por llamada combinados. Pero hay una diferencia enorme entre <strong>WhatsApp Business standard</strong> (la app gratuita en celular) y <strong>WhatsApp Business API</strong> (el sistema de empresas con plantillas, automatización, multi-agente).</p>
+
+      <p>La mayoría de las inmobiliarias operan con la primera y eso es exactamente lo que les impide escalar. Esta guía es para quienes ya entendieron que tienen que migrar — y necesitan saber lo que los proveedores omiten en su pitch.</p>
+
+      <h2>Por qué la app de WhatsApp Business no escala.</h2>
+
+      <p>Limitaciones duras que no se resuelven con "más asesores":</p>
+
+      <ul>
+        <li>Solo un dispositivo a la vez. Si tu coordinador quiere ver la conversación de un asesor con un lead, no puede.</li>
+        <li>El número está atado al celular físico. Si se rompe, perdiste tus chats.</li>
+        <li>No hay automatización. Cada respuesta es manual, asesor por asesor.</li>
+        <li>No hay plantillas para envíos masivos. No puedes notificar a 500 prospectos del lanzamiento de un nuevo proyecto sin spam.</li>
+        <li>Cuando un asesor renuncia, se lleva los chats y los contactos.</li>
+      </ul>
+
+      <p>WhatsApp Business API resuelve todo lo anterior. Pero el alta no es trivial.</p>
+
+      <h2>El proceso de alta con Meta (10 días reales).</h2>
+
+      <p>Esto es lo que <em>debe</em> pasar para que tu número quede en producción:</p>
+
+      <ol>
+        <li><strong>Día 1-2:</strong> Crear Meta Business Manager con tu RFC, dirección fiscal y comprobante de domicilio. Meta valida que la empresa exista. En México, si tu razón social no aparece en bases de datos públicas, te piden documentos adicionales.</li>
+        <li><strong>Día 3:</strong> Verificar el dominio (innmobi.ai en nuestro caso) con un meta-tag DNS. Esto demuestra que tú controlas el dominio asociado.</li>
+        <li><strong>Día 4-5:</strong> Solicitar el alta del número. Aquí hay dos caminos: (1) usar un número nuevo dedicado, o (2) "migrar" tu número actual de WhatsApp Business standard. La migración borra los chats existentes — algo que rara vez te dicen claro.</li>
+        <li><strong>Día 6:</strong> Verificar el número con código por SMS o llamada de voz. Si tu número está atado a un celular activo, tienes que liberarlo de la app de WhatsApp Business primero.</li>
+        <li><strong>Día 7-9:</strong> Solicitar plantillas de mensaje. Las primeras 10-15 plantillas pasan revisión de Meta — pueden rechazar si parecen "promocionales agresivas" en una categoría utility, o si tienen variables mal estructuradas.</li>
+        <li><strong>Día 10:</strong> Tu número está en producción. Puedes empezar a enviar plantillas y recibir mensajes vía API.</li>
+      </ol>
+
+      <p>Los primeros 30 días tu número estará en <strong>tier 1</strong>: solo puedes iniciar conversaciones con 250 destinos únicos al día. Tier 2 (1,000/día) y tier 3 (10,000/día) se desbloquean automáticamente con buen historial de calidad.</p>
+
+      <h2>Cuánto cuesta realmente (y qué te ocultan).</h2>
+
+      <p>Meta cobra por <em>conversación iniciada</em> en categorías:</p>
+
+      <ul>
+        <li><strong>Utility</strong> (confirmaciones, recordatorios): ~$0.65 MXN por conversación.</li>
+        <li><strong>Marketing</strong> (promocional, captación): ~$1.20 MXN por conversación.</li>
+        <li><strong>Authentication</strong> (códigos OTP): ~$0.90 MXN por conversación.</li>
+        <li><strong>Service</strong> (responder a inquiry del usuario): gratis primeras 1,000/mes.</li>
+      </ul>
+
+      <p>Una conversación dura 24 horas desde el último mensaje en la categoría. Esto significa que si mandas un recordatorio (utility) y el lead responde y conversas durante 8 horas, eso es <em>una sola</em> conversación, no muchas.</p>
+
+      <p>El costo del proveedor de software (BSP — Business Solution Provider) va por encima:</p>
+      <ul>
+        <li>Twilio: ~$0.005 USD por mensaje + costos Meta.</li>
+        <li>360dialog, Vonage, Wati: similar a Twilio.</li>
+        <li>Innmobi.ai: incluido en el plan, sin sobrecargo por mensaje (con límites razonables).</li>
+      </ul>
+
+      <p>Lo que rara vez está en el pitch: <strong>tu número de teléfono debe estar en TU Meta Business Manager, no en el del proveedor</strong>. Si lo tienen ellos, dependes de su buena voluntad para portarlo cuando cambies de proveedor.</p>
+
+      <h2>Cómo se integra al CRM (lo que se rompe primero).</h2>
+
+      <p>La integración entre WhatsApp Business API y un CRM tiene tres puntos de fricción comunes:</p>
+
+      <h3>№ 01 — Asignación de conversaciones a asesores.</h3>
+
+      <p>Cuando entra un mensaje nuevo, ¿quién lo contesta? Reglas posibles: round-robin, por carga actual, por especialidad de vertical, por fuente del lead. El CRM debe permitir definirlas sin código y respetar la asignación en tiempo real.</p>
+
+      <h3>№ 02 — Plantillas vs free-form.</h3>
+
+      <p>Solo puedes iniciar conversaciones con plantillas pre-aprobadas. Una vez que el lead responde, tienes 24 horas de "ventana de servicio" donde puedes mandar mensajes libres. El CRM debe distinguir claramente: "esta es plantilla con variables", "esta es free-form", "estás fuera de ventana, debes usar plantilla".</p>
+
+      <h3>№ 03 — Multi-canal sin perder hilo.</h3>
+
+      <p>Un mismo lead puede llegar por web form, llamada y WhatsApp. El sistema debe deduplicar y unificar la conversación en el timeline del lead, no crear tres registros separados.</p>
+
+      <h2>Qué hacer cuando Meta te suspende.</h2>
+
+      <p>Pasa. Especialmente si tu equipo manda muchas conversaciones de marketing y reciben muchos "bloquear" del usuario. La calidad de tu número (verde, amarillo, rojo) la mide Meta de forma opaca. Si pasa a rojo:</p>
+
+      <ol>
+        <li>El número se suspende temporal o definitivamente.</li>
+        <li>Las plantillas existentes se invalidan.</li>
+        <li>Para reactivar tienes que abrir un caso, demostrar que limpiaste el flujo, y esperar revisión humana de Meta (5-30 días).</li>
+      </ol>
+
+      <p>Cómo prevenirlo:</p>
+      <ul>
+        <li>No mandes plantillas marketing a leads fríos sin opt-in claro.</li>
+        <li>Segmenta. Mejor 100 mensajes con 90% engagement que 1000 con 5%.</li>
+        <li>Da una opción clara de "deja de mandarme mensajes" en cada plantilla.</li>
+        <li>Distingue muy bien utility (transaccional) de marketing — la categoría que pones en el envío importa.</li>
+      </ul>
+
+      <h2>Lo mínimo que debes pedirle a tu CRM.</h2>
+
+      <p>Si vas a invertir en WhatsApp API, asegúrate que tu CRM:</p>
+      <ol>
+        <li>Te ayude con el alta Meta (no es trivial — 10 días con su gestión correcta).</li>
+        <li>Tu número quede en TU Business Manager, no en el del proveedor.</li>
+        <li>Plantillas Meta-aprobadas vengan pre-cargadas, no que las construyas tú desde cero.</li>
+        <li>Distinga visualmente plantilla vs free-form vs ventana cerrada.</li>
+        <li>Permita configurar reglas de asignación sin código.</li>
+        <li>Auditoría completa: cada mensaje, quién lo envió, cuándo, en qué categoría.</li>
+      </ol>
+    </div>
+
+    <div class="post-cta">
+      <span class="label">SI ESTÁS EVALUANDO PROVEEDORES</span>
+      <h3>¿Quieres ver cómo se ve <em>WhatsApp Business API integrado al CRM</em> en producción?</h3>
+      <p>Treinta minutos. Te abrimos el CRM de AGNOR con sus 21 plantillas activas, te enseñamos el flujo de asignación y la auditoría completa.</p>
+      <a href="/demo/" class="btn">Reservar demo →</a>
+    </div>
+
+    <div class="related">
+      <h4>Lecturas relacionadas</h4>
+      <a href="/recursos/por-que-60-leads-mueren-en-24-horas/">Por qué el 60% de los leads inmobiliarios mueren en 24 horas →</a>
+      <a href="/recursos/checklist-evaluar-crm-inmobiliaria-mexico/">27 puntos para evaluar un CRM inmobiliario en México →</a>
+      <a href="/seguridad/">Seguridad y cumplimiento LFPDPPP →</a>
+    </div>
+  </div>
+</article>
+</main>

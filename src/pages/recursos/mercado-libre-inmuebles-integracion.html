@@ -1,0 +1,114 @@
+<main id="main">
+<article class="blog-post">
+  <div class="container narrow">
+    <nav class="breadcrumb"><a href="/recursos/">Recursos</a> · Comparativa</nav>
+    <div class="post-meta">
+      <span class="post-eyebrow">COMPARATIVA · 9 MIN DE LECTURA</span>
+      <time datetime="2026-06-02">2 junio 2026</time>
+    </div>
+    <h1>Mercado Libre Inmuebles: <em>nativa vs scraping vs publicación manual</em>.</h1>
+    <p class="post-lead">Las tres formas de operar tu inventario en Mercado Libre Inmuebles, comparadas con honestidad. Cuándo usar cada una, cuáles son los riesgos reales, y cuándo cambiar.</p>
+
+    <div class="post-body">
+      <p>Mercado Libre Inmuebles es el portal #1 de captura de leads inmobiliarios en México. Si vendes propiedades — especialmente preventa, remates y reventa — necesitas estar ahí. La pregunta es <em>cómo</em>. Hay tres caminos, cada uno con costos y riesgos distintos.</p>
+
+      <h2>Camino 1 · Publicación manual.</h2>
+
+      <p>Lo que hace el 70% de las inmobiliarias mexicanas: alguien en el equipo entra a la cuenta de ML, sube cada propiedad a mano, modifica precio cuando cambia, marca como vendida cuando se cierra. Si tienes el inventario también en un CRM, hay doble captura.</p>
+
+      <h3>Cuándo está bien.</h3>
+      <ul>
+        <li>Tienes menos de 30 propiedades activas.</li>
+        <li>Tu rotación es baja: las propiedades se quedan publicadas semanas o meses sin cambios.</li>
+        <li>Solo una persona es responsable de ML — no hay confusión de versiones.</li>
+      </ul>
+
+      <h3>Cuándo se rompe.</h3>
+      <ul>
+        <li>Inventario crece: mantenerlo sincronizado con tu CRM se vuelve trabajo de medio tiempo de alguien.</li>
+        <li>Equipo crece: dos asesores publican la misma propiedad con precios distintos. Cliente pregunta y queda mal la inmobiliaria.</li>
+        <li>Vendes una y olvidas despublicarla: leads siguen llegando para algo que ya no existe.</li>
+      </ul>
+
+      <p>Costo invisible: ~5-8 horas semanales de tu equipo a partir de las 50 propiedades activas.</p>
+
+      <h2>Camino 2 · Scraping (DIY o software tercero).</h2>
+
+      <p>Algunas inmobiliarias o sus proveedores conectan su CRM a Mercado Libre <em>haciendo login con bots y simulando navegación humana</em>. Funciona en superficie pero tiene tres problemas serios.</p>
+
+      <h3>Problemas reales.</h3>
+
+      <p><strong>№ 01 — Es contra los Términos de Servicio de Mercado Libre.</strong> El TOS prohíbe explícitamente scraping y automatización no aprobada. ML detecta patrones (login desde datacenters, frecuencia de queries, comportamiento no-humano) y banea cuentas. Si tu cuenta principal queda baneada, perdiste tu historial de ratings y reseñas — años de credibilidad.</p>
+
+      <p><strong>№ 02 — Es frágil.</strong> Cuando ML cambia su HTML — y lo hacen frecuentemente — tu integración se rompe. El proveedor del scraper tarda en parchar (días a semanas). Mientras tanto tu inventario se desactualiza silenciosamente.</p>
+
+      <p><strong>№ 03 — Tu data se queda en una pantalla intermedia.</strong> Los inquiries que llegan a ML pasan por el scraper antes de llegar a tu CRM. Si el scraper está caído un día, perdiste leads sin saberlo.</p>
+
+      <p>Si te ofrecen "integración con Mercado Libre" sin pedirte conectar tu cuenta a través de OAuth oficial — es scraping. Pregunta directo: <em>"¿usan la API oficial de Mercado Libre Inmuebles?"</em>. Si dudan, asume que no.</p>
+
+      <h2>Camino 3 · Integración nativa con la API oficial.</h2>
+
+      <p>Mercado Libre abrió API pública para Inmuebles en 2024. Es lo que cualquier herramienta seria debería usar hoy.</p>
+
+      <h3>Cómo funciona.</h3>
+
+      <ul>
+        <li>Conectas tu cuenta ML al CRM mediante OAuth (mismo flow que conectas Google a una app).</li>
+        <li>El CRM envía publicaciones a ML usando endpoints documentados, con tu token.</li>
+        <li>ML responde con webhooks cuando llegan inquiries — el lead aparece en tu CRM automáticamente.</li>
+        <li>Modificaciones (precio, status, fotos) se sincronizan en segundos.</li>
+        <li>Tu cuenta ML está en cumplimiento, sin riesgo de baneo.</li>
+      </ul>
+
+      <h3>Lo que sí o sí debes pedir.</h3>
+
+      <ul>
+        <li><strong>Bidireccional:</strong> tanto publicar desde el CRM como recibir inquiries de ML al CRM.</li>
+        <li><strong>Sync automático:</strong> si cambias precio en el CRM, debe reflejarse en ML sin intervención manual.</li>
+        <li><strong>Webhooks fail-closed:</strong> si un webhook llega sin firma válida, debe rechazarse. No procesar payloads dudosos.</li>
+        <li><strong>Audit trail:</strong> cada acción ML registrada en el timeline (quién publicó qué, cuándo, qué cambió).</li>
+      </ul>
+
+      <h2>El cálculo realista de cuándo cambiar.</h2>
+
+      <p>Lo que vimos en seis evaluaciones:</p>
+
+      <table>
+        <thead><tr><th>Inventario activo</th><th>Mejor camino</th></tr></thead>
+        <tbody>
+          <tr><td>&lt; 30 propiedades</td><td>Manual está bien si no hay confusión de equipo</td></tr>
+          <tr><td>30 - 80 propiedades</td><td>Empieza a doler. Manual + checklist semanal o nativa</td></tr>
+          <tr><td>80+ propiedades</td><td>Nativa, sin discusión. Costo de no hacerlo &gt; costo de hacerlo</td></tr>
+          <tr><td>Cualquier volumen con scraping</td><td>Migrar a nativa. El día que ML banee, perdiste años</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Lo que recomendamos.</h2>
+
+      <p>Si estás evaluando CRMs y te dicen "tenemos integración con Mercado Libre", pregunta tres cosas:</p>
+
+      <ol>
+        <li>¿Es vía API oficial o scraping? <em>Solo nativa es aceptable</em>.</li>
+        <li>¿Mi cuenta de ML queda en MI propiedad, o pasa por la del proveedor?</li>
+        <li>¿Puedo ver una demo en vivo: publicar una propiedad de prueba ahora mismo y ver el inquiry de regreso?</li>
+      </ol>
+
+      <p>Si las tres respuestas son afirmativas, estás bien. Si dudan en cualquiera, busca otro proveedor. Tu cuenta ML — con todo su historial — es uno de los activos más valiosos de tu inmobiliaria. No la pongas en manos de scrapers.</p>
+    </div>
+
+    <div class="post-cta">
+      <span class="label">SI QUIERES VER LA INTEGRACIÓN NATIVA</span>
+      <h3>30 minutos. <em>Te enseñamos publicar una propiedad y recibir el inquiry en tiempo real.</em></h3>
+      <p>API oficial de ML, con tu cuenta o con la de demo. Sin trampa, sin scraping. Verás la sincronización completa.</p>
+      <a href="/demo/" class="btn">Reservar demo →</a>
+    </div>
+
+    <div class="related">
+      <h4>Lecturas relacionadas</h4>
+      <a href="/recursos/checklist-evaluar-crm-inmobiliaria-mexico/">27 puntos para evaluar un CRM inmobiliario en México →</a>
+      <a href="/recursos/whatsapp-business-api-pipeline/">WhatsApp Business API en tu pipeline →</a>
+      <a href="/casos-de-exito/agnor/">Caso AGNOR: ML + WhatsApp + voz IA en producción →</a>
+    </div>
+  </div>
+</article>
+</main>

@@ -1169,3 +1169,43 @@ img { display: block; max-width: 100%; }
 
 /* Accessibility */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* Blog post layout */
+.blog-post { padding: 96px 0; background: var(--bone); }
+.blog-post .container.narrow { max-width: 760px; }
+.blog-post .post-meta { display: flex; gap: 24px; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-500); margin-bottom: 24px; }
+.blog-post .post-meta .post-eyebrow { color: var(--brass); }
+.blog-post h1 {
+  font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144;
+  font-weight: 600; font-size: clamp(36px, 5.5vw, 64px); line-height: 1.05;
+  letter-spacing: -1.2px; margin: 0 0 24px;
+}
+.blog-post h1 em { font-style: italic; color: var(--forest); }
+.blog-post .post-lead { font-size: 22px; line-height: 1.5; color: var(--ink-700); margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--ink-200); font-family: 'Fraunces', serif; font-weight: 400; }
+.post-body h2 { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 96; font-weight: 600; font-size: 32px; line-height: 1.2; margin: 48px 0 16px; }
+.post-body h2 em { font-style: italic; color: var(--forest); }
+.post-body h3 { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3; margin: 32px 0 12px; }
+.post-body p { font-size: 17px; line-height: 1.75; color: var(--ink-700); margin: 0 0 20px; }
+.post-body p strong { color: var(--ink-black); }
+.post-body ul, .post-body ol { padding-left: 24px; margin: 0 0 24px; }
+.post-body li { font-size: 17px; line-height: 1.75; color: var(--ink-700); margin-bottom: 8px; }
+.post-body blockquote {
+  border-left: 3px solid var(--brass); padding: 8px 0 8px 32px;
+  margin: 32px 0; font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; line-height: 1.5; color: var(--ink-black);
+}
+.post-body code { background: var(--bone-deep); padding: 2px 6px; font-size: 0.92em; font-family: 'JetBrains Mono', monospace; }
+.post-body a { color: var(--brass); text-decoration: underline; }
+.post-cta {
+  margin-top: 64px; padding: 40px; background: var(--ink-black); color: var(--bone);
+  display: flex; flex-direction: column; gap: 16px;
+}
+.post-cta .label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--brass-soft); text-transform: uppercase; }
+.post-cta h3 { font-family: 'Fraunces', serif; font-size: 28px; color: var(--bone); margin: 0; }
+.post-cta h3 em { font-style: italic; color: var(--brass-soft); }
+.post-cta p { color: var(--ink-200); font-size: 15px; line-height: 1.6; margin: 0; }
+.post-cta .btn { background: var(--brass); color: var(--ink-black); border-color: var(--brass); align-self: flex-start; }
+.related { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--ink-200); }
+.related h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); margin-bottom: 16px; }
+.related a { display: block; padding: 12px 0; font-size: 16px; color: var(--ink-700); text-decoration: none; border-top: 1px solid var(--ink-200); }
+.related a:last-child { border-bottom: 1px solid var(--ink-200); }
+.related a:hover { color: var(--brass); }

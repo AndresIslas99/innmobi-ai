@@ -1,0 +1,8 @@
+{{ NOMBRE }} · Founder
+Innmobi.ai — El sistema operativo para inmobiliarias que cierran de verdad.
+
+{{ EMAIL }}
+WhatsApp: +52 {{ CELULAR }}
+https://innmobi.ai
+
+Ciudad de México 🇲🇽 · Un producto de OrzaTech S.A.P.I. de C.V.

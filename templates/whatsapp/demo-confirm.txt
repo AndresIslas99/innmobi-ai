@@ -1,0 +1,16 @@
+// WhatsApp Business Template — demo confirmación
+// Categoría Meta: UTILITY
+// Idioma: es_MX
+// Variables: {{1}} = nombre, {{2}} = fecha, {{3}} = hora, {{4}} = link Meet/Zoom
+
+¡Confirmada tu demo de Innmobi.ai, {{1}}!
+
+📅 {{2}} a las {{3}} (hora CDMX)
+🔗 {{4}}
+
+Te recorremos el CRM con datos de tu vertical y te damos pricing específico antes de colgar. Treinta minutos, sin compromiso.
+
+Si necesitas reagendar: responde con "REAGENDAR".
+
+— Equipo Innmobi.ai
+innmobi.ai

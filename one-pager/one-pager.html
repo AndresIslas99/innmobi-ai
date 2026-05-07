@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8"/>
+<title>Innmobi.ai — One-pager</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<style>
+:root { --ink-black: #0F0F10; --ink-700: #4A4A52; --ink-500: #7C7C82; --ink-200: #D4D2CB; --bone: #F2EFE9; --paper: #FEFCF7; --forest: #1F3A2D; --brass: #A77E2B; }
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bone); font-family: 'Inter', sans-serif; color: var(--ink-black); }
+.page { width: 210mm; height: 297mm; padding: 14mm 16mm; position: relative; background: var(--bone); }
+.frame-top, .frame-bot {
+  position: absolute; left: 16mm; right: 16mm;
+  display: flex; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-500);
+}
+.frame-top { top: 8mm; padding-bottom: 3mm; border-bottom: 1px solid var(--ink-200); }
+.frame-bot { bottom: 8mm; padding-top: 3mm; border-top: 1px solid var(--ink-200); }
+.eyebrow { color: var(--brass); }
+h1 { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144; font-weight: 600; font-size: 38px; line-height: 1.05; letter-spacing: -0.6px; margin-top: 6mm; }
+h1 em { font-style: italic; color: var(--forest); }
+h2 { font-family: 'Fraunces', serif; font-size: 14px; margin: 4mm 0 2mm; color: var(--ink-black); }
+.lead { font-size: 11px; line-height: 1.6; color: var(--ink-700); margin-top: 3mm; }
+.body { font-size: 10px; line-height: 1.55; color: var(--ink-700); }
+.body p { margin-bottom: 1.5mm; }
+.section-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.18em; color: var(--brass); text-transform: uppercase; margin-bottom: 1mm; }
+.brass-line { height: 1px; background: var(--brass); opacity: 0.4; margin: 4mm 0; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6mm; }
+.grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8mm; }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin: 3mm 0; }
+.metric { background: var(--paper); border: 1px solid var(--ink-200); padding: 3mm; text-align: center; }
+.metric .num { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; line-height: 1; }
+.metric .lab { font-family: 'JetBrains Mono', monospace; font-size: 7px; letter-spacing: 0.12em; color: var(--ink-500); margin-top: 1mm; text-transform: uppercase; }
+.bullet { padding: 1.5mm 0 1.5mm 4mm; position: relative; font-size: 10px; line-height: 1.5; color: var(--ink-700); }
+.bullet::before { content: "—"; position: absolute; left: 0; color: var(--brass); font-weight: 600; }
+.wm { font-family: 'Fraunces', serif; font-weight: 600; font-size: 14px; }
+.wm .p { color: var(--brass); }
+.cta-box { background: var(--ink-black); color: var(--bone); padding: 5mm; margin-top: 4mm; }
+.cta-box .label { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.18em; color: var(--brass); text-transform: uppercase; }
+.cta-box .body-cta { font-family: 'Fraunces', serif; font-size: 16px; margin: 2mm 0; }
+.cta-box .body-cta em { font-style: italic; color: #C9A661; }
+.cta-box .links { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.06em; color: #C9A661; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <div class="frame-top"><span class="eyebrow">INNMOBI.AI · ONE-PAGER · MAY 2026</span><span>01 / 01</span></div>
+
+  <span class="section-eyebrow">№ 01 — POSICIONAMIENTO</span>
+  <h1>El sistema operativo para inmobiliarias <em>que cierran de verdad.</em></h1>
+  <p class="lead">CRM con IA construido desde cero para inmobiliarias mexicanas. Califica leads en la primera llamada, pipeline visual, WhatsApp Business nativo, integración con Mercado Libre. Probado en producción 100% en AGNOR Inmobiliaria, CDMX.</p>
+
+  <div class="brass-line"></div>
+
+  <div class="grid-2">
+    <div>
+      <span class="section-eyebrow">№ 02 — PROBLEMA</span>
+      <h2>El 60% de los leads inmobiliarios mueren en 24 horas.</h2>
+      <div class="body">
+        <p>Las inmobiliarias mexicanas operan con Excel + WhatsApp + Hubspot Free. El asesor contesta cuando puede. El coordinador hace reportes a mano cada lunes. Mercado Libre se publica en doble captura. Los WhatsApps viven en celulares personales que se van si renuncia el asesor.</p>
+      </div>
+
+      <span class="section-eyebrow">№ 03 — SOLUCIÓN</span>
+      <h2>Tres pilares. Cero ruido.</h2>
+      <div class="body">
+        <div class="bullet"><strong>Inteligencia que no se cansa.</strong> Agente Claude + Retell contesta 24/7 y entrega lead pre-calificado al asesor.</div>
+        <div class="bullet"><strong>Una sola fuente de verdad.</strong> Cinco canales en un timeline cronológico por prospecto.</div>
+        <div class="bullet"><strong>Hecho con asesores en CDMX.</strong> No diseñado en Notion. Construido en piso de AGNOR.</div>
+      </div>
+
+      <span class="section-eyebrow">№ 04 — TRACTION</span>
+      <div class="metrics">
+        <div class="metric"><div class="num">15+</div><div class="lab">ASESORES</div></div>
+        <div class="metric"><div class="num">04</div><div class="lab">ROLES</div></div>
+        <div class="metric"><div class="num">06</div><div class="lab">VERTICALES</div></div>
+        <div class="metric"><div class="num">24/7</div><div class="lab">UPTIME</div></div>
+      </div>
+      <p class="body">AGNOR Inmobiliaria opera 100% sobre Innmobi.ai desde 2025 en crm.agnorinmobiliaria.com. 2-3 inmobiliarias adicionales en pipeline para Q3-Q4 2026.</p>
+    </div>
+
+    <aside>
+      <span class="section-eyebrow">№ 05 — PRODUCTO · 8 CAPACIDADES</span>
+      <div class="body">
+        <div class="bullet">Captura + perfilado IA (voz + WhatsApp + web)</div>
+        <div class="bullet">Pipeline visual drag-and-drop por etapa</div>
+        <div class="bullet">Timeline unificado 5 canales</div>
+        <div class="bullet">WhatsApp Business: 21 plantillas + masivo</div>
+        <div class="bullet">Citas + Google Calendar bidireccional</div>
+        <div class="bullet">Analytics en vivo (funnel + velocity + ROI)</div>
+        <div class="bullet">Catálogo en 6 verticales</div>
+        <div class="bullet">Mercado Libre Inmuebles sync nativo</div>
+      </div>
+
+      <span class="section-eyebrow" style="margin-top: 4mm;">№ 06 — ICP</span>
+      <div class="body">
+        <p>Inmobiliarias mexicanas con 5+ asesores activos, vendiendo en remates, preventa, corretaje, recuperadas, reventa o rentas. Direcciones que hoy operan en Excel + Hubspot Free + WhatsApp.</p>
+      </div>
+
+      <span class="section-eyebrow" style="margin-top: 4mm;">№ 07 — PRECIO</span>
+      <div class="body">
+        <div class="bullet"><strong>Starter:</strong> $2.4K/asesor/mes (5+ asesores)</div>
+        <div class="bullet"><strong>Growth:</strong> $3.8K/asesor/mes (15+)</div>
+        <div class="bullet"><strong>Scale:</strong> a la medida (25+)</div>
+      </div>
+
+      <span class="section-eyebrow" style="margin-top: 4mm;">№ 08 — IMPLEMENTACIÓN</span>
+      <div class="body">
+        <p>4 semanas: discovery → config → entrenamiento paralelo → cutover. Soporte directo del CEO de OrzaTech vía WhatsApp.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="cta-box">
+    <div class="label">№ 09 — RESERVAR DEMO · 30 MIN</div>
+    <div class="body-cta">Cuéntanos cómo es tu inmobiliaria. <em>Te damos pricing específico antes de colgar.</em></div>
+    <div class="links">hola@innmobi.ai · WhatsApp +52 56 2059 5320 · innmobi.ai/demo</div>
+  </div>
+
+  <div class="frame-bot"><span class="wm">Innmobi<span class="p">.</span>ai</span><span>UN PRODUCTO DE ORZATECH · CDMX 🇲🇽</span></div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+// WhatsApp Business Template — follow-up 7d
+// Categoría Meta: MARKETING
+// Idioma: es_MX
+// Variables: {{1}} = nombre
+
+{{1}}, una semana después.
+
+No quiero ser pesado, así que esto es lo último: te dejé una *short URL* con el caso AGNOR completo (15 asesores, 6 verticales, en producción 100% sobre Innmobi.ai).
+
+📄 innmobi.ai/casos-de-exito/agnor
+
+Si después de leerlo te late retomar la conversación, mándame ✋ y la retomamos.
+
+Si no es el momento — todo bien. Cuando lo sea, aquí estamos.
+
+— Equipo Innmobi.ai

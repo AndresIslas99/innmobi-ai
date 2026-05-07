@@ -1,0 +1,21 @@
+// WhatsApp Business Template — cotización post-discovery
+// Categoría Meta: UTILITY
+// Idioma: es_MX
+// Variables: {{1}} = nombre, {{2}} = inmobiliaria, {{3}} = num asesores, {{4}} = tier, {{5}} = monto MXN
+
+Hola {{1}},
+
+Resumen de lo que conversamos:
+
+🏢 {{2}}
+👥 {{3}} asesores activos
+📊 Plan recomendado: *{{4}}*
+💰 Inversión: *{{5}} MXN/mes*
+
+Esto incluye: migración 4 semanas, todas las integraciones, soporte directo, sin lock-in. Pricing válido por 14 días.
+
+Si quieres avanzar: respóndeme con "VAMOS" y te mando el contrato + plan de migración.
+
+Si tienes dudas: aquí seguimos.
+
+— Equipo Innmobi.ai

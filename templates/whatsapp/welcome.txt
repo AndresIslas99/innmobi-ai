@@ -1,0 +1,15 @@
+// WhatsApp Business Template — welcome (utility)
+// Categoría Meta: UTILITY
+// Idioma: es_MX
+// Variables: {{1}} = nombre del lead, {{2}} = nombre del asesor, {{3}} = inmobiliaria
+
+¡Hola {{1}}! 👋
+
+Soy {{2}} de {{3}}. Vi tu interés en una de nuestras propiedades.
+
+Para darte la mejor atención, en el siguiente minuto te haré tres preguntas rápidas: ¿qué buscas, en qué zona, y qué presupuesto manejas?
+
+Si prefieres llamada, mándame "📞" y te marco.
+
+— {{2}}
+{{3}} · CDMX

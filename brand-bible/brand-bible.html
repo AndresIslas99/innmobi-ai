@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8"/>
+<title>Innmobi.ai — Brand Bible</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink-black: #0F0F10; --ink-900: #1F1F22; --ink-700: #4A4A52; --ink-500: #7C7C82;
+  --ink-300: #A8A6A0; --ink-200: #D4D2CB; --bone: #F2EFE9; --bone-deep: #E8E3D7;
+  --paper: #FEFCF7; --forest: #1F3A2D; --forest-deep: #16291F; --forest-soft: #2D5440;
+  --brass: #A77E2B; --brass-soft: #C9A661; --terracota: #9A4521;
+}
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bone); color: var(--ink-black); font-family: 'Inter', sans-serif; }
+.page {
+  width: 210mm; height: 297mm; padding: 22mm 20mm; page-break-after: always;
+  position: relative; background: var(--bone);
+  display: flex; flex-direction: column;
+}
+.page:last-child { page-break-after: auto; }
+.frame-top, .frame-bot {
+  position: absolute; left: 20mm; right: 20mm;
+  display: flex; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-500);
+}
+.frame-top { top: 12mm; padding-bottom: 3mm; border-bottom: 1px solid var(--ink-200); }
+.frame-bot { bottom: 12mm; padding-top: 3mm; border-top: 1px solid var(--ink-200); }
+.brass-line { height: 1px; background: var(--brass); margin: 4px 0; }
+.eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); margin-bottom: 12px; }
+h1 { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144; font-weight: 600; font-size: 56px; line-height: 1.05; letter-spacing: -1px; }
+h1 em { font-style: italic; color: var(--forest); }
+h2 { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 96; font-weight: 600; font-size: 32px; line-height: 1.15; margin: 0 0 12px; }
+h3 { font-family: 'Fraunces', serif; font-size: 20px; margin: 16px 0 8px; }
+p { font-size: 12px; line-height: 1.6; color: var(--ink-700); margin: 0 0 8px; }
+em { font-style: italic; color: var(--forest); }
+.period { color: var(--brass); }
+.wm { font-family: 'Fraunces', serif; font-weight: 600; font-size: 32px; }
+.wm .p { color: var(--brass); }
+
+/* COVER */
+.cover { background: var(--paper); padding: 32mm 24mm; }
+.cover .top { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-500); margin-bottom: 32mm; }
+.cover h1 { font-size: 96px; max-width: 600px; }
+.cover .sub { font-family: 'Fraunces', serif; font-size: 22px; margin-top: 16px; color: var(--ink-700); }
+.cover .footer-mark { position: absolute; bottom: 22mm; left: 24mm; right: 24mm; display: flex; justify-content: space-between; align-items: flex-end; }
+.cover .footer-mark .meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-500); }
+
+/* TOC */
+.toc { padding: 0; }
+.toc li { display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--ink-200); list-style: none; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+.toc li:last-child { border-bottom: 1px solid var(--ink-200); }
+.toc li .num { color: var(--brass); }
+.toc li .name { flex: 1; padding: 0 16px; color: var(--ink-700); text-transform: uppercase; letter-spacing: 0.18em; }
+.toc li .pg { color: var(--ink-500); }
+
+/* GRID PAGES */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16mm; flex: 1; }
+.col { display: flex; flex-direction: column; gap: 12px; }
+
+/* PALETTE */
+.swatch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8mm; margin-top: 16px; }
+.swatch { display: flex; flex-direction: column; }
+.swatch .chip { height: 50mm; border: 1px solid var(--ink-200); }
+.swatch .meta { padding: 8px 0; }
+.swatch .name { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-700); }
+.swatch .hex { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-black); }
+
+/* TYPE SPECIMEN */
+.specimen { padding: 8mm 0; border-top: 1px solid var(--ink-200); }
+.specimen:last-child { border-bottom: 1px solid var(--ink-200); }
+.specimen .meta { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); margin-bottom: 6px; }
+.specimen .sample { color: var(--ink-black); }
+
+/* DO/DONT */
+.dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+.do, .dont { padding: 8mm; border: 1px solid var(--ink-200); }
+.do { background: var(--paper); }
+.do .label { color: var(--forest); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; }
+.dont .label { color: var(--terracota); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; }
+
+/* VOICE */
+.voice-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; padding: 8mm 0; border-top: 1px solid var(--ink-200); }
+.voice-row:last-child { border-bottom: 1px solid var(--ink-200); }
+.voice-bad { color: var(--ink-500); text-decoration: line-through; }
+.voice-good { color: var(--ink-black); }
+
+/* LOGO PAGE */
+.logo-block { padding: 12mm 0; border-top: 1px solid var(--ink-200); }
+.logo-mark { display: flex; align-items: center; gap: 12mm; padding: 8mm 0; }
+.logo-mark .icon { width: 30mm; height: 30mm; background: var(--brass); display: flex; align-items: center; justify-content: center; }
+.logo-mark .icon::before { content: ""; width: 8mm; height: 18mm; background: var(--bone); }
+.logo-mark .icon::after { content: "I"; }
+.logo-on-light { background: var(--paper); padding: 14mm; border: 1px solid var(--ink-200); display: flex; justify-content: center; align-items: center; }
+.logo-on-dark { background: var(--ink-black); padding: 14mm; display: flex; justify-content: center; align-items: center; }
+.logo-on-dark .wm { color: var(--bone); }
+.logo-on-dark .wm .p { color: var(--brass-soft); }
+.logo-on-brass { background: var(--brass); padding: 14mm; display: flex; justify-content: center; align-items: center; }
+.logo-on-brass .wm { color: var(--paper); }
+.logo-on-brass .wm .p { color: var(--ink-black); }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — COVER -->
+<section class="page cover">
+  <div class="top">INNMOBI.AI · BRAND BIBLE · v1.0 · MAY 2026</div>
+  <h1>Innmobi<span class="period">.</span>ai<br/><em>Sistema visual y verbal.</em></h1>
+  <p class="sub">El manual editorial. Disciplina cromática. Voz mexicana específica. Lo que hace que parezcamos Sotheby's o Monocle, no Linear o Vercel.</p>
+  <div class="footer-mark">
+    <span class="wm">Innmobi<span class="p">.</span>ai</span>
+    <span class="meta">UN PRODUCTO DE ORZATECH · CDMX 🇲🇽</span>
+  </div>
+</section>
+
+<!-- PAGE 2 — TOC -->
+<section class="page">
+  <div class="frame-top"><span>INNMOBI.AI · BRAND BIBLE</span><span>02</span></div>
+  <span class="eyebrow">№ 02 — ÍNDICE</span>
+  <h2>Lo que vas a encontrar.</h2>
+  <ul class="toc" style="margin-top: 32px;">
+    <li><span class="num">01</span><span class="name">PORTADA</span><span class="pg">01</span></li>
+    <li><span class="num">02</span><span class="name">ÍNDICE</span><span class="pg">02</span></li>
+    <li><span class="num">03</span><span class="name">FUNDAMENTOS · MARCA</span><span class="pg">03</span></li>
+    <li><span class="num">04</span><span class="name">PALETA CROMÁTICA</span><span class="pg">04</span></li>
+    <li><span class="num">05</span><span class="name">TIPOGRAFÍA</span><span class="pg">05</span></li>
+    <li><span class="num">06</span><span class="name">LOGOS Y WORDMARK</span><span class="pg">06</span></li>
+    <li><span class="num">07</span><span class="name">VOZ Y TONO</span><span class="pg">07</span></li>
+    <li><span class="num">08</span><span class="name">DO / DON'T EDITORIAL</span><span class="pg">08</span></li>
+    <li><span class="num">09</span><span class="name">CONTACTO</span><span class="pg">09</span></li>
+  </ul>
+  <div class="frame-bot"><span>CDMX 🇲🇽</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- PAGE 3 — FUNDAMENTOS -->
+<section class="page">
+  <div class="frame-top"><span>INNMOBI.AI · BRAND BIBLE</span><span>03</span></div>
+  <span class="eyebrow">№ 03 — FUNDAMENTOS</span>
+  <h2>La marca <em>en una página.</em></h2>
+  <div class="brass-line"></div>
+  <div class="two-col" style="margin-top: 16px;">
+    <div class="col">
+      <h3>Producto</h3>
+      <p>Innmobi.ai — CRM Inmobiliario con Inteligencia Artificial. Producto de OrzaTech S.A.P.I. de C.V., México.</p>
+      <h3>Pronunciación</h3>
+      <p>"innmobi punto ei-ai"</p>
+      <h3>Tagline oficial</h3>
+      <p><em>El sistema operativo para inmobiliarias que cierran de verdad.</em></p>
+      <h3>Subhead</h3>
+      <p>Tu pipeline merece más que una hoja de Excel.</p>
+    </div>
+    <div class="col">
+      <h3>Posicionamiento</h3>
+      <p>No es otro CRM con IA. Es el sistema operativo que tu inmobiliaria mexicana debió tener desde hace tres años: pipeline, IA, WhatsApp Business, Mercado Libre, todo nativo.</p>
+      <h3>Audiencia</h3>
+      <p>Inmobiliarias mexicanas con cinco o más asesores activos. Direcciones que aún viven en Excel + WhatsApp + Hubspot Free.</p>
+      <h3>Tono</h3>
+      <p>Editorial mexicano. Concreto. Específico. Sin "automatización mágica". Más Monocle que TechCrunch.</p>
+    </div>
+  </div>
+  <div class="frame-bot"><span>FUNDAMENTOS</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- PAGE 4 — PALETA -->
+<section class="page">
+  <div class="frame-top"><span>INNMOBI.AI · BRAND BIBLE</span><span>04</span></div>
+  <span class="eyebrow">№ 04 — PALETA CROMÁTICA</span>
+  <h2>Tres familias. <em>Cero ruido.</em></h2>
+  <p>La paleta es industrial premium. Negros editoriales que dialogan con bone neutral, latón ceremonial para el momento de marca, verde forestal para superficies acentuadas.</p>
+
+  <div class="swatch-grid">
+    <div class="swatch"><div class="chip" style="background:#0F0F10"></div><div class="meta"><div class="name">INK BLACK</div><div class="hex">#0F0F10</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#1F1F22"></div><div class="meta"><div class="name">INK 900</div><div class="hex">#1F1F22</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#4A4A52"></div><div class="meta"><div class="name">INK 700</div><div class="hex">#4A4A52</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#F2EFE9"></div><div class="meta"><div class="name">BONE</div><div class="hex">#F2EFE9</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#E8E3D7"></div><div class="meta"><div class="name">BONE DEEP</div><div class="hex">#E8E3D7</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#FEFCF7"></div><div class="meta"><div class="name">PAPER</div><div class="hex">#FEFCF7</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#1F3A2D"></div><div class="meta"><div class="name">FOREST</div><div class="hex">#1F3A2D</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#A77E2B"></div><div class="meta"><div class="name">BRASS</div><div class="hex">#A77E2B</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#9A4521"></div><div class="meta"><div class="name">TERRACOTA · ALERT</div><div class="hex">#9A4521</div></div></div>
+  </div>
+  <div class="frame-bot"><span>PALETA</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- PAGE 5 — TIPOGRAFÍA -->
+<section class="page">
+  <div class="frame-top"><span>INNMOBI.AI · BRAND BIBLE</span><span>05</span></div>
+  <span class="eyebrow">№ 05 — TIPOGRAFÍA</span>
+  <h2>Tres familias. <em>Roles claros.</em></h2>
+  <p>Fraunces para H1/H2 con optical-sizing adaptativo. Inter para texto. JetBrains Mono UPPERCASE para metadatos editoriales y eyebrows. Numéricos siempre tabular-nums.</p>
+
+  <div class="specimen">
+    <div class="meta">FRAUNCES · 600 · 'OPSZ' 144 · DISPLAY</div>
+    <div class="sample" style="font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144; font-weight: 600; font-size: 56px; line-height: 1.05; letter-spacing: -1.2px;">El sistema operativo<br/><em>que cierran de verdad.</em></div>
+  </div>
+  <div class="specimen">
+    <div class="meta">FRAUNCES · 600 · 'OPSZ' 60 · SUB</div>
+    <div class="sample" style="font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 60; font-weight: 600; font-size: 28px;">Esto es lo que tu equipo va a ver todos los días.</div>
+  </div>
+  <div class="specimen">
+    <div class="meta">INTER · 400 · BODY · 1.7 LINE-HEIGHT</div>
+    <div class="sample" style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.7;">Innmobi.ai es un CRM construido desde cero para inmobiliarias mexicanas. Inteligencia que califica leads en la primera llamada, pipeline visual, WhatsApp Business nativo, integración con Mercado Libre.</div>
+  </div>
+  <div class="specimen">
+    <div class="meta">JETBRAINS MONO · 500 · UPPERCASE · 0.18em TRACKING</div>
+    <div class="sample" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass);">№ 02 — TRES PILARES · CDMX · 2026</div>
+  </div>
+  <div class="frame-bot"><span>TIPOGRAFÍA</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- PAGE 6 — LOGOS -->
+<section class="page">
+  <div class="frame-top"><span>INNMOBI.AI · BRAND BIBLE</span><span>06</span></div>
+  <span class="eyebrow">№ 06 — LOGOS Y WORDMARK</span>
+  <h2>Wordmark editorial. <em>Punto en latón.</em></h2>
+  <p>El wordmark es el primary surface de toda comunicación: "Innmobi.ai" en Fraunces 600, color ink-black, period en brass. No se modifica el peso, ni el tracking, ni el color del period. Clear-space mínimo: 1× altura de capital I a cada lado.</p>
+
+  <div class="two-col" style="margin-top: 16px;">
+    <div class="col">
+      <div class="logo-on-light"><span class="wm">Innmobi<span class="p">.</span>ai</span></div>
+      <p style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: var(--ink-500);">SOBRE BONE / PAPER</p>
+    </div>
+    <div class="col">
+      <div class="logo-on-dark"><span class="wm">Innmobi<span class="p">.</span>ai</span></div>
+      <p style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: var(--ink-500);">SOBRE INK BLACK</p>
+    </div>
+    <div class="col" style="grid-column: span 2;">
+      <div class="logo-on-brass"><span class="wm">Innmobi<span class="p">.</span>ai</span></div>
+      <p style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: var(--ink-500);">CEREMONIAL · BRASS</p>
+    </div>
+  </div>
+  <div class="frame-bot"><span>LOGOS</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- PAGE 7 — VOZ -->
+<section class="page">
+  <div class="frame-top"><span>INNMOBI.AI · BRAND BIBLE</span><span>07</span></div>
+  <span class="eyebrow">№ 07 — VOZ Y TONO</span>
+  <h2>Tres pilares <em>verbales.</em></h2>
+  <p>Toda copy pasa por tres filtros antes de publicarse. Si no cumple, no es copy de Innmobi.ai.</p>
+
+  <div class="voice-row">
+    <div><strong style="font-family: 'Fraunces', serif; font-size: 18px;">№ 01 — Inteligencia que no se cansa.</strong><p>Hablamos de cobertura, no de "AI". El cliente nos lee y entiende: "esto contesta cuando mi asesor duerme".</p></div>
+    <div><strong style="font-family: 'Fraunces', serif; font-size: 18px;">№ 02 — Una sola fuente de verdad.</strong><p>Hablamos de claridad, no de "integraciones". Cinco canales en un timeline. Sin pestañas.</p></div>
+  </div>
+  <div class="voice-row">
+    <div><strong style="font-family: 'Fraunces', serif; font-size: 18px;">№ 03 — Hecho con asesores en CDMX.</strong><p>Hablamos de procedencia. No "Made in México" decorativo. Construido en piso con AGNOR.</p></div>
+    <div>
+      <h3 style="margin-top: 0;">Palabras prohibidas</h3>
+      <p>automatización · innovación · disrupción · sinergia · best-in-class · powered by AI · next-gen · revolucionar</p>
+    </div>
+  </div>
+  <h3 style="margin-top: 24px;">Reescrituras canónicas</h3>
+  <div class="voice-row">
+    <div class="voice-bad">"Sistema next-gen para real estate"</div>
+    <div class="voice-good">"El sistema operativo para inmobiliarias que cierran de verdad"</div>
+  </div>
+  <div class="voice-row">
+    <div class="voice-bad">"Decenas de inmobiliarias confían en nosotros"</div>
+    <div class="voice-good">"15 asesores activos. Hoy. En crm.agnorinmobiliaria.com"</div>
+  </div>
+  <div class="frame-bot"><span>VOZ</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- PAGE 8 — DO/DONT -->
+<section class="page">
+  <div class="frame-top"><span>INNMOBI.AI · BRAND BIBLE</span><span>08</span></div>
+  <span class="eyebrow">№ 08 — DO / DON'T EDITORIAL</span>
+  <h2>Detalles que <em>no se negocian.</em></h2>
+
+  <div class="dodont" style="margin-top: 16px;">
+    <div class="do">
+      <div class="label">DO</div>
+      <p style="margin-top: 8px;">→ Period siempre en color brass cuando aparece junto a "ai" o como cierre editorial.</p>
+      <p>→ Eyebrows en JetBrains Mono UPPERCASE con № prefix y separador em-dash.</p>
+      <p>→ Cifras concretas (15, 4, 6, 24/7) sobre adjetivos abstractos ("muchos", "varios").</p>
+      <p>→ Frases cortas + una oración larga con datos. Ritmo editorial, no listas planas.</p>
+      <p>→ Italic en Fraunces para énfasis, en color forest. Nunca para subrayado.</p>
+    </div>
+    <div class="dont">
+      <div class="label">DON'T</div>
+      <p style="margin-top: 8px;">→ No uses gradientes saturados. La paleta es plana editorial.</p>
+      <p>→ No uses iconos lineart genéricos. La iconografía es cadastral (líneas catastrales, sin fill).</p>
+      <p>→ No traduzcas literal del inglés. "Powered by AI" → "Inteligencia que no se cansa".</p>
+      <p>→ No uses "users" ni "customers". Es "tu equipo" / "tu inmobiliaria" / "tu coordinador".</p>
+      <p>→ No prometas lo que el producto no entrega hoy. La promesa es presente, no roadmap.</p>
+    </div>
+  </div>
+  <div class="frame-bot"><span>DO/DON'T</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- PAGE 9 — CONTACTO -->
+<section class="page">
+  <div class="frame-top"><span>INNMOBI.AI · BRAND BIBLE</span><span>09</span></div>
+  <span class="eyebrow">№ 09 — CONTACTO BRAND</span>
+  <h2>Si tienes una duda <em>de marca.</em></h2>
+  <p>Esta brand bible es viva. Si encuentras un edge case que no cubre, escribe al equipo de marca y lo resolvemos.</p>
+
+  <div class="brass-line" style="margin: 24px 0;"></div>
+
+  <div class="two-col">
+    <div class="col">
+      <h3>Marca y guidelines</h3>
+      <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">marca@innmobi.ai</p>
+      <h3>Press kit + assets</h3>
+      <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">innmobi.ai/press-kit</p>
+      <h3>Producto</h3>
+      <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">hola@innmobi.ai</p>
+    </div>
+    <div class="col">
+      <h3>Sede</h3>
+      <p>Ciudad de México 🇲🇽<br/>OrzaTech S.A.P.I. de C.V.</p>
+      <h3>WhatsApp directo</h3>
+      <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">+52 56 2059 5320</p>
+      <h3>Sitio</h3>
+      <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">innmobi.ai</p>
+    </div>
+  </div>
+  <div class="frame-bot"><span class="wm" style="font-size: 14px;">Innmobi<span class="p">.</span>ai</span><span>BRAND BIBLE · v1.0 · MAY 2026</span></div>
+</section>
+
+</body>
+</html>

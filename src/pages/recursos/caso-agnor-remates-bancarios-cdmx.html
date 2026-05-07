@@ -1,0 +1,163 @@
+<main id="main">
+<article class="blog-post">
+  <div class="container narrow">
+    <nav class="breadcrumb"><a href="/recursos/">Recursos</a> · Caso largo</nav>
+    <div class="post-meta">
+      <span class="post-eyebrow">CASO LARGO · 18 MIN DE LECTURA</span>
+      <time datetime="2026-06-09">9 junio 2026</time>
+    </div>
+    <h1>Caso AGNOR: cómo automatizamos un pipeline de <em>remates bancarios en CDMX</em>.</h1>
+    <p class="post-lead">El long-form completo de la implementación que hoy corre 100% en producción en AGNOR Inmobiliaria. Métricas reales, decisiones técnicas, errores cometidos, y aprendizajes que aplicamos en las siguientes implementaciones.</p>
+
+    <div class="post-body">
+      <p>Este artículo expande el <a href="/casos-de-exito/agnor/">resumen ejecutivo del caso AGNOR</a>. Aquí entramos a los detalles técnicos y operativos que omitimos en la versión corta — la que circulamos en LinkedIn y en pitch.</p>
+
+      <p>Si tu inmobiliaria tiene 5+ asesores y opera con Excel + WhatsApp + Hubspot Free, la implementación que describimos aquí se va a parecer mucho a lo que tendríamos que hacer contigo. Lee con atención los errores — esos son los que más sirven.</p>
+
+      <h2>Contexto pre-Innmobi.ai (2024).</h2>
+
+      <p>AGNOR Inmobiliaria opera en CDMX desde 2017. Su nicho: <strong>remates bancarios</strong> — propiedades que los bancos adjudicaron por incumplimiento hipotecario y que necesitan vender rápido. Es un mercado donde la velocidad y la calificación financiera del prospecto importan más que en preventa o reventa convencional.</p>
+
+      <p>En 2024, su stack operativo era:</p>
+
+      <ul>
+        <li><strong>Hojas de Excel compartidas</strong> en Google Drive — una para leads activos, una para inventario, una para citas. Conflictos de versiones diarios.</li>
+        <li><strong>WhatsApp Business standard</strong> en celulares personales de cada asesor. Cuando el asesor renunciaba, se llevaba 60-80 conversaciones.</li>
+        <li><strong>HubSpot Free</strong> "para tener algo que parezca CRM" — pero solo lo usaba el director, los asesores no entraban.</li>
+        <li><strong>Mercado Libre Inmuebles</strong> con publicación 100% manual. Una persona dedicaba 6 horas/semana a esto.</li>
+        <li><strong>Llamadas entrantes</strong> al número público iban al celular del director comercial. Cuando él dormía, sonaba a buzón.</li>
+      </ul>
+
+      <p>Las métricas relevantes (medidas durante 60 días previo al inicio del proyecto):</p>
+
+      <ul>
+        <li>Tiempo promedio de primer contacto a un lead: <strong>4-12 horas</strong>.</li>
+        <li>Leads marcados como "perdidos por no respuesta": <strong>23%</strong>.</li>
+        <li>Reporte semanal del director: <strong>2 horas el lunes</strong>, calculado a mano en Excel.</li>
+        <li>Doble captura ML: <strong>~6 horas/semana</strong> de un asistente.</li>
+      </ul>
+
+      <h2>El "no" inicial al CRM grande.</h2>
+
+      <p>El director había probado HubSpot Pro y Pipedrive Advanced en el pasado. Su queja: ambos resolvían "CRM genérico" pero no entendían los flujos de remates bancarios:</p>
+
+      <ul>
+        <li>Necesitaba campos custom: tipo de adjudicación, banco origen, número de fideicomiso, status legal.</li>
+        <li>WhatsApp en HubSpot pasaba por integración tercera (Wati) que cobraba aparte y se rompía cuando subía volumen.</li>
+        <li>Mercado Libre no estaba ni en roadmap.</li>
+        <li>Plantillas WhatsApp no se gestionaban — había que ir y venir entre Meta Business Manager y HubSpot.</li>
+        <li>El precio: ~$150 USD/asesor/mes en HubSpot Pro, escalando rápido al volumen real.</li>
+      </ul>
+
+      <p>La conclusión: comprar un CRM internacional iba a obligar a comprar adicionalmente herramientas para WhatsApp, ML, voz, etc. Y el resultado seguiría siendo un Frankenstein.</p>
+
+      <h2>La decisión: construirlo en piso.</h2>
+
+      <p>OrzaTech (la empresa detrás de Innmobi.ai) ya había trabajado con AGNOR en proyectos de software auxiliar. La propuesta fue inusual: <strong>en vez de venderles un producto terminado, construirlo durante 6 meses en su piso, con sus asesores como co-diseñadores</strong>.</p>
+
+      <p>El acuerdo: AGNOR pagaría una tarifa mensual reducida durante esos 6 meses a cambio de feedback estructurado y acceso a su operación. OrzaTech retendría la propiedad intelectual del producto y el derecho a comercializarlo después a otras inmobiliarias. Lo que hoy se llama Innmobi.ai.</p>
+
+      <h2>Los primeros 6 meses (proceso de construcción).</h2>
+
+      <p>El plan inicial era ambicioso. Los primeros 60 días intentamos construir todo a la vez: pipeline + WhatsApp + ML + voz + analytics + multi-vertical. Resultado: nada estaba terminado, los asesores no usaban nada, el director estaba frustrado.</p>
+
+      <p>La corrección: <strong>foco brutal en una vista por mes</strong>. Cada mes, una vista nueva, terminada, en producción, usada por todos los asesores. El orden:</p>
+
+      <ol>
+        <li><strong>Mes 1 — Pipeline visual.</strong> Solo eso. Drag-and-drop por etapa. Reemplazar 100% el Excel maestro de leads.</li>
+        <li><strong>Mes 2 — Lead 360°.</strong> Vista de detalle del prospecto con timeline cronológico. Imports manuales primero.</li>
+        <li><strong>Mes 3 — WhatsApp Business API.</strong> Alta con Meta + 10 plantillas iniciales. Reemplazar WhatsApp en celulares personales.</li>
+        <li><strong>Mes 4 — Mercado Libre.</strong> Sync nativo bidireccional. Eliminar doble captura.</li>
+        <li><strong>Mes 5 — Agente de voz Claude+Retell.</strong> Llamadas entrantes contestadas 24/7.</li>
+        <li><strong>Mes 6 — Analytics + Google Calendar + multi-vertical.</strong> Cierre del producto.</li>
+      </ol>
+
+      <p>El error que cometimos en los primeros dos meses: <em>creer que los asesores iban a aprender una herramienta nueva mientras seguían operando en la vieja</em>. La verdad es que la herramienta nueva tiene que ser <strong>tan obvia</strong> que el asesor la prefiera al Excel.</p>
+
+      <p>La forma como lo solucionamos: el director comercial dejó de aceptar reportes en Excel. Si querías reportar tu trabajo, tenía que estar en el CRM. Esto creó incentivo de adopción que las "sesiones de capacitación" no lograban.</p>
+
+      <h2>Decisiones técnicas que importaron.</h2>
+
+      <h3>№ 01 — PostgreSQL real desde el día 1.</h3>
+
+      <p>Mucho software hoy se desarrolla con SQLite local y se "promueve" a Postgres en producción. Ese camino hace que los tests mientan: cosas que pasan en SQLite no pasan en Postgres y viceversa. Decidimos correr Postgres en local (Docker) y en CI desde el primer commit. Resultado: cero sorpresas en producción por temas de schema o concurrencia.</p>
+
+      <h3>№ 02 — Webhook fail-closed.</h3>
+
+      <p>WhatsApp, Mercado Libre y Retell mandan webhooks. Si un webhook llega sin firma válida o sin idempotency key, lo rechazamos sin procesar. Esto eliminó una clase de bugs donde reintentos producían duplicados.</p>
+
+      <h3>№ 03 — Domain-Driven Design con Unit of Work.</h3>
+
+      <p>Estructuramos el dominio en aggregates (Lead, Property, Appointment) con repositorios desacoplados. Cuando agregamos verticales o cambiamos flujos, no se rompe en cascada. Esto importó cuando AGNOR pidió agregar la 6ta vertical (rentas) — fue un sprint, no un mes.</p>
+
+      <h3>№ 04 — Blue/green deploy con healthcheck.</h3>
+
+      <p>Coolify CD ejecuta el deploy en un slot paralelo, valida con healthcheck, y hace switch atómico. Si el healthcheck falla, rollback automático. Llevamos 14 meses en producción sin un solo deploy que dejara al CRM caído.</p>
+
+      <h2>Errores que cometimos.</h2>
+
+      <p>No es un caso de éxito sin tropiezos. Los más notables:</p>
+
+      <h3>Error 1 — Subimos a Meta sin entender categorías de plantillas.</h3>
+
+      <p>Las primeras 3 plantillas de marketing las clasificamos como "utility" para evitar el costo más alto. Meta detectó la inconsistencia, nos suspendió el número 4 días, y nos rebajaron a tier 1. Aprendizaje: las categorías son auditadas por humanos, no las pongas en automático.</p>
+
+      <h3>Error 2 — El agente de voz se autorizó decir cosas que no debía.</h3>
+
+      <p>En el mes 5, el agente Claude le dijo a un lead un descuento que el director no había autorizado. La responsabilidad fue nuestra: no habíamos limitado lo suficiente el system prompt. Aprendizaje: el agente nunca habla de precios; solo califica y agenda.</p>
+
+      <h3>Error 3 — Migramos el número antes de tener todo listo.</h3>
+
+      <p>El día que migramos el número público de WhatsApp Business standard a Business API, las plantillas no estaban completamente probadas. Hubo 2 días con respuestas raras. El director lo manejó con una nota personal a clientes habituales. Aprendizaje: los días de cutover requieren más preparación que los días de desarrollo.</p>
+
+      <h2>Resultados a 12 meses (marzo 2026).</h2>
+
+      <ul>
+        <li>Tiempo de primer contacto humano: <strong>de 4-12 horas → menos de 2 minutos</strong> (con agente de voz contestando).</li>
+        <li>Leads "perdidos por no respuesta": <strong>de 23% → 4%</strong>.</li>
+        <li>Reporte semanal del director: <strong>de 2h → 0h</strong>.</li>
+        <li>Doble captura ML: <strong>eliminada</strong>.</li>
+        <li>Asesores activos en la plataforma: <strong>15+</strong>, 100% adopción.</li>
+        <li>Plantillas WhatsApp Meta-aprobadas en uso: <strong>21</strong>.</li>
+        <li>Verticales configuradas: <strong>6</strong> (remates, preventa, corretaje, recuperadas, reventa, rentas).</li>
+        <li>Cierres atribuibles a leads que el agente Claude calificó: <strong>~28% del total</strong>.</li>
+      </ul>
+
+      <h2>Lo que aplicamos en las siguientes implementaciones.</h2>
+
+      <p>De este caso fundacional salieron las decisiones que hoy estructuran el onboarding standard de Innmobi.ai:</p>
+
+      <ol>
+        <li><strong>Cutover en 4 semanas, no 12.</strong> En AGNOR fueron 6 meses porque construimos en paralelo. Para nuevas inmobiliarias el producto ya existe — la implementación es 4 semanas.</li>
+        <li><strong>Foco brutal por mes</strong> en lo que se va a habilitar.</li>
+        <li><strong>El director debe forzar adopción</strong> — no aceptar reportes en Excel viejo.</li>
+        <li><strong>Plantillas WhatsApp salen pre-cargadas</strong> al cliente, no que las haga desde cero.</li>
+        <li><strong>Agente de voz limitado</strong> a calificar y agendar, no a precios.</li>
+        <li><strong>Día de cutover requiere ensayo previo completo</strong> — no improvisar.</li>
+      </ol>
+
+      <h2>Conclusión.</h2>
+
+      <p>AGNOR no es un caso de "implementamos un CRM". Es un caso de <strong>cambiamos el modelo operativo de una inmobiliaria</strong>: cómo entran los leads, cómo se califican, cómo se asignan, cómo se reportan, cómo se cierran. La tecnología es vehículo, no protagonista.</p>
+
+      <p>Si tu inmobiliaria está donde estaba AGNOR en 2024 — Excel + WhatsApp + Hubspot Free — el camino no es "comprar más software". Es decidir que la operación va a vivir en un sistema operativo, y luego elegir uno que entienda tu mercado específico (mexicano, con tus verticales, en tu idioma, con WhatsApp de verdad y ML de verdad).</p>
+
+      <p>Aceptamos 2-3 nuevas implementaciones por trimestre. No para escalar bonito en LinkedIn — para escalar bien. Si quieres ser el siguiente caso, escríbenos.</p>
+    </div>
+
+    <div class="post-cta">
+      <span class="label">SIGUIENTE CASO</span>
+      <h3>¿Quieres que tu inmobiliaria <em>sea el siguiente caso</em>?</h3>
+      <p>Aceptamos 2-3 nuevas implementaciones por trimestre. Eso significa onboarding profundo, no auto-servicio. Treinta minutos. Te decimos si encajamos.</p>
+      <a href="/demo/" class="btn">Reservar discovery →</a>
+    </div>
+
+    <div class="related">
+      <h4>Lecturas relacionadas</h4>
+      <a href="/casos-de-exito/agnor/">Versión ejecutiva del caso AGNOR →</a>
+      <a href="/recursos/whatsapp-business-api-pipeline/">WhatsApp Business API en tu pipeline →</a>
+      <a href="/recursos/mercado-libre-inmuebles-integracion/">Mercado Libre Inmuebles: nativa vs scraping vs manual →</a>
+    </div>
+  </div>
+</article>
+</main>

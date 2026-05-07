@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8"/>
+<title>Innmobi.ai — Pitch Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<style>
+:root { --ink-black: #0F0F10; --ink-700: #4A4A52; --ink-500: #7C7C82; --ink-200: #D4D2CB; --bone: #F2EFE9; --paper: #FEFCF7; --forest: #1F3A2D; --brass: #A77E2B; --brass-soft: #C9A661; }
+@page { size: 1920px 1080px landscape; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bone); font-family: 'Inter', sans-serif; color: var(--ink-black); }
+.slide { width: 1920px; height: 1080px; padding: 80px 120px; position: relative; page-break-after: always; display: flex; flex-direction: column; }
+.slide:last-child { page-break-after: auto; }
+.frame-top, .frame-bot { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-500); }
+.frame-top { padding-bottom: 12px; border-bottom: 1px solid var(--ink-200); }
+.frame-bot { padding-top: 12px; border-top: 1px solid var(--ink-200); margin-top: auto; }
+.eyebrow { color: var(--brass); }
+h1 { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144; font-weight: 600; font-size: 140px; line-height: 1.02; letter-spacing: -3px; }
+h1 em { font-style: italic; color: var(--forest); }
+h2 { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144; font-weight: 600; font-size: 96px; line-height: 1.05; letter-spacing: -2px; }
+h2 em { font-style: italic; color: var(--forest); }
+.lead { font-size: 32px; line-height: 1.5; color: var(--ink-700); max-width: 1400px; margin-top: 32px; }
+.body p { font-size: 26px; line-height: 1.6; color: var(--ink-700); margin-top: 24px; max-width: 1400px; }
+.wm { font-family: 'Fraunces', serif; font-weight: 600; font-size: 48px; }
+.wm .p { color: var(--brass); }
+.mid { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.period { color: var(--brass); }
+.cover { background: var(--paper); }
+.dark { background: var(--ink-black); color: var(--bone); }
+.dark .frame-top, .dark .frame-bot { color: var(--brass-soft); border-color: rgba(255,255,255,0.1); }
+.dark h2 em, .dark h1 em { color: var(--brass-soft); }
+.dark .lead, .dark .body p { color: var(--ink-200); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 48px; }
+.metric { background: var(--paper); border: 1px solid var(--ink-200); padding: 40px; }
+.metric .num { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144; font-weight: 600; font-size: 96px; line-height: 1; color: var(--ink-black); letter-spacing: -2px; }
+.metric .lab { font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-500); margin-top: 16px; }
+.dark .metric { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
+.dark .metric .num { color: var(--bone); }
+.dark .metric .lab { color: var(--brass-soft); }
+.bullets { list-style: none; padding: 0; margin-top: 32px; }
+.bullets li { font-size: 26px; line-height: 1.6; color: var(--ink-700); padding: 18px 0 18px 36px; border-top: 1px solid var(--ink-200); position: relative; }
+.bullets li:last-child { border-bottom: 1px solid var(--ink-200); }
+.bullets li::before { content: "—"; position: absolute; left: 0; color: var(--brass); font-weight: 700; }
+.dark .bullets li { color: var(--ink-200); border-color: rgba(255,255,255,0.1); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 01 — COVER -->
+<section class="slide cover">
+  <div class="frame-top"><span class="eyebrow">INNMOBI.AI · PITCH DECK · v1.0 · MAY 2026</span><span>01 / 16</span></div>
+  <div class="mid">
+    <h1>El sistema operativo para inmobiliarias <em>que cierran de verdad<span class="period">.</span></em></h1>
+    <p class="lead">CRM con IA para inmobiliarias mexicanas. Construido en piso vendiendo remates en CDMX. Hoy en producción 100% en AGNOR Inmobiliaria.</p>
+  </div>
+  <div class="frame-bot"><span class="wm">Innmobi<span class="p">.</span>ai</span><span>UN PRODUCTO DE ORZATECH · CDMX 🇲🇽</span></div>
+</section>
+
+<!-- SLIDE 02 — PROBLEM -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">№ 02 — PROBLEMA</span><span>02 / 16</span></div>
+  <div class="mid">
+    <h2>El 60% de los leads inmobiliarios <em>se enfrían en 24 horas<span class="period">.</span></em></h2>
+    <div class="body">
+      <p>En México, las inmobiliarias dependen de Excel + WhatsApp + Hubspot Free. El asesor contesta cuando puede, captura "después", y el coordinador se entera el lunes — cuando ya es tarde.</p>
+      <p>El resultado: pipeline invisible, doble captura en Mercado Libre, asesores que se llevan WhatsApps al renunciar, y reportes a mano cada lunes.</p>
+    </div>
+  </div>
+  <div class="frame-bot"><span>PROBLEMA · MERCADO MX</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 03 — MARKET -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">№ 03 — MERCADO</span><span>03 / 16</span></div>
+  <div class="mid">
+    <h2>Mercado <em>concreto<span class="period">.</span></em> No estimaciones de consultora.</h2>
+    <div class="metric-grid">
+      <div class="metric"><div class="num">12,400+</div><div class="lab">Inmobiliarias activas en MX (AMPI 2025)</div></div>
+      <div class="metric"><div class="num">5+</div><div class="lab">Asesores por agencia ICP (target)</div></div>
+      <div class="metric"><div class="num">~3,200</div><div class="lab">Inmobiliarias con 5+ asesores (TAM directo)</div></div>
+      <div class="metric"><div class="num">$4-8K</div><div class="lab">MXN/asesor/mes ARPU realista</div></div>
+    </div>
+  </div>
+  <div class="frame-bot"><span>MERCADO MEXICANO ESPECÍFICO</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 04 — SOLUTION -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">№ 04 — SOLUCIÓN</span><span>04 / 16</span></div>
+  <div class="mid">
+    <h2>Tres pilares. <em>Cero ruido<span class="period">.</span></em></h2>
+    <ul class="bullets">
+      <li><strong>Inteligencia que no se cansa.</strong> Agente de voz Claude + Retell contesta 24/7 y entrega al lead pre-calificado al asesor por WhatsApp.</li>
+      <li><strong>Una sola fuente de verdad.</strong> Llamadas, WhatsApp, web, citas, notas en un timeline cronológico por prospecto.</li>
+      <li><strong>Hecho con asesores en CDMX.</strong> No diseñado en Notion. Construido durante 6 meses en piso de AGNOR Inmobiliaria.</li>
+    </ul>
+  </div>
+  <div class="frame-bot"><span>SOLUCIÓN</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 05 — DEMO PROMPT -->
+<section class="slide dark">
+  <div class="frame-top"><span class="eyebrow">№ 05 — DEMO</span><span>05 / 16</span></div>
+  <div class="mid">
+    <h2>Esto es lo que <em>tu equipo va a ver<span class="period">.</span></em></h2>
+    <p class="lead">Pipeline visual + Lead 360° + Analytics en vivo. Si quieres, lo abrimos en pantalla en este momento.</p>
+  </div>
+  <div class="frame-bot"><span>DEMO LIVE</span><span>INNMOBI.AI · CRM.INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 06 — PRODUCTO -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">№ 06 — PRODUCTO</span><span>06 / 16</span></div>
+  <div class="mid">
+    <h2>Ocho capacidades <em>que ya operan<span class="period">.</span></em></h2>
+    <div class="two-col">
+      <ul class="bullets">
+        <li>Captura + perfilado IA (Voz Retell + WhatsApp + Web + Claude)</li>
+        <li>Pipeline visual drag-and-drop, configurable por vertical</li>
+        <li>Timeline unificado: 5 canales, un solo hilo cronológico</li>
+        <li>WhatsApp Business: 21 plantillas Meta + envío masivo segmentado</li>
+      </ul>
+      <ul class="bullets">
+        <li>Citas + Google Calendar (sync bidireccional)</li>
+        <li>Analytics en vivo: funnel, velocity, ROI por canal</li>
+        <li>Catálogo de propiedades en 6 verticales</li>
+        <li>Mercado Libre Inmuebles: sync nativo</li>
+      </ul>
+    </div>
+  </div>
+  <div class="frame-bot"><span>PRODUCTO</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 07 — WHY NOW -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">№ 07 — POR QUÉ AHORA</span><span>07 / 16</span></div>
+  <div class="mid">
+    <h2>2026 es el momento. <em>No 2023.</em></h2>
+    <ul class="bullets">
+      <li>WhatsApp Business Cloud API estable en MX desde 2024 (antes era pesadilla onboarding).</li>
+      <li>LLMs latencia &lt;500ms (Claude, Retell): conversación natural en llamada entrante.</li>
+      <li>Mercado Libre Inmuebles abrió API pública en 2024 (antes era scraping).</li>
+      <li>Generación post-pandemia de directores de inmobiliaria que aceptan SaaS sin "instalación local".</li>
+    </ul>
+  </div>
+  <div class="frame-bot"><span>TIMING</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 08 — TRACTION -->
+<section class="slide dark">
+  <div class="frame-top"><span class="eyebrow">№ 08 — TRACTION</span><span>08 / 16</span></div>
+  <div class="mid">
+    <h2>AGNOR <em>en producción 100%<span class="period">.</span></em></h2>
+    <div class="metric-grid">
+      <div class="metric"><div class="num">15+</div><div class="lab">Asesores activos</div></div>
+      <div class="metric"><div class="num">04</div><div class="lab">Roles operativos</div></div>
+      <div class="metric"><div class="num">06</div><div class="lab">Verticales</div></div>
+      <div class="metric"><div class="num">24/7</div><div class="lab">Uptime</div></div>
+    </div>
+    <div class="body" style="margin-top: 32px;">
+      <p>Especialistas en remates bancarios CDMX. Operación diaria desde 2025 en crm.agnorinmobiliaria.com. 2-3 nuevas inmobiliarias en pipeline para Q3-Q4 2026.</p>
+    </div>
+  </div>
+  <div class="frame-bot"><span>TRACTION REAL</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 09 — BUSINESS MODEL -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">№ 09 — MODELO</span><span>09 / 16</span></div>
+  <div class="mid">
+    <h2>SaaS por asesor activo. <em>Tres tiers<span class="period">.</span></em></h2>
+    <ul class="bullets">
+      <li><strong>Starter</strong> — desde $2,400 MXN/asesor/mes · core CRM + WhatsApp + Calendar (5 asesores+)</li>
+      <li><strong>Growth</strong> — desde $3,800 MXN/asesor/mes · todo lo anterior + IA + ML + analytics avanzado (15 asesores+)</li>
+      <li><strong>Scale</strong> — a la medida · multi-tenancy + SSO + API + SLA 99.9% (25 asesores+)</li>
+    </ul>
+    <div class="body"><p>ARR target Q4 2026: $4.2M MXN. ARR target Q4 2027: $18M MXN con 12 cuentas Growth + 2 Scale.</p></div>
+  </div>
+  <div class="frame-bot"><span>MODELO</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 10 — GTM -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">№ 10 — GTM</span><span>10 / 16</span></div>
+  <div class="mid">
+    <h2>Founder-led sales. <em>2-3 cuentas/trimestre.</em></h2>
+    <ul class="bullets">
+      <li>Outbound directo a directores de inmobiliarias 5+ asesores en CDMX → GDL → MTY.</li>
+      <li>LinkedIn editorial: 4 posts semanales, 3 carouseles mensuales (formato Sotheby's/Monocle).</li>
+      <li>Caso AGNOR como prueba viva — referrals al network del director.</li>
+      <li>Eventos AMPI / cámaras inmobiliarias regionales (1 por mes).</li>
+      <li>Contenido SEO: "checklist evaluar CRM inmobiliario MX" tipo de queries con intención clara.</li>
+    </ul>
+  </div>
+  <div class="frame-bot"><span>GTM</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 11 — ROADMAP -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">№ 11 — ROADMAP</span><span>11 / 16</span></div>
+  <div class="mid">
+    <h2>Cuatro trimestres. <em>Foco brutal.</em></h2>
+    <ul class="bullets">
+      <li><strong>Q3 2026:</strong> 3 cuentas nuevas en producción · status page público · DPA standard</li>
+      <li><strong>Q4 2026:</strong> 6 cuentas total · API pública (read-only) · móvil PWA mejorada</li>
+      <li><strong>Q1 2027:</strong> 10 cuentas · Multi-tenancy Scale tier · SSO Google Workspace + Azure AD</li>
+      <li><strong>Q2 2027:</strong> 14 cuentas · Marketplace de plantillas WhatsApp · API write</li>
+    </ul>
+  </div>
+  <div class="frame-bot"><span>ROADMAP</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 12 — TEAM -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">№ 12 — EQUIPO</span><span>12 / 16</span></div>
+  <div class="mid">
+    <h2>Tres personas. <em>Todo el stack.</em></h2>
+    <ul class="bullets">
+      <li><strong>Founder / Producto / Comercial:</strong> 8 años en sistemas críticos (banca, fintech). Construyó el CRM en piso de AGNOR.</li>
+      <li><strong>Co-founder / CTO:</strong> Domain-Driven Design, Postgres real, blue/green deploy. Web infra reliability.</li>
+      <li><strong>Operaciones / Cliente success:</strong> ex-coordinadora de ventas en inmobiliaria mexicana. Hace onboarding y soporte directo.</li>
+    </ul>
+  </div>
+  <div class="frame-bot"><span>EQUIPO</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 13 — ASKS -->
+<section class="slide dark">
+  <div class="frame-top"><span class="eyebrow">№ 13 — ASKS</span><span>13 / 16</span></div>
+  <div class="mid">
+    <h2>Lo que <em>buscamos<span class="period">.</span></em></h2>
+    <ul class="bullets">
+      <li>Introducciones a 5-10 directores de inmobiliarias mexicanas con 5+ asesores activos (CDMX, GDL, MTY, QRO, Mérida).</li>
+      <li>Conversaciones con AMPI / cámaras inmobiliarias regionales para presentación a su membership.</li>
+      <li>Capital seed (negociable) para acelerar GTM y contratar 1 ingeniero senior + 1 SDR para Q4 2026.</li>
+      <li>Operadores con experiencia en SaaS B2B vertical mexicano para mentoría/board.</li>
+    </ul>
+  </div>
+  <div class="frame-bot"><span>ASKS</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 14 — CLOSING -->
+<section class="slide cover">
+  <div class="frame-top"><span class="eyebrow">№ 14 — CIERRE</span><span>14 / 16</span></div>
+  <div class="mid">
+    <h2>Si gestionas una inmobiliaria mexicana, <em>hablemos<span class="period">.</span></em></h2>
+    <p class="lead">Treinta minutos. Te recorremos el CRM con datos de tu vertical. Pricing específico antes de colgar.</p>
+    <div class="body" style="margin-top: 48px;">
+      <p style="font-family: 'JetBrains Mono', monospace; font-size: 22px; letter-spacing: 0.12em;">hola@innmobi.ai · WhatsApp +52 56 2059 5320 · innmobi.ai/demo</p>
+    </div>
+  </div>
+  <div class="frame-bot"><span class="wm">Innmobi<span class="p">.</span>ai</span><span>CDMX 🇲🇽 · MAY 2026</span></div>
+</section>
+
+<!-- SLIDE 15 — APENDICE STACK -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">APÉNDICE A — STACK</span><span>15 / 16</span></div>
+  <div class="mid">
+    <h2>Stack <em>production-grade<span class="period">.</span></em></h2>
+    <ul class="bullets">
+      <li>Backend: FastAPI · Python 3.12 · PostgreSQL 16 · SQLAlchemy 2 · Domain-Driven Design</li>
+      <li>Frontend: React 18 · TypeScript · Tailwind CSS · Vite</li>
+      <li>IA: Anthropic Claude (perfilado) + Retell (voz)</li>
+      <li>Integraciones: Meta WhatsApp Cloud API · Google Calendar API · Mercado Libre Inmuebles API</li>
+      <li>Deploy: Docker · Coolify CD · Blue/green con rollback automático</li>
+      <li>Tests: contra PostgreSQL real (no SQLite mocks)</li>
+    </ul>
+  </div>
+  <div class="frame-bot"><span>STACK TÉCNICO</span><span>INNMOBI.AI</span></div>
+</section>
+
+<!-- SLIDE 16 — APENDICE COMPLIANCE -->
+<section class="slide">
+  <div class="frame-top"><span class="eyebrow">APÉNDICE B — CUMPLIMIENTO</span><span>16 / 16</span></div>
+  <div class="mid">
+    <h2>LFPDPPP. <em>Sin atajos<span class="period">.</span></em></h2>
+    <ul class="bullets">
+      <li>Aviso de privacidad por lead con consentimiento explícito y propósito declarado.</li>
+      <li>Encriptación AES-256 at-rest · TLS 1.3 in-transit · backups diarios fuera de sitio.</li>
+      <li>RBAC granular (4 roles) · audit logs inmutables · webhooks fail-closed.</li>
+      <li>Sub-procesadores documentados con DPA: Anthropic, Meta, Google, Mercado Libre, Retell.</li>
+      <li>Derechos ARCO atendidos en menos de 20 días hábiles. Export + borrado en 30 días al terminar.</li>
+    </ul>
+  </div>
+  <div class="frame-bot"><span class="wm">Innmobi<span class="p">.</span>ai</span><span>CUMPLIMIENTO LFPDPPP</span></div>
+</section>
+
+</body>
+</html>

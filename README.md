@@ -10,7 +10,8 @@
 
 [![Brochure PDF](https://img.shields.io/badge/Brochure-PDF-1F3A2D?style=for-the-badge&logo=adobeacrobatreader&logoColor=F2EFE9&labelColor=0F0F10)](brochure/brochure.pdf)
 [![WhatsApp](https://img.shields.io/badge/Agendar%20demo-WhatsApp-A77E2B?style=for-the-badge&logo=whatsapp&logoColor=F2EFE9&labelColor=0F0F10)](https://wa.me/525620595320)
-[![Email](https://img.shields.io/badge/aibravo%40orzatech.com-Email-0F0F10?style=for-the-badge&logo=gmail&logoColor=F2EFE9&labelColor=A77E2B)](mailto:aibravo@orzatech.com)
+[![Email](https://img.shields.io/badge/hola%40innmobi.ai-Email-0F0F10?style=for-the-badge&logo=gmail&logoColor=F2EFE9&labelColor=A77E2B)](mailto:hola@innmobi.ai)
+[![Sitio](https://img.shields.io/badge/innmobi.ai-Sitio-A77E2B?style=for-the-badge&logoColor=F2EFE9&labelColor=0F0F10)](https://innmobi.ai)
 
 </div>
 
@@ -287,20 +288,64 @@ No es para freelancers solos, ni para flippers de un proyecto, ni para quien bus
 | | |
 |---|---|
 | **WhatsApp** | [+52 56 2059 5320](https://wa.me/525620595320) |
-| **Email** | [aibravo@orzatech.com](mailto:aibravo@orzatech.com) |
-| **Sitio** | próximamente en [innmobi.ai](https://innmobi.ai) |
+| **Email** | [hola@innmobi.ai](mailto:hola@innmobi.ai) |
+| **Sitio** | [innmobi.ai](https://innmobi.ai) |
+| **Prensa** | [prensa@innmobi.ai](mailto:prensa@innmobi.ai) |
 
 ---
 
-## Recursos
+## Recursos del repositorio
 
-- 📄 [Brochure PDF](brochure/brochure.pdf) — 2 páginas editoriales con copy completo
-- 🎠 [Carrusel № 01 — Sistema operativo](linkedin/carousel-01-features.html) — 10 láminas 1080×1080
-- 🎠 [Carrusel № 02 — Stack técnico](linkedin/carousel-02-stack.html) — 8 láminas
-- 🎠 [Carrusel № 03 — Caso AGNOR](linkedin/carousel-03-case-study.html) — 10 láminas
-- ✍️ [Posts de LinkedIn](linkedin/posts.md) — listos para pegar
-- 🏷️ [Banco de hashtags](linkedin/hashtags.md)
-- 🎨 [Brand system](BRAND.md)
+### Sitio web (multi-página)
+
+- `docs/` — sitio publicado en [innmobi.ai](https://innmobi.ai) (GitHub Pages + CNAME)
+- `src/` — fuente del sitio: `layout.html`, `partials/`, `pages/`
+- `data/pages.json` — metadata de páginas y posts
+- `scripts/build-site.mjs` — build engine multi-página
+
+### Identidad de marca
+
+- 🎨 [Brand system (markdown)](BRAND.md)
+- 📘 [Brand bible PDF](brand-bible/brand-bible.pdf) · [HTML editable](brand-bible/brand-bible.html)
+- 🪪 [Press kit](press-kit/) — logos, screenshots, fact sheet, boilerplates
+
+### Colateral comercial
+
+- 📄 [Brochure PDF](brochure/brochure.pdf) — 2 páginas editoriales
+- 🎯 [Pitch deck PDF](pitch-deck/pitch-deck.pdf) · [16 slides PNG](pitch-deck/slides/) · [HTML](pitch-deck/index.html)
+- 📋 [One-pager PDF](one-pager/one-pager.pdf) · [HTML](one-pager/one-pager.html)
+- 💼 [Sales playbook](sales/playbook.md) · [Demo script 15-30 min](sales/demo-script-15min.md)
+
+### Plantillas
+
+- ✉️ [Email signatures HTML/TXT](templates/email-signatures/)
+- 📧 [Email transaccionales](templates/email/) (welcome, demo-confirm, demo-followup, onboarding, nurture)
+- 💧 [Drip launch (5 emails)](templates/email/drip-launch/)
+- 💬 [WhatsApp Business API templates](templates/whatsapp/) — para approval Meta
+- 🎨 [Social media (Instagram post/story, X post)](templates/social/)
+
+### LinkedIn
+
+- 🎠 [Carrusel № 01 · Sistema operativo](linkedin/carousel-01-features.html) — 10 láminas
+- 🎠 [Carrusel № 02 · Stack técnico](linkedin/carousel-02-stack.html) — 8 láminas
+- 🎠 [Carrusel № 03 · Caso AGNOR](linkedin/carousel-03-case-study.html) — 10 láminas
+- 📅 Calendario 4 semanas: [W1](linkedin/calendar-week-1.md) · [W2](linkedin/calendar-week-2.md) · [W3](linkedin/calendar-week-3.md) · [W4](linkedin/calendar-week-4.md)
+- ✍️ [Posts editoriales](linkedin/posts.md) · [Banco de hashtags](linkedin/hashtags.md)
+
+### Build · `npm run …`
+
+```
+build:site         genera docs/ desde src/ + data/
+build:favicons     favicon.ico + apple-touch + 192/512/maskable PNG
+build:og           15 OG images per-page (1200×630)
+build:brochure     brochure/brochure.pdf
+build:carousels    linkedin/carousel-*/slide-*.png
+build:brand-bible  brand-bible/brand-bible.pdf
+build:pitch-deck   pitch-deck/pitch-deck.pdf + slides/
+build:one-pager    one-pager/one-pager.pdf
+build:all          todo lo anterior en orden
+dev                npx serve docs (preview local)
+```
 
 ---
 

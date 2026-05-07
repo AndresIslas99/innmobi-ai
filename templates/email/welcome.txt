@@ -1,0 +1,20 @@
+{{ NOMBRE }}, ya estás en Innmobi.ai.
+
+Bienvenido. Lo que sigue es lo que necesitas saber esta semana:
+
+1. HOY: tu cuenta está activa. Inicia sesión en https://crm.innmobi.ai con las credenciales que enviamos por separado.
+
+2. MAÑANA: tu Customer Success agendará una sesión de 60 minutos para configurar pipeline, roles y verticales.
+
+3. DÍAS 3-5: empezamos la importación de tu data. Te pedimos export de tu CRM actual (te ayudamos si te trabas).
+
+4. SEMANA 2: integraciones (WhatsApp, Mercado Libre, Google Calendar) y entrenamiento de tu equipo.
+
+5. SEMANA 4: cutover. El sistema viejo se archiva.
+
+→ Iniciar sesión: https://crm.innmobi.ai
+
+Si tienes una pregunta, escríbeme directo a hola@innmobi.ai o por WhatsApp +52 56 2059 5320. Aquí no hay tickets de soporte que se pierden — contestamos personas.
+
+— Equipo Innmobi.ai
+INNMOBI.AI · UN PRODUCTO DE ORZATECH · CDMX 🇲🇽

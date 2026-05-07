@@ -1,0 +1,16 @@
+// WhatsApp Business Template — follow-up 24h post-demo
+// Categoría Meta: MARKETING
+// Idioma: es_MX
+// Variables: {{1}} = nombre, {{2}} = inmobiliaria
+
+Hola {{1}}, ¿qué tal?
+
+Ayer recorrimos el CRM contigo y {{2}}. ¿Cómo lo viste?
+
+Si quieres avanzar: te puedo mandar el plan de migración personalizado para tus asesores y el pricing específico.
+
+Si prefieres pensarlo más: sin presión, aquí estamos cuando estés listo.
+
+¿Qué te late? 🤔
+
+— Equipo Innmobi.ai

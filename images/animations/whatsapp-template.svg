@@ -143,7 +143,7 @@
   <!-- Bubble 2: AI template response (appears mid-loop) -->
   <g class="b-template">
     <rect class="bubble-out" x="884" y="372" width="180" height="92" rx="6"/>
-    <text x="896" y="390" class="bubble-name">Inmobi.ai · plantilla</text>
+    <text x="896" y="390" class="bubble-name">Innmobi.ai · plantilla</text>
     <text x="896" y="408" class="bubble-text" style="font-size: 11px;">Hola Mariana,</text>
     <text x="896" y="424" class="bubble-text" style="font-size: 11px;">tu cita en Polanco es a las</text>
     <text x="896" y="440" class="bubble-text" style="font-size: 11px;">18:00. Tu asesor: D. Mendoza.</text>

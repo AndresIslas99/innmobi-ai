@@ -1,6 +1,6 @@
 # Screenshots
 
-Capturas reales del CRM Inmobi.ai corriendo con datos demo seeded.
+Capturas reales del CRM Innmobi.ai corriendo con datos demo seeded.
 
 ## Inventario
 
@@ -48,7 +48,7 @@ conn.commit()
 "
 
 # 4) Captura desde el repo de marketing
-cd ../inmobi-ai
+cd ../innmobi-ai
 CRM_BASE_URL=http://127.0.0.1:9090 npm run capture:screenshots
 ```
 

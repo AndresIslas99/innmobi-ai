@@ -1,4 +1,4 @@
-# Banco de hashtags — Inmobi.ai
+# Banco de hashtags — Innmobi.ai
 
 > Mezcla 3-5 por post. Combina hashtags grandes (alcance) con específicos (audiencia ideal).
 

@@ -1,4 +1,4 @@
-# LinkedIn — Copy editorial · Inmobi.ai
+# LinkedIn — Copy editorial · Innmobi.ai
 
 Tres formatos: **post de lanzamiento** (acompaña carrusel-01), **5 posts individuales por feature**, y **post del caso AGNOR** (acompaña carrusel-03).
 
@@ -16,7 +16,7 @@ Reglas de voz aplicadas:
 ```
 Tu pipeline merece más que una hoja de Excel.
 
-Construí un CRM en piso, vendiendo remates bancarios en CDMX. Hoy lo abro a la industria. Se llama Inmobi.ai.
+Construí un CRM en piso, vendiendo remates bancarios en CDMX. Hoy lo abro a la industria. Se llama Innmobi.ai.
 
 El problema que veo en cada agencia con la que hablo:
 
@@ -26,7 +26,7 @@ El problema que veo en cada agencia con la que hablo:
 → El coordinador no sabe quién está frío y quién caliente
 → Los reportes son screenshots de Excel los lunes
 
-Inmobi.ai resuelve eso desde el núcleo:
+Innmobi.ai resuelve eso desde el núcleo:
 
 ✓ Inteligencia que no se cansa: contesta a las 11 de la noche, califica al lead en 90 segundos
 ✓ Pipeline visual con drag-and-drop por etapa
@@ -57,7 +57,7 @@ Después de eso, la intención del prospecto cae 70%.
 
 Ningún asesor humano contesta en menos de 45 minutos cuando tiene 12 conversaciones abiertas. Punto. La matemática no da.
 
-Por eso construimos esto en Inmobi.ai:
+Por eso construimos esto en Innmobi.ai:
 
 → El lead llama. Un agente de voz con Claude le contesta en tres segundos
 → Le hace cuatro preguntas: zona, presupuesto, tipo, urgencia
@@ -105,7 +105,7 @@ Un lead inmobiliario típico en México habla con tu agencia por:
 
 Cinco canales. Dos asesores diferentes. Cero memoria compartida.
 
-Inmobi.ai unifica los cinco canales en un solo timeline cronológico por lead. La llamada del martes a las 10am, el WhatsApp del miércoles a las 4pm, la nota interna del coordinador del jueves — todo en orden, todo buscable, todo con quién dijo qué.
+Innmobi.ai unifica los cinco canales en un solo timeline cronológico por lead. La llamada del martes a las 10am, el WhatsApp del miércoles a las 4pm, la nota interna del coordinador del jueves — todo en orden, todo buscable, todo con quién dijo qué.
 
 Cuando el cliente te pregunta "oye, ¿qué quedamos la semana pasada?", tu asesor abre el lead y lo sabe.
 
@@ -123,7 +123,7 @@ Pregunta incómoda para coordinadores inmobiliarios:
 
 Si la respuesta es "tendría que sumar varias hojas de Excel y preguntarle al asesor X", tienes un problema.
 
-Inmobi.ai te lo da en vivo:
+Innmobi.ai te lo da en vivo:
 
 📊 Funnel completo (etapa por etapa, conversión por canal)
 ⏱️ Velocity (días promedio por etapa)
@@ -146,7 +146,7 @@ Si publicas propiedades en Mercado Libre, sabes el dolor:
 → El cliente te pregunta por una propiedad que ya vendiste pero no actualizaste
 → Pagas la publicación de algo que ya no está disponible
 
-Inmobi.ai tiene integración nativa con la API de Mercado Libre.
+Innmobi.ai tiene integración nativa con la API de Mercado Libre.
 
 ✓ Publicas con un click desde la ficha de la propiedad
 ✓ Cuando cambias el precio o las fotos, ML se actualiza solo
@@ -174,7 +174,7 @@ El reto:
 → Los leads vienen por cinco canales
 → El proceso legal de un remate requiere coordinación entre asesor, coordinador, abogado interno y capturista — sin perder nada
 
-Lo que construimos en Inmobi.ai para resolverlo:
+Lo que construimos en Innmobi.ai para resolverlo:
 
 → Agente de voz con IA que califica al primer contacto, 24/7
 → WhatsApp Business con 21 plantillas pre-aprobadas por Meta
@@ -186,7 +186,7 @@ Lo que construimos en Inmobi.ai para resolverlo:
 
 El sistema corre hoy en producción en crm.agnorinmobiliaria.com — todos los días, sin tocarlo.
 
-Decidimos empaquetarlo como producto. Se llama Inmobi.ai.
+Decidimos empaquetarlo como producto. Se llama Innmobi.ai.
 
 No nació en un garage. Nació en piso, vendiendo remates.
 

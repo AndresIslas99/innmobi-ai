@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="images/hero-banner.svg" alt="Inmobi.ai — El sistema operativo para inmobiliarias que cierran de verdad" width="100%"/>
+<img src="images/hero-banner.svg" alt="Innmobi.ai — El sistema operativo para inmobiliarias que cierran de verdad" width="100%"/>
 
 <br/>
 
@@ -20,7 +20,7 @@
 
 > En real estate cada hora que un lead espera, su intención se enfría. Las inmobiliarias mexicanas pierden el 60% de los leads en las primeras 24 horas porque nadie contesta a tiempo, nadie califica, y nadie da seguimiento.
 
-Inmobi.ai cambia esa ecuación. No es otro CRM con IA. Es el sistema operativo que tu inmobiliaria debió tener desde hace tres años: cuando entra un prospecto por llamada, WhatsApp o formulario web, lo califica en segundos, lo asigna al asesor correcto, agenda la cita, y mantiene la conversación viva hasta el cierre.
+Innmobi.ai cambia esa ecuación. No es otro CRM con IA. Es el sistema operativo que tu inmobiliaria debió tener desde hace tres años: cuando entra un prospecto por llamada, WhatsApp o formulario web, lo califica en segundos, lo asigna al asesor correcto, agenda la cita, y mantiene la conversación viva hasta el cierre.
 
 Está construido para el flujo del corredor inmobiliario mexicano: remates bancarios, preventa, corretaje, recuperadas, reventa y rentas.
 
@@ -160,7 +160,7 @@ No se diseñó en un Notion. Se construyó en piso, vendiendo remates bancarios,
 
 > No nació en un garage. Nació en piso, vendiendo remates en CDMX.
 
-**[AGNOR Inmobiliaria](https://agnorinmobiliaria.com)** — especialistas en remates bancarios en la Ciudad de México — usa Inmobi.ai como su sistema operativo de ventas. Cuatro roles. Quince asesores activos. Seis verticales de propiedad. Integraciones con Google Calendar y Mercado Libre. Todo corriendo todos los días en `crm.agnorinmobiliaria.com`.
+**[AGNOR Inmobiliaria](https://agnorinmobiliaria.com)** — especialistas en remates bancarios en la Ciudad de México — usa Innmobi.ai como su sistema operativo de ventas. Cuatro roles. Quince asesores activos. Seis verticales de propiedad. Integraciones con Google Calendar y Mercado Libre. Todo corriendo todos los días en `crm.agnorinmobiliaria.com`.
 
 Cada feature en este producto fue construida para resolver un problema que vivimos en piso. Cuando lo instalas en tu inmobiliaria, no estás financiando experimentos. Estás usando algo que ya gana dinero.
 
@@ -201,7 +201,7 @@ Pricing por asesor activo, ajustado al tamaño de tu equipo y volumen de leads. 
 <details>
 <summary><b>¿Cómo migro desde Hubspot, Pipedrive o Excel?</b></summary>
 
-Importadores nativos para los 3. Te ayudamos a exportar tu data, mapearla a la estructura de Inmobi.ai (leads, propiedades, asesores, citas), y validar que nada se pierda. La migración completa toma 4 semanas con tu equipo trabajando normal en paralelo.
+Importadores nativos para los 3. Te ayudamos a exportar tu data, mapearla a la estructura de Innmobi.ai (leads, propiedades, asesores, citas), y validar que nada se pierda. La migración completa toma 4 semanas con tu equipo trabajando normal en paralelo.
 
 </details>
 
@@ -288,7 +288,7 @@ No es para freelancers solos, ni para flippers de un proyecto, ni para quien bus
 |---|---|
 | **WhatsApp** | [+52 56 2059 5320](https://wa.me/525620595320) |
 | **Email** | [aibravo@orzatech.com](mailto:aibravo@orzatech.com) |
-| **Sitio** | próximamente en [inmobi.ai](https://inmobi.ai) |
+| **Sitio** | próximamente en [innmobi.ai](https://innmobi.ai) |
 
 ---
 
@@ -306,7 +306,7 @@ No es para freelancers solos, ni para flippers de un proyecto, ni para quien bus
 
 <div align="center">
 
-<sub>**Inmobi.ai** &nbsp;·&nbsp; un producto de **OrzaTech** &nbsp;·&nbsp; Ciudad de México 🇲🇽</sub>
+<sub>**Innmobi.ai** &nbsp;·&nbsp; un producto de **OrzaTech** &nbsp;·&nbsp; Ciudad de México 🇲🇽</sub>
 
 <sub>[aibravo@orzatech.com](mailto:aibravo@orzatech.com) &nbsp;·&nbsp; [WhatsApp +52 56 2059 5320](https://wa.me/525620595320)</sub>
 

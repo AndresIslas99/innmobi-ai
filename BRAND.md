@@ -1,13 +1,13 @@
-# Inmobi.ai — Brand System
+# Innmobi.ai — Brand System
 
-> El sistema visual y verbal de Inmobi.ai. Disciplina editorial, paleta industrial, voz mexicana específica. La regla básica: nos parecemos más a Sotheby's o Monocle que a Linear o Vercel.
+> El sistema visual y verbal de Innmobi.ai. Disciplina editorial, paleta industrial, voz mexicana específica. La regla básica: nos parecemos más a Sotheby's o Monocle que a Linear o Vercel.
 
 ---
 
 ## Naming
 
-- **Producto**: Inmobi.ai
-- **Pronunciación**: "inmobi punto ei-ai"
+- **Producto**: Innmobi.ai
+- **Pronunciación**: "innmobi punto ei-ai"
 - **Tagline**: El sistema operativo para inmobiliarias que cierran de verdad.
 - **Subhead**: Tu pipeline merece más que una hoja de Excel.
 - **Origin story**: No nació en un garage. Nació en piso, vendiendo remates en CDMX.
@@ -82,7 +82,7 @@ Heredada del lenguaje histórico del real estate de lujo. Forest + bone + brass,
 ## Logo — Wordmark first
 
 ### Hierarchy
-1. **Primary surface** (todo marketing): wordmark "Inmobi.ai" en Fraunces 600, color `--ink-black`, period en `--brass`.
+1. **Primary surface** (todo marketing): wordmark "Innmobi.ai" en Fraunces 600, color `--ink-black`, period en `--brass`.
 2. **App icon / favicon**: mark mínimo — rectángulo `--brass` sobre `--bone` con trazo negativo formando "I". Sólo donde el wordmark no cabe.
 3. **Email signature / contextos minúsculos**: wordmark a 14px sin period coloreado.
 
@@ -144,5 +144,5 @@ Gradientes de fondo. Glows radiales. Grid patterns. Glassmorphism. Blur. Gradien
 
 ## Make by
 
-Inmobi.ai es producto de **OrzaTech**, México.
+Innmobi.ai es producto de **OrzaTech**, México.
 Contacto: aibravo@orzatech.com · WhatsApp +52 56 2059 5320

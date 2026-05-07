@@ -1,8 +1,8 @@
-# GitHub Pages configuration for Inmobi.ai showcase
-title: Inmobi.ai
+# GitHub Pages configuration for Innmobi.ai showcase
+title: Innmobi.ai
 description: CRM Inmobiliario con Inteligencia Artificial — del primer lead al cierre, automatizado.
 url: https://andresislas99.github.io
-baseurl: /inmobi-ai
+baseurl: /innmobi-ai
 
 # Disable Jekyll processing (we ship hand-written HTML)
 theme: null

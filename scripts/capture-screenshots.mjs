@@ -98,7 +98,7 @@ async function captureMobile(browser) {
 }
 
 async function main() {
-  console.log('Inmobi.ai — Capturing real CRM screenshots');
+  console.log('Innmobi.ai — Capturing real CRM screenshots');
   console.log(`Base URL: ${BASE}`);
   console.log(`User: ${USER}\n`);
 

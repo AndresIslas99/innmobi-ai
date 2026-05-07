@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Inmobi.ai — render everything in one shot
+# Innmobi.ai — render everything in one shot
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-echo "── Inmobi.ai · render-all ──"
+echo "── Innmobi.ai · render-all ──"
 echo
 
 if [ ! -d node_modules ]; then

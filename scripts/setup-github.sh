@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Inmobi.ai — one-shot GitHub setup
+# Innmobi.ai — one-shot GitHub setup
 # Crea el repo público en GitHub, hace push, y activa GitHub Pages apuntando a /docs.
 # Prereq: estar autenticado con gh CLI (corre `gh auth login` primero si no lo has hecho).
 
@@ -7,10 +7,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 OWNER="${GH_OWNER:-AndresIslas99}"
-REPO="${GH_REPO:-inmobi-ai}"
-DESC="Inmobi.ai · CRM Inmobiliario con IA · marketing showcase"
+REPO="${GH_REPO:-innmobi-ai}"
+DESC="Innmobi.ai · CRM Inmobiliario con IA · marketing showcase"
 
-echo "── Inmobi.ai · GitHub setup ──"
+echo "── Innmobi.ai · GitHub setup ──"
 echo "Owner: $OWNER"
 echo "Repo:  $REPO"
 echo

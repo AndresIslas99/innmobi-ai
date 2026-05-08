@@ -1,0 +1,125 @@
+<!doctype html>
+<!-- Innmobi.ai · 26 may · Mercado Libre · API oficial vs scraping -->
+<html lang="es-MX">
+<head>
+<meta charset="utf-8"/>
+<title>Mercado Libre · API vs scraping · 26 may 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="_shared.css"/>
+<style>
+  .slide.square { padding: 80px 80px; }
+  .head {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+    max-width: 920px;
+  }
+  .head em { color: var(--brass-soft); }
+  .head .period { color: var(--brass); }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
+  }
+  .col {
+    border-top: 2px solid currentColor;
+    padding-top: 24px;
+  }
+  .col.api    { color: var(--brass); }
+  .col.scrap  { color: var(--terracotta); }
+  .col h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .col .verdict {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: 32px;
+    letter-spacing: -0.02em;
+  }
+  .col ul { list-style: none; }
+  .col li {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    line-height: 1.34;
+    color: var(--bone);
+    margin-bottom: 14px;
+    padding-left: 26px;
+    position: relative;
+    letter-spacing: -0.005em;
+  }
+  .col.api li::before  { content: '✓'; position: absolute; left: 0; color: var(--brass); font-weight: 700; }
+  .col.scrap li::before{ content: '✗'; position: absolute; left: 0; color: var(--terracotta); font-weight: 700; }
+  .footer-line {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--bone-soft);
+    text-align: center;
+    margin-top: 32px;
+    letter-spacing: -0.005em;
+  }
+  .wm-bottom { font-size: 36px; }
+</style>
+</head>
+<body>
+<section class="slide square bg-ink" data-slide="post-square" data-w="1080" data-h="1080">
+  <div>
+    <div class="frame-top">
+      <span>INTEGRACIÓN ML · EL MÉTODO IMPORTA</span>
+      <span>26 · 05 · 26</span>
+    </div>
+    <div class="brassbar" style="margin-top: 12px;"></div>
+  </div>
+
+  <div>
+    <h2 class="head">¿Tu CRM se conecta con Mercado Libre vía <em>API oficial</em> o <em>scraping</em><span class="period">?</span></h2>
+
+    <div class="grid">
+      <div class="col api">
+        <h3>Método 01</h3>
+        <div class="verdict">API oficial</div>
+        <ul>
+          <li>OAuth + endpoints documentados</li>
+          <li>Tu cuenta a TU nombre</li>
+          <li>Cumple TOS de Mercado Libre</li>
+          <li>Estable cuando ML cambia HTML</li>
+          <li>Auditable, observable</li>
+        </ul>
+      </div>
+      <div class="col scrap">
+        <h3>Método 02</h3>
+        <div class="verdict">Scraping</div>
+        <ul>
+          <li>Login automatizado disfrazado</li>
+          <li>Cuenta queda con el proveedor</li>
+          <li>Riesgo de baneo permanente</li>
+          <li>Se rompe cuando ML cambia DOM</li>
+          <li>Contra términos de servicio</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="footer-line">Pregunta directa al vendor. Pide la demo en vivo, no el deck.</p>
+  </div>
+
+  <div>
+    <div class="brassbar" style="margin-bottom: 12px;"></div>
+    <div class="frame-bottom">
+      <span class="wordmark wm-bottom">Innmobi<span class="period">.</span>ai</span>
+      <span>INNMOBI.AI/RECURSOS</span>
+    </div>
+  </div>
+</section>
+</body></html>

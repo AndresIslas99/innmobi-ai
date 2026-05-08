@@ -1,0 +1,103 @@
+<!doctype html>
+<!-- Innmobi.ai · 20 may · Pipeline antes/despues -->
+<html lang="es-MX">
+<head>
+<meta charset="utf-8"/>
+<title>Pipeline antes/después · 20 may 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="_shared.css"/>
+<style>
+  .slide.square { padding: 90px 90px; }
+  .head {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+    max-width: 880px;
+  }
+  .head em { color: var(--brass-soft); }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 48px;
+  }
+  .col {
+    border-top: 1px solid var(--brass);
+    padding-top: 24px;
+  }
+  .col h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .col.before h3 { color: var(--terracotta); }
+  .col.after  h3 { color: var(--brass); }
+  .col ul { list-style: none; }
+  .col li {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    line-height: 1.32;
+    color: var(--bone);
+    margin-bottom: 18px;
+    padding-left: 28px;
+    position: relative;
+    letter-spacing: -0.005em;
+  }
+  .col.before li::before { content: '✗'; position: absolute; left: 0; color: var(--terracotta); font-weight: 700; }
+  .col.after  li::before { content: '✓'; position: absolute; left: 0; color: var(--brass); font-weight: 700; }
+  .col li em { color: var(--brass-soft); font-style: italic; }
+  .wm-bottom { font-size: 36px; }
+</style>
+</head>
+<body>
+<section class="slide square bg-ink" data-slide="post-square" data-w="1080" data-h="1080">
+  <div>
+    <div class="frame-top">
+      <span>PIPELINE INMOBILIARIO · COMPARATIVA</span>
+      <span>20 · 05 · 26</span>
+    </div>
+    <div class="brassbar" style="margin-top: 12px;"></div>
+  </div>
+
+  <div>
+    <h2 class="head">Excel no te da eso. Hubspot lo cobra a <em>90 USD por usuario.</em></h2>
+    <div class="grid">
+      <div class="col before">
+        <h3>Antes · Excel + WhatsApp</h3>
+        <ul>
+          <li>Hoja compartida que se rompe</li>
+          <li>Etapa actual = un texto a mano</li>
+          <li>Tres asesores editando a la vez</li>
+          <li>Cero historial de transiciones</li>
+          <li>El coordinador no ve nada</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <h3>Después · Innmobi.ai</h3>
+        <ul>
+          <li>Tarjeta por lead, drag-and-drop</li>
+          <li>7 etapas con SLA por etapa</li>
+          <li>Timeline cronológico por lead</li>
+          <li>Reglas de negocio automáticas</li>
+          <li>Una pantalla, 15 asesores</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="brassbar" style="margin-bottom: 12px;"></div>
+    <div class="frame-bottom">
+      <span class="wordmark wm-bottom">Innmobi<span class="period">.</span>ai</span>
+      <span>INNMOBI.AI/PRODUCTO</span>
+    </div>
+  </div>
+</section>
+</body></html>

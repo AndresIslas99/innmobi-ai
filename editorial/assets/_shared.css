@@ -1,0 +1,102 @@
+/* Innmobi.ai · Editorial assets · estilos compartidos
+   Cada .html en editorial/assets/ puede importar este CSS y luego
+   anadir sus estilos especificos. Los .slide individuales declaran
+   data-w/data-h para que el render sepa el viewport correcto. */
+
+:root {
+  --ink-black:  #0F0F10;
+  --ink-900:    #1A1A1C;
+  --ink-700:    #4A4A52;
+  --ink-500:    #7C7C82;
+  --ink-200:    #D4D2CB;
+  --bone:       #F2EFE9;
+  --bone-soft:  #C4C2BC;
+  --paper:      #FEFCF7;
+  --forest:     #1F3A2D;
+  --forest-dk:  #142822;
+  --terracotta: #B0563A;
+  --brass:      #A77E2B;
+  --brass-soft: #C9A661;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #000; }
+body {
+  font-family: 'Fraunces', serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.slide {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Themes */
+.slide.bg-ink   { background: var(--ink-black); color: var(--bone); }
+.slide.bg-bone  { background: var(--bone);      color: var(--ink-black); }
+.slide.bg-paper { background: var(--paper);     color: var(--ink-black); }
+.slide.bg-forest{ background: var(--forest);    color: var(--bone); }
+
+/* Frame chrome */
+.frame-top, .frame-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+}
+.bg-ink .frame-top, .bg-ink .frame-bottom,
+.bg-forest .frame-top, .bg-forest .frame-bottom { color: var(--brass-soft); }
+.bg-bone .frame-top, .bg-bone .frame-bottom,
+.bg-paper .frame-top, .bg-paper .frame-bottom { color: var(--ink-700); }
+.eyebrow-brass { color: var(--brass) !important; }
+
+.brassbar {
+  height: 1px;
+  background: var(--brass);
+  opacity: 0.55;
+}
+.brassbar.thick { height: 2px; opacity: 0.7; }
+
+/* Wordmark — siempre con period en brass, NUNCA en uppercase */
+.wordmark {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-variation-settings: 'opsz' 144;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: none !important;
+}
+.wordmark .period { color: var(--brass); text-transform: none !important; }
+
+/* Italic em — accent forest sobre bone, brass-soft sobre ink */
+em { font-style: italic; }
+.bg-bone em, .bg-paper em { color: var(--forest); }
+.bg-ink em, .bg-forest em { color: var(--brass-soft); }
+
+/* Body text helpers */
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+}
+.serif-italic {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* 1080×1080 default padding */
+.slide.square {
+  width: 1080px;
+  height: 1080px;
+  padding: 80px 90px;
+}
+.slide.square .frame-top,
+.slide.square .frame-bottom {
+  font-size: 16px;
+  letter-spacing: 0.2em;
+}

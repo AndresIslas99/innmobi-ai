@@ -62,6 +62,17 @@ async function renderPage(page, layout, partials, data) {
   const isPost = data.posts.some((p) => p.slug === slug);
   const ogType = isPost ? 'article' : (slug === '' ? 'website' : 'website');
 
+  const formEndpoint = data.site.forms?.demoEndpoint?.trim() || '';
+  const hasForm = !formEndpoint;
+  const formFallbackBanner = hasForm
+    ? `<div class="form-fallback" role="status">
+        <strong>Formulario en mantenimiento.</strong>
+        Mientras lo activamos, escríbenos directo:
+        <a href="https://wa.me/${data.site.whatsapp}?text=Hola%20Innmobi.ai%2C%20quiero%20agendar%20demo">WhatsApp</a> ·
+        <a href="mailto:${data.site.email}?subject=Demo%20Innmobi.ai">${data.site.email}</a>
+      </div>`
+    : '';
+
   const vars = {
     title: page.title,
     description: page.description,
@@ -72,8 +83,18 @@ async function renderPage(page, layout, partials, data) {
     extraHead: page.extraHead || '',
     bodyClass: page.bodyClass || `page-${slug.replace(/\//g, '-') || 'home'}`,
     jsonLd: buildJsonLd(page, data, isPost),
-    content,
+    formEndpoint: formEndpoint || '#',
+    formFallbackBanner,
+    formDisabledAttr: hasForm ? 'data-fallback="true"' : '',
   };
+
+  // Pre-process content: substitute page-level variables (formEndpoint, etc.)
+  // before inlining into layout. String.replace is single-pass — without this
+  // step, `{{ formEndpoint }}` inside content wouldn't get replaced.
+  const processedContent = content.replace(/\{\{\s*([a-zA-Z][a-zA-Z0-9_]*)\s*\}\}/g, (m, key) =>
+    vars[key] !== undefined ? String(vars[key]) : m
+  );
+  vars.content = processedContent;
 
   let html = layout;
   // partials first

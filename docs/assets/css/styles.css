@@ -907,7 +907,7 @@ img { display: block; max-width: 100%; }
 .nav-toggle span { display: block; height: 2px; background: var(--ink-black); }
 .nav-cta { white-space: nowrap; }
 .mobile-drawer {
-  display: flex; flex-direction: column; gap: 16px; padding: 24px;
+  display: none; flex-direction: column; gap: 16px; padding: 24px;
   background: var(--bone-deep); border-top: 1px solid var(--ink-200);
 }
 .mobile-drawer a { color: var(--ink-black); font-size: 18px; text-decoration: none; }
@@ -916,6 +916,11 @@ img { display: block; max-width: 100%; }
   .header-nav { display: none; }
   .nav-cta { display: none; }
   .nav-toggle { display: flex; }
+  .mobile-drawer:not([hidden]) { display: flex; }
+}
+@media (min-width: 801px) {
+  .mobile-drawer { display: none !important; }
+  .nav-toggle { display: none; }
 }
 
 /* Footer extended */
@@ -1209,3 +1214,103 @@ img { display: block; max-width: 100%; }
 .related a { display: block; padding: 12px 0; font-size: 16px; color: var(--ink-700); text-decoration: none; border-top: 1px solid var(--ink-200); }
 .related a:last-child { border-bottom: 1px solid var(--ink-200); }
 .related a:hover { color: var(--brass); }
+
+/* ===========================
+   Polish pass: a11y + micro-interactions + fallbacks
+   =========================== */
+
+/* Focus states: editorial brass ring, visible only when navigating with keyboard */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.btn:focus-visible { outline-offset: 4px; }
+.cta-section :focus-visible,
+.site-footer :focus-visible,
+.section-dark :focus-visible {
+  outline-color: var(--brass-soft);
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline-offset: 0;
+  outline-width: 2px;
+  border-color: var(--brass);
+}
+details summary:focus-visible {
+  outline-offset: 4px;
+}
+
+/* Hover micro-interactions: editorial lift + brass border */
+.tier,
+.blog-card,
+.case-row,
+.contact-card,
+.cta-contact,
+.feature,
+.shot,
+.motion,
+.include,
+.security-item,
+.phil {
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.18s ease;
+}
+.tier:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(15,15,16,0.10); border-color: var(--brass); }
+.tier.tier-featured:hover { box-shadow: 0 20px 40px rgba(167,126,43,0.18); }
+.blog-card:hover,
+.contact-card:hover,
+.cta-contact:hover,
+.case-row:hover { transform: translateY(-3px); border-color: var(--brass); }
+.cta-contact.primary:hover { border-color: var(--brass-soft); }
+.include:hover,
+.security-item:hover,
+.phil:hover { border-color: var(--brass); }
+
+/* Subtle scale on hero-mockup CTA buttons */
+.btn { transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+/* Form fallback banner: shown when formEndpoint is empty */
+.form-fallback {
+  background: var(--paper);
+  border: 1px solid var(--brass);
+  border-left-width: 4px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-700);
+}
+.form-fallback strong {
+  display: block;
+  color: var(--ink-black);
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.form-fallback a {
+  color: var(--brass);
+  font-weight: 600;
+  text-decoration: none;
+}
+.form-fallback a:hover { text-decoration: underline; }
+
+/* Disabled-look form when in fallback mode */
+form[data-fallback="true"] {
+  opacity: 0.55;
+  pointer-events: none;
+  filter: grayscale(40%);
+}
+
+/* Reduced-motion: respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

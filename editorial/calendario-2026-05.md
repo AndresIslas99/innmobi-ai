@@ -63,7 +63,7 @@ Si te dedicas a vender propiedades en México y has sentido que tu pipeline vive
 ---
 
 ### Instagram — 13:00 CDMX
-**Asset:** una sola lámina cuadrada con el wordmark "Innmobi.ai" centrado sobre fondo `#0F0F10` (ink) y la frase "Doce meses construyendo. Hoy abrimos." debajo en Fraunces italic. Si no hay tiempo de diseñarla, usa `images/logos/logo-innmobi-ai.svg` exportado a PNG cuadrado 1080×1080 con fondo ink.
+**Asset:** `editorial/assets/2026-05-08-soft-launch/post-square.png` (1080×1080, ink-dark con wordmark + tagline italic).
 
 ```
 Doce meses construyendo en silencio.
@@ -81,12 +81,12 @@ Link en bio 👇
 #PropTech #Inmobiliarias #CRM #IA #México #BienesRaíces #Inmobiliaria #VentasInmobiliarias #CDMX #PropTechMéxico #Innovación #SaaS
 ```
 
-**Story (1):** la misma lámina, sticker de countdown a "Lunes 09:00 — Lanzamiento". Encima en JetBrains Mono micro: "S O F T  L A U N C H".
+**Story (1):** `editorial/assets/2026-05-08-soft-launch/post-story.png` (1080×1920, ya con eyebrow "S·O·F·T LAUNCH" y CTA "→ innmobi.ai" embebidos). En la app de IG agregar encima: sticker **countdown** a "Lunes 09:00 — Lanzamiento" + sticker **link** a `innmobi.ai`.
 
 ---
 
 ### Facebook — 11:00 CDMX
-**Asset:** misma lámina cuadrada que Instagram.
+**Asset:** misma lámina cuadrada que Instagram (`editorial/assets/2026-05-08-soft-launch/post-square.png`).
 
 ```
 Hoy abrimos al público.
@@ -196,7 +196,7 @@ Si gestionas una inmobiliaria en México con 5+ asesores activos, hablemos.
 
 ### LinkedIn — 10:00 CDMX
 **Copy:** ver `linkedin/calendar-week-1.md` → sección **"Martes — Análisis del problema (lead rot)"**.
-**Asset:** ninguno (post de texto largo). Opcional: una imagen sencilla con la cifra "60%" estilizada.
+**Asset:** `editorial/assets/2026-05-12-lead-rot-60/post-square.png` (1080×1080, "60%" gigante en bone con caption editorial). Sube como imagen del post.
 **Hashtags:** `#PropTech #VentasInmobiliarias #CRM #IA`
 
 ---
@@ -211,12 +211,7 @@ Si gestionas una inmobiliaria en México con 5+ asesores activos, hablemos.
 ---
 
 ### Instagram — 19:30 CDMX
-**Asset:** una sola lámina cuadrada — quote en Fraunces italic sobre fondo bone `#F2EFE9`:
-> *"Construir un sistema visual antes que el producto sea adoptado, no después."*
->
-> — Brand Bible, página 1
-
-Para producirla rápido: usa `templates/social/instagram-post.html` con `{{ EYEBROW }}=BRAND BIBLE · CAPÍTULO 01`, `{{ HEADLINE }}=Construir un sistema visual antes que el producto sea adoptado, no después.`, `{{ PROOF }}=Innmobi.ai · Brand System v1.0`.
+**Asset:** `editorial/assets/2026-05-13-brand-bible-quote/post-square.png` (1080×1080, bone con pillcrow brass + quote en Fraunces italic).
 
 ```
 Mientras construimos el producto, también construimos la disciplina visual.
@@ -238,7 +233,7 @@ Lo que hace que parezcamos más Sotheby's o Monocle que Linear o Vercel.
 
 ### LinkedIn — 11:00 CDMX
 **Copy:** ver `linkedin/calendar-week-1.md` → sección **"Jueves — Caso de éxito mini (testimonios AGNOR)"**.
-**Asset:** opcional — una lámina con la cita textual del testimonio en Fraunces italic, similar al template de brand bible quote.
+**Asset:** `editorial/assets/2026-05-14-agnor-testimonial/post-square.png` (1080×1080, bone con comilla 220px en brass + testimonio italic + atribución).
 **Hashtags:** `#CasoDeÉxito #PropTech #Inmobiliarias #MX`
 
 ---
@@ -322,13 +317,13 @@ Link en bio 👇
 
 ### LinkedIn — 09:30 CDMX
 **Copy:** ver `linkedin/calendar-week-2.md` → sección **"Martes — WhatsApp Business API guide"**.
-**Asset:** post de texto largo con link al artículo `recursos/whatsapp-business-api-pipeline`. Opcional: lámina con la lista de 5 cosas-que-nadie-te-dice.
+**Asset:** post de texto largo con link al artículo `recursos/whatsapp-business-api-pipeline`. (Sin lámina dedicada para esta fecha; si quieres apoyo visual, reusa `linkedin/carousel-01-features/slide-05.png` — feature WhatsApp.)
 **Hashtags:** `#WhatsAppAPI #PropTech #VentasInmobiliarias`
 
 ---
 
 ### Instagram — 19:30 CDMX
-**Asset:** una lámina con un "antes/después" — pipeline en Excel vs pipeline visual de Innmobi.ai. Si no hay tiempo de diseño, usa una captura del CRM (sin datos sensibles) sobre fondo neutro.
+**Asset:** `editorial/assets/2026-05-20-pipeline-comparativa/post-square.png` (1080×1080, ink con dos columnas: terracotta ✗ Excel + WhatsApp / brass ✓ Innmobi.ai, headline italic "90 USD por usuario").
 
 ```
 Si tu pipeline inmobiliario vive en una hoja de Excel compartida, déjame mostrarte algo.
@@ -358,7 +353,7 @@ Link en bio 👇
 
 ### LinkedIn — 11:00 CDMX
 **Copy:** ver `linkedin/calendar-week-2.md` → sección **"Miércoles — Pricing transparency post"**.
-**Asset:** post conversacional. Opcional: captura de la página `precios` con los 3 tiers.
+**Asset:** `editorial/assets/2026-05-21-pricing-tiers/post-square.png` (1080×1080, bone con 3 tiers Starter/Growth/Scale en Fraunces 700 + footer "incluye migración · LFPDPPP · sin lock-in").
 **Hashtags:** `#PropTech #Pricing #SaaS #Inmobiliarias`
 
 ---
@@ -373,7 +368,7 @@ Link en bio 👇
 ## 🟦 Lunes 25 mayo
 
 ### Facebook — 09:00 CDMX
-**Asset:** screenshot de la página `precios` de innmobi.ai con los 3 tiers visibles, sobre la lámina del brand bible.
+**Asset:** `editorial/assets/2026-05-21-pricing-tiers/post-square.png` (la misma lámina del 21 may — re-uso intencional, FB y LI en distintos días no compiten por feed).
 
 ```
 🏷️ Pricing transparente — sin "pídenos cotización"
@@ -401,7 +396,7 @@ Incluido siempre:
 ---
 
 ### Instagram — 13:00 CDMX
-**Asset:** una lámina con el texto "5 canales. Una sola fuente de verdad." centrado, con íconos pequeños de los 5 canales (llamada, WhatsApp, web, redes, email) abajo. Si no hay tiempo: foto del timeline cronológico del CRM.
+**Asset:** `editorial/assets/2026-05-25-cinco-canales/post-square.png` (1080×1080, ink con headline "Cinco canales. Un solo timeline." + lista numerada de los 5 canales con meta-tech a la derecha).
 
 ```
 Un lead inmobiliario típico en México habla contigo por:
@@ -435,7 +430,7 @@ Link en bio 👇
 
 ### LinkedIn — 13:00 CDMX
 **Copy:** ver `linkedin/calendar-week-2.md` → sección **"Jueves — Mercado Libre integration"**.
-**Asset:** post con link al artículo `recursos/mercado-libre-inmuebles-integracion`. Opcional: lámina con "scraping vs API" comparativa.
+**Asset:** `editorial/assets/2026-05-26-mercadolibre-comparativa/post-square.png` (1080×1080, ink con dos columnas: brass ✓ API oficial / terracotta ✗ Scraping + footer "Pide la demo en vivo, no el deck").
 **Hashtags:** `#MercadoLibre #PropTech #Inmobiliarias`
 
 ---
@@ -491,7 +486,7 @@ Link en bio 👇
 
 ### LinkedIn — 10:00 CDMX
 **Copy:** ver `linkedin/calendar-week-3.md` → sección **"Lunes — Seguridad LFPDPPP"**.
-**Asset:** post institucional con link a `seguridad`. Opcional: ícono de "lock" sobre fondo forest.
+**Asset:** `editorial/assets/2026-05-28-seguridad-lfpdppp/post-square.png` (1080×1080, forest con lock icon + 5 puntos numerados con highlights brass-soft).
 **Hashtags:** `#LFPDPPP #DataPrivacy #PropTech #Compliance #MX`
 
 ---

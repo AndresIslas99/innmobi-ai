@@ -2,7 +2,7 @@ name: Validate site
 
 on:
   push:
-    branches: [main, claude/update-innmobi-docs-4FCus]
+    branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -28,8 +28,9 @@ jobs:
         run: |
           set -e
           # screenshots/README.md mentions the old name intentionally (documents TODO).
+          # .github/ is excluded because this workflow itself contains the search pattern.
           HITS=$(grep -rni "Inmobi\.ai\|INMOBI\.AI\|logo-inmobi-ai" \
-            --exclude-dir=node_modules --exclude-dir=.git . \
+            --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=.github . \
             | grep -v 'innmobi-ai-showcase' \
             | grep -v 'screenshots/README.md' \
             | grep -v 'docs/assets/screenshots/README.md' \

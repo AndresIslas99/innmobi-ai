@@ -10,7 +10,8 @@
     "whatsapp": "525620595320",
     "plausibleDomain": "innmobi.ai",
     "forms": {
-      "demoEndpoint": "https://formspree.io/f/xdablpze"
+      "demoEndpoint": "https://formspree.io/f/xdablpze",
+      "newsletterEndpoint": "https://formspree.io/f/xzdoakvj"
     },
     "social": {
       "linkedin": "https://www.linkedin.com/company/innmobi-ai",

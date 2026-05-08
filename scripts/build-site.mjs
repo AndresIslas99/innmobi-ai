@@ -63,15 +63,17 @@ async function renderPage(page, layout, partials, data) {
   const ogType = isPost ? 'article' : (slug === '' ? 'website' : 'website');
 
   const formEndpoint = data.site.forms?.demoEndpoint?.trim() || '';
-  const hasForm = !formEndpoint;
-  const formFallbackBanner = hasForm
-    ? `<div class="form-fallback" role="status">
+  const newsletterEndpoint = data.site.forms?.newsletterEndpoint?.trim() || '';
+  const demoMissing = !formEndpoint;
+  const newsletterMissing = !newsletterEndpoint;
+
+  const fallbackBanner = (label) =>
+    `<div class="form-fallback" role="status">
         <strong>Formulario en mantenimiento.</strong>
         Mientras lo activamos, escríbenos directo:
-        <a href="https://wa.me/${data.site.whatsapp}?text=Hola%20Innmobi.ai%2C%20quiero%20agendar%20demo">WhatsApp</a> ·
-        <a href="mailto:${data.site.email}?subject=Demo%20Innmobi.ai">${data.site.email}</a>
-      </div>`
-    : '';
+        <a href="https://wa.me/${data.site.whatsapp}?text=Hola%20Innmobi.ai%2C%20${encodeURIComponent(label)}">WhatsApp</a> ·
+        <a href="mailto:${data.site.email}?subject=${encodeURIComponent(label)}">${data.site.email}</a>
+      </div>`;
 
   const vars = {
     title: page.title,
@@ -84,8 +86,11 @@ async function renderPage(page, layout, partials, data) {
     bodyClass: page.bodyClass || `page-${slug.replace(/\//g, '-') || 'home'}`,
     jsonLd: buildJsonLd(page, data, isPost),
     formEndpoint: formEndpoint || '#',
-    formFallbackBanner,
-    formDisabledAttr: hasForm ? 'data-fallback="true"' : '',
+    formFallbackBanner: demoMissing ? fallbackBanner('quiero agendar demo') : '',
+    formDisabledAttr: demoMissing ? 'data-fallback="true"' : '',
+    newsletterEndpoint: newsletterEndpoint || '#',
+    newsletterFallbackBanner: newsletterMissing ? fallbackBanner('quiero suscribirme al boletín') : '',
+    newsletterDisabledAttr: newsletterMissing ? 'data-fallback="true"' : '',
   };
 
   // Pre-process content: substitute page-level variables (formEndpoint, etc.)

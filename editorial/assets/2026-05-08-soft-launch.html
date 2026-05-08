@@ -1,0 +1,224 @@
+<!doctype html>
+<!--
+  Innmobi.ai · Soft launch · 8 mayo 2026
+  Dos láminas: post-square (1080×1080) y post-story (1080×1920).
+  Render: npm run build:editorial
+  Output: editorial/assets/2026-05-08-soft-launch/{post-square,post-story}.png
+-->
+<html lang="es-MX">
+<head>
+<meta charset="utf-8"/>
+<title>Soft launch · 8 may 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink-black:  #0F0F10;
+    --ink-900:    #1A1A1C;
+    --ink-700:    #4A4A52;
+    --bone:       #F2EFE9;
+    --bone-soft:  #C4C2BC;
+    --forest:     #1F3A2D;
+    --brass:      #A77E2B;
+    --brass-soft: #C9A661;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #000; }
+  body {
+    font-family: 'Fraunces', serif;
+    color: var(--bone);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+  .slide {
+    background: var(--ink-black);
+    color: var(--bone);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .slide .frame-top,
+  .slide .frame-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--brass-soft);
+    text-transform: uppercase;
+  }
+  .brassbar {
+    height: 1px;
+    background: var(--brass);
+    opacity: 0.6;
+  }
+  .wordmark {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-variation-settings: 'opsz' 144;
+    color: var(--bone);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .wordmark .period { color: var(--brass); }
+  em { font-style: italic; color: var(--brass-soft); }
+  .small-mono {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--brass-soft);
+    text-transform: uppercase;
+  }
+
+  /* ─────────────── Square 1080×1080 ─────────────── */
+  .slide.square {
+    width: 1080px;
+    height: 1080px;
+    padding: 80px 90px;
+  }
+  .slide.square .frame-top,
+  .slide.square .frame-bottom { font-size: 16px; letter-spacing: 0.2em; }
+  .slide.square .center { text-align: center; }
+  .slide.square .wordmark { font-size: 200px; }
+  .slide.square .tagline {
+    margin-top: 56px;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 38px;
+    line-height: 1.2;
+    color: var(--bone-soft);
+    letter-spacing: -0.01em;
+  }
+  .slide.square .tagline .accent {
+    color: var(--brass-soft);
+    font-style: italic;
+  }
+  .slide.square .stamp {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.32em;
+    color: var(--brass);
+    text-transform: uppercase;
+    margin-top: 32px;
+  }
+
+  /* ─────────────── Story 1080×1920 ─────────────── */
+  .slide.story {
+    width: 1080px;
+    height: 1920px;
+    padding: 280px 96px 240px; /* IG safe zones top/bottom */
+  }
+  .slide.story .frame-top,
+  .slide.story .frame-bottom { font-size: 18px; letter-spacing: 0.22em; }
+  .slide.story .stack { display: flex; flex-direction: column; gap: 64px; }
+  .slide.story .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.4em;
+    color: var(--brass);
+    text-transform: uppercase;
+  }
+  .slide.story .wordmark { font-size: 220px; letter-spacing: -0.045em; }
+  .slide.story .tagline {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 52px;
+    line-height: 1.18;
+    color: var(--bone-soft);
+    letter-spacing: -0.01em;
+    max-width: 880px;
+  }
+  .slide.story .tagline .accent { color: var(--brass-soft); }
+  .slide.story .cta {
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    letter-spacing: 0.18em;
+    color: var(--brass-soft);
+    text-transform: uppercase;
+    border: 1px solid var(--brass);
+    padding: 22px 36px;
+    align-self: flex-start;
+  }
+  .slide.story .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .slide.story .wm-small {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 56px;
+    color: var(--bone);
+    letter-spacing: -0.03em;
+  }
+  .slide.story .wm-small .period { color: var(--brass); }
+</style>
+</head>
+<body>
+
+<!-- ═════════════════════════════════════════════════════════════
+     SLIDE 1 · Square 1080×1080 (Instagram feed + Facebook)
+     ═════════════════════════════════════════════════════════════ -->
+<section class="slide square" data-slide="post-square" data-w="1080" data-h="1080">
+  <div>
+    <div class="frame-top">
+      <span>INNMOBI.AI · CDMX · 🇲🇽</span>
+      <span>08 · 05 · 26</span>
+    </div>
+    <div class="brassbar" style="margin-top: 12px;"></div>
+  </div>
+
+  <div class="center">
+    <div class="wordmark">Innmobi<span class="period">.</span>ai</div>
+    <p class="tagline">
+      Doce meses construyendo en silencio.<br/>
+      <span class="accent">Hoy abrimos al público.</span>
+    </p>
+    <div class="stamp">S O F T &nbsp;&nbsp; L A U N C H</div>
+  </div>
+
+  <div>
+    <div class="brassbar" style="margin-bottom: 12px;"></div>
+    <div class="frame-bottom">
+      <span>EL SISTEMA OPERATIVO PARA INMOBILIARIAS QUE CIERRAN</span>
+      <span>INNMOBI.AI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════════════
+     SLIDE 2 · Story 1080×1920 (Instagram story)
+     ═════════════════════════════════════════════════════════════ -->
+<section class="slide story" data-slide="post-story" data-w="1080" data-h="1920">
+  <div>
+    <div class="frame-top">
+      <span>S · O · F · T &nbsp; L A U N C H</span>
+      <span>08 · 05 · 26</span>
+    </div>
+    <div class="brassbar" style="margin-top: 16px;"></div>
+  </div>
+
+  <div class="stack">
+    <span class="eyebrow">№ 01 · Innmobi · 2026</span>
+    <div class="wordmark">Innmobi<span class="period">.</span>ai</div>
+    <p class="tagline">
+      Doce meses construyendo<br/>en silencio.<br/>
+      <span class="accent">Hoy abrimos al público.</span>
+    </p>
+    <span class="cta">→ innmobi.ai</span>
+  </div>
+
+  <div>
+    <div class="brassbar" style="margin-bottom: 24px;"></div>
+    <div class="footer-row">
+      <span class="wm-small">Innmobi<span class="period">.</span>ai</span>
+      <span class="small-mono" style="font-size: 16px; letter-spacing: 0.22em;">CDMX · 🇲🇽</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

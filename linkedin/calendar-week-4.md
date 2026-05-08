@@ -62,7 +62,7 @@ Para inversionistas, partners y operadores que pidieron ver el pitch deck comple
 
 16 slides en formato 1920×1080. Producto, mercado, traction (AGNOR), modelo, GTM, roadmap, equipo, asks. Sin pretty TAM/SAM/SOM mágicos — solo el TAM directo de México con cifras de AMPI.
 
-Si tu agenda de inversión cubre PropTech B2B vertical mexicano, escríbeme: hola@innmobi.ai
+Si tu agenda de inversión cubre PropTech B2B vertical mexicano, escríbeme: sales@orzatech.com
 
 #PropTech #SaaS #Pitch #PreSeed #MX
 ```

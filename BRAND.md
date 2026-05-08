@@ -145,4 +145,4 @@ Gradientes de fondo. Glows radiales. Grid patterns. Glassmorphism. Blur. Gradien
 ## Make by
 
 Innmobi.ai es producto de **OrzaTech**, México.
-Contacto: aibravo@orzatech.com · WhatsApp +52 56 2059 5320
+Contacto: sales@orzatech.com · WhatsApp +52 56 2059 5320

@@ -2,7 +2,7 @@
 
 Materiales de prensa y comunicación para periodistas, partners, inversionistas y aliados editoriales.
 
-> Para preguntas no cubiertas: **prensa@innmobi.ai** · respuesta en menos de 48 horas hábiles.
+> Para preguntas no cubiertas: **sales@orzatech.com** · respuesta en menos de 48 horas hábiles.
 
 ---
 
@@ -33,8 +33,8 @@ Materiales de prensa y comunicación para periodistas, partners, inversionistas 
 | **Pricing inicial** | Desde $2,400 MXN/asesor/mes |
 | **Cliente fundador** | AGNOR Inmobiliaria (CDMX) — operación diaria 100% sobre la plataforma |
 | **Sitio web** | https://innmobi.ai |
-| **Email producto** | hola@innmobi.ai |
-| **Email prensa** | prensa@innmobi.ai |
+| **Email producto** | sales@orzatech.com |
+| **Email prensa** | sales@orzatech.com |
 | **WhatsApp directo** | +52 56 2059 5320 |
 | **LinkedIn** | https://www.linkedin.com/company/innmobi-ai |
 
@@ -90,7 +90,7 @@ Disponibles en `press-kit/screenshots/`:
 
 ## Headshots
 
-Disponibles bajo solicitud a **prensa@innmobi.ai** — 300dpi, fondo neutro, formato horizontal y vertical.
+Disponibles bajo solicitud a **sales@orzatech.com** — 300dpi, fondo neutro, formato horizontal y vertical.
 
 ---
 
@@ -106,6 +106,6 @@ Disponibles bajo solicitud a **prensa@innmobi.ai** — 300dpi, fondo neutro, for
 
 ## Contacto de prensa
 
-**prensa@innmobi.ai** · Lunes a viernes, hora de Ciudad de México · respuesta en menos de 48 horas hábiles.
+**sales@orzatech.com** · Lunes a viernes, hora de Ciudad de México · respuesta en menos de 48 horas hábiles.
 
 Para entrevistas con fundadores, demos en vivo, sesiones de fondo, o documentación técnica adicional, escríbenos con: (1) tu medio o publicación, (2) ángulo de la nota, (3) deadline de cierre. Respondemos con disponibilidad y materiales adicionales.

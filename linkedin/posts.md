@@ -39,7 +39,7 @@ No nació en un garage. Nació en piso, vendiendo remates en CDMX. Hoy opera en 
 Si gestionas una inmobiliaria en México y tu pipeline vive en Excel + WhatsApp + Hubspot Free, hablemos.
 
 📱 +52 56 2059 5320
-📧 aibravo@orzatech.com
+📧 sales@orzatech.com
 
 #PropTech #Inmobiliarias #CRM #México #BienesRaíces
 ```
@@ -193,7 +193,7 @@ No nació en un garage. Nació en piso, vendiendo remates.
 Si gestionas una inmobiliaria en México que quiere lo mismo — un sistema que ya gana dinero, no un experimento — escríbeme.
 
 📱 +52 56 2059 5320
-📧 aibravo@orzatech.com
+📧 sales@orzatech.com
 
 #PropTech #CasoDeÉxito #Inmobiliarias #IA #México
 ```

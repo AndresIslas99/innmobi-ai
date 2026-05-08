@@ -8,8 +8,10 @@
     "author": "OrzaTech",
     "email": "hola@innmobi.ai",
     "whatsapp": "525620595320",
-    "calendly": null,
     "plausibleDomain": "innmobi.ai",
+    "forms": {
+      "demoEndpoint": ""
+    },
     "social": {
       "linkedin": "https://www.linkedin.com/company/innmobi-ai",
       "x": "https://x.com/innmobiai",

@@ -12,3 +12,6 @@ test-results/
 
 # OS
 Thumbs.db
+
+# Generated social media assets — regenerate with `npm run build:social-profiles`
+images/social/*.png

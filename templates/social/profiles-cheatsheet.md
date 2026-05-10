@@ -4,7 +4,40 @@ Guía operativa para configurar perfiles oficiales en Instagram, Facebook, Linke
 
 ---
 
-## Inventario de assets en `images/social/`
+## Cómo obtener los assets
+
+Los 16 PNGs se generan automáticamente en CI y se sirven en producción. **Tres caminos para descargarlos:**
+
+1. **Desde el sitio en vivo (recomendado, no requiere setup):**
+   ```
+   https://innmobi.ai/assets/images/social/<nombre-del-archivo>.png
+   ```
+   Ej: `https://innmobi.ai/assets/images/social/profile-brass-1024.png` — abre y guarda como.
+
+2. **Bulk download desde el sitio con `wget`:**
+   ```bash
+   for f in profile-brass-1024 profile-ink-1024 profile-bone-1024 profile-brass-400 \
+            cover-facebook-light cover-facebook-dark \
+            cover-linkedin-personal-light cover-linkedin-personal-dark \
+            cover-linkedin-company-light cover-linkedin-company-dark \
+            cover-x-light cover-x-dark \
+            ig-highlight-producto ig-highlight-casos ig-highlight-equipo ig-highlight-recursos; do
+     wget -q "https://innmobi.ai/assets/images/social/${f}.png" -P social-assets/
+   done
+   ```
+
+3. **Generar localmente (si tienes el repo clonado):**
+   ```bash
+   npm install
+   npm run build:social-profiles
+   # Output: images/social/*.png
+   ```
+
+> **Nota:** los PNGs no están commiteados al repo (son artefactos generados). Cada deploy a Pages los regenera con el script + brand bible actuales.
+
+---
+
+## Inventario de assets
 
 | Archivo | Tamaño | Uso |
 |---|---|---|
@@ -88,7 +121,7 @@ Reservar demo: https://innmobi.ai/demo/
 
 **Datos de contacto:**
 - Sitio: `https://innmobi.ai`
-- Email: `hola@innmobi.ai`
+- Email: `sales@orzatech.com`
 - WhatsApp: `+52 56 2059 5320`
 - Dirección: Ciudad de México, México
 
@@ -169,7 +202,7 @@ Construimos Innmobi.ai durante seis meses en piso, con asesores reales como co-d
 
 Si gestionas una inmobiliaria mexicana con 5+ asesores y operas en Excel + WhatsApp + Hubspot Free, escríbeme. Aceptamos 2-3 nuevas implementaciones por trimestre.
 
-📧 hola@innmobi.ai · 📲 +52 56 2059 5320 · 🌐 innmobi.ai
+📧 sales@orzatech.com · 📲 +52 56 2059 5320 · 🌐 innmobi.ai
 ```
 
 ---
@@ -226,7 +259,7 @@ Lista para marcar después de configurar cada perfil:
 - [ ] LinkedIn Personal del founder — banner + headline + about
 - [ ] X (`@innmobiai`) — profile + header + bio + pinned tweet de lanzamiento
 
-Cuando termines los 5, escribe a `marca@innmobi.ai` con los URLs de cada perfil para que actualicemos los links del footer del sitio (`src/partials/footer.html`).
+Cuando termines los 5, escribe a `sales@orzatech.com` con los URLs de cada perfil para que actualicemos los links del footer del sitio (`src/partials/footer.html`).
 
 ---
 

@@ -13,5 +13,7 @@ test-results/
 # OS
 Thumbs.db
 
-# Generated social media assets — regenerate with `npm run build:social-profiles`
+# Generated social media assets — generados en CI y servidos en Pages
+# Local: npm run build:social-profiles
+# Live:  https://innmobi.ai/assets/images/social/<archivo>.png
 images/social/*.png

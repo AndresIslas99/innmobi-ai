@@ -11,6 +11,7 @@ on:
       - 'screenshots/**'
       - 'brochure/brochure.pdf'
       - 'scripts/build-site.mjs'
+      - 'scripts/render-social-profiles.mjs'
       - 'package.json'
       - 'package-lock.json'
       - '.github/workflows/deploy-pages.yml'
@@ -38,6 +39,12 @@ jobs:
 
       - name: Install deps
         run: npm ci
+
+      - name: Install Playwright chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Render social profiles (16 PNGs)
+        run: node scripts/render-social-profiles.mjs
 
       - name: Build site
         run: node scripts/build-site.mjs

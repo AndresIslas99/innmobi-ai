@@ -23,7 +23,7 @@
     "dev": "npx serve docs"
   },
   "devDependencies": {
-    "playwright": "^1.59.1"
+    "playwright": "^1.62.0"
   },
   "license": "UNLICENSED",
   "author": "OrzaTech <sales@orzatech.com>"

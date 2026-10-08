@@ -111,7 +111,11 @@ Y registra en el CRM.
 
 > "En un servidor dedicado solo para tu inmobiliaria, no compartido con nadie, con respaldos diarios fuera de sitio. Cumplimos la ley de protección de datos (LFPDPPP) y, si un día te vas, te exportamos todo y lo borramos en 30 días."
 
-### № 16 — "¿Me lo dejas sin implementación?"
+### № 16 — "¿Y lo que cobra Meta por WhatsApp?"
+
+> "Va por nuestra cuenta. Conversaciones, recordatorios y confirmaciones están incluidos, y además 500 mensajes de difusión al mes para anunciar propiedades. Tú no abres otra cuenta ni pagas nada aparte. Si un mes quieres mandar más difusión, el paquete de 1,000 mensajes cuesta $1,200 y va en la misma factura."
+
+### № 17 — "¿Me lo dejas sin implementación?"
 
 > "La implementación no es un cargo de 'activación': son 4 semanas de trabajo nuestro migrando tu data, conectando tu WhatsApp, tu número y Mercado Libre, y capacitando a tu equipo. Sin eso, el sistema es una hoja en blanco. Lo que sí puedo hacer es ayudarte con el calendario de pago." (Escalones B-D.)
 
@@ -128,6 +132,7 @@ Y registra en el CRM.
 | Paquete de voz +10 h | $2,700 MXN |
 | Minuto de voz sin paquete | $6 MXN |
 | Línea simultánea adicional | $500 MXN/mes |
+| Paquete de 1,000 mensajes de difusión por WhatsApp | $1,200 MXN |
 | Pago anual | $40,000 MXN (12 meses por el precio de 10) |
 | Implementación (migración + canales + onboarding 4 semanas) | $20,000 MXN pago único |
 | Scale (25+ asesores o varias sucursales) | A la medida, escala al CEO |

@@ -21,11 +21,11 @@ Para dar de alta el número local en su ciudad se necesita un domicilio de esa m
 
 ## 3. WhatsApp Business
 
-La cuenta de WhatsApp Business se da de alta **a nombre de la inmobiliaria y con su tarjeta**. Meta le cobra directo los mensajes.
+La cuenta de WhatsApp Business se da de alta **en el Business Manager de la inmobiliaria**, con **el método de pago de OrzaTech**. Los cargos de Meta van por nuestra cuenta: el cliente no paga nada aparte.
 
 - [ ] Acceso de administrador a su **Meta Business Manager** (o lo creamos juntos en el kickoff)
 - [ ] Número que usarán para WhatsApp (no puede estar activo en la app de WhatsApp normal)
-- [ ] Tarjeta de la inmobiliaria para el método de pago en Meta
+- [ ] Implementación agrega el método de pago de OrzaTech en WhatsApp Manager
 - [ ] Logo y nombre comercial para el perfil
 
 ## 4. Equipo y operación

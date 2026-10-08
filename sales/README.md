@@ -14,7 +14,7 @@ Todo lo que necesitas para vender desde hoy. Léelo en este orden:
 
 ## La oferta en 20 segundos
 
-> "Son **$4,000 pesos al mes más IVA** con todo tu equipo dentro: usuarios ilimitados, un agente de voz con IA que contesta tus llamadas 24/7 con 5 horas al mes, WhatsApp, Mercado Libre y tu propio servidor. Más una **implementación única de $20,000**, en la que en 4 semanas migramos tu data y capacitamos a tu equipo. Una sola comisión te paga más de dos años."
+> "Son **$4,000 pesos al mes más IVA** con todo tu equipo dentro: usuarios ilimitados, un agente de voz con IA que contesta tus llamadas 24/7 con 5 horas al mes, WhatsApp con los cargos de Meta incluidos, Mercado Libre y tu propio servidor. Más una **implementación única de $20,000**, en la que en 4 semanas migramos tu data y capacitamos a tu equipo. Una sola comisión te paga más de dos años."
 
 | | Precio (MXN + IVA) |
 |---|---|
@@ -24,6 +24,7 @@ Todo lo que necesitas para vender desde hoy. Léelo en este orden:
 | Paquete de voz +5 h / +10 h | $1,500 / $2,700 al mes |
 | Minuto sin paquete | $6 |
 | Línea simultánea adicional | $500/mes |
+| Paquete de 1,000 mensajes de difusión por WhatsApp | $1,200 |
 | Scale (25+ asesores o sucursales) | A la medida, escala al líder |
 
 ## El proceso

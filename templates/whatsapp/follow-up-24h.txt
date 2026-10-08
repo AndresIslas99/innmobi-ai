@@ -7,7 +7,7 @@ Hola {{1}}, ¿qué tal?
 
 Ayer recorrimos el CRM contigo y {{2}}. ¿Cómo lo viste?
 
-Si quieres avanzar: te puedo mandar el plan de migración personalizado para tus asesores y el pricing específico.
+Si quieres avanzar: te mando la propuesta formal y agendamos el arranque de tu implementación.
 
 Si prefieres pensarlo más: sin presión, aquí estamos cuando estés listo.
 

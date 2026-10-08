@@ -1,21 +1,22 @@
-// WhatsApp Business Template — cotización post-discovery
+// WhatsApp Business Template — cotización post-demo
 // Categoría Meta: UTILITY
 // Idioma: es_MX
-// Variables: {{1}} = nombre, {{2}} = inmobiliaria, {{3}} = num asesores, {{4}} = mensualidad MXN, {{5}} = condiciones de pago de la implementación
+// Variables: {{1}} = nombre, {{2}} = inmobiliaria, {{3}} = extras contratados (o "Ninguno"),
+//            {{4}} = mensualidad total MXN + IVA, {{5}} = condiciones de pago de la implementación
+// Los montos salen del cotizador: sales/cotizador.xlsx
 
 Hola {{1}},
 
-Resumen de lo que conversamos:
+Resumen de lo que conversamos para {{2}}:
 
-🏢 {{2}}
-👥 {{3}} asesores activos
-💰 Mensualidad: *{{4}} MXN/mes* (todas las funciones)
-🛠️ Implementación: *$20,000 MXN* · {{5}}
+💰 Plan Innmobi: *$4,000 MXN/mes + IVA*
+   Usuarios ilimitados · 5 h de llamadas con IA · 2 líneas · servidor dedicado
+➕ Extras: {{3}}
+📅 Total mensual: *{{4}} MXN + IVA*
+🛠️ Implementación: *$20,000 MXN + IVA* · {{5}}
 
-La implementación incluye migración, WhatsApp + Mercado Libre + Calendar conectados y onboarding de 4 semanas. Soporte directo, sin lock-in. Pricing válido por 14 días.
+La implementación incluye migración de tu data, WhatsApp + Mercado Libre + Calendar conectados y onboarding de 4 semanas. Sin lock-in. Precio válido por 14 días.
 
-Si quieres avanzar: respóndeme con "VAMOS" y te mando el contrato + plan de migración.
-
-Si tienes dudas: aquí seguimos.
+Si quieres avanzar: respóndeme "VAMOS" y te mando el contrato.
 
 — Equipo Innmobi.ai

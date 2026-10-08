@@ -91,6 +91,30 @@ Acepta sin presionar. Respuesta:
 
 Y registra en el CRM.
 
+### № 11 — "¿Los $4,000 ya incluyen IVA?"
+
+> "No, son $4,000 más IVA: $4,640 al mes. La factura sale con CFDI desde OrzaTech, así que el IVA lo acreditas."
+
+### № 12 — "¿Y si se me acaban las 5 horas de llamadas?"
+
+> "Cinco horas son unas 120 llamadas de calificación al mes. Si tu volumen es mayor, hay paquetes de +5 horas por $1,500 o +10 horas por $2,700 al mes. Cuéntame cuántas llamadas les entran y te digo de una vez si te alcanza." (Usa la recomendación de horas del cotizador.)
+
+### № 13 — "¿Qué pasa si me llaman 3 personas al mismo tiempo?"
+
+> "Tienes 2 líneas simultáneas incluidas. La tercera escucha un mensaje de espera y entra en cuanto se libera una. Si en tu operación es común que entren 3 o más a la vez, cada línea adicional cuesta $500 al mes."
+
+### № 14 — "No quiero que una IA le conteste a mis clientes."
+
+> "Lo entiendo. Hoy, ¿quién contesta a las 10 de la noche o en domingo? … El agente no reemplaza a tu asesor: contesta cuando nadie puede, hace las preguntas que tu mejor asesor haría y le deja el lead listo. ¿Por qué no lo pruebas tú? Llama ahorita a este número como si buscaras casa." (Número de demo.)
+
+### № 15 — "¿Dónde están mis datos?"
+
+> "En un servidor dedicado solo para tu inmobiliaria, no compartido con nadie, con respaldos diarios fuera de sitio. Cumplimos la ley de protección de datos (LFPDPPP) y, si un día te vas, te exportamos todo y lo borramos en 30 días."
+
+### № 16 — "¿Me lo dejas sin implementación?"
+
+> "La implementación no es un cargo de 'activación': son 4 semanas de trabajo nuestro migrando tu data, conectando tu WhatsApp, tu número y Mercado Libre, y capacitando a tu equipo. Sin eso, el sistema es una hoja en blanco. Lo que sí puedo hacer es ayudarte con el calendario de pago." (Escalones B-D.)
+
 ---
 
 ## Pricing conversation (cómo dar el número)

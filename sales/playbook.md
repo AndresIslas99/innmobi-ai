@@ -13,7 +13,7 @@
 3. Tienen pipeline activo: **mínimo 50 leads/mes** entrantes por canales múltiples.
 4. **Multi-canal**: combinan al menos 3 de: llamada · WhatsApp · web · ML · referidos · presencial.
 5. Tienen **al menos un coordinador o director comercial** dedicado (no solo asesores en piso).
-6. Cierran **>30M MXN al año** (proxy de capacidad de pago al tier Growth).
+6. Cierran **>30M MXN al año** (proxy de capacidad de pago de $4K/mes + implementación).
 7. Operan en **al menos uno de los 6 verticales**: remates, preventa, corretaje, recuperadas, reventa, rentas.
 
 **Anti-patrones (NO ICP):**
@@ -30,7 +30,7 @@ Para cada conversación, calificar antes de avanzar a propuesta:
 
 | Letra | Pregunta | Verde | Ámbar | Rojo |
 |---|---|---|---|---|
-| **B** Budget | ¿Qué pagas hoy en software de pipeline/CRM? | $20K+/mes total | $5-20K/mes | <$5K/mes |
+| **B** Budget | ¿Cuánto puedes invertir para arrancar y cada mes? | $20K de arranque + $4K/mes sin problema | La mensualidad sí, el arranque necesita plazos (escalones B-D) | Ni $4K/mes |
 | **A** Authority | ¿Quién decide la compra de software? | Tú o reportas directo a quien decide | Comité | "Tengo que consultar con socios" |
 | **N** Need | ¿Qué problema te trajo a buscar CRM hoy? | Dolor concreto último mes | "Debería actualizar" | "Curiosidad" |
 | **T** Timing | ¿Cuándo necesitas tener algo funcionando? | Próximas 4-8 semanas | 3-6 meses | "Sin prisa" |
@@ -95,6 +95,16 @@ Y registra en el CRM.
 
 ## Pricing conversation (cómo dar el número)
 
+**Precio de lista** (es lo que se dice primero, siempre):
+
+| Concepto | Precio |
+|---|---|
+| Plan Innmobi (hasta 10 asesores, todas las funciones) | $4,000 MXN/mes |
+| Asesor adicional (del 11 en adelante) | $400 MXN/mes |
+| Pago anual | $40,000 MXN (12 meses por el precio de 10) |
+| Implementación (migración + canales + onboarding 4 semanas) | $20,000 MXN pago único |
+| Scale (25+ asesores o varias sucursales) | A la medida, escala al CEO |
+
 Una vez calificados B-A-N-T en verde, entra al cierre del precio:
 
 ```
@@ -104,19 +114,51 @@ Para tu caso específico:
 - Vertical principal: {{ Z }}
 - Integraciones requeridas: WhatsApp + ML + Calendar
 
-El plan que te recomendamos es {{ TIER }} con {{ X }} asesores.
-Inversión: {{ MONTO }} MXN/mes (con descuento anual sería {{ MONTO_ANUAL }}).
-Eso incluye: migración 4 semanas, hosting, todas las integraciones, soporte directo, sin lock-in.
+Mensualidad: {{ MONTO }} MXN/mes ($4,000 con hasta 10 asesores, +$400 por cada adicional).
+Implementación: $20,000 MXN, una sola vez. En 4 semanas migramos tu data,
+conectamos WhatsApp, Mercado Libre y Calendar, y capacitamos a tu equipo.
 
-¿Encaja con lo que tienes presupuestado para infraestructura?
+Con 10 asesores son $400 por asesor al mes. Una sola comisión te paga más de dos años.
+¿Arrancamos la implementación el lunes {{ FECHA }}?
 ```
 
 **Reglas:**
 - Da el número siempre antes de colgar la primera demo.
 - Pricing válido por 14 días naturales.
-- Descuento anual: máximo 20% en Starter, 25% en Growth.
-- Setup fee: solo en Scale, justificable por scope.
-- No discounts adicionales sin escalar a CEO.
+- La mensualidad **no se negocia**. El único descuento es el anual (12 por 10).
+- Lo que sí se negocia es **cuándo** se paga la implementación (ver abajo), nunca cuánto.
+- Nada fuera de esta guía sin escalar a CEO.
+
+---
+
+## Negociación de la implementación: "se mueve el calendario, no el precio"
+
+La implementación **siempre vale $20,000 MXN**. Lo que tienes como vendedor es libertad para mover **cuándo** se paga, desde el contado hasta nuestro piso (peor escenario): $10,000 al firmar y $10,000 a 90 días. En todos los escalones el cliente paga lo mismo: $68,000 MXN el primer año ($48K de mensualidad + $20K de implementación). Lo único que cambia es nuestro flujo de caja.
+
+| Escalón | Al firmar | Resto | Cuándo usarlo | Qué pides a cambio |
+|---|---|---|---|---|
+| **A · Lista** | $20,000 | — | Siempre se ofrece primero. | — |
+| **B** | $15,000 | $5,000 al go-live (semana 4) | "Es mucho de golpe." | Kickoff en las próximas 2 semanas. |
+| **C** | $10,000 | $10,000 al go-live (semana 4) | Sigue atorado en el arranque, pero la mensualidad no le preocupa. | Firma esta semana. |
+| **D · Piso** | $10,000 | $10,000 a 90 días | Última carta. Buen fit, problema solo de flujo. | Contrato 12 meses + cargo domiciliado + caso de éxito o 1 referido. |
+
+**Atajo:** si el cliente paga anual por adelantado ($40,000), puedes darle el escalón D directo: ya entró más caja que en el escalón A.
+
+**Reglas duras:**
+- Baja **un escalón a la vez** y pide algo a cambio en cada uno. Nunca abras con el piso.
+- Antes de mover dinero, agrega valor: una sesión extra de capacitación o plantillas de WhatsApp pre-armadas para su vertical.
+- Nunca menos de **$10,000 al firmar**. Nunca crédito a **más de 90 días**. Nunca descuento sobre los **$20,000 totales**.
+- Con el escalón D, el contrato lleva **cláusula de aceleración**: si cancela antes de liquidar, el saldo se vuelve exigible de inmediato.
+- No arranca la implementación sin el pago de firma en cuenta.
+- Si la objeción es la mensualidad de $4,000 (no el arranque), no la resuelvas con la implementación: regresa a la objeción № 01 o probablemente no es ICP hoy.
+
+**Cómo decirlo:**
+
+> **B:** "El precio de la implementación es fijo, pero te ayudo con el flujo: $15 mil para arrancar y $5 mil cuando ya estés operando, en la semana 4. ¿Te funciona?"
+
+> **C:** "Si lo partimos a la mitad, $10 mil hoy y $10 mil el día del cutover, ¿arrancamos el lunes?"
+
+> **D:** "Te propongo algo, pero necesito que tú también me ayudes: $10 mil para arrancar y los otros $10 mil a 90 días, cuando ya hayas visto resultados. A cambio, contrato de 12 meses con cargo domiciliado y, si te va bien, nos dejas contar tu caso. ¿Trato?"
 
 ---
 

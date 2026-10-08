@@ -150,6 +150,7 @@ function buildJsonLd(page, data, isPost) {
       offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'MXN',
+        lowPrice: '4000',
         availability: 'https://schema.org/InStock',
         url: `${data.site.url}/precios/`,
       },

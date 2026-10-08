@@ -82,24 +82,24 @@ Muestra UNA capacidad relevante a SU caso:
 
 ### Bloque 3 (3 min) — Pricing y siguiente paso
 
-> "Para tu caso específico — {{ X }} asesores activos, vertical {{ Z }}, integraciones que necesitas — te recomiendo {{ TIER }}. La inversión es {{ MONTO }} MXN/mes, con descuento {{ X% }} si es anual. Eso incluye migración de 4 semanas, hosting, todas las integraciones, soporte directo, sin lock-in."
+> "Para tu caso — {{ X }} asesores activos, vertical {{ Z }} — son {{ MONTO }} MXN al mes con todas las funciones ($4,000 con hasta 10 asesores), o 12 meses por el precio de 10 si pagas anual. Más una implementación única de $20,000: en 4 semanas migramos tu data, conectamos WhatsApp, Mercado Libre y Calendar, y capacitamos a tu equipo. Hosting, soporte directo y cero lock-in incluidos."
 
-Espera reacción. NO descuentes inmediatamente.
+Espera reacción. NO descuentes. Si la objeción es el pago de arranque, usa la escalera de implementación del playbook (`sales/playbook.md` → "Negociación de la implementación"), un escalón a la vez.
 
 > "Lo que sigue, si tiene sentido para ti, es lo siguiente:
-> 1. Te mando un trial de 14 días con un subset de tu data (sin compromiso).
-> 2. Tú y tu coordinador la usan.
-> 3. Si te enamora, firmamos contrato y arrancamos onboarding 4 semanas después.
-> 4. Si no, te exportamos tu data y nos vamos como amigos.
+> 1. Hoy te mando la propuesta formal por email.
+> 2. Firmamos y agendamos el kickoff de implementación.
+> 3. En 4 semanas tu equipo opera en Innmobi.ai, en paralelo a lo actual hasta que confíes 100%.
+> 4. Si algún día te vas, te exportamos tu data y nos vamos como amigos.
 >
-> ¿Te late avanzar al trial?"
+> ¿Te late arrancar el lunes {{ FECHA }}?"
 
 ---
 
 ### Bloque 4 (2 min) — Cierre
 
 Si dice **SÍ**:
-> "Perfecto. Mañana te mando: (a) link al trial, (b) lista de lo que necesitamos para importar tu data, (c) propuesta formal por email. ¿Cuál es el mejor email?"
+> "Perfecto. Mañana te mando: (a) propuesta formal y contrato, (b) lista de lo que necesitamos para importar tu data, (c) fecha de kickoff. ¿Cuál es el mejor email?"
 
 Si dice **NECESITO PENSARLO**:
 > "Perfecto. Te puedo mandar tres cosas para que las leas con tiempo: (a) caso AGNOR completo, (b) checklist de 27 puntos para evaluar CRMs, (c) la propuesta de pricing específico que cerramos. ¿Por WhatsApp o email?"
@@ -137,9 +137,9 @@ Manda este resumen por WhatsApp o email al cliente en menos de 4 horas:
 
 Resumen:
 - {{ INMOBILIARIA }} · {{ X }} asesores · vertical {{ Z }}
-- Plan recomendado: {{ TIER }}
-- Inversión: {{ MONTO }} MXN/mes (válido 14 días)
-- Siguiente paso acordado: trial 14 días con subset de data
+- Mensualidad: {{ MONTO }} MXN/mes (válido 14 días)
+- Implementación: $20,000 MXN pago único{{ CONDICIONES_PAGO }}
+- Siguiente paso acordado: kickoff de implementación el {{ FECHA }}
 
 Lo que te mando ahora:
 1. Caso AGNOR completo: innmobi.ai/casos-de-exito/agnor

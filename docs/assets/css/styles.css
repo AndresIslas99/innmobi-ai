@@ -1037,6 +1037,11 @@ img { display: block; max-width: 100%; }
 .tier-features li { font-size: 14px; color: var(--ink-700); padding: 8px 0 8px 24px; position: relative; }
 .tier-features li::before { content: "✓"; position: absolute; left: 0; color: var(--forest); font-weight: 700; }
 .tier-cta { width: 100%; text-align: center; }
+.pricing-grid-2 { grid-template-columns: 3fr 2fr; }
+.tier-setup { padding: 20px 0; border-bottom: 1px solid var(--ink-200); }
+.tier-setup .setup-amount { font-family: 'Fraunces', serif; font-size: 18px; color: var(--ink-700); }
+.tier-setup .setup-amount strong { color: var(--ink-black); font-weight: 600; }
+.tier-setup .setup-note { font-size: 13px; color: var(--ink-700); margin-top: 6px; }
 
 /* Generic includes-grid */
 .includes-grid {
@@ -1046,7 +1051,7 @@ img { display: block; max-width: 100%; }
 .include strong { display: block; font-family: 'Fraunces', serif; font-size: 20px; margin-bottom: 8px; color: var(--ink-black); }
 .include p { font-size: 14px; line-height: 1.6; color: var(--ink-700); margin: 0; }
 
-@media (max-width: 1000px) { .pricing-grid, .includes-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1000px) { .pricing-grid, .pricing-grid-2, .includes-grid { grid-template-columns: 1fr; } }
 
 /* Casos: case-list */
 .case-list { display: flex; flex-direction: column; gap: 16px; }

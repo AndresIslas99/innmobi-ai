@@ -10,7 +10,7 @@
 
 [![Brochure PDF](https://img.shields.io/badge/Brochure-PDF-1F3A2D?style=for-the-badge&logo=adobeacrobatreader&logoColor=F2EFE9&labelColor=0F0F10)](brochure/brochure.pdf)
 [![WhatsApp](https://img.shields.io/badge/Agendar%20demo-WhatsApp-A77E2B?style=for-the-badge&logo=whatsapp&logoColor=F2EFE9&labelColor=0F0F10)](https://wa.me/525620595320)
-[![Email](https://img.shields.io/badge/sales%40orzatech.com-Email-0F0F10?style=for-the-badge&logo=gmail&logoColor=F2EFE9&labelColor=A77E2B)](mailto:sales@orzatech.com)
+[![Email](https://img.shields.io/badge/ventas%40innmobi.ai-Email-0F0F10?style=for-the-badge&logo=gmail&logoColor=F2EFE9&labelColor=A77E2B)](mailto:ventas@innmobi.ai)
 [![Sitio](https://img.shields.io/badge/innmobi.ai-Sitio-A77E2B?style=for-the-badge&logoColor=F2EFE9&labelColor=0F0F10)](https://innmobi.ai)
 
 </div>
@@ -195,7 +195,7 @@ Sin "rip and replace" caótico. Migración paralela con tu sistema actual hasta 
 <details>
 <summary><b>¿Cuánto cuesta?</b></summary>
 
-Pricing por asesor activo, ajustado al tamaño de tu equipo y volumen de leads. No publicamos lista pública porque las inmobiliarias chicas pagan distinto que las que cierran 100M al año. Hablemos 30 minutos y te damos un número específico para tu caso.
+$4,000 MXN al mes con hasta 10 asesores incluidos y todas las funciones ($400 MXN/mes por asesor adicional), más una implementación única de $20,000 MXN: migración, WhatsApp + Mercado Libre + Calendar conectados y onboarding de 4 semanas. Grupos con 25+ asesores o varias sucursales: plan Scale a la medida. [Ver precios →](https://innmobi.ai/precios/)
 
 </details>
 
@@ -288,9 +288,9 @@ No es para freelancers solos, ni para flippers de un proyecto, ni para quien bus
 | | |
 |---|---|
 | **WhatsApp** | [+52 56 2059 5320](https://wa.me/525620595320) |
-| **Email** | [sales@orzatech.com](mailto:sales@orzatech.com) |
+| **Email** | [ventas@innmobi.ai](mailto:ventas@innmobi.ai) |
 | **Sitio** | [innmobi.ai](https://innmobi.ai) |
-| **Prensa** | [sales@orzatech.com](mailto:sales@orzatech.com) |
+| **Prensa** | [ventas@innmobi.ai](mailto:ventas@innmobi.ai) |
 
 ---
 
@@ -353,7 +353,7 @@ dev                npx serve docs (preview local)
 
 <sub>**Innmobi.ai** &nbsp;·&nbsp; un producto de **OrzaTech** &nbsp;·&nbsp; Ciudad de México 🇲🇽</sub>
 
-<sub>[sales@orzatech.com](mailto:sales@orzatech.com) &nbsp;·&nbsp; [WhatsApp +52 56 2059 5320](https://wa.me/525620595320)</sub>
+<sub>[ventas@innmobi.ai](mailto:ventas@innmobi.ai) &nbsp;·&nbsp; [WhatsApp +52 56 2059 5320](https://wa.me/525620595320)</sub>
 
 <sub>© 2026 OrzaTech. All rights reserved.</sub>
 

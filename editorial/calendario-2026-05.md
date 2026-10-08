@@ -177,7 +177,7 @@ Si gestionas una inmobiliaria en México con 5+ asesores activos, hablemos.
 
 🌐 innmobi.ai/demo
 📱 WhatsApp +52 56 2059 5320
-📧 sales@orzatech.com
+📧 ventas@innmobi.ai
 
 #PropTech #Inmobiliarias
 ```
@@ -353,7 +353,7 @@ Link en bio 👇
 
 ### LinkedIn — 11:00 CDMX
 **Copy:** ver `linkedin/calendar-week-2.md` → sección **"Miércoles — Pricing transparency post"**.
-**Asset:** `editorial/assets/2026-05-21-pricing-tiers/post-square.png` (1080×1080, bone con 3 tiers Starter/Growth/Scale en Fraunces 700 + footer "incluye migración · LFPDPPP · sin lock-in").
+**Asset:** `editorial/assets/2026-05-21-pricing-tiers/post-square.png` (1080×1080, bone con Plan Innmobi / Implementación / Scale en Fraunces 700 + footer "todas las funciones · LFPDPPP · sin lock-in").
 **Hashtags:** `#PropTech #Pricing #SaaS #Inmobiliarias`
 
 ---
@@ -375,14 +375,15 @@ Link en bio 👇
 
 Hoy te ahorramos 3 reuniones con vendors:
 
-→ Starter: desde $2,400 MXN/asesor/mes (5+ asesores)
-→ Growth: desde $3,800 MXN/asesor/mes (15+ asesores)
+→ $4,000 MXN/mes con hasta 10 asesores, todas las funciones
+→ $400 MXN/mes por asesor adicional
+→ Implementación única: $20,000 MXN (migración + canales + onboarding 4 semanas)
 → Scale: a la medida (25+ asesores, multi-tenancy, SSO, API)
 
-Lo único variable es el ajuste fino dentro del tier. Eso lo cerramos en 30 minutos contigo, no en 3 semanas con procurement.
+Sin tiers, sin letra chiquita. Con 10 asesores son $400 por asesor al mes.
 
 Incluido siempre:
-✓ Migración 4 semanas
+✓ Todas las funciones
 ✓ Hosting + backups
 ✓ Updates continuos
 ✓ Cumplimiento LFPDPPP

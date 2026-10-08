@@ -15,7 +15,7 @@ const OUT = path.join(ROOT, 'docs', 'og');
 const TEMPLATES = {
   home:    { eyebrow: 'INNMOBI.AI · CDMX · 2026',        headline: 'El sistema operativo<br/>para inmobiliarias<br/>que cierran <em>de verdad</em>.' },
   producto:{ eyebrow: 'INNMOBI.AI · PRODUCTO',           headline: 'Un CRM que tu equipo <em>quiere</em> abrir.' },
-  precios: { eyebrow: 'INNMOBI.AI · PRECIOS',            headline: 'Pago por asesor activo. <em>Sin sorpresas.</em>' },
+  precios: { eyebrow: 'INNMOBI.AI · PRECIOS',            headline: 'Un precio. <em>Toda tu inmobiliaria.</em>' },
   casos:   { eyebrow: 'INNMOBI.AI · CASOS DE ÉXITO',     headline: 'Inmobiliarias mexicanas<br/>que cerraron <em>de verdad</em>.' },
   'caso-agnor': { eyebrow: 'CASO · AGNOR INMOBILIARIA',  headline: 'AGNOR opera <em>100%</em><br/>sobre Innmobi.ai.' },
   seguridad:{ eyebrow: 'INNMOBI.AI · SEGURIDAD',         headline: 'Tu data está <em>en buenas manos</em>.' },

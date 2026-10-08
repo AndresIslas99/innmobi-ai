@@ -2,7 +2,7 @@
 
 Materiales de prensa y comunicación para periodistas, partners, inversionistas y aliados editoriales.
 
-> Para preguntas no cubiertas: **sales@orzatech.com** · respuesta en menos de 48 horas hábiles.
+> Para preguntas no cubiertas: **ventas@innmobi.ai** · respuesta en menos de 48 horas hábiles.
 
 ---
 
@@ -30,11 +30,11 @@ Materiales de prensa y comunicación para periodistas, partners, inversionistas 
 | **Verticales soportadas** | Remates bancarios · Preventa · Corretaje · Recuperadas · Reventa · Rentas |
 | **Idioma** | Español 100% · mexicano específicamente |
 | **Disponibilidad** | México (planes regionales para LATAM en roadmap) |
-| **Pricing inicial** | Desde $2,400 MXN/asesor/mes |
+| **Pricing** | $4,000 MXN/mes por inmobiliaria (hasta 10 asesores) + implementación única de $20,000 MXN |
 | **Cliente fundador** | AGNOR Inmobiliaria (CDMX) — operación diaria 100% sobre la plataforma |
 | **Sitio web** | https://innmobi.ai |
-| **Email producto** | sales@orzatech.com |
-| **Email prensa** | sales@orzatech.com |
+| **Email producto** | ventas@innmobi.ai |
+| **Email prensa** | ventas@innmobi.ai |
 | **WhatsApp directo** | +52 56 2059 5320 |
 | **LinkedIn** | https://www.linkedin.com/company/innmobi-ai |
 
@@ -90,7 +90,7 @@ Disponibles en `press-kit/screenshots/`:
 
 ## Headshots
 
-Disponibles bajo solicitud a **sales@orzatech.com** — 300dpi, fondo neutro, formato horizontal y vertical.
+Disponibles bajo solicitud a **ventas@innmobi.ai** — 300dpi, fondo neutro, formato horizontal y vertical.
 
 ---
 
@@ -106,6 +106,6 @@ Disponibles bajo solicitud a **sales@orzatech.com** — 300dpi, fondo neutro, fo
 
 ## Contacto de prensa
 
-**sales@orzatech.com** · Lunes a viernes, hora de Ciudad de México · respuesta en menos de 48 horas hábiles.
+**ventas@innmobi.ai** · Lunes a viernes, hora de Ciudad de México · respuesta en menos de 48 horas hábiles.
 
 Para entrevistas con fundadores, demos en vivo, sesiones de fondo, o documentación técnica adicional, escríbenos con: (1) tu medio o publicación, (2) ángulo de la nota, (3) deadline de cierre. Respondemos con disponibilidad y materiales adicionales.

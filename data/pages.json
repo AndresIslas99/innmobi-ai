@@ -6,7 +6,7 @@
     "description": "CRM construido desde cero para inmobiliarias mexicanas. Inteligencia que califica leads en la primera llamada, pipeline visual, integración nativa con WhatsApp y Mercado Libre.",
     "lang": "es-MX",
     "author": "OrzaTech",
-    "email": "sales@orzatech.com",
+    "email": "ventas@innmobi.ai",
     "whatsapp": "525620595320",
     "plausibleDomain": "innmobi.ai",
     "forms": {
@@ -39,7 +39,7 @@
     {
       "slug": "precios",
       "title": "Precios · Innmobi.ai",
-      "description": "Tres tiers para inmobiliarias mexicanas. Pricing por asesor activo, sin sorpresas. Migración asistida en 4 semanas.",
+      "description": "Un precio para toda tu inmobiliaria: $4,000 MXN al mes con hasta 10 asesores y todas las funciones. Implementación en 4 semanas.",
       "ogImage": "/og/precios.png",
       "navLabel": "Precios",
       "priority": 0.9

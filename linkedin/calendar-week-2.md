@@ -59,21 +59,22 @@ Guía completa con todo lo que aprendimos integrando WhatsApp en producción par
 
 **Hora:** 11:00 CDMX
 **Formato:** post conversacional
-**CTA:** ver tres tiers
+**CTA:** ver precio
 
 ```
 Hoy publicamos pricing público de Innmobi.ai.
 
 ¿Por qué? Porque los CRMs que esconden precios "pídenos cotización para tu caso" generan ansiedad, no confianza.
 
-Tres tiers visibles:
-→ Starter desde $2,400 MXN/asesor/mes (5+ asesores)
-→ Growth desde $3,800 MXN/asesor/mes (15+ asesores)
-→ Scale a la medida (25+ asesores, multi-tenancy, SSO, API)
+Un solo precio, sin tiers:
+→ $4,000 MXN/mes con hasta 10 asesores y todas las funciones
+→ $400 MXN/mes por asesor adicional
+→ Implementación única de $20,000 MXN: migración, WhatsApp + Mercado Libre + Calendar conectados, onboarding 4 semanas
+→ Scale a la medida para grupos (25+ asesores, multi-tenancy, SSO, API)
 
-Lo único variable es el ajuste fino dentro del tier — y eso lo cerramos en 30 minutos contigo, no en 3 semanas con un equipo de procurement.
+Con 10 asesores son $400 por asesor al mes. Una sola comisión paga más de dos años.
 
-Lo que sí o sí está incluido en todos: migración 4 semanas, hosting, backups, updates continuos, cumplimiento LFPDPPP, sin lock-in.
+Incluido siempre: hosting, backups, updates continuos, cumplimiento LFPDPPP, sin lock-in.
 
 → innmobi.ai/precios
 

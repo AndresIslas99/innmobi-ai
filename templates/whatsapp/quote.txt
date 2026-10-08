@@ -1,7 +1,7 @@
 // WhatsApp Business Template — cotización post-discovery
 // Categoría Meta: UTILITY
 // Idioma: es_MX
-// Variables: {{1}} = nombre, {{2}} = inmobiliaria, {{3}} = num asesores, {{4}} = tier, {{5}} = monto MXN
+// Variables: {{1}} = nombre, {{2}} = inmobiliaria, {{3}} = num asesores, {{4}} = mensualidad MXN, {{5}} = condiciones de pago de la implementación
 
 Hola {{1}},
 
@@ -9,10 +9,10 @@ Resumen de lo que conversamos:
 
 🏢 {{2}}
 👥 {{3}} asesores activos
-📊 Plan recomendado: *{{4}}*
-💰 Inversión: *{{5}} MXN/mes*
+💰 Mensualidad: *{{4}} MXN/mes* (todas las funciones)
+🛠️ Implementación: *$20,000 MXN* · {{5}}
 
-Esto incluye: migración 4 semanas, todas las integraciones, soporte directo, sin lock-in. Pricing válido por 14 días.
+La implementación incluye migración, WhatsApp + Mercado Libre + Calendar conectados y onboarding de 4 semanas. Soporte directo, sin lock-in. Pricing válido por 14 días.
 
 Si quieres avanzar: respóndeme con "VAMOS" y te mando el contrato + plan de migración.
 

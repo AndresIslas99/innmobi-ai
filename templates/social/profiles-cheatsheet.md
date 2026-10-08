@@ -121,7 +121,7 @@ Reservar demo: https://innmobi.ai/demo/
 
 **Datos de contacto:**
 - Sitio: `https://innmobi.ai`
-- Email: `sales@orzatech.com`
+- Email: `ventas@innmobi.ai`
 - WhatsApp: `+52 56 2059 5320`
 - Dirección: Ciudad de México, México
 
@@ -202,7 +202,7 @@ Construimos Innmobi.ai durante seis meses en piso, con asesores reales como co-d
 
 Si gestionas una inmobiliaria mexicana con 5+ asesores y operas en Excel + WhatsApp + Hubspot Free, escríbeme. Aceptamos 2-3 nuevas implementaciones por trimestre.
 
-📧 sales@orzatech.com · 📲 +52 56 2059 5320 · 🌐 innmobi.ai
+📧 ventas@innmobi.ai · 📲 +52 56 2059 5320 · 🌐 innmobi.ai
 ```
 
 ---
@@ -259,7 +259,7 @@ Lista para marcar después de configurar cada perfil:
 - [ ] LinkedIn Personal del founder — banner + headline + about
 - [ ] X (`@innmobiai`) — profile + header + bio + pinned tweet de lanzamiento
 
-Cuando termines los 5, escribe a `sales@orzatech.com` con los URLs de cada perfil para que actualicemos los links del footer del sitio (`src/partials/footer.html`).
+Cuando termines los 5, escribe a `ventas@innmobi.ai` con los URLs de cada perfil para que actualicemos los links del footer del sitio (`src/partials/footer.html`).
 
 ---
 

@@ -30,7 +30,7 @@ Materiales de prensa y comunicación para periodistas, partners, inversionistas 
 | **Verticales soportadas** | Remates bancarios · Preventa · Corretaje · Recuperadas · Reventa · Rentas |
 | **Idioma** | Español 100% · mexicano específicamente |
 | **Disponibilidad** | México (planes regionales para LATAM en roadmap) |
-| **Pricing** | $4,000 MXN/mes por inmobiliaria (hasta 10 asesores) + implementación única de $20,000 MXN |
+| **Pricing** | $4,000 MXN/mes por inmobiliaria (usuarios ilimitados, 5 h de llamadas IA) + implementación única de $20,000 MXN |
 | **Cliente fundador** | AGNOR Inmobiliaria (CDMX) — operación diaria 100% sobre la plataforma |
 | **Sitio web** | https://innmobi.ai |
 | **Email producto** | ventas@innmobi.ai |
@@ -44,7 +44,7 @@ Materiales de prensa y comunicación para periodistas, partners, inversionistas 
 
 - Backend: FastAPI (Python 3.12) · PostgreSQL 16 · SQLAlchemy 2 · Domain-Driven Design
 - Frontend: React 18 · TypeScript · Tailwind CSS · Vite
-- IA: Anthropic Claude (perfilado de leads) · Retell (agente de voz)
+- IA: Anthropic Claude (perfilado de leads) · ElevenLabs + Twilio (agente de voz)
 - Integraciones: Meta WhatsApp Business Cloud API · Google Calendar API · Mercado Libre Inmuebles API
 - Deploy: Docker · Coolify CD · Blue/green con rollback automático
 - Cumplimiento: LFPDPPP (México) · TLS 1.3 · Encriptación AES-256 at-rest

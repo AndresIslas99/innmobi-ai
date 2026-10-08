@@ -91,7 +91,7 @@ h2 em { font-style: italic; color: var(--forest); }
   <div class="mid">
     <h2>Tres pilares. <em>Cero ruido<span class="period">.</span></em></h2>
     <ul class="bullets">
-      <li><strong>Inteligencia que no se cansa.</strong> Agente de voz Claude + Retell contesta 24/7 y entrega al lead pre-calificado al asesor por WhatsApp.</li>
+      <li><strong>Inteligencia que no se cansa.</strong> Agente de voz ElevenLabs + Claude contesta 24/7 y entrega al lead pre-calificado al asesor por WhatsApp.</li>
       <li><strong>Una sola fuente de verdad.</strong> Llamadas, WhatsApp, web, citas, notas en un timeline cronológico por prospecto.</li>
       <li><strong>Hecho con asesores en CDMX.</strong> No diseñado en Notion. Construido durante 6 meses en piso de AGNOR Inmobiliaria.</li>
     </ul>
@@ -116,7 +116,7 @@ h2 em { font-style: italic; color: var(--forest); }
     <h2>Ocho capacidades <em>que ya operan<span class="period">.</span></em></h2>
     <div class="two-col">
       <ul class="bullets">
-        <li>Captura + perfilado IA (Voz Retell + WhatsApp + Web + Claude)</li>
+        <li>Captura + perfilado IA (Voz ElevenLabs + WhatsApp + Web + Claude)</li>
         <li>Pipeline visual drag-and-drop, configurable por vertical</li>
         <li>Timeline unificado: 5 canales, un solo hilo cronológico</li>
         <li>WhatsApp Business: 21 plantillas Meta + envío masivo segmentado</li>
@@ -139,7 +139,7 @@ h2 em { font-style: italic; color: var(--forest); }
     <h2>2026 es el momento. <em>No 2023.</em></h2>
     <ul class="bullets">
       <li>WhatsApp Business Cloud API estable en MX desde 2024 (antes era pesadilla onboarding).</li>
-      <li>LLMs latencia &lt;500ms (Claude, Retell): conversación natural en llamada entrante.</li>
+      <li>LLMs latencia &lt;500ms (Claude, ElevenLabs): conversación natural en llamada entrante.</li>
       <li>Mercado Libre Inmuebles abrió API pública en 2024 (antes era scraping).</li>
       <li>Generación post-pandemia de directores de inmobiliaria que aceptan SaaS sin "instalación local".</li>
     </ul>
@@ -171,8 +171,8 @@ h2 em { font-style: italic; color: var(--forest); }
   <div class="mid">
     <h2>Un precio por inmobiliaria. <em>Volumen sobre margen<span class="period">.</span></em></h2>
     <ul class="bullets">
-      <li><strong>Plan Innmobi</strong> — $4,000 MXN/mes · hasta 10 asesores · todas las funciones (IA + WhatsApp + ML + analytics)</li>
-      <li><strong>Expansión</strong> — $400 MXN/mes por asesor adicional · anual = 12 meses por el precio de 10</li>
+      <li><strong>Plan Innmobi</strong> — $4,000 MXN/mes · usuarios ilimitados · 5 h de voz IA + 2 líneas · servidor dedicado · todas las funciones</li>
+      <li><strong>Expansión</strong> — paquetes de voz (+5 h $1,500 · +10 h $2,700) · línea extra $500/mes · anual = 12 meses por el precio de 10</li>
       <li><strong>Implementación</strong> — $20,000 MXN pago único (migración + canales + onboarding 4 semanas)</li>
       <li><strong>Scale</strong> — a la medida · multi-tenancy + SSO + API + SLA 99.9% (25 asesores+)</li>
     </ul>
@@ -262,7 +262,7 @@ h2 em { font-style: italic; color: var(--forest); }
     <ul class="bullets">
       <li>Backend: FastAPI · Python 3.12 · PostgreSQL 16 · SQLAlchemy 2 · Domain-Driven Design</li>
       <li>Frontend: React 18 · TypeScript · Tailwind CSS · Vite</li>
-      <li>IA: Anthropic Claude (perfilado) + Retell (voz)</li>
+      <li>IA: Anthropic Claude (perfilado) + ElevenLabs + Twilio (voz)</li>
       <li>Integraciones: Meta WhatsApp Cloud API · Google Calendar API · Mercado Libre Inmuebles API</li>
       <li>Deploy: Docker · Coolify CD · Blue/green con rollback automático</li>
       <li>Tests: contra PostgreSQL real (no SQLite mocks)</li>
@@ -280,7 +280,7 @@ h2 em { font-style: italic; color: var(--forest); }
       <li>Aviso de privacidad por lead con consentimiento explícito y propósito declarado.</li>
       <li>Encriptación AES-256 at-rest · TLS 1.3 in-transit · backups diarios fuera de sitio.</li>
       <li>RBAC granular (4 roles) · audit logs inmutables · webhooks fail-closed.</li>
-      <li>Sub-procesadores documentados con DPA: Anthropic, Meta, Google, Mercado Libre, Retell.</li>
+      <li>Sub-procesadores documentados con DPA: Anthropic, Meta, Google, Mercado Libre, ElevenLabs, Twilio, Hostinger.</li>
       <li>Derechos ARCO atendidos en menos de 20 días hábiles. Export + borrado en 30 días al terminar.</li>
     </ul>
   </div>

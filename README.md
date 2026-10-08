@@ -64,7 +64,7 @@ No se diseñó en un Notion. Se construyó en piso, vendiendo remates bancarios,
 
 | | Capacidad | Qué hace |
 |---|---|---|
-| <img src="images/feature-icons/01-ai-lead-qualification.svg" width="32"/> | **Captura + perfilado IA** | Voz Retell + WhatsApp + web. Claude perfila en la primera interacción. |
+| <img src="images/feature-icons/01-ai-lead-qualification.svg" width="32"/> | **Captura + perfilado IA** | Voz ElevenLabs + WhatsApp + web. Claude perfila en la primera interacción. |
 | <img src="images/feature-icons/03-pipeline-kanban.svg" width="32"/> | **Pipeline visual** | Kanban drag-and-drop. La transición se registra en el timeline. |
 | <img src="images/feature-icons/02-multi-channel.svg" width="32"/> | **Timeline unificado** | Cinco canales en un hilo cronológico, buscable, exportable. |
 | <img src="images/feature-icons/05-whatsapp.svg" width="32"/> | **WhatsApp Business** | 21 plantillas Meta + free-form 24h + envío masivo segmentado. |
@@ -151,7 +151,7 @@ No se diseñó en un Notion. Se construyó en piso, vendiendo remates bancarios,
 
 ## № 06 — Stack técnico
 
-`FastAPI` `Python 3.12` `React 18` `TypeScript` `PostgreSQL 16` `SQLAlchemy` `Tailwind CSS` `Anthropic Claude` `Retell LLM` `Meta WhatsApp Cloud API` `Google Calendar API` `Mercado Libre API` `Docker` `Coolify CD`
+`FastAPI` `Python 3.12` `React 18` `TypeScript` `PostgreSQL 16` `SQLAlchemy` `Tailwind CSS` `Anthropic Claude` `ElevenLabs Agents` `Twilio` `Meta WhatsApp Cloud API` `Google Calendar API` `Mercado Libre API` `Docker` `Coolify CD`
 
 **Arquitectura**: Domain-Driven Design con Unit of Work pattern. Webhook fail-closed. Tests contra PostgreSQL real, no SQLite mocks que mienten. Deploy blue/green con rollback automático.
 
@@ -195,7 +195,7 @@ Sin "rip and replace" caótico. Migración paralela con tu sistema actual hasta 
 <details>
 <summary><b>¿Cuánto cuesta?</b></summary>
 
-$4,000 MXN al mes con hasta 10 asesores incluidos y todas las funciones ($400 MXN/mes por asesor adicional), más una implementación única de $20,000 MXN: migración, WhatsApp + Mercado Libre + Calendar conectados y onboarding de 4 semanas. Grupos con 25+ asesores o varias sucursales: plan Scale a la medida. [Ver precios →](https://innmobi.ai/precios/)
+$4,000 MXN al mes con usuarios ilimitados, 5 horas de llamadas con agente de voz IA, 2 líneas simultáneas y todas las funciones, más una implementación única de $20,000 MXN: migración, WhatsApp + Mercado Libre + Calendar conectados y onboarding de 4 semanas. Grupos con 25+ asesores o varias sucursales: plan Scale a la medida. [Ver precios →](https://innmobi.ai/precios/)
 
 </details>
 
@@ -279,7 +279,7 @@ No es para freelancers solos, ni para flippers de un proyecto, ni para quien bus
 ## № 11 — Cómo empezar
 
 1. **Demo en vivo de 30 minutos** — te enseñamos el sistema corriendo, tú decides
-2. **Trial de 14 días** con tu data real importada
+2. **Propuesta y contrato** el mismo día
 3. **Onboarding** con migración desde tu sistema actual (Excel, Hubspot, Pipedrive, lo que sea)
 4. **Soporte directo** con el equipo que construyó el producto
 

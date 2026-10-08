@@ -82,7 +82,7 @@ Muestra UNA capacidad relevante a SU caso:
 
 ### Bloque 3 (3 min) — Pricing y siguiente paso
 
-> "Para tu caso — {{ X }} asesores activos, vertical {{ Z }} — son {{ MONTO }} MXN al mes con todas las funciones ($4,000 con hasta 10 asesores), o 12 meses por el precio de 10 si pagas anual. Más una implementación única de $20,000: en 4 semanas migramos tu data, conectamos WhatsApp, Mercado Libre y Calendar, y capacitamos a tu equipo. Hosting, soporte directo y cero lock-in incluidos."
+> "Para tu caso — {{ X }} asesores activos, vertical {{ Z }} — son $4,000 MXN al mes con todo tu equipo dentro, sin cobro por usuario, 5 horas de llamadas con el agente de voz y todas las funciones, o 12 meses por el precio de 10 si pagas anual. Más una implementación única de $20,000: en 4 semanas migramos tu data, conectamos WhatsApp, Mercado Libre y Calendar, y capacitamos a tu equipo. Hosting, soporte directo y cero lock-in incluidos."
 
 Espera reacción. NO descuentes. Si la objeción es el pago de arranque, usa la escalera de implementación del playbook (`sales/playbook.md` → "Negociación de la implementación"), un escalón a la vez.
 

@@ -375,12 +375,12 @@ Link en bio 👇
 
 Hoy te ahorramos 3 reuniones con vendors:
 
-→ $4,000 MXN/mes con hasta 10 asesores, todas las funciones
-→ $400 MXN/mes por asesor adicional
+→ $4,000 MXN/mes con usuarios ilimitados, todas las funciones
+→ 5 horas de llamadas con IA y 2 líneas incluidas
 → Implementación única: $20,000 MXN (migración + canales + onboarding 4 semanas)
 → Scale: a la medida (25+ asesores, multi-tenancy, SSO, API)
 
-Sin tiers, sin letra chiquita. Con 10 asesores son $400 por asesor al mes.
+Sin tiers, sin letra chiquita, sin cobro por usuario.
 
 Incluido siempre:
 ✓ Todas las funciones

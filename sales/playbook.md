@@ -95,12 +95,15 @@ Y registra en el CRM.
 
 ## Pricing conversation (cómo dar el número)
 
-**Precio de lista** (es lo que se dice primero, siempre):
+**Precio de lista** (es lo que se dice primero, siempre). Todos los precios son en MXN + IVA:
 
 | Concepto | Precio |
 |---|---|
-| Plan Innmobi (hasta 10 asesores, todas las funciones) | $4,000 MXN/mes |
-| Asesor adicional (del 11 en adelante) | $400 MXN/mes |
+| Plan Innmobi: usuarios ilimitados, 5 h de llamadas IA, 2 líneas, servidor dedicado, todas las funciones | $4,000 MXN/mes |
+| Paquete de voz +5 h | $1,500 MXN |
+| Paquete de voz +10 h | $2,700 MXN |
+| Minuto de voz sin paquete | $6 MXN |
+| Línea simultánea adicional | $500 MXN/mes |
 | Pago anual | $40,000 MXN (12 meses por el precio de 10) |
 | Implementación (migración + canales + onboarding 4 semanas) | $20,000 MXN pago único |
 | Scale (25+ asesores o varias sucursales) | A la medida, escala al CEO |
@@ -114,11 +117,12 @@ Para tu caso específico:
 - Vertical principal: {{ Z }}
 - Integraciones requeridas: WhatsApp + ML + Calendar
 
-Mensualidad: {{ MONTO }} MXN/mes ($4,000 con hasta 10 asesores, +$400 por cada adicional).
+Mensualidad: $4,000 MXN/mes. Todo tu equipo dentro (usuarios ilimitados), 5 horas de
+llamadas con el agente de voz, 2 líneas simultáneas y tu propio servidor.{{ EXTRAS }}
 Implementación: $20,000 MXN, una sola vez. En 4 semanas migramos tu data,
 conectamos WhatsApp, Mercado Libre y Calendar, y capacitamos a tu equipo.
 
-Con 10 asesores son $400 por asesor al mes. Una sola comisión te paga más de dos años.
+Sin cobro por usuario. Una sola comisión te paga más de dos años.
 ¿Arrancamos la implementación el lunes {{ FECHA }}?
 ```
 
@@ -126,6 +130,8 @@ Con 10 asesores son $400 por asesor al mes. Una sola comisión te paga más de d
 - Da el número siempre antes de colgar la primera demo.
 - Pricing válido por 14 días naturales.
 - La mensualidad **no se negocia**. El único descuento es el anual (12 por 10).
+- Los paquetes de voz y las líneas extra tampoco se descuentan. Si el cliente va a llamar mucho, véndele el paquete de +10 h desde el arranque.
+- "Usuarios ilimitados" es literal: nunca cobres por usuario. Si un cliente crece tanto que su servidor no aguanta, escala al CEO (se cotiza el servidor más grande).
 - Lo que sí se negocia es **cuándo** se paga la implementación (ver abajo), nunca cuánto.
 - Nada fuera de esta guía sin escalar a CEO.
 

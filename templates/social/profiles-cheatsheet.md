@@ -111,7 +111,7 @@ CRM Inmobiliario con IA construido en piso vendiendo remates en CDMX. Pipeline v
 Innmobi.ai es el sistema operativo CRM para inmobiliarias mexicanas. Diseñado desde cero para los flujos reales del corredor en México: remates bancarios, preventa, corretaje, recuperadas, reventa y rentas.
 
 Lo que nos hace distintos:
-→ Inteligencia que no se cansa: agente Claude + Retell contesta tu número 24/7 y entrega leads pre-calificados.
+→ Inteligencia que no se cansa: agente de voz ElevenLabs + Claude contesta tu número 24/7 y entrega leads pre-calificados.
 → Una sola fuente de verdad: cinco canales en un timeline cronológico por prospecto.
 → Hecho con asesores en CDMX: no diseñado en Notion, construido en piso de AGNOR Inmobiliaria.
 
@@ -157,11 +157,11 @@ Innmobi.ai es el sistema operativo CRM para inmobiliarias mexicanas que cierran 
 Construido desde cero para los flujos del corredor inmobiliario en México: remates bancarios, preventa, corretaje, recuperadas, reventa y rentas. Cada feature pasó por las manos de los asesores de AGNOR Inmobiliaria — nuestro cliente fundador, hoy operando 100% sobre la plataforma con 15+ asesores activos diariamente en CDMX.
 
 Tres pilares:
-→ INTELIGENCIA QUE NO SE CANSA. Agente de voz Claude + Retell contesta tu número público 24/7 y entrega leads pre-calificados al asesor humano por WhatsApp, antes de que cuelgue el teléfono.
+→ INTELIGENCIA QUE NO SE CANSA. Agente de voz ElevenLabs + Claude contesta tu número público 24/7 y entrega leads pre-calificados al asesor humano por WhatsApp, antes de que cuelgue el teléfono.
 → UNA SOLA FUENTE DE VERDAD. Llamadas, WhatsApp, web, citas y notas en un timeline cronológico por prospecto. Cero pestañas, cero "se me pasó".
 → HECHO CON ASESORES EN CDMX. No diseñado en Notion. Construido durante seis meses en piso vendiendo remates bancarios. Cuando lo instalas, no estás financiando experimentos — usas algo que ya gana dinero.
 
-Stack: FastAPI · Python 3.12 · React 18 · PostgreSQL 16 · Anthropic Claude · Retell · Meta WhatsApp Cloud · Google Calendar · Mercado Libre Inmuebles API. Cumplimiento LFPDPPP.
+Stack: FastAPI · Python 3.12 · React 18 · PostgreSQL 16 · Anthropic Claude · ElevenLabs · Twilio · Meta WhatsApp Cloud · Google Calendar · Mercado Libre Inmuebles API. Cumplimiento LFPDPPP.
 
 Aceptamos 2-3 nuevas implementaciones por trimestre. Si tu inmobiliaria tiene 5+ asesores activos en MX, hablemos.
 

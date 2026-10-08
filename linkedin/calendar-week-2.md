@@ -67,12 +67,12 @@ Hoy publicamos pricing público de Innmobi.ai.
 ¿Por qué? Porque los CRMs que esconden precios "pídenos cotización para tu caso" generan ansiedad, no confianza.
 
 Un solo precio, sin tiers:
-→ $4,000 MXN/mes con hasta 10 asesores y todas las funciones
-→ $400 MXN/mes por asesor adicional
+→ $4,000 MXN/mes con usuarios ilimitados y todas las funciones
+→ 5 horas de llamadas con agente de voz IA y 2 líneas incluidas
 → Implementación única de $20,000 MXN: migración, WhatsApp + Mercado Libre + Calendar conectados, onboarding 4 semanas
 → Scale a la medida para grupos (25+ asesores, multi-tenancy, SSO, API)
 
-Con 10 asesores son $400 por asesor al mes. Una sola comisión paga más de dos años.
+Sin cobro por usuario: entra todo tu equipo. Una sola comisión paga más de dos años.
 
 Incluido siempre: hosting, backups, updates continuos, cumplimiento LFPDPPP, sin lock-in.
 

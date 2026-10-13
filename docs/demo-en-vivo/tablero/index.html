@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
+<title>Tablero en vivo · Innmobi.ai</title>
+<meta name="description" content="Tablero interno de la demo telefónica: lo que ve el equipo mientras una persona habla con Sofía."/>
+<meta name="theme-color" content="#0F0F10"/>
+<meta name="color-scheme" content="light"/>
+<meta name="format-detection" content="telephone=no"/>
+<link rel="canonical" href="https://innmobi.ai/demo-en-vivo/tablero/"/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Tablero en vivo · Innmobi.ai"/>
+<meta property="og:description" content="Tablero interno de la demo telefónica: lo que ve el equipo mientras una persona habla con Sofía."/>
+<meta property="og:image" content="https://innmobi.ai/og/demo.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:url" content="https://innmobi.ai/demo-en-vivo/tablero/"/>
+<meta property="og:site_name" content="Innmobi.ai"/>
+<meta property="og:locale" content="es_MX"/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Tablero en vivo · Innmobi.ai"/>
+<meta name="twitter:description" content="Tablero interno de la demo telefónica: lo que ve el equipo mientras una persona habla con Sofía."/>
+<meta name="twitter:image" content="https://innmobi.ai/og/demo.png"/>
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="icon" type="image/svg+xml" href="/assets/images/logo-innmobi-ai-icon.svg"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/manifest.webmanifest"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/css/styles.css"/>
+
+
+<link rel="stylesheet" href="/assets/css/demo-en-vivo.css"/>
+<link rel="stylesheet" href="/assets/css/demo-tablero.css"/>
+<meta name="referrer" content="no-referrer"/>
+<meta name="robots" content="noindex, nofollow"/>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://innmobi.ai/"},{"@type":"ListItem","position":2,"name":"Demo En Vivo","item":"https://innmobi.ai/demo-en-vivo/"},{"@type":"ListItem","position":3,"name":"Tablero en vivo","item":"https://innmobi.ai/demo-en-vivo/tablero/"}]}</script>
+</head>
+<body class="page-demo-en-vivo-tablero">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="Innmobi.ai — inicio">
+      <span class="wordmark">Innmobi<span class="period">.</span>ai</span>
+    </a>
+    <nav class="header-nav" aria-label="Principal">
+      <a href="/producto/">Producto</a>
+      <a href="/piloto/">Piloto</a>
+      <a href="/precios/">Precios</a>
+      <a href="/casos-de-exito/">Aprendizajes</a>
+      <a href="/recursos/">Recursos</a>
+      <details class="nav-dropdown">
+        <summary>Empresa</summary>
+        <div class="nav-dropdown-menu">
+          <a href="/sobre-nosotros/">Sobre nosotros</a>
+          <a href="/seguridad/">Seguridad</a>
+        </div>
+      </details>
+    </nav>
+    <a href="/demo/" class="btn btn-primary nav-cta">Reservar demo</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-drawer" hidden>
+    <a href="/producto/">Producto</a>
+    <a href="/piloto/">Piloto</a>
+    <a href="/precios/">Precios</a>
+    <a href="/casos-de-exito/">Aprendizajes</a>
+    <a href="/recursos/">Recursos</a>
+    <a href="/sobre-nosotros/">Sobre nosotros</a>
+    <a href="/seguridad/">Seguridad</a>
+    <a href="/demo/" class="btn btn-primary">Reservar demo</a>
+  </div>
+</header>
+
+
+
+<main id="tb" class="tb" data-state="locked" data-conn="off"
+      data-api-base="https://api.innmobi.ai"
+      data-phone-display="+1 956 225 2738">
+
+  
+  <section class="tb-gate" id="tb-gate" aria-labelledby="tb-gate-title">
+    <div class="tb-gate-card dl-card">
+      <a href="/" class="wordmark tb-gate-brand" aria-label="Innmobi.ai">Innmobi<span class="period">.</span>ai</a>
+      <span class="eyebrow">DEMO EN VIVO · TABLERO</span>
+      <h1 class="tb-gate-title" id="tb-gate-title">Tablero de la llamada<span class="period">.</span></h1>
+      <p class="tb-gate-lead">Escribe el PIN que te dio Andrés. Solo vive en esta pestaña mientras lo escribes.</p>
+      <form id="tb-form" class="tb-form" autocomplete="off" novalidate>
+        <label class="tb-label" for="tb-pin">PIN</label>
+        <div class="tb-pin-row">
+          <input id="tb-pin" class="tb-pin" type="password" inputmode="text" autocomplete="off" autocapitalize="characters"
+                 spellcheck="false" maxlength="16" required aria-describedby="tb-gate-error" data-lpignore="true" data-1p-ignore>
+          <button type="button" class="tb-peek" id="tb-peek" aria-pressed="false">Mostrar</button>
+        </div>
+        <p class="tb-gate-error" id="tb-gate-error" role="alert" hidden></p>
+        <button type="submit" class="dl-call-btn tb-enter" id="tb-enter">Entrar</button>
+      </form>
+    </div>
+  </section>
+
+  
+  <div class="tb-app" id="tb-app" hidden>
+
+    <header class="tb-bar">
+      <div class="tb-bar-left">
+        <span class="wordmark tb-bar-brand">Innmobi<span class="period">.</span>ai</span>
+        <span class="eyebrow tb-bar-eyebrow">DEMO EN VIVO · TABLERO</span>
+      </div>
+      <div class="tb-bar-right">
+        <span class="tb-conn" id="tb-conn" role="status" aria-live="polite"><span class="tb-conn-dot" aria-hidden="true"></span><span id="tb-conn-text">Conectando</span></span>
+        <button type="button" class="tb-exit" id="tb-exit">Salir</button>
+      </div>
+    </header>
+
+    <div class="tb-notice" id="tb-notice" role="alert" hidden></div>
+
+    
+    <section class="tb-banner" id="tb-banner" data-mode="idle" aria-label="Número para llamar">
+      <div class="tb-banner-main">
+        <span class="tb-banner-kicker" id="tb-banner-kicker">PRUEBE A SOFÍA AHORA</span>
+        <p class="tb-banner-call"><span class="tb-banner-verb">Marque al</span> <a class="tb-banner-number" id="tb-banner-number" href="tel:+19562252738">+1 956 225 2738</a></p>
+      </div>
+      <p class="tb-banner-sub" id="tb-banner-sub">Desde cualquier teléfono. Sofía es una asistente de IA y atiende por Residencial Demo Narvarte, un desarrollo ficticio.</p>
+    </section>
+
+    
+    <section class="tb-calls-wrap" aria-label="Llamadas">
+      <ul class="tb-calls" id="tb-calls"></ul>
+      <p class="tb-calls-empty" id="tb-calls-empty">Esperando la primera llamada. Aquí aparecerá en cuanto contesten.</p>
+    </section>
+
+    
+    <section class="tb-detail" id="tb-detail" aria-label="Lo que ve tu equipo" hidden>
+      <div class="dl-card dl-card-team tb-team">
+        <div class="dl-team-head tb-team-head">
+          <div class="tb-team-id">
+            <h2 class="dl-team-title">Lo que ve tu equipo<span class="period">.</span></h2>
+            <p class="tb-caller" id="tb-caller"></p>
+          </div>
+          <div class="tb-team-side">
+            <span class="tb-state-chip" id="tb-state-chip" data-status="active">En llamada</span>
+            <span class="dl-sim-tag tb-tag">DEMO EN VIVO</span>
+          </div>
+        </div>
+
+        <div class="tb-team-grid">
+          <div class="tb-fields-col">
+            <div class="dl-block">
+              <h3 class="dl-h">Lead</h3>
+              <dl class="dl-fields">
+                <div class="dl-field"><dt>Nombre</dt><dd data-f="nombre" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Tipo de unidad</dt><dd data-f="tipo_unidad" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Propósito</dt><dd data-f="proposito" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Plazo</dt><dd data-f="plazo" class="is-empty">—</dd></div>
+              </dl>
+            </div>
+
+            <div class="dl-block">
+              <h3 class="dl-h">Rango de presupuesto declarado por la persona</h3>
+              <p class="dl-value is-empty" data-f="presupuesto">Sin registrar. Solo aparece si la persona acepta y lo dice.</p>
+            </div>
+
+            <div class="dl-block">
+              <h3 class="dl-h">Visita reservada</h3>
+              <dl class="dl-fields tb-visit-fields">
+                <div class="dl-field"><dt>Día</dt><dd data-f="visita_dia" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Hora</dt><dd data-f="visita_hora" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Sala de ventas</dt><dd data-f="visita_sala" class="is-empty">—</dd></div>
+              </dl>
+            </div>
+
+            <div class="tb-pair">
+              <div class="dl-block">
+                <h3 class="dl-h">Preguntas por confirmar</h3>
+                <ul class="dl-list" id="tb-questions"></ul>
+                <p class="dl-value is-empty" id="tb-questions-empty">Ninguna por ahora.</p>
+              </div>
+
+              <div class="dl-block">
+                <h3 class="dl-h">Traspaso a una persona</h3>
+                <p class="dl-value is-empty" data-f="traspaso">No solicitado.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tb-ledger-col">
+            <h3 class="dl-h tb-ledger-h">Registro <span class="tb-ledger-hint">lo más reciente arriba</span></h3>
+            <ol class="dl-ledger tb-ledger" id="tb-ledger" aria-label="Registro de pasos"></ol>
+            <p class="dl-empty tb-ledger-empty" id="tb-ledger-empty">Cada paso aparecerá aquí con su hora.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="tb-foot">Demo en vivo: la llamada es real; el desarrollo, Residencial Demo Narvarte, es ficticio. El número de quien llama se muestra enmascarado.</p>
+  </div>
+
+</main>
+<script src="/assets/js/demo-tablero.js" defer></script>
+
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="wordmark">Innmobi<span class="period">.</span>ai</span>
+      <p class="footer-tag">La capa de seguimiento para la venta inmobiliaria en México.</p>
+      <p class="footer-meta">Operado por Andrés Islas Bravo, persona física con actividad empresarial (RESICO) · Ciudad de México, México</p>
+    </div>
+
+    <nav class="footer-col" aria-label="Producto">
+      <h4>Producto</h4>
+      <a href="/producto/">Cómo funciona</a>
+      <a href="/piloto/">Piloto de 30 días</a>
+      <a href="/precios/">Precios</a>
+      <a href="/demo/">Reservar demo</a>
+      <a href="/assets/brochure.pdf">Brochure (PDF)</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Empresa">
+      <h4>Empresa</h4>
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+      <a href="/casos-de-exito/">Aprendizajes</a>
+      <a href="/seguridad/">Seguridad</a>
+      <a href="/recursos/">Recursos</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Legal">
+      <h4>Legal</h4>
+      <a href="/legal/terminos/">Términos</a>
+      <a href="/legal/privacidad/">Aviso de privacidad</a>
+      <a href="mailto:ventas@innmobi.ai">Contacto legal</a>
+    </nav>
+
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="https://wa.me/525620595320?text=Hola%20Innmobi.ai%2C%20quiero%20agendar%20demo">WhatsApp</a>
+      <a href="mailto:ventas@innmobi.ai">ventas@innmobi.ai</a>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/innmobi.ai" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/innmobi.ai" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© 2026 Andrés Islas Bravo · innmobi.ai</p>
+    <p><a href="https://innmobi.ai">innmobi.ai</a></p>
+  </div>
+</footer>
+<script>document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+(()=>{const t=document.querySelector('.nav-toggle'),d=document.querySelector('.mobile-drawer');if(!t||!d)return;t.addEventListener('click',()=>{const o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',!o);d.hidden=o;});})();</script>
+
+
+</body>
+</html>

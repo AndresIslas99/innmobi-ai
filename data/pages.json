@@ -113,6 +113,18 @@
       "priority": 0.1
     },
     {
+      "slug": "demo-en-vivo/tablero",
+      "title": "Tablero en vivo · Innmobi.ai",
+      "description": "Tablero interno de la demo telefónica: lo que ve el equipo mientras una persona habla con Sofía.",
+      "ogImage": "/og/demo.png",
+      "extraHead": "<link rel=\"stylesheet\" href=\"/assets/css/demo-en-vivo.css\"/>\n<link rel=\"stylesheet\" href=\"/assets/css/demo-tablero.css\"/>\n<meta name=\"referrer\" content=\"no-referrer\"/>",
+      "noindex": true,
+      "sitemap": false,
+      "noAnalytics": true,
+      "navHide": true,
+      "priority": 0.1
+    },
+    {
       "slug": "legal/terminos",
       "title": "Términos de servicio · Innmobi.ai",
       "description": "Términos de servicio de Innmobi.ai, marca operada por Andrés Islas Bravo, persona física con actividad empresarial.",

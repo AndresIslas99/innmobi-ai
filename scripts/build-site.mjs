@@ -92,6 +92,10 @@ async function renderPage(page, layout, partials, data) {
     extraHead: [page.extraHead || '', page.noindex ? '<meta name="robots" content="noindex, nofollow"/>' : ''].filter(Boolean).join('\n'),
     bodyClass: page.bodyClass || `page-${slug.replace(/\//g, '-') || 'home'}`,
     jsonLd: buildJsonLd(page, data, isPost),
+    // Plausible runs everywhere except pages flagged "noAnalytics": true (the live panel at /demo-en-vivo/tablero/).
+    analytics: page.noAnalytics
+      ? ''
+      : `<script defer data-domain="${data.site.plausibleDomain}" src="https://plausible.io/js/script.js"></script>`,
     formEndpoint: formEndpoint || '#',
     formFallbackBanner: demoMissing ? fallbackBanner('quiero agendar demo') : '',
     formDisabledAttr: demoMissing ? 'data-fallback="true"' : '',

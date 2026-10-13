@@ -1,0 +1,129 @@
+<!--
+  Live panel for the phone demo (/demo-en-vivo/tablero/). Internal: noindex, no analytics, not linked from navigation.
+  Backend: realestate-crm, module voice_demo (GET /v1/demo/panel/state + /panel/stream, POST /panel/session).
+  data-api-base: https://api.innmobi.ai (an A record to the GCE static IP, which the founders add right after the VM exists; ADR 0034).
+  Only if that record can't exist in time, use the sslip.io host of the IP (https://A-B-C-D.sslip.io), rebuild and push.
+-->
+<main id="tb" class="tb" data-state="locked" data-conn="off"
+      data-api-base="https://api.innmobi.ai"
+      data-phone-display="+1 956 225 2738">
+
+  <!-- ===================== PIN ===================== -->
+  <section class="tb-gate" id="tb-gate" aria-labelledby="tb-gate-title">
+    <div class="tb-gate-card dl-card">
+      <a href="/" class="wordmark tb-gate-brand" aria-label="Innmobi.ai">Innmobi<span class="period">.</span>ai</a>
+      <span class="eyebrow">DEMO EN VIVO · TABLERO</span>
+      <h1 class="tb-gate-title" id="tb-gate-title">Tablero de la llamada<span class="period">.</span></h1>
+      <p class="tb-gate-lead">Escribe el PIN que te dio Andrés. Solo vive en esta pestaña mientras lo escribes.</p>
+      <form id="tb-form" class="tb-form" autocomplete="off" novalidate>
+        <label class="tb-label" for="tb-pin">PIN</label>
+        <div class="tb-pin-row">
+          <input id="tb-pin" class="tb-pin" type="password" inputmode="text" autocomplete="off" autocapitalize="characters"
+                 spellcheck="false" maxlength="16" required aria-describedby="tb-gate-error" data-lpignore="true" data-1p-ignore>
+          <button type="button" class="tb-peek" id="tb-peek" aria-pressed="false">Mostrar</button>
+        </div>
+        <p class="tb-gate-error" id="tb-gate-error" role="alert" hidden></p>
+        <button type="submit" class="dl-call-btn tb-enter" id="tb-enter">Entrar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== TABLERO ===================== -->
+  <div class="tb-app" id="tb-app" hidden>
+
+    <header class="tb-bar">
+      <div class="tb-bar-left">
+        <span class="wordmark tb-bar-brand">Innmobi<span class="period">.</span>ai</span>
+        <span class="eyebrow tb-bar-eyebrow">DEMO EN VIVO · TABLERO</span>
+      </div>
+      <div class="tb-bar-right">
+        <span class="tb-conn" id="tb-conn" role="status" aria-live="polite"><span class="tb-conn-dot" aria-hidden="true"></span><span id="tb-conn-text">Conectando</span></span>
+        <button type="button" class="tb-exit" id="tb-exit">Salir</button>
+      </div>
+    </header>
+
+    <div class="tb-notice" id="tb-notice" role="alert" hidden></div>
+
+    <!-- Banner para quien llama -->
+    <section class="tb-banner" id="tb-banner" data-mode="idle" aria-label="Número para llamar">
+      <div class="tb-banner-main">
+        <span class="tb-banner-kicker" id="tb-banner-kicker">PRUEBE A SOFÍA AHORA</span>
+        <p class="tb-banner-call"><span class="tb-banner-verb">Marque al</span> <a class="tb-banner-number" id="tb-banner-number" href="tel:+19562252738">+1 956 225 2738</a></p>
+      </div>
+      <p class="tb-banner-sub" id="tb-banner-sub">Desde cualquier teléfono. Sofía es una asistente de IA y atiende por Residencial Demo Narvarte, un desarrollo ficticio.</p>
+    </section>
+
+    <!-- Una tarjeta por llamada -->
+    <section class="tb-calls-wrap" aria-label="Llamadas">
+      <ul class="tb-calls" id="tb-calls"></ul>
+      <p class="tb-calls-empty" id="tb-calls-empty">Esperando la primera llamada. Aquí aparecerá en cuanto contesten.</p>
+    </section>
+
+    <!-- Detalle de la llamada seleccionada -->
+    <section class="tb-detail" id="tb-detail" aria-label="Lo que ve tu equipo" hidden>
+      <div class="dl-card dl-card-team tb-team">
+        <div class="dl-team-head tb-team-head">
+          <div class="tb-team-id">
+            <h2 class="dl-team-title">Lo que ve tu equipo<span class="period">.</span></h2>
+            <p class="tb-caller" id="tb-caller"></p>
+          </div>
+          <div class="tb-team-side">
+            <span class="tb-state-chip" id="tb-state-chip" data-status="active">En llamada</span>
+            <span class="dl-sim-tag tb-tag">DEMO EN VIVO</span>
+          </div>
+        </div>
+
+        <div class="tb-team-grid">
+          <div class="tb-fields-col">
+            <div class="dl-block">
+              <h3 class="dl-h">Lead</h3>
+              <dl class="dl-fields">
+                <div class="dl-field"><dt>Nombre</dt><dd data-f="nombre" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Tipo de unidad</dt><dd data-f="tipo_unidad" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Propósito</dt><dd data-f="proposito" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Plazo</dt><dd data-f="plazo" class="is-empty">—</dd></div>
+              </dl>
+            </div>
+
+            <div class="dl-block">
+              <h3 class="dl-h">Rango de presupuesto declarado por la persona</h3>
+              <p class="dl-value is-empty" data-f="presupuesto">Sin registrar. Solo aparece si la persona acepta y lo dice.</p>
+            </div>
+
+            <div class="dl-block">
+              <h3 class="dl-h">Visita reservada</h3>
+              <dl class="dl-fields tb-visit-fields">
+                <div class="dl-field"><dt>Día</dt><dd data-f="visita_dia" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Hora</dt><dd data-f="visita_hora" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Sala de ventas</dt><dd data-f="visita_sala" class="is-empty">—</dd></div>
+              </dl>
+            </div>
+
+            <div class="tb-pair">
+              <div class="dl-block">
+                <h3 class="dl-h">Preguntas por confirmar</h3>
+                <ul class="dl-list" id="tb-questions"></ul>
+                <p class="dl-value is-empty" id="tb-questions-empty">Ninguna por ahora.</p>
+              </div>
+
+              <div class="dl-block">
+                <h3 class="dl-h">Traspaso a una persona</h3>
+                <p class="dl-value is-empty" data-f="traspaso">No solicitado.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tb-ledger-col">
+            <h3 class="dl-h tb-ledger-h">Registro <span class="tb-ledger-hint">lo más reciente arriba</span></h3>
+            <ol class="dl-ledger tb-ledger" id="tb-ledger" aria-label="Registro de pasos"></ol>
+            <p class="dl-empty tb-ledger-empty" id="tb-ledger-empty">Cada paso aparecerá aquí con su hora.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="tb-foot">Demo en vivo: la llamada es real; el desarrollo, Residencial Demo Narvarte, es ficticio. El número de quien llama se muestra enmascarado.</p>
+  </div>
+
+</main>
+<script src="/assets/js/demo-tablero.js" defer></script>

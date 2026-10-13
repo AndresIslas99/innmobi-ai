@@ -27,13 +27,10 @@ jobs:
       - name: Check for stale brand references
         run: |
           set -e
-          # screenshots/README.md mentions the old name intentionally (documents TODO).
           # .github/ is excluded because this workflow itself contains the search pattern.
           HITS=$(grep -rni "Inmobi\.ai\|INMOBI\.AI\|logo-inmobi-ai" \
             --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=.github . \
             | grep -v 'innmobi-ai-showcase' \
-            | grep -v 'screenshots/README.md' \
-            | grep -v 'docs/assets/screenshots/README.md' \
             || true)
           if [ -n "$HITS" ]; then
             echo "❌ Found stale brand references:"

@@ -5,19 +5,19 @@
     <nav class="breadcrumb"><a href="/casos-de-exito/">Casos</a> · Lo que aprendimos</nav>
     <span class="eyebrow">CDMX · REMATES BANCARIOS · 2026</span>
     <h1 class="page-title">Lo que aprendimos construyendo <em>para una inmobiliaria de remates en CDMX<span class="period">.</span></em></h1>
-    <p class="page-lead">Una inmobiliaria de remates bancarios en CDMX, con un equipo de unas 15 personas, usó una versión anterior de nuestro sistema durante unos tres meses de 2026. No es un caso de éxito: no tenemos cifras de resultados y no vamos a inventarlas. Es lo que aprendimos.</p>
+    <p class="page-lead">El equipo de una inmobiliaria de remates bancarios en CDMX usó una versión anterior de nuestro sistema durante unos tres meses de 2026. No es un caso de éxito: no tenemos cifras de resultados y no vamos a inventarlas. Es lo que aprendimos.</p>
   </div>
 </section>
 
 <section class="section section-deep">
   <div class="container">
     <div class="case-stats-grid case-stats-big">
-      <div class="stat"><div class="num">~15</div><div class="lab">Personas en el equipo</div></div>
+      <div class="stat"><div class="num">18+</div><div class="lab">Tandas de 35 llamantes simulados</div></div>
       <div class="stat"><div class="num">~3 meses</div><div class="lab">De uso en 2026</div></div>
       <div class="stat"><div class="num">40% → 87%</div><div class="lab">Llamadas simuladas aprobadas</div></div>
       <div class="stat"><div class="num">0</div><div class="lab">Testimonios y cifras de negocio publicados</div></div>
     </div>
-    <p class="form-note">La cifra de 40% a 87% viene de pruebas internas con llamantes simulados. No son clientes reales y no equivalen a resultados de negocio.</p>
+    <p class="form-note">La cifra de 40% a 87% viene de pruebas internas con llamantes simulados. No son clientes reales, no es una muestra aleatoria y no equivale a resultados de negocio.</p>
   </div>
 </section>
 
@@ -25,7 +25,7 @@
   <div class="container narrow">
     <span class="eyebrow">№ 01 — QUÉ FUE</span>
     <h2>Un sistema hecho a la medida de un solo cliente.</h2>
-    <p>Construimos una versión anterior de nuestro sistema para una inmobiliaria de remates bancarios en la Ciudad de México: un CRM, un agente de voz con IA para llamadas entrantes y un asistente de WhatsApp. Su equipo, de unas 15 personas, lo usó durante unos tres meses de 2026.</p>
+    <p>Construimos una versión anterior de nuestro sistema para una inmobiliaria de remates bancarios en la Ciudad de México: un CRM con agente de voz. Su equipo lo usó durante unos tres meses de 2026.</p>
     <p>Era un sistema de un solo cliente, hecho a su medida. <strong>No lo ofrecemos a clientes nuevos.</strong> La plataforma nueva se está construyendo ahora, desde cero, con las reglas que salieron de esa experiencia.</p>
 
     <span class="eyebrow">№ 02 — LO QUE NO VAS A LEER AQUÍ</span>
@@ -44,27 +44,29 @@
 
     <span class="eyebrow">№ 04 — CÓMO MEDIMOS</span>
     <h2>Llamantes simulados: útiles, pero no son clientes.</h2>
-    <p>Para iterar el agente corrimos tandas de unos 35 llamantes simulados con distintos perfiles. A lo largo de las iteraciones, la tasa de aprobación subió de 40% a 87%. Es una medida de ingeniería, útil para saber si un cambio mejora o empeora al agente. No es una medida de ventas.</p>
+    <p>Para iterar el agente corrimos al menos 18 tandas de 35 llamantes simulados con distintos perfiles (del 28 al 30 de abril de 2026). A lo largo de las iteraciones, la tasa de aprobación subió de 40% a 87%. Es una medida de ingeniería, útil para saber si un cambio mejora o empeora al agente. No es una medida de ventas, y la última versión seguía fallando en cerca de 40% de los casos justo en la confirmación del horario de la visita.</p>
 
     <span class="eyebrow">№ 05 — LO QUE LLEVAMOS A LA PLATAFORMA NUEVA</span>
     <h2>Reglas, no código heredado.</h2>
-    <p>Lo siguiente describe lo que correrá en los pilotos. Todavía no hay resultados que mostrar.</p>
-    <!-- PASS2: positioning -->
+    <p>Lo siguiente describe lo que incluye el piloto de 30 días. Está en construcción y todavía no hay resultados que mostrar.</p>
     <ul>
-      <li>Formulario web o código QR, con consentimiento explícito del cliente</li>
-      <li>Un agente de voz con IA en español de México que se identifica como IA</li>
-      <li>Pre-calificación de interés y presupuesto (no es una evaluación ni una aprobación de crédito)</li>
-      <li>Agenda de visitas sobre los horarios del equipo</li>
-      <li>Confirmación por correo o SMS, y por WhatsApp cuando Meta apruebe el número</li>
-      <li>Un tablero en vivo para el equipo</li>
-      <li>Paso a una persona cuando el cliente lo pida</li>
+      <li>Una página de consentimiento y un código QR para un proyecto, con consentimiento explícito de la persona</li>
+      <li>Un asistente de voz en español de México que se identifica como IA desde la primera frase</li>
+      <li>Está diseñado para responder solo con una ficha de datos que el cliente verifica y firma (precios, disponibilidad, amenidades)</li>
+      <li>Rango de presupuesto declarado por la persona, solo después de su consentimiento expreso (no es una evaluación ni una aprobación de crédito)</li>
+      <li>Agenda de visitas en los horarios del propio equipo</li>
+      <li>Confirmación por correo, y por WhatsApp cuando Meta apruebe el número</li>
+      <li>Un tablero en vivo para el equipo y un registro de cada paso: consentimiento, llamada, cita y asistencia a la visita</li>
+      <li>Un reporte semanal y un reporte final, medidos contra la línea base de 60 a 90 días del propio cliente</li>
+      <li>Paso a una persona cuando la persona lo pida</li>
     </ul>
-    <p>El agente de voz no hace llamadas en frío: contacta a quien pidió que lo contactáramos.</p>
-    <p>Para construirlo usamos backend en Python, PostgreSQL, voz con ElevenLabs, telefonía con Twilio y mensajería por WhatsApp Business API (en alta con Meta).</p>
+    <p>Canales: una llamada web desde la página de consentimiento y, cuando un abogado de privacidad en México apruebe el texto, una llamada telefónica solo a quien la pidió y marcó una casilla de consentimiento explícito. No hacemos llamadas en frío, nunca.</p>
+    <p>El piloto todavía no incluye WhatsApp (hasta que Meta apruebe el número), integraciones con tu CRM, sincronización de calendario ni conexión con Mercado Libre.</p>
+    <p>Para construirlo usamos backend en Python, PostgreSQL, voz con ElevenLabs, telefonía con Twilio y, cuando Meta apruebe el número, mensajería por WhatsApp Business API.</p>
 
     <span class="eyebrow">№ 06 — LO QUE SIGUE</span>
     <h2>Ahora medimos con pilotos.</h2>
-    <p>Los resultados nuevos los estamos midiendo con pilotos. Cuando existan números, los publicaremos solo con el consentimiento por escrito del cliente, y diremos cómo los medimos.</p>
+    <p>Los resultados nuevos los vamos a medir en pilotos de 30 días por proyecto o desarrollo (MXN 10,000 + IVA, con factura), contra la línea base de 60 a 90 días del propio cliente. Cuando existan números, los publicaremos solo con el consentimiento por escrito del cliente, y diremos cómo los medimos.</p>
   </div>
 </section>
 
@@ -73,12 +75,12 @@
     <div>
       <span class="eyebrow">№ 07 — PILOTOS</span>
       <h2>Si esto se parece a tu caso, <em>hablemos<span class="period">.</span></em></h2>
-      <p class="lead">Estamos buscando a las primeras inmobiliarias para pilotos. Trabajamos mejor con equipos de 5+ asesores, pero platicamos con quien tenga la duda. Agenda 30 minutos.</p>
+      <p class="lead">Estamos buscando a los primeros proyectos para pilotos. innmobi.ai es la capa de seguimiento de la venta: el asistente está diseñado para tomar el primer contacto de quien pidió que lo contactaran, y tu equipo cuida la visita y el cierre. Piloto de 30 días, MXN 10,000 + IVA, con factura.</p>
     </div>
     <div class="cta-contacts">
-      <a href="/demo/" class="cta-contact primary">
-        <span class="label">DISCOVERY · 30 MIN</span>
-        <span class="val">Reservar →</span>
+      <a href="/piloto/" class="cta-contact primary">
+        <span class="label">PILOTO · 30 DÍAS</span>
+        <span class="val">Ver el piloto →</span>
       </a>
       <a href="/recursos/" class="cta-contact">
         <span class="label">MÁS LECTURAS</span>

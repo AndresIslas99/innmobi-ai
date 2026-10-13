@@ -119,24 +119,24 @@ const TARGETS = [
   // Facebook cover (1640×856 source, FB renders 851×315)
   { name: 'cover-facebook-light', size: { width: 1640, height: 856 }, html: coverHTML({
     width: 1640, height: 856, variant: 'light', headlineScale: 0.13,
-    headline: 'El sistema operativo<br/>para inmobiliarias <em>que cierran de verdad.</em>',
+    headline: 'Contesta, agenda<br/>y <em>deja todo registrado.</em>',
     subhead: 'Agente de voz con IA · Pilotos 2026 · CDMX'
   })},
   { name: 'cover-facebook-dark',  size: { width: 1640, height: 856 }, html: coverHTML({
     width: 1640, height: 856, variant: 'dark', headlineScale: 0.13,
-    headline: 'El sistema operativo<br/>para inmobiliarias <em>que cierran de verdad.</em>',
+    headline: 'Contesta, agenda<br/>y <em>deja todo registrado.</em>',
     subhead: 'Agente de voz con IA · Pilotos 2026 · CDMX'
   })},
 
   // LinkedIn personal profile banner (1584×396, ratio 4:1)
   { name: 'cover-linkedin-personal-light', size: { width: 1584, height: 396 }, html: coverHTML({
     width: 1584, height: 396, variant: 'light', headlineScale: 0.18,
-    headline: 'Sistema operativo para inmobiliarias. <em>De verdad.</em>',
+    headline: 'Contesta, agenda y <em>deja todo registrado.</em>',
     topRight: 'INNMOBI.AI · CDMX'
   })},
   { name: 'cover-linkedin-personal-dark', size: { width: 1584, height: 396 }, html: coverHTML({
     width: 1584, height: 396, variant: 'dark', headlineScale: 0.18,
-    headline: 'Sistema operativo para inmobiliarias. <em>De verdad.</em>',
+    headline: 'Contesta, agenda y <em>deja todo registrado.</em>',
     topRight: 'INNMOBI.AI · CDMX'
   })},
 

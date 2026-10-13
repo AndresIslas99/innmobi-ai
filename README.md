@@ -7,7 +7,7 @@ Pages.
 |---|---|
 | `src/` | Page sources, layout and partials |
 | `data/pages.json` | Site metadata, page list and posts |
-| `images/`, `screenshots/` | Images copied into the site at build time |
+| `images/` | Images copied into the site at build time. `screenshots/` holds captures of the previous system and is NOT published |
 | `brochure/` | The downloadable brochure (HTML source and PDF) |
 | `docs/` | Build output served by GitHub Pages |
 | `scripts/` | Build and render scripts |

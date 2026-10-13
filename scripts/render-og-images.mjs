@@ -13,9 +13,10 @@ const DATA = path.join(ROOT, 'data', 'pages.json');
 const OUT = path.join(ROOT, 'docs', 'og');
 
 const TEMPLATES = {
-  home:    { eyebrow: 'INNMOBI.AI · CDMX · 2026',        headline: 'El sistema operativo<br/>para inmobiliarias<br/>que cierran <em>de verdad</em>.' },
-  producto:{ eyebrow: 'INNMOBI.AI · PRODUCTO',           headline: 'Un CRM que tu equipo <em>quiere</em> abrir.' },
-  precios: { eyebrow: 'INNMOBI.AI · PRECIOS',            headline: 'Un precio. <em>Toda tu inmobiliaria.</em>' },
+  home:    { eyebrow: 'INNMOBI.AI · CDMX · 2026',        headline: 'Contesta, agenda<br/>y <em>deja todo registrado</em>.' },
+  producto:{ eyebrow: 'INNMOBI.AI · PRODUCTO',           headline: 'Seguimiento de ventas,<br/><em>sin que se enfríe</em>.' },
+  precios: { eyebrow: 'INNMOBI.AI · PRECIOS',            headline: 'Un piloto de 30 días.<br/><em>Un precio claro.</em>' },
+  piloto:   { eyebrow: 'INNMOBI.AI · PILOTO',             headline: 'Un proyecto. <em>Treinta días.</em><br/>Todo medido.' },
   casos:   { eyebrow: 'INNMOBI.AI · APRENDIZAJES',       headline: 'Lo que aprendimos con<br/>un <em>agente de voz</em>.' },
   'caso-aprendizajes': { eyebrow: 'APRENDIZAJES · REMATES CDMX', headline: 'Qué falló y<br/>qué <em>aprendimos</em>.' },
   seguridad:{ eyebrow: 'INNMOBI.AI · SEGURIDAD',         headline: 'Qué protegemos,<br/>y qué <em>todavía no</em>.' },

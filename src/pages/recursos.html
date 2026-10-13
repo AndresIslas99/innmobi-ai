@@ -67,20 +67,4 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container narrow">
-    <span class="eyebrow">№ 03 — BOLETÍN</span>
-    <h2 class="section-title">Una nota mensual <em>de lo que aprendemos<span class="period">.</span></em></h2>
-    <p>Sin spam, sin "growth hacks". Como máximo una nota al mes: algo que aprendimos en los pilotos, una decisión de producto que tomamos y un recurso útil para directores de inmobiliarias.</p>
-    {{ newsletterFallbackBanner }}
-    <form class="newsletter-form" action="{{ newsletterEndpoint }}" method="POST" {{ newsletterDisabledAttr }}>
-      <input type="hidden" name="_subject" value="Innmobi.ai · suscripción al boletín"/>
-      <label for="email" class="sr-only">Email</label>
-      <input type="email" id="email" name="email" placeholder="tu@inmobiliaria.com" required/>
-      <button type="submit" class="btn btn-primary">Suscribirme</button>
-    </form>
-    <p class="newsletter-note">Al suscribirte aceptas el <a href="/legal/privacidad/">aviso de privacidad</a> y que te escribamos por correo con el boletín. Puedes darte de baja en cualquier momento escribiendo a ventas@innmobi.ai. No vendemos data.</p>
-  </div>
-</section>
-
 </main>

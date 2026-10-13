@@ -7,6 +7,7 @@
 // - Writes docs/<slug>/index.html (URL-clean)
 // - Generates docs/sitemap.xml from pages + posts
 // - Copies assets: images/ → docs/assets/images/, brochure/brochure.pdf → docs/assets/brochure.pdf
+//   (screenshots of the previous system are NOT published: the /producto/ page is text-only)
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -179,11 +180,13 @@ function buildJsonLd(page, data, isPost) {
       description: data.site.description,
       brand: { '@type': 'Brand', name: 'Innmobi.ai' },
       offers: {
-        '@type': 'AggregateOffer',
+        '@type': 'Offer',
+        name: 'Piloto de 30 días por proyecto o desarrollo',
+        description: 'Piloto de 30 días por proyecto o desarrollo: MXN 10,000 + IVA, con factura CFDI. No incluye WhatsApp, llamadas en frío, integraciones con CRM ni sincronización de calendario.',
+        price: '10000',
         priceCurrency: 'MXN',
-        lowPrice: '4000',
         availability: 'https://schema.org/PreOrder',
-        url: `${data.site.url}/precios/`,
+        url: `${data.site.url}/piloto/`,
       },
     });
   }
@@ -260,7 +263,6 @@ ${urls}
 async function copyAssets() {
   const tasks = [
     { from: path.join(ROOT, 'images'), to: path.join(OUT, 'assets', 'images'), kind: 'dir' },
-    { from: path.join(ROOT, 'screenshots'), to: path.join(OUT, 'assets', 'screenshots'), kind: 'dir' },
     { from: path.join(ROOT, 'brochure', 'brochure.pdf'), to: path.join(OUT, 'assets', 'brochure.pdf'), kind: 'file' },
   ];
   for (const t of tasks) {

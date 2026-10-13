@@ -50,6 +50,7 @@
     </a>
     <nav class="header-nav" aria-label="Principal">
       <a href="/producto/">Producto</a>
+      <a href="/piloto/">Piloto</a>
       <a href="/precios/">Precios</a>
       <a href="/casos-de-exito/">Aprendizajes</a>
       <a href="/recursos/">Recursos</a>
@@ -68,6 +69,7 @@
   </div>
   <div class="mobile-drawer" hidden>
     <a href="/producto/">Producto</a>
+    <a href="/piloto/">Piloto</a>
     <a href="/precios/">Precios</a>
     <a href="/casos-de-exito/">Aprendizajes</a>
     <a href="/recursos/">Recursos</a>
@@ -96,7 +98,7 @@
 
       <h2>Qué fue, en concreto.</h2>
 
-      <p>Una inmobiliaria de remates bancarios en CDMX, con un equipo de unas 15 personas, usó una versión anterior de nuestro sistema durante unos tres meses de 2026. Era un CRM web con un asistente de voz que contestaba llamadas entrantes y un asistente de WhatsApp. Estaba hecho a la medida de ese cliente: sus textos, sus catálogos, sus reglas.</p>
+      <p>El equipo de una inmobiliaria de remates bancarios en CDMX usó una versión anterior de nuestro sistema durante unos tres meses de 2026. Era un CRM web con un agente de voz. Estaba hecho a la medida de ese cliente: sus textos, sus catálogos, sus reglas.</p>
 
       <p>Ese último punto importa. Por eso <strong>no ofrecemos esa versión a clientes nuevos</strong>. Estamos construyendo una plataforma desde cero, para varios clientes, y llevándole las reglas que aprendimos y algunas piezas ya probadas.</p>
 
@@ -110,7 +112,7 @@
 
       <h3>№ 01 — Las transiciones que decide el modelo fallan.</h3>
 
-      <p>En el flujo de la llamada, la mayoría de los pasos de una etapa a otra los decidía el propio modelo de lenguaje ("¿ya tengo el dato? ¿paso a lo siguiente?"). En decisiones binarias, eso falla: a veces avanza antes de tiempo y a veces se queda atorado. Lo que sí funcionó fue sustituir esos juicios por condiciones explícitas y por textos fijos en los momentos críticos. En nuestras pruebas internas con llamantes simulados, la tasa de aprobación pasó de 40% a 87%. Ojo: son simulaciones nuestras, no clientes reales ni una métrica de negocio.</p>
+      <p>En el flujo de la llamada, la mayoría de los pasos de una etapa a otra los decidía el propio modelo de lenguaje ("¿ya tengo el dato? ¿paso a lo siguiente?"). En decisiones binarias, eso falla: a veces avanza antes de tiempo y a veces se queda atorado. Lo que sí funcionó fue sustituir esos juicios por condiciones explícitas y por textos fijos en los momentos críticos. En nuestras pruebas internas con llamantes simulados (al menos 18 tandas de 35), la tasa de aprobación pasó de 40% a 87%. Ojo: son simulaciones nuestras, no clientes reales, no son una muestra aleatoria ni una métrica de negocio, y la última versión seguía fallando en cerca de 40% de los casos en la confirmación del horario.</p>
 
       <h3>№ 02 — Los campos se pierden en silencio.</h3>
 
@@ -143,7 +145,7 @@
 
       <ol>
         <li><strong>La IA siempre se identifica</strong> como IA, avisa si la llamada se graba y pasa la conversación a una persona. Con texto fijo, no generado.</li>
-        <li><strong>Pre-calificación, nunca pre-aprobación.</strong> El agente pregunta y registra lo que la persona declara. No evalúa ni promete crédito.</li>
+        <li><strong>Rango de presupuesto declarado por la persona, nunca pre-aprobación.</strong> Solo después de su consentimiento expreso, el agente pregunta y registra lo que la persona declara. No evalúa, no promete crédito y no sustituye ningún trámite oficial.</li>
         <li><strong>Un lead, un registro.</strong> El teléfono es la llave para unir llamada, WhatsApp y formulario en una sola historia.</li>
         <li><strong>Agenda con los horarios reales del equipo,</strong> revisados antes de confirmar.</li>
         <li><strong>Consentimiento explícito antes de preguntar por datos financieros</strong> y una lista de "no contactar" que de verdad se guarda.</li>
@@ -153,17 +155,16 @@
 
       <h2>Qué sigue: medir en pilotos.</h2>
 
-      <p>Lo que vamos a probar en pilotos: un formulario web o QR con consentimiento explícito, un agente de voz con IA en español mexicano, pre-calificación, agenda de visitas en los horarios del equipo, confirmación por correo o SMS (y por WhatsApp cuando Meta apruebe nuestro número), un tablero en vivo para el equipo y traspaso a una persona.</p>
+      <p>Lo que vamos a probar en el piloto de 30 días: una página de consentimiento y un QR para un proyecto, un asistente de voz en español de México que se identifica como IA y está diseñado para responder solo con una ficha de datos que el cliente verifica y firma, un rango de presupuesto declarado por la persona (solo con su consentimiento expreso), agenda de visitas en los horarios del propio equipo, confirmación por correo (y por WhatsApp cuando Meta apruebe nuestro número), un tablero en vivo con un registro de cada paso, un reporte semanal y uno final contra la línea base del cliente, y traspaso a una persona. El canal es una llamada web desde la página de consentimiento; la llamada telefónica, solo a quien la pidió y marcó una casilla de consentimiento explícito, se habilita cuando un abogado de privacidad en México apruebe el texto.</p>
 
-      <p>Ahora medimos resultados con pilotos. Publicaremos números solo cuando existan, y solo con el consentimiento por escrito del cliente. Hasta entonces, desconfía de cualquier cifra nuestra que no tenga una fuente.</p>
+      <p>Medimos resultados con pilotos. Publicaremos números solo cuando existan, y solo con el consentimiento por escrito del cliente. Hasta entonces, desconfía de cualquier cifra nuestra que no tenga una fuente.</p>
     </div>
 
-    
     <div class="post-cta">
-      <span class="label">PILOTOS</span>
+      <span class="label">PILOTO DE 30 DÍAS</span>
       <h3>¿Quieres ser parte <em>de lo que medimos?</em></h3>
-      <p>Treinta minutos. Te contamos qué vamos a probar, qué te pediríamos y qué publicaremos solo con tu permiso por escrito. Si no encajamos, te lo decimos.</p>
-      <a href="/demo/" class="btn">Hablemos →</a>
+      <p>Un piloto por proyecto o desarrollo: MXN 10,000 + IVA, con factura. Medimos contra tu propia línea base de 60 a 90 días y tú decides si seguimos. Solo publicaremos algo con tu permiso por escrito. Si no encajamos, te lo decimos.</p>
+      <a href="/piloto/" class="btn">Ver el piloto →</a>
     </div>
 
     <div class="related">
@@ -181,14 +182,14 @@
   <div class="container footer-grid">
     <div class="footer-brand">
       <span class="wordmark">Innmobi<span class="period">.</span>ai</span>
-      
-      <p class="footer-tag">El sistema operativo para inmobiliarias que cierran de verdad.</p>
+      <p class="footer-tag">La capa de seguimiento para la venta inmobiliaria en México.</p>
       <p class="footer-meta">Operado por Andrés Islas Bravo, persona física con actividad empresarial (RESICO) · Ciudad de México, México</p>
     </div>
 
     <nav class="footer-col" aria-label="Producto">
       <h4>Producto</h4>
       <a href="/producto/">Cómo funciona</a>
+      <a href="/piloto/">Piloto de 30 días</a>
       <a href="/precios/">Precios</a>
       <a href="/demo/">Reservar demo</a>
       <a href="/assets/brochure.pdf">Brochure (PDF)</a>

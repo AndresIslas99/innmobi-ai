@@ -2,16 +2,16 @@
   "site": {
     "name": "Innmobi.ai",
     "url": "https://innmobi.ai",
-    "tagline": "El sistema operativo para inmobiliarias que cierran de verdad.",
-    "description": "Agente de voz con IA, en español mexicano, para inmobiliarias: atiende a quien pidió contacto, pre-califica, agenda visitas en los horarios de tu equipo y pasa a una persona. En preparación de pilotos.",
+    "tagline": "La capa de seguimiento para la venta inmobiliaria en México.",
+    "description": "Agente de voz con IA, en español mexicano, para inmobiliarias: atiende a quien pidió contacto, registra el rango de presupuesto que la persona declara, agenda visitas en los horarios de tu equipo y pasa a una persona. En preparación de pilotos.",
     "lang": "es-MX",
     "author": "Andrés Islas Bravo",
     "email": "ventas@innmobi.ai",
     "whatsapp": "525620595320",
     "plausibleDomain": "innmobi.ai",
     "forms": {
-      "demoEndpoint": "https://formspree.io/f/xdablpze",
-      "newsletterEndpoint": "https://formspree.io/f/xzdoakvj"
+      "demoEndpoint": "",
+      "newsletterEndpoint": ""
     },
     "social": {
       "facebook": "https://www.facebook.com/innmobi.ai",
@@ -19,15 +19,13 @@
     }
   },
   "redirects": [
-    { "from": "casos-de-exito/agnor", "to": "casos-de-exito/aprendizajes" },
-    { "from": "recursos/caso-agnor-remates-bancarios-cdmx", "to": "recursos/lo-que-aprendimos-agente-de-voz" },
     { "from": "recursos/por-que-60-leads-mueren-en-24-horas", "to": "recursos/velocidad-de-respuesta-a-leads" }
   ],
   "pages": [
     {
       "slug": "",
-      "title": "Innmobi.ai — El sistema operativo para inmobiliarias que cierran de verdad",
-      "description": "Agente de voz con IA en español mexicano para inmobiliarias: atiende a quien pidió contacto, pre-califica, agenda visitas y pasa a una persona. Pilotos en 2026.",
+      "title": "Innmobi.ai — Seguimiento de ventas inmobiliarias en México",
+      "description": "Agente de voz con IA en español mexicano para inmobiliarias: atiende a quien pidió contacto, registra el rango de presupuesto que la persona declara, agenda visitas y pasa a una persona. Pilotos en 2026.",
       "ogImage": "/og/home.png",
       "navHide": true,
       "priority": 1.0
@@ -35,15 +33,23 @@
     {
       "slug": "producto",
       "title": "Producto · Innmobi.ai",
-      "description": "Qué correrá el piloto: formulario web o QR con consentimiento, agente de voz con IA, pre-calificación, agenda de visitas, confirmación y tablero en vivo.",
+      "description": "Qué correrá el piloto: formulario web o QR con consentimiento, agente de voz con IA, rango de presupuesto declarado por la persona, agenda de visitas, confirmación y tablero en vivo.",
       "ogImage": "/og/producto.png",
       "navLabel": "Producto",
       "priority": 0.9
     },
     {
+      "slug": "piloto",
+      "title": "Piloto de 30 días · Innmobi.ai",
+      "description": "Piloto de 30 días por proyecto o desarrollo: $10,000 MXN + IVA, con factura CFDI. Asistente de voz con IA que toma el primer contacto, agenda visitas y registra cada paso, medido contra tu línea base.",
+      "ogImage": "/og/piloto.png",
+      "navLabel": "Piloto",
+      "priority": 0.9
+    },
+    {
       "slug": "precios",
       "title": "Precios · Innmobi.ai",
-      "description": "Un precio para toda tu inmobiliaria: $4,000 MXN al mes con usuarios ilimitados y 5 horas de llamadas con IA, más implementación única de $20,000 MXN. Precios + IVA.",
+      "description": "Piloto de 30 días por proyecto o desarrollo: $10,000 MXN + IVA, con factura CFDI, medido contra tu línea base. Después, una mensualidad por proyecto definida con la evidencia del piloto.",
       "ogImage": "/og/precios.png",
       "navLabel": "Precios",
       "priority": 0.9
@@ -90,7 +96,7 @@
     {
       "slug": "demo",
       "title": "Reservar demo · Innmobi.ai",
-      "description": "30 minutos. Te explicamos cómo funcionaría el piloto con tu operación y qué necesitaríamos de tu equipo.",
+      "description": "30 minutos con los fundadores. Escríbenos por WhatsApp o correo y te explicamos el piloto de 30 días ($10,000 MXN + IVA por proyecto) y qué necesitaríamos de tu equipo.",
       "ogImage": "/og/demo.png",
       "navLabel": "Reservar demo",
       "navCta": true,

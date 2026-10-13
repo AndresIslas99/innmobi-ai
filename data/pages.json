@@ -103,6 +103,16 @@
       "priority": 0.9
     },
     {
+      "slug": "demo-en-vivo",
+      "title": "Demo en vivo · Innmobi.ai",
+      "description": "Llamada de prueba con Sofía, una asistente de IA, sobre un desarrollo de demostración. Mira en vivo lo que vería tu equipo.",
+      "ogImage": "/og/demo.png",
+      "extraHead": "<link rel=\"stylesheet\" href=\"/assets/css/demo-en-vivo.css\"/>",
+      "noindex": true,
+      "sitemap": false,
+      "priority": 0.1
+    },
+    {
       "slug": "legal/terminos",
       "title": "Términos de servicio · Innmobi.ai",
       "description": "Términos de servicio de Innmobi.ai, marca operada por Andrés Islas Bravo, persona física con actividad empresarial.",

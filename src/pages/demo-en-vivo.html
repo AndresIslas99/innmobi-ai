@@ -1,0 +1,147 @@
+<main id="main">
+
+<section class="page-hero dl-hero">
+  <div class="container">
+    <span class="eyebrow">№ 01 — DEMO EN VIVO</span>
+    <h1 class="page-title">Habla con Sofía, <em>una asistente de IA,</em> sobre un desarrollo de demostración<span class="period">.</span></h1>
+    <p class="page-lead">Es una llamada de prueba, por voz, desde tu navegador. Sofía atiende en nombre de Residencial Demo Narvarte, un desarrollo ficticio, y dice desde su primera frase que es una IA. Mientras hablan, el panel «Lo que ve tu equipo» se llena en tiempo real.</p>
+    <div class="dl-try">
+      <span class="dl-try-title">Qué probar</span>
+      <ol class="dl-try-list">
+        <li><span class="dl-try-n">1</span> <span>Pregúntale por las <strong>mascotas</strong>.</span></li>
+        <li><span class="dl-try-n">2</span> <span>Pregúntale por el <strong>enganche</strong>.</span></li>
+        <li><span class="dl-try-n">3</span> <span>Intenta <strong>sacarla del tema</strong>.</span></li>
+        <li><span class="dl-try-n">4</span> <span>Pide <strong>una visita</strong>.</span></li>
+      </ol>
+    </div>
+    <p class="dl-jump"><a class="btn btn-primary" href="#dl">Ir a la llamada ↓</a></p>
+  </div>
+</section>
+
+<section class="section dl-section" id="dl" data-state="idle" data-view="call">
+  <div class="container">
+
+    <div class="dl-tabs" role="group" aria-label="Vista">
+      <button type="button" class="dl-tab" id="dl-tab-call" data-view="call" aria-pressed="true">La llamada</button>
+      <button type="button" class="dl-tab" id="dl-tab-team" data-view="team" aria-pressed="false">Lo que ve tu equipo<span class="dl-tab-dot" aria-hidden="true"></span></button>
+    </div>
+
+    <div class="dl-grid">
+
+      <!-- ===================== LLAMADA ===================== -->
+      <div class="dl-col dl-call" id="dl-call">
+        <span class="eyebrow">№ 02 — LA LLAMADA</span>
+
+        <div class="dl-card dl-card-call">
+
+          <div class="dl-gate" id="dl-gate">
+            <label class="dl-consent" for="dl-consent">
+              <input type="checkbox" id="dl-consent">
+              <span class="dl-consent-box" aria-hidden="true"></span>
+              <span class="dl-consent-text">Entiendo que hablaré con una asistente de inteligencia artificial de demostración, que la conversación se procesa para operar esta prueba y que no debo compartir datos personales reales.</span>
+            </label>
+            <p class="dl-gate-note"><strong>La transcripción se conserva 90 días en la cuenta de ElevenLabs (Estados Unidos) de innmobi.ai; el audio no se graba.</strong> <a href="/legal/privacidad/" target="_blank" rel="noopener">Aviso de privacidad</a> · Te pediremos permiso para usar el micrófono. Con audífonos se escucha mejor.</p>
+          </div>
+
+          <div class="dl-error" id="dl-error" role="alert" hidden>
+            <p id="dl-error-text"></p>
+            <button type="button" class="btn btn-ghost" id="dl-retry">Reintentar</button>
+          </div>
+
+          <div class="dl-live" id="dl-live">
+            <div class="dl-status" id="dl-status" data-mode="idle" role="status" aria-live="polite">
+              <span class="dl-dot" aria-hidden="true"></span>
+              <span class="dl-status-text" id="dl-status-text">Lista para llamar</span>
+              <span class="dl-timer" id="dl-timer" aria-hidden="true">0:00 / 5:00</span>
+            </div>
+            <div class="dl-level" id="dl-level" aria-hidden="true"></div>
+          </div>
+
+          <button type="button" class="dl-call-btn" id="dl-btn" disabled>Hablar ahora</button>
+
+          <div class="dl-transcript-wrap">
+            <h3 class="dl-h">Conversación</h3>
+            <ol class="dl-transcript" id="dl-transcript" role="log" aria-live="polite" aria-label="Transcripción de la llamada">
+              <li class="dl-empty" id="dl-transcript-empty">Aquí aparece lo que digan Sofía y tú.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Resumen al terminar -->
+        <div class="dl-card dl-summary" id="dl-summary" hidden>
+          <span class="dl-card-eyebrow">RESUMEN DE LA LLAMADA</span>
+          <h2 class="dl-summary-title">Esto es lo que se llevaría tu equipo<span class="period">.</span></h2>
+          <dl class="dl-summary-list" id="dl-summary-list"></dl>
+          <p class="dl-summary-note">Todo es una simulación con un desarrollo ficticio. En un piloto real, cada paso queda en un registro que es de tu inmobiliaria.</p>
+          <div class="dl-summary-actions">
+            <button type="button" class="btn btn-primary" id="dl-reset">Volver a probar</button>
+            <a class="btn btn-ghost" href="/demo/">Reservar demo de 30 min</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== EQUIPO ===================== -->
+      <div class="dl-col dl-team" id="dl-team">
+        <span class="eyebrow">№ 03 — LO QUE VE TU EQUIPO</span>
+
+        <div class="dl-card dl-card-team">
+          <div class="dl-team-head">
+            <h2 class="dl-team-title">Lo que ve tu equipo<span class="period">.</span></h2>
+            <span class="dl-sim-tag">SIMULACIÓN</span>
+          </div>
+
+          <div class="dl-block" id="dl-lead">
+            <h3 class="dl-h">Lead</h3>
+            <dl class="dl-fields">
+              <div class="dl-field"><dt>Nombre</dt><dd data-field="nombre" class="is-empty">—</dd></div>
+              <div class="dl-field"><dt>Tipo de unidad</dt><dd data-field="tipo_unidad" class="is-empty">—</dd></div>
+              <div class="dl-field"><dt>Propósito</dt><dd data-field="proposito" class="is-empty">—</dd></div>
+              <div class="dl-field"><dt>Plazo</dt><dd data-field="plazo" class="is-empty">—</dd></div>
+            </dl>
+          </div>
+
+          <div class="dl-block" id="dl-budget">
+            <h3 class="dl-h">Rango de presupuesto declarado por la persona</h3>
+            <p class="dl-value is-empty" id="dl-budget-value">Sin registrar. Solo se guarda si la persona lo acepta y lo dice.</p>
+          </div>
+
+          <div class="dl-block" id="dl-visit">
+            <h3 class="dl-h">Visita reservada</h3>
+            <dl class="dl-fields">
+              <div class="dl-field"><dt>Día</dt><dd data-field="dia" class="is-empty">—</dd></div>
+              <div class="dl-field"><dt>Hora</dt><dd data-field="hora" class="is-empty">—</dd></div>
+              <div class="dl-field"><dt>Sala de ventas</dt><dd data-field="sala" class="is-empty">—</dd></div>
+            </dl>
+            <p class="dl-sub" id="dl-visit-note" hidden>Visita simulada.</p>
+          </div>
+
+          <div class="dl-block" id="dl-questions">
+            <h3 class="dl-h">Preguntas por confirmar</h3>
+            <ul class="dl-list" id="dl-questions-list"></ul>
+            <p class="dl-value is-empty" id="dl-questions-empty">Ninguna por ahora.</p>
+          </div>
+
+          <div class="dl-block" id="dl-handoff">
+            <h3 class="dl-h">Traspaso a una persona</h3>
+            <p class="dl-value is-empty" id="dl-handoff-value">No solicitado.</p>
+          </div>
+
+          <div class="dl-block dl-block-ledger">
+            <h3 class="dl-h">Registro</h3>
+            <ol class="dl-ledger" id="dl-ledger" aria-label="Registro de pasos">
+              <li class="dl-empty" id="dl-ledger-empty">Cada paso aparecerá aquí con su hora.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="dl-footnote" id="dl-footnote">
+      <strong>Demo:</strong> esta página no guarda nada en tu navegador (sin cookies ni almacenamiento local) ni en servidores propios. La conversación la procesa ElevenLabs (Estados Unidos): el audio no se graba y la transcripción se conserva 90 días en la cuenta de ElevenLabs de innmobi.ai, que el equipo puede consultar. Como el resto del sitio, medimos visitas con Plausible, sin cookies y sin el contenido de la llamada. El panel y el registro son una simulación: no se envía ningún correo ni se reserva nada real.
+    </p>
+  </div>
+</section>
+
+</main>
+<script type="module" src="/assets/js/demo-en-vivo.js"></script>

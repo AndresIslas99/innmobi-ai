@@ -43,8 +43,8 @@ async function main() {
     await writeRedirect(r.from, r.to, data.site.url);
   }
 
-  // Generate sitemap.xml
-  await writeSitemap(allPages, data.site.url);
+  // Generate sitemap.xml (pages with "sitemap": false or "noindex": true stay out of it)
+  await writeSitemap(allPages.filter((p) => p.sitemap !== false && !p.noindex), data.site.url);
 
   console.log(`✅ Built ${allPages.length} pages → docs/`);
 }
@@ -88,7 +88,8 @@ async function renderPage(page, layout, partials, data) {
     canonicalPath,
     ogImage: page.ogImage || '/og/home.png',
     ogType,
-    extraHead: page.extraHead || '',
+    // Per-page flags: "noindex": true adds a robots meta (and the page should also set "sitemap": false).
+    extraHead: [page.extraHead || '', page.noindex ? '<meta name="robots" content="noindex, nofollow"/>' : ''].filter(Boolean).join('\n'),
     bodyClass: page.bodyClass || `page-${slug.replace(/\//g, '-') || 'home'}`,
     jsonLd: buildJsonLd(page, data, isPost),
     formEndpoint: formEndpoint || '#',

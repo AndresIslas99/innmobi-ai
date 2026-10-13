@@ -1,0 +1,97 @@
+<main id="main">
+<article class="blog-post">
+  <div class="container narrow">
+    <nav class="breadcrumb"><a href="/recursos/">Recursos</a> · Aprendizajes</nav>
+    <div class="post-meta">
+      <span class="post-eyebrow">APRENDIZAJES · 9 MIN DE LECTURA</span>
+      <time datetime="2026-10-12">12 octubre 2026</time>
+    </div>
+    <h1>Lo que aprendimos con un agente de voz en <em>una inmobiliaria de remates en CDMX</em>.</h1>
+    <p class="post-lead">Una versión anterior de nuestro sistema la usó, durante unos tres meses de 2026, el equipo de una inmobiliaria de remates bancarios. Esto es lo que falló, lo que aprendimos y las reglas que llevamos a la plataforma nueva. Sin métricas de negocio: todavía no las tenemos.</p>
+
+    <div class="post-body">
+      <p>Este texto reemplaza una versión anterior que presentaba el proyecto como un caso de éxito, con métricas y testimonios. Esa versión no tenía el respaldo que debía tener. La retiramos. Lo que queda es lo que sí podemos sostener: qué construimos, qué falló y qué cambiamos.</p>
+
+      <p>Una aclaración: no nombramos al cliente, no publicamos cifras de su operación ni citamos a su gente. Es una historia sobre nuestro trabajo, no sobre su negocio.</p>
+
+      <h2>Qué fue, en concreto.</h2>
+
+      <p>Una inmobiliaria de remates bancarios en CDMX, con un equipo de unas 15 personas, usó una versión anterior de nuestro sistema durante unos tres meses de 2026. Era un CRM web con un asistente de voz que contestaba llamadas entrantes y un asistente de WhatsApp. Estaba hecho a la medida de ese cliente: sus textos, sus catálogos, sus reglas.</p>
+
+      <p>Ese último punto importa. Por eso <strong>no ofrecemos esa versión a clientes nuevos</strong>. Estamos construyendo una plataforma desde cero, para varios clientes, y llevándole las reglas que aprendimos y algunas piezas ya probadas.</p>
+
+      <h2>Lo que no te vamos a contar.</h2>
+
+      <p>No tenemos cifras de conversión, de tiempos de respuesta ni de cierres que podamos defender en público. En esos tres meses el equipo del cliente usó el sistema, encontró fallas y ahí aprendimos mucho. Pero aprender no es medir. Si alguien te muestra números de esa operación, no vienen de nosotros.</p>
+
+      <h2>Lo que aprendimos del agente de voz.</h2>
+
+      <p>Estos cinco errores nos costaron muchas iteraciones. Son específicos, y por eso creemos que sirven más que un testimonio.</p>
+
+      <h3>№ 01 — Las transiciones que decide el modelo fallan.</h3>
+
+      <p>En el flujo de la llamada, la mayoría de los pasos de una etapa a otra los decidía el propio modelo de lenguaje ("¿ya tengo el dato? ¿paso a lo siguiente?"). En decisiones binarias, eso falla: a veces avanza antes de tiempo y a veces se queda atorado. Lo que sí funcionó fue sustituir esos juicios por condiciones explícitas y por textos fijos en los momentos críticos. En nuestras pruebas internas con llamantes simulados, la tasa de aprobación pasó de 40% a 87%. Ojo: son simulaciones nuestras, no clientes reales ni una métrica de negocio.</p>
+
+      <h3>№ 02 — Los campos se pierden en silencio.</h3>
+
+      <p>El agente capturaba un dato, pero en el camino al sistema alguna capa lo descartaba sin avisar: una lista de campos permitidos que no incluía el nuevo, una respuesta de herramienta que apuntaba a un campo que no existía. Incluso una preferencia de "no me contacten" se perdió así. Lo aprendido: cada campo se prueba de punta a punta, y un dato que no se pudo guardar tiene que fallar con ruido, no en silencio.</p>
+
+      <h3>№ 03 — La agenda con horarios fijos no es una agenda.</h3>
+
+      <p>La reserva por voz ofrecía una tabla fija de horarios y, si algo no cuadraba, asignaba a un asesor por defecto. La verificación de que el horario estuviera libre llegaba después de que el agente ya había confirmado la cita. Un agente que confirma antes de revisar es un agente que le miente al cliente. Lo aprendido: la disponibilidad real se consulta dentro de la llamada, antes de confirmar, y la confirmación al cliente es parte de agendar, no un extra.</p>
+
+      <h3>№ 04 — Cada salto de herramienta suma latencia.</h3>
+
+      <p>Una pausa de un par de segundos en una llamada se siente muy larga. Cada vez que el agente consulta una herramienta (inventario, agenda, CRM) agrega tiempo, y varias seguidas se notan. Lo aprendido: menos saltos por turno, medir los percentiles altos y no solo el promedio, y decidir qué se puede resolver sin consultar nada.</p>
+
+      <h3>№ 05 — Las líneas se quedaban abiertas después de la despedida.</h3>
+
+      <p>El agente se despedía, pero la llamada seguía abierta y a veces volvía a hablar. Lo aprendido: la despedida y el cierre son texto fijo y una condición explícita de fin de llamada, no una frase generada.</p>
+
+      <h2>Lo que aprendimos de los mensajes y de los permisos.</h2>
+
+      <ul>
+        <li><strong>Los mensajes automáticos se duplican si no los cuidas.</strong> Es un error clásico: varios procesos programan el mismo envío y cada recordatorio sale varias veces. Lo encontramos en una revisión interna y fue error nuestro. Regla para la plataforma nueva: cada envío es idempotente.</li>
+        <li><strong>La confirmación al agendar por voz era una tarea pendiente.</strong> Había recordatorios a 24 y 1 hora, pero el cliente no recibía confirmación al instante. Es el tipo de hueco que un cliente nota primero, y por eso la confirmación es parte de agendar en la plataforma nueva.</li>
+        <li><strong>Un error de permisos es un error de confianza.</strong> Vimos que un usuario con rol de asesor podía ver todos los leads. De ahí salió una regla: cada quien ve lo suyo y los datos de contacto se ocultan hasta que el lead está asignado.</li>
+        <li><strong>La retroalimentación de quien usa la herramienta fue la mejor fuente de requisitos.</strong> Nueve ajustes concretos en pocos días, de gente que la usaba cada día. Ningún estudio de mercado nos habría dado eso.</li>
+      </ul>
+
+      <h2>Lo que llevamos a la plataforma nueva.</h2>
+
+      <p>No el código tal cual. Las reglas:</p>
+
+      <ol>
+        <li><strong>La IA siempre se identifica</strong> como IA, avisa si la llamada se graba y pasa la conversación a una persona. Con texto fijo, no generado.</li>
+        <li><strong>Pre-calificación, nunca pre-aprobación.</strong> El agente pregunta y registra lo que la persona declara. No evalúa ni promete crédito.</li>
+        <li><strong>Un lead, un registro.</strong> El teléfono es la llave para unir llamada, WhatsApp y formulario en una sola historia.</li>
+        <li><strong>Agenda con los horarios reales del equipo,</strong> revisados antes de confirmar.</li>
+        <li><strong>Consentimiento explícito antes de preguntar por datos financieros</strong> y una lista de "no contactar" que de verdad se guarda.</li>
+        <li><strong>El agente contacta a quien pidió que lo contactaran.</strong> Nada de llamadas en frío.</li>
+        <li><strong>Pruebas con llamantes simulados y por campo,</strong> antes de poner un agente delante de un cliente.</li>
+      </ol>
+
+      <h2>Qué sigue: medir en pilotos.</h2>
+
+      <p>Lo que vamos a probar en pilotos: un formulario web o QR con consentimiento explícito, un agente de voz con IA en español mexicano, pre-calificación, agenda de visitas en los horarios del equipo, confirmación por correo o SMS (y por WhatsApp cuando Meta apruebe nuestro número), un tablero en vivo para el equipo y traspaso a una persona.</p>
+
+      <p>Ahora medimos resultados con pilotos. Publicaremos números solo cuando existan, y solo con el consentimiento por escrito del cliente. Hasta entonces, desconfía de cualquier cifra nuestra que no tenga una fuente.</p>
+    </div>
+
+    <!-- PASS2: positioning -->
+    <div class="post-cta">
+      <span class="label">PILOTOS</span>
+      <h3>¿Quieres ser parte <em>de lo que medimos?</em></h3>
+      <p>Treinta minutos. Te contamos qué vamos a probar, qué te pediríamos y qué publicaremos solo con tu permiso por escrito. Si no encajamos, te lo decimos.</p>
+      <a href="/demo/" class="btn">Hablemos →</a>
+    </div>
+
+    <div class="related">
+      <h4>Lecturas relacionadas</h4>
+      <a href="/casos-de-exito/aprendizajes/">Versión corta de esta historia →</a>
+      <a href="/recursos/whatsapp-business-api-pipeline/">WhatsApp Business API en tu pipeline →</a>
+      <a href="/recursos/mercado-libre-inmuebles-integracion/">Mercado Libre Inmuebles: integración oficial vs scraping vs manual →</a>
+    </div>
+  </div>
+</article>
+</main>

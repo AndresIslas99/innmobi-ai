@@ -156,7 +156,7 @@ html, body {
 .pillar p { font-size: 11px; line-height: 1.6; color: var(--ink-700); }
 
 /* ──────────────────────────────────────────────────────────────
-   PAGE 2 · El producto, en vivo (4 screenshots)
+   PAGE 2 · Cómo funciona el piloto (4 pasos)
    ────────────────────────────────────────────────────────────── */
 .product-grid {
   display: grid;
@@ -194,6 +194,20 @@ html, body {
 }
 .shot p {
   font-size: 10px; line-height: 1.5; color: var(--ink-700);
+}
+.shot-step {
+  background: var(--paper);
+  border: 1px solid var(--ink-200);
+  border-left: 2px solid var(--forest);
+  padding: 7mm 6mm;
+  display: flex; flex-direction: column;
+}
+.shot-step .h { margin-top: 0; }
+.shot-step p { margin-bottom: 0; }
+.lessons { margin: 0 0 4mm; padding-left: 5mm; }
+.lessons li {
+  font-size: 11px; line-height: 1.55; color: var(--ink-700);
+  margin-bottom: 1.5mm;
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -243,7 +257,7 @@ html, body {
   background: var(--paper);
   border: 1px solid var(--ink-200);
   border-left: 4px solid var(--brass);
-  padding: 10mm 11mm;
+  padding: 7mm 11mm;
 }
 .case-study .label {
   font-family: 'JetBrains Mono', monospace;
@@ -255,7 +269,7 @@ html, body {
   font-variation-settings: 'opsz' 72;
   font-weight: 600; font-size: 26px;
   letter-spacing: -0.022em; line-height: 1.06;
-  color: var(--ink-black); margin-bottom: 6mm;
+  color: var(--ink-black); margin-bottom: 4mm;
 }
 .case-study h2 em { font-style: normal; color: var(--forest); }
 .case-study h2 .period { color: var(--brass); }
@@ -291,7 +305,7 @@ html, body {
 }
 
 .case-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--ink-200);
   padding-top: 5mm; margin-top: 4mm;
 }
@@ -314,8 +328,8 @@ html, body {
 .cta-banner {
   background: var(--forest);
   color: var(--bone);
-  padding: 10mm 11mm;
-  margin-top: 8mm;
+  padding: 7mm 11mm;
+  margin-top: 6mm;
 }
 .cta-banner h2 {
   font-family: 'Fraunces', Georgia, serif;
@@ -327,12 +341,12 @@ html, body {
 .cta-banner h2 .period { color: var(--brass-soft); }
 .cta-banner > p {
   font-size: 11.5px; color: var(--bone); opacity: 0.7;
-  margin-bottom: 7mm; line-height: 1.55; max-width: 130mm;
+  margin-bottom: 5mm; line-height: 1.55; max-width: 130mm;
 }
 .cta-rows { border-top: 1px solid rgba(247,242,232,0.25); }
 .cta-row {
   display: grid; grid-template-columns: 32mm 1fr;
-  gap: 8mm; padding: 5mm 0;
+  gap: 8mm; padding: 3.5mm 0;
   border-bottom: 1px solid rgba(247,242,232,0.15);
   align-items: baseline;
 }
@@ -356,6 +370,7 @@ html, body {
      ════════════════════════════════════════════════════════════ -->
 <div class="page">
   <div class="frame-top">
+    <!-- PASS2: positioning -->
     <span>INNMOBI.AI · CRM INMOBILIARIO</span>
     <span>BROCHURE 2026 · PÁG. 01 / 04</span>
   </div>
@@ -366,82 +381,79 @@ html, body {
       <div class="marker">№ 01 — POSICIONAMIENTO</div>
     </div>
 
+    <!-- PASS2: positioning -->
     <h1 class="h1 cover-h1">El sistema operativo<br/>para inmobiliarias<br/>que cierran <em>de verdad<span class="period">.</span></em></h1>
 
-    <p class="lead cover-lead">Un CRM construido desde cero para inmobiliarias mexicanas. Inteligencia que califica leads en la primera llamada, pipeline visual con drag-and-drop, integraciones nativas con WhatsApp Business y Mercado Libre. Probado en producción, todos los días, en una agencia activa de la Ciudad de México.</p>
+    <p class="lead cover-lead">Un agente de voz con IA, en español mexicano, para inmobiliarias. Atiende a quien pidió que lo contactaran, pre-califica, agenda visitas en los horarios de tu equipo y pasa a una persona. Una versión anterior de nuestro sistema la usó una inmobiliaria de remates bancarios en CDMX durante unos tres meses de 2026; ahora preparamos los primeros pilotos con la nueva plataforma.</p>
 
     <div class="spacer"></div>
 
     <div class="pillars">
       <div class="pillar">
         <div class="num">PILAR № 01</div>
-        <h3>Inteligencia que no se cansa</h3>
-        <p>Contesta a las once de la noche. Califica al lead en 90 segundos. Entrega un perfil completo al asesor antes de que cuelgue.</p>
+        <h3>Atiende a la primera</h3>
+        <p>En el piloto, el agente llamará en cuanto el lead pida contacto, también fuera de horario. Siempre se identificará como IA y entregará al asesor un perfil estructurado de lo que dijo.</p>
       </div>
       <div class="pillar">
         <div class="num">PILAR № 02</div>
-        <h3>Una sola fuente de verdad</h3>
-        <p>Llamadas, WhatsApp, web, citas y notas — todo en un timeline cronológico por prospecto. Cero pestañas, cero pérdidas.</p>
+        <h3>Un tablero para el equipo</h3>
+        <p>Llamadas, pre-calificaciones y visitas en un solo lugar, en vivo. Y una persona de tu equipo toma el relevo cuando hace falta.</p>
       </div>
       <div class="pillar">
         <div class="num">PILAR № 03</div>
-        <h3>Hecho con asesores en CDMX</h3>
-        <p>No se diseñó en un Notion. Se construyó en piso, vendiendo remates bancarios, con feedback de quien cierra.</p>
+        <h3>Aprendido en una inmobiliaria real</h3>
+        <p>De esa primera versión salieron las reglas que hoy aplicamos: qué pregunta un buen asesor, cuándo pasa la llamada a una persona y qué debe registrarse siempre.</p>
       </div>
     </div>
   </div>
 
   <div class="frame-bottom">
-    <span>POR ORZATECH · MX 🇲🇽</span>
+    <span>INNMOBI.AI · CIUDAD DE MÉXICO</span>
     <span>INNMOBI.AI</span>
   </div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
-     PAGE 2 — EL PRODUCTO, EN VIVO (4 capturas reales)
+     PAGE 2 — CÓMO FUNCIONA EL PILOTO
      ════════════════════════════════════════════════════════════ -->
 <div class="page">
   <div class="frame-top">
-    <span>EL PRODUCTO, EN VIVO</span>
+    <span>CÓMO FUNCIONA EL PILOTO</span>
     <span>BROCHURE 2026 · PÁG. 02 / 04</span>
   </div>
 
   <div class="page-body">
     <div class="cover-head">
       <div class="wordmark sm">Innmobi<span class="period">.</span>ai</div>
-      <div class="marker">№ 02 — CAPTURAS REALES</div>
+      <div class="marker">№ 02 — EL PILOTO</div>
     </div>
 
-    <h2 class="h2">Esto es lo que <em>tu equipo va a ver<span class="period">.</span></em></h2>
-    <p class="lead" style="max-width: 165mm; margin-top: 4mm;">No son mockups. Es el CRM corriendo en producción con datos demo. Lo que ves abajo es exactamente la herramienta que vas a usar el primer día.</p>
+    <h2 class="h2">Así funciona <em>el piloto<span class="period">.</span></em></h2>
+    <p class="lead" style="max-width: 165mm; margin-top: 4mm;">La plataforma se está construyendo ahora. Esto es lo que correrá en los primeros pilotos, de principio a fin.</p>
 
     <div class="product-grid">
-      <div class="shot">
-        <div class="shot-frame"><img src="../screenshots/01-dashboard.png" alt="Command Center"/></div>
-        <div class="h">№ 01 · COMMAND CENTER</div>
-        <div class="t">15 leads HOT que requieren atención hoy.</div>
-        <p>Tu asesor abre la app y sabe qué hacer en los próximos 60 minutos. Pipeline activo en pesos, conversión IA y leads sin contactar — todo en vivo.</p>
+      <div class="shot shot-step">
+        <div class="h">№ 01 · EL LEAD PIDE CONTACTO</div>
+        <div class="t">Formulario web o QR, con consentimiento explícito.</div>
+        <p>La persona deja su teléfono y acepta el aviso de privacidad. Sin llamadas en frío: solo contactamos a quien pidió que lo contactaran.</p>
       </div>
 
-      <div class="shot">
-        <div class="shot-frame"><img src="../screenshots/03-pipeline-kanban.png" alt="Pipeline kanban"/></div>
-        <div class="h">№ 02 · PIPELINE VISUAL</div>
-        <div class="t">Drag-and-drop por etapa. Una pantalla, todos los asesores.</div>
-        <p>Calificado · Cita · Visita · Oferta · Cierre. La transición se registra sola en el timeline del lead. El coordinador ve a 15 asesores a la vez.</p>
+      <div class="shot shot-step">
+        <div class="h">№ 02 · EL AGENTE LLAMA</div>
+        <div class="t">Voz de IA en español mexicano que se identifica como IA.</div>
+        <p>Hace las preguntas que haría un buen asesor: zona, presupuesto, tipo de operación. Pre-califica; no es una pre-aprobación de crédito.</p>
       </div>
 
-      <div class="shot">
-        <div class="shot-frame"><img src="../screenshots/04-lead-detail.png" alt="Lead 360"/></div>
-        <div class="h">№ 03 · LEAD 360°</div>
-        <div class="t">Perfil completo + tabs (Citas, Notas, AI Insights).</div>
-        <p>Llamar, WhatsApp, Email a un click. Privacidad LFPDPPP integrada. El asesor entra y sabe quién es el cliente sin abrir cinco apps.</p>
+      <div class="shot shot-step">
+        <div class="h">№ 03 · AGENDA Y CONFIRMA</div>
+        <div class="t">Visita reservada en los horarios de tu equipo.</div>
+        <p>La confirmación llega por correo o SMS, y por WhatsApp cuando Meta apruebe el número. Si el lead pide hablar con una persona, el agente la pasa.</p>
       </div>
 
-      <div class="shot">
-        <div class="shot-frame"><img src="../screenshots/06-analytics.png" alt="Analytics"/></div>
-        <div class="h">№ 04 · ANALYTICS</div>
-        <div class="t">Embudo de conversión por etapa, en tiempo real.</div>
-        <p>Pipeline · Equipo · Canales · Pérdidas. El coordinador no espera al lunes para saber qué pasó. Las cifras viven, no se calculan.</p>
+      <div class="shot shot-step">
+        <div class="h">№ 04 · TU EQUIPO LO VE EN VIVO</div>
+        <div class="t">Un tablero con llamadas, pre-calificaciones y visitas.</div>
+        <p>El coordinador sabe qué pasó sin esperar al lunes, y cada visita llega al asesor con el perfil de lo que dijo el lead.</p>
       </div>
     </div>
 
@@ -449,7 +461,7 @@ html, body {
   </div>
 
   <div class="frame-bottom">
-    <span>POR ORZATECH · MX 🇲🇽</span>
+    <span>INNMOBI.AI · CIUDAD DE MÉXICO</span>
     <span>INNMOBI.AI</span>
   </div>
 </div>
@@ -459,69 +471,62 @@ html, body {
      ════════════════════════════════════════════════════════════ -->
 <div class="page">
   <div class="frame-top">
-    <span>CAPACIDADES · STACK</span>
+    <span>EL PILOTO · STACK</span>
     <span>BROCHURE 2026 · PÁG. 03 / 04</span>
   </div>
 
   <div class="page-body">
     <div class="cover-head">
       <div class="wordmark sm">Innmobi<span class="period">.</span>ai</div>
-      <div class="marker">№ 03 — CAPACIDADES</div>
+      <div class="marker">№ 03 — QUÉ INCLUYE</div>
     </div>
 
-    <h2 class="h2">Ocho funciones <em>core<span class="period">.</span></em></h2>
+    <h2 class="h2">Ocho piezas <em>del piloto<span class="period">.</span></em></h2>
 
     <div class="feature-grid">
       <div class="feature-cell">
-        <div class="ico"><img src="../images/feature-icons/01-ai-lead-qualification.svg" alt=""/></div>
-        <div><h3>Captura + perfilado IA</h3><p>Voz ElevenLabs + WhatsApp + web. Claude perfila en la primera interacción.</p></div>
-      </div>
-      <div class="feature-cell">
-        <div class="ico"><img src="../images/feature-icons/03-pipeline-kanban.svg" alt=""/></div>
-        <div><h3>Pipeline visual</h3><p>Kanban drag-and-drop. Cada transición se registra en el timeline.</p></div>
-      </div>
-      <div class="feature-cell">
         <div class="ico"><img src="../images/feature-icons/02-multi-channel.svg" alt=""/></div>
-        <div><h3>Timeline unificado</h3><p>Cinco canales en un hilo cronológico, buscable, exportable.</p></div>
+        <div><h3>Captura con consentimiento</h3><p>Formulario web o QR. El lead acepta el aviso de privacidad antes de que lo llamemos.</p></div>
       </div>
       <div class="feature-cell">
-        <div class="ico"><img src="../images/feature-icons/05-whatsapp.svg" alt=""/></div>
-        <div><h3>WhatsApp Business</h3><p>21 plantillas Meta + free-form 24h + envío masivo segmentado.</p></div>
-      </div>
-      <div class="feature-cell">
-        <div class="ico"><img src="../images/feature-icons/07-calendar.svg" alt=""/></div>
-        <div><h3>Citas + Google Calendar</h3><p>Sync bidireccional. Conflictos detectados, recordatorios automáticos.</p></div>
-      </div>
-      <div class="feature-cell">
-        <div class="ico"><img src="../images/feature-icons/04-analytics.svg" alt=""/></div>
-        <div><h3>Analytics en vivo</h3><p>Funnel, velocity, forecast, ROI por canal, leaderboard.</p></div>
+        <div class="ico"><img src="../images/feature-icons/01-ai-lead-qualification.svg" alt=""/></div>
+        <div><h3>Agente de voz con IA</h3><p>Español mexicano. Siempre se identifica como IA y no cierra ventas: califica y agenda.</p></div>
       </div>
       <div class="feature-cell">
         <div class="ico"><img src="../images/feature-icons/06-properties.svg" alt=""/></div>
-        <div><h3>Seis verticales</h3><p>Remates, preventa, corretaje, recuperadas, reventa, rentas.</p></div>
+        <div><h3>Pre-calificación</h3><p>Zona, presupuesto y tipo de operación. Nunca “pre-aprobación” de crédito.</p></div>
+      </div>
+      <div class="feature-cell">
+        <div class="ico"><img src="../images/feature-icons/07-calendar.svg" alt=""/></div>
+        <div><h3>Agenda de visitas</h3><p>Reserva en los horarios que tu equipo define.</p></div>
+      </div>
+      <div class="feature-cell">
+        <div class="ico"><img src="../images/feature-icons/05-whatsapp.svg" alt=""/></div>
+        <div><h3>Confirmación</h3><p>Por correo o SMS; por WhatsApp Business cuando Meta apruebe el número.</p></div>
+      </div>
+      <div class="feature-cell">
+        <div class="ico"><img src="../images/feature-icons/04-analytics.svg" alt=""/></div>
+        <div><h3>Tablero en vivo</h3><p>Llamadas, pre-calificaciones y visitas para todo el equipo.</p></div>
+      </div>
+      <div class="feature-cell">
+        <div class="ico"><img src="../images/feature-icons/03-pipeline-kanban.svg" alt=""/></div>
+        <div><h3>Traspaso a una persona</h3><p>Si el lead lo pide, o el agente no puede resolver, pasa a un humano.</p></div>
       </div>
       <div class="feature-cell">
         <div class="ico"><img src="../images/feature-icons/08-marketplace.svg" alt=""/></div>
-        <div><h3>Mercado Libre sync</h3><p>Publica/despublica con un click. Auto-sync al editar.</p></div>
+        <div><h3>Solo quien pidió contacto</h3><p>Sin llamadas en frío. Un registro de quién aceptó ser contactado.</p></div>
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" style="margin-top: 12mm;">
       <div class="marker" style="margin-bottom: 4mm;">№ 04 — STACK</div>
-      <h2 class="h2" style="font-size: 22px;">Construido <em>production-grade<span class="period">.</span></em></h2>
+      <h2 class="h2" style="font-size: 22px;">Las piezas <em>técnicas<span class="period">.</span></em></h2>
       <div class="stack-row">
-        <span class="stack-pill">FastAPI</span>
-        <span class="stack-pill">Python 3.12</span>
-        <span class="stack-pill">React 18</span>
-        <span class="stack-pill">TypeScript</span>
-        <span class="stack-pill">PostgreSQL 16</span>
-        <span class="stack-pill">Tailwind CSS</span>
-        <span class="stack-pill">Anthropic Claude</span>
-        <span class="stack-pill">ElevenLabs Agents</span>
-        <span class="stack-pill">Meta WhatsApp</span>
-        <span class="stack-pill">Mercado Libre API</span>
-        <span class="stack-pill">Google Calendar</span>
-        <span class="stack-pill">Docker · Coolify</span>
+        <span class="stack-pill">Backend en Python</span>
+        <span class="stack-pill">PostgreSQL</span>
+        <span class="stack-pill">Voz con ElevenLabs</span>
+        <span class="stack-pill">Telefonía con Twilio</span>
+        <span class="stack-pill">Mensajería por WhatsApp Business API (en alta con Meta)</span>
       </div>
     </div>
 
@@ -529,48 +534,53 @@ html, body {
   </div>
 
   <div class="frame-bottom">
-    <span>POR ORZATECH · MX 🇲🇽</span>
+    <span>INNMOBI.AI · CIUDAD DE MÉXICO</span>
     <span>INNMOBI.AI</span>
   </div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
-     PAGE 4 — CASO AGNOR + TESTIMONIO + CTA
+     PAGE 4 — LO QUE APRENDIMOS + CTA
      ════════════════════════════════════════════════════════════ -->
 <div class="page page-4">
   <div class="frame-top">
-    <span>CASO DE ESTUDIO · CONTACTO</span>
+    <span>APRENDIZAJES · CONTACTO</span>
     <span>BROCHURE 2026 · PÁG. 04 / 04</span>
   </div>
 
   <div class="page-body">
     <div class="cover-head">
       <div class="wordmark sm">Innmobi<span class="period">.</span>ai</div>
-      <div class="marker">№ 05 — CASO DE ESTUDIO</div>
+      <div class="marker">№ 05 — LO QUE APRENDIMOS</div>
     </div>
 
     <div class="case-study">
-      <div class="label">CDMX · 2025-2026</div>
-      <h2>AGNOR Inmobiliaria opera <em>100%<span class="period">.</span></em> sobre Innmobi.ai.</h2>
+      <div class="label">CDMX · 2026</div>
+      <h2>Lo que aprendimos <em>en la primera versión<span class="period">.</span></em></h2>
 
-      <p>Especialistas en remates bancarios en la Ciudad de México. Antes: Excel, WhatsApps en celulares de asesores, doble captura en Mercado Libre, SLA invisible. Hoy: pipeline unificado en <code>crm.agnorinmobiliaria.com</code>, agente de voz IA, sync con ML, analytics en vivo.</p>
+      <p>Una inmobiliaria de remates bancarios en CDMX, con un equipo de unas 15 personas, usó una versión anterior de nuestro sistema durante unos tres meses de 2026. No publicamos cifras de resultados de esa etapa, porque no las medimos con el rigor que exige un cliente nuevo. Lo que sí podemos contar son los errores que encontramos en el agente de voz y lo que aprendimos de ellos:</p>
 
-      <div class="quote">
-        <div class="text">"Antes le dedicaba dos horas al lunes haciendo el reporte semanal en Excel. Ahora abro Analytics y todo está. Y si un asesor está dejando enfriar leads, el sistema me avisa antes que el cliente reclame."</div>
-        <div class="attr">COORDINADORA · AGNOR INMOBILIARIA · CDMX</div>
-      </div>
+      <ul class="lessons">
+        <li>Dejar que un LLM decida las transiciones de la conversación falla; las reglas deterministas no.</li>
+        <li>Campos que el agente captaba se perdían en silencio al guardarse.</li>
+        <li>Un calendario de horarios fijos no sirve; la agenda debe leer los horarios reales del equipo.</li>
+        <li>Cada llamada a una herramienta suma latencia que el lead escucha como silencio.</li>
+        <li>Líneas que quedaban abiertas después de la despedida.</li>
+      </ul>
+
+      <p>Con llamantes simulados, el porcentaje de pruebas aprobadas subió de 40% a 87% al iterar el agente (por ejemplo, con reglas explícitas en vez de transiciones juzgadas por el modelo y con cierres de texto fijo). Esa cifra mide pruebas, no ventas. Con estas lecciones diseñamos la plataforma nueva. Ahora medimos resultados en pilotos y publicaremos números solo con el consentimiento escrito del cliente.</p>
 
       <div class="case-stats">
-        <div class="case-stat"><div class="num">15+</div><div class="lab">Asesores</div></div>
-        <div class="case-stat"><div class="num">04</div><div class="lab">Roles</div></div>
-        <div class="case-stat"><div class="num">06</div><div class="lab">Verticales</div></div>
-        <div class="case-stat"><div class="num">24/7</div><div class="lab">Uptime</div></div>
+        <div class="case-stat"><div class="num">~15</div><div class="lab">Personas en el equipo</div></div>
+        <div class="case-stat"><div class="num">~3</div><div class="lab">Meses de uso, 2026</div></div>
+        <div class="case-stat"><div class="num">40→87%</div><div class="lab">Pruebas con llamantes simulados</div></div>
       </div>
     </div>
 
     <div class="cta-banner">
       <h2>¿Hablamos<span class="period">?</span></h2>
-      <p>Demo en vivo de 30 minutos. $4,000 MXN/mes con usuarios ilimitados. Implementación en 4 semanas con migración desde tu sistema actual.</p>
+      <!-- PASS2: positioning -->
+      <p>Conversación de 30 minutos sobre tu operación. $4,000 MXN/mes con usuarios ilimitados, más implementación única de $20,000 MXN. Precios + IVA.</p>
       <div class="cta-rows">
         <div class="cta-row">
           <span class="label">WHATSAPP</span>
@@ -587,8 +597,8 @@ html, body {
   </div>
 
   <div class="frame-bottom">
-    <span>© 2026 ORZATECH · ALL RIGHTS RESERVED</span>
-    <span>INNMOBI.AI · MX 🇲🇽</span>
+    <span>© 2026 ANDRÉS ISLAS BRAVO · TODOS LOS DERECHOS RESERVADOS</span>
+    <span>INNMOBI.AI · CDMX</span>
   </div>
 </div>
 

@@ -1,5 +1,5 @@
 // Innmobi.ai — Render social media profiles + covers
-// Genera todos los assets de perfil para Instagram, Facebook, LinkedIn (personal + company), X.
+// Genera todos los assets de perfil para Instagram, Facebook, LinkedIn (personal + company).
 // Output: images/social/*.png
 //
 // Usage: PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers node scripts/render-social-profiles.mjs
@@ -40,7 +40,7 @@ const profileHTML = (variant) => {
 // Cover: 5 plataformas × 2 variantes (light/dark) = 10
 // Layout: top frame (eyebrow + meta), brass divider, headline center, brass divider, bottom frame (wordmark + meta)
 
-const coverHTML = ({ width, height, variant, headline, subhead = '', topLeft = 'INNMOBI.AI · CDMX · 2026', topRight = 'CRM INMOBILIARIO · IA NATIVA', headlineScale = 0.18 }) => {
+const coverHTML = ({ width, height, variant, headline, subhead = '', topLeft = 'INNMOBI.AI · CDMX · 2026', topRight = 'AGENTE DE VOZ CON IA', headlineScale = 0.18 }) => {
   const themes = {
     light: { bg: '#F2EFE9', text: '#0F0F10', muted: '#4A4A52', frame: '#A77E2B', em: '#1F3A2D', wmPeriod: '#A77E2B', wm: '#0F0F10' },
     dark:  { bg: '#0F0F10', text: '#F2EFE9', muted: '#A8A6A0', frame: '#A77E2B', em: '#C9A661', wmPeriod: '#A77E2B', wm: '#F2EFE9' },
@@ -113,60 +113,48 @@ const TARGETS = [
   { name: 'profile-brass-1024',  size: { width: 1024, height: 1024 }, html: profileHTML('brass') },
   { name: 'profile-ink-1024',    size: { width: 1024, height: 1024 }, html: profileHTML('ink') },
   { name: 'profile-bone-1024',   size: { width: 1024, height: 1024 }, html: profileHTML('bone') },
-  // Smaller profile size for some platforms (X uses 400 source)
+  // Smaller profile size for some platforms (400 source)
   { name: 'profile-brass-400',   size: { width: 400,  height: 400  }, html: profileHTML('brass') },
 
   // Facebook cover (1640×856 source, FB renders 851×315)
   { name: 'cover-facebook-light', size: { width: 1640, height: 856 }, html: coverHTML({
     width: 1640, height: 856, variant: 'light', headlineScale: 0.13,
     headline: 'El sistema operativo<br/>para inmobiliarias <em>que cierran de verdad.</em>',
-    subhead: 'CRM con IA · WhatsApp Business · Mercado Libre · CDMX'
+    subhead: 'Agente de voz con IA · Pilotos 2026 · CDMX'
   })},
   { name: 'cover-facebook-dark',  size: { width: 1640, height: 856 }, html: coverHTML({
     width: 1640, height: 856, variant: 'dark', headlineScale: 0.13,
     headline: 'El sistema operativo<br/>para inmobiliarias <em>que cierran de verdad.</em>',
-    subhead: 'CRM con IA · WhatsApp Business · Mercado Libre · CDMX'
+    subhead: 'Agente de voz con IA · Pilotos 2026 · CDMX'
   })},
 
   // LinkedIn personal profile banner (1584×396, ratio 4:1)
   { name: 'cover-linkedin-personal-light', size: { width: 1584, height: 396 }, html: coverHTML({
     width: 1584, height: 396, variant: 'light', headlineScale: 0.18,
     headline: 'Sistema operativo para inmobiliarias. <em>De verdad.</em>',
-    topRight: 'INNMOBI.AI · ORZATECH'
+    topRight: 'INNMOBI.AI · CDMX'
   })},
   { name: 'cover-linkedin-personal-dark', size: { width: 1584, height: 396 }, html: coverHTML({
     width: 1584, height: 396, variant: 'dark', headlineScale: 0.18,
     headline: 'Sistema operativo para inmobiliarias. <em>De verdad.</em>',
-    topRight: 'INNMOBI.AI · ORZATECH'
+    topRight: 'INNMOBI.AI · CDMX'
   })},
 
   // LinkedIn company page banner (1128×191, ratio ~5.9:1, muy aplastado)
   { name: 'cover-linkedin-company-light', size: { width: 1128, height: 191 }, html: coverHTML({
     width: 1128, height: 191, variant: 'light', headlineScale: 0.30,
-    headline: 'CRM Inmobiliario con IA <em>nativa.</em>',
+    headline: 'Agente de voz con IA <em>para inmobiliarias.</em>',
     topRight: 'CDMX 🇲🇽'
   })},
   { name: 'cover-linkedin-company-dark', size: { width: 1128, height: 191 }, html: coverHTML({
     width: 1128, height: 191, variant: 'dark', headlineScale: 0.30,
-    headline: 'CRM Inmobiliario con IA <em>nativa.</em>',
+    headline: 'Agente de voz con IA <em>para inmobiliarias.</em>',
     topRight: 'CDMX 🇲🇽'
-  })},
-
-  // X (Twitter) header (1500×500, ratio 3:1)
-  { name: 'cover-x-light', size: { width: 1500, height: 500 }, html: coverHTML({
-    width: 1500, height: 500, variant: 'light', headlineScale: 0.16,
-    headline: 'Sistema operativo para inmobiliarias. <em>De verdad.</em>',
-    subhead: 'CRM · IA · WhatsApp · Mercado Libre · CDMX'
-  })},
-  { name: 'cover-x-dark', size: { width: 1500, height: 500 }, html: coverHTML({
-    width: 1500, height: 500, variant: 'dark', headlineScale: 0.16,
-    headline: 'Sistema operativo para inmobiliarias. <em>De verdad.</em>',
-    subhead: 'CRM · IA · WhatsApp · Mercado Libre · CDMX'
   })},
 
   // Instagram highlight covers (round on profile, source 1080×1080)
   { name: 'ig-highlight-producto',  size: { width: 1080, height: 1080 }, html: highlightHTML({ label: 'Producto' }) },
-  { name: 'ig-highlight-casos',     size: { width: 1080, height: 1080 }, html: highlightHTML({ label: 'Casos' }) },
+  { name: 'ig-highlight-casos',     size: { width: 1080, height: 1080 }, html: highlightHTML({ label: 'Lecciones' }) },
   { name: 'ig-highlight-equipo',    size: { width: 1080, height: 1080 }, html: highlightHTML({ label: 'Equipo' }) },
   { name: 'ig-highlight-recursos',  size: { width: 1080, height: 1080 }, html: highlightHTML({ label: 'Recursos' }) },
 ];

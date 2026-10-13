@@ -37,6 +37,11 @@ async function main() {
     await renderPage(page, layout, partials, data);
   }
 
+  // Redirect stubs for renamed URLs (GitHub Pages cannot do server-side redirects)
+  for (const r of data.redirects || []) {
+    await writeRedirect(r.from, r.to, data.site.url);
+  }
+
   // Generate sitemap.xml
   await writeSitemap(allPages, data.site.url);
 
@@ -111,8 +116,34 @@ async function renderPage(page, layout, partials, data) {
     vars[key] !== undefined ? String(vars[key]) : ''
   );
 
+  // Internal notes (PASS2 markers, legal TODOs) live in src/ only: never publish HTML comments.
+  html = html.replace(/<!--[\s\S]*?-->/g, '');
+
   await fs.writeFile(outFile, html, 'utf-8');
   console.log(`  ✓ ${path.relative(ROOT, outFile)}`);
+}
+
+async function writeRedirect(from, to, siteUrl) {
+  const target = `${siteUrl}/${to}/`;
+  const html = `<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esta página cambió de dirección · Innmobi.ai</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="${target}">
+<meta http-equiv="refresh" content="0; url=/${to}/">
+</head>
+<body>
+<p>Esta página cambió de dirección. <a href="/${to}/">Ir a la nueva dirección</a>.</p>
+</body>
+</html>
+`;
+  const dir = path.join(OUT, from);
+  await fs.mkdir(dir, { recursive: true });
+  await fs.writeFile(path.join(dir, 'index.html'), html, 'utf-8');
+  console.log(`  ✓ redirect /${from}/ → /${to}/`);
 }
 
 function buildJsonLd(page, data, isPost) {
@@ -126,7 +157,7 @@ function buildJsonLd(page, data, isPost) {
       name: 'Innmobi.ai',
       url: data.site.url,
       logo: `${data.site.url}/assets/images/logo-innmobi-ai.svg`,
-      sameAs: [data.site.social.linkedin, data.site.social.x, data.site.social.instagram].filter(Boolean),
+      sameAs: [data.site.social.facebook, data.site.social.instagram].filter(Boolean),
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'sales',
@@ -151,7 +182,7 @@ function buildJsonLd(page, data, isPost) {
         '@type': 'AggregateOffer',
         priceCurrency: 'MXN',
         lowPrice: '4000',
-        availability: 'https://schema.org/InStock',
+        availability: 'https://schema.org/PreOrder',
         url: `${data.site.url}/precios/`,
       },
     });
@@ -161,10 +192,18 @@ function buildJsonLd(page, data, isPost) {
     const breadcrumbItems = [{ name: 'Inicio', url: data.site.url + '/' }];
     const parts = page.slug.split('/');
     let acc = '';
-    for (const p of parts) {
+    const crumbNames = { 'casos-de-exito': 'Aprendizajes' };
+    const knownSlugs = new Set([...data.pages, ...data.posts].map((x) => x.slug));
+    parts.forEach((p, idx) => {
       acc += p + '/';
-      breadcrumbItems.push({ name: titleCase(p.replace(/-/g, ' ')), url: data.site.url + '/' + acc });
-    }
+      const isLast = idx === parts.length - 1;
+      // Skip intermediate segments that are not real pages (e.g. /legal/ does not exist).
+      if (!isLast && !knownSlugs.has(acc.slice(0, -1))) return;
+      const name = isLast && page.title
+        ? page.title.split(' · ')[0]
+        : (crumbNames[p] || titleCase(p.replace(/-/g, ' ')));
+      breadcrumbItems.push({ name, url: data.site.url + '/' + acc });
+    });
     blocks.push({
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',

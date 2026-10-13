@@ -11,6 +11,7 @@
   <line x1="80" y1="80" x2="1120" y2="80" stroke="#A77E2B" stroke-width="1"/>
   <line x1="80" y1="550" x2="1120" y2="550" stroke="#D4D2CB" stroke-width="1"/>
 
+  <!-- PASS2: positioning -->
   <!-- Top eyebrow -->
   <g font-family="'JetBrains Mono','Menlo',monospace" font-size="14" letter-spacing="4" fill="#4A4A52">
     <text x="80" y="106">INNMOBI.AI</text>
@@ -33,7 +34,7 @@
 
   <!-- Footer -->
   <g font-family="'JetBrains Mono','Menlo',monospace" font-size="13" letter-spacing="3" fill="#7C7C82">
-    <text x="80" y="582">ORZATECH · CDMX 🇲🇽</text>
+    <text x="80" y="582">CIUDAD DE MÉXICO</text>
     <text x="1120" y="582" text-anchor="end">INNMOBI.AI</text>
   </g>
 </svg>

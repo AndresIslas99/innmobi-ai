@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
+<title>Lo que aprendimos con un agente de voz en una inmobiliaria de remates en CDMX</title>
+<meta name="description" content="Lecciones técnicas de una primera versión usada unos tres meses de 2026 en CDMX: transiciones, campos perdidos, agenda, latencia y líneas abiertas."/>
+<meta name="theme-color" content="#0F0F10"/>
+<meta name="color-scheme" content="light"/>
+<meta name="format-detection" content="telephone=no"/>
+<link rel="canonical" href="https://innmobi.ai/recursos/lo-que-aprendimos-agente-de-voz/"/>
+
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Lo que aprendimos con un agente de voz en una inmobiliaria de remates en CDMX"/>
+<meta property="og:description" content="Lecciones técnicas de una primera versión usada unos tres meses de 2026 en CDMX: transiciones, campos perdidos, agenda, latencia y líneas abiertas."/>
+<meta property="og:image" content="https://innmobi.ai/og/blog-voz.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:url" content="https://innmobi.ai/recursos/lo-que-aprendimos-agente-de-voz/"/>
+<meta property="og:site_name" content="Innmobi.ai"/>
+<meta property="og:locale" content="es_MX"/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Lo que aprendimos con un agente de voz en una inmobiliaria de remates en CDMX"/>
+<meta name="twitter:description" content="Lecciones técnicas de una primera versión usada unos tres meses de 2026 en CDMX: transiciones, campos perdidos, agenda, latencia y líneas abiertas."/>
+<meta name="twitter:image" content="https://innmobi.ai/og/blog-voz.png"/>
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="icon" type="image/svg+xml" href="/assets/images/logo-innmobi-ai-icon.svg"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/manifest.webmanifest"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/css/styles.css"/>
+
+<script defer data-domain="innmobi.ai" src="https://plausible.io/js/script.js"></script>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://innmobi.ai/"},{"@type":"ListItem","position":2,"name":"Recursos","item":"https://innmobi.ai/recursos/"},{"@type":"ListItem","position":3,"name":"Lo que aprendimos con un agente de voz en una inmobiliaria de remates en CDMX","item":"https://innmobi.ai/recursos/lo-que-aprendimos-agente-de-voz/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Lo que aprendimos con un agente de voz en una inmobiliaria de remates en CDMX","description":"Lecciones técnicas de una primera versión usada unos tres meses de 2026 en CDMX: transiciones, campos perdidos, agenda, latencia y líneas abiertas.","datePublished":"2026-10-12","author":{"@type":"Organization","name":"Innmobi.ai"},"publisher":{"@type":"Organization","name":"Innmobi.ai","logo":{"@type":"ImageObject","url":"https://innmobi.ai/assets/images/logo-innmobi-ai.svg"}},"image":"https://innmobi.ai/og/blog-voz.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://innmobi.ai/recursos/lo-que-aprendimos-agente-de-voz/"}}</script>
+</head>
+<body class="page-recursos-lo-que-aprendimos-agente-de-voz">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="Innmobi.ai — inicio">
+      <span class="wordmark">Innmobi<span class="period">.</span>ai</span>
+    </a>
+    <nav class="header-nav" aria-label="Principal">
+      <a href="/producto/">Producto</a>
+      <a href="/precios/">Precios</a>
+      <a href="/casos-de-exito/">Aprendizajes</a>
+      <a href="/recursos/">Recursos</a>
+      <details class="nav-dropdown">
+        <summary>Empresa</summary>
+        <div class="nav-dropdown-menu">
+          <a href="/sobre-nosotros/">Sobre nosotros</a>
+          <a href="/seguridad/">Seguridad</a>
+        </div>
+      </details>
+    </nav>
+    <a href="/demo/" class="btn btn-primary nav-cta">Reservar demo</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-drawer" hidden>
+    <a href="/producto/">Producto</a>
+    <a href="/precios/">Precios</a>
+    <a href="/casos-de-exito/">Aprendizajes</a>
+    <a href="/recursos/">Recursos</a>
+    <a href="/sobre-nosotros/">Sobre nosotros</a>
+    <a href="/seguridad/">Seguridad</a>
+    <a href="/demo/" class="btn btn-primary">Reservar demo</a>
+  </div>
+</header>
+
+
+<main id="main">
+<article class="blog-post">
+  <div class="container narrow">
+    <nav class="breadcrumb"><a href="/recursos/">Recursos</a> · Aprendizajes</nav>
+    <div class="post-meta">
+      <span class="post-eyebrow">APRENDIZAJES · 9 MIN DE LECTURA</span>
+      <time datetime="2026-10-12">12 octubre 2026</time>
+    </div>
+    <h1>Lo que aprendimos con un agente de voz en <em>una inmobiliaria de remates en CDMX</em>.</h1>
+    <p class="post-lead">Una versión anterior de nuestro sistema la usó, durante unos tres meses de 2026, el equipo de una inmobiliaria de remates bancarios. Esto es lo que falló, lo que aprendimos y las reglas que llevamos a la plataforma nueva. Sin métricas de negocio: todavía no las tenemos.</p>
+
+    <div class="post-body">
+      <p>Este texto reemplaza una versión anterior que presentaba el proyecto como un caso de éxito, con métricas y testimonios. Esa versión no tenía el respaldo que debía tener. La retiramos. Lo que queda es lo que sí podemos sostener: qué construimos, qué falló y qué cambiamos.</p>
+
+      <p>Una aclaración: no nombramos al cliente, no publicamos cifras de su operación ni citamos a su gente. Es una historia sobre nuestro trabajo, no sobre su negocio.</p>
+
+      <h2>Qué fue, en concreto.</h2>
+
+      <p>Una inmobiliaria de remates bancarios en CDMX, con un equipo de unas 15 personas, usó una versión anterior de nuestro sistema durante unos tres meses de 2026. Era un CRM web con un asistente de voz que contestaba llamadas entrantes y un asistente de WhatsApp. Estaba hecho a la medida de ese cliente: sus textos, sus catálogos, sus reglas.</p>
+
+      <p>Ese último punto importa. Por eso <strong>no ofrecemos esa versión a clientes nuevos</strong>. Estamos construyendo una plataforma desde cero, para varios clientes, y llevándole las reglas que aprendimos y algunas piezas ya probadas.</p>
+
+      <h2>Lo que no te vamos a contar.</h2>
+
+      <p>No tenemos cifras de conversión, de tiempos de respuesta ni de cierres que podamos defender en público. En esos tres meses el equipo del cliente usó el sistema, encontró fallas y ahí aprendimos mucho. Pero aprender no es medir. Si alguien te muestra números de esa operación, no vienen de nosotros.</p>
+
+      <h2>Lo que aprendimos del agente de voz.</h2>
+
+      <p>Estos cinco errores nos costaron muchas iteraciones. Son específicos, y por eso creemos que sirven más que un testimonio.</p>
+
+      <h3>№ 01 — Las transiciones que decide el modelo fallan.</h3>
+
+      <p>En el flujo de la llamada, la mayoría de los pasos de una etapa a otra los decidía el propio modelo de lenguaje ("¿ya tengo el dato? ¿paso a lo siguiente?"). En decisiones binarias, eso falla: a veces avanza antes de tiempo y a veces se queda atorado. Lo que sí funcionó fue sustituir esos juicios por condiciones explícitas y por textos fijos en los momentos críticos. En nuestras pruebas internas con llamantes simulados, la tasa de aprobación pasó de 40% a 87%. Ojo: son simulaciones nuestras, no clientes reales ni una métrica de negocio.</p>
+
+      <h3>№ 02 — Los campos se pierden en silencio.</h3>
+
+      <p>El agente capturaba un dato, pero en el camino al sistema alguna capa lo descartaba sin avisar: una lista de campos permitidos que no incluía el nuevo, una respuesta de herramienta que apuntaba a un campo que no existía. Incluso una preferencia de "no me contacten" se perdió así. Lo aprendido: cada campo se prueba de punta a punta, y un dato que no se pudo guardar tiene que fallar con ruido, no en silencio.</p>
+
+      <h3>№ 03 — La agenda con horarios fijos no es una agenda.</h3>
+
+      <p>La reserva por voz ofrecía una tabla fija de horarios y, si algo no cuadraba, asignaba a un asesor por defecto. La verificación de que el horario estuviera libre llegaba después de que el agente ya había confirmado la cita. Un agente que confirma antes de revisar es un agente que le miente al cliente. Lo aprendido: la disponibilidad real se consulta dentro de la llamada, antes de confirmar, y la confirmación al cliente es parte de agendar, no un extra.</p>
+
+      <h3>№ 04 — Cada salto de herramienta suma latencia.</h3>
+
+      <p>Una pausa de un par de segundos en una llamada se siente muy larga. Cada vez que el agente consulta una herramienta (inventario, agenda, CRM) agrega tiempo, y varias seguidas se notan. Lo aprendido: menos saltos por turno, medir los percentiles altos y no solo el promedio, y decidir qué se puede resolver sin consultar nada.</p>
+
+      <h3>№ 05 — Las líneas se quedaban abiertas después de la despedida.</h3>
+
+      <p>El agente se despedía, pero la llamada seguía abierta y a veces volvía a hablar. Lo aprendido: la despedida y el cierre son texto fijo y una condición explícita de fin de llamada, no una frase generada.</p>
+
+      <h2>Lo que aprendimos de los mensajes y de los permisos.</h2>
+
+      <ul>
+        <li><strong>Los mensajes automáticos se duplican si no los cuidas.</strong> Es un error clásico: varios procesos programan el mismo envío y cada recordatorio sale varias veces. Lo encontramos en una revisión interna y fue error nuestro. Regla para la plataforma nueva: cada envío es idempotente.</li>
+        <li><strong>La confirmación al agendar por voz era una tarea pendiente.</strong> Había recordatorios a 24 y 1 hora, pero el cliente no recibía confirmación al instante. Es el tipo de hueco que un cliente nota primero, y por eso la confirmación es parte de agendar en la plataforma nueva.</li>
+        <li><strong>Un error de permisos es un error de confianza.</strong> Vimos que un usuario con rol de asesor podía ver todos los leads. De ahí salió una regla: cada quien ve lo suyo y los datos de contacto se ocultan hasta que el lead está asignado.</li>
+        <li><strong>La retroalimentación de quien usa la herramienta fue la mejor fuente de requisitos.</strong> Nueve ajustes concretos en pocos días, de gente que la usaba cada día. Ningún estudio de mercado nos habría dado eso.</li>
+      </ul>
+
+      <h2>Lo que llevamos a la plataforma nueva.</h2>
+
+      <p>No el código tal cual. Las reglas:</p>
+
+      <ol>
+        <li><strong>La IA siempre se identifica</strong> como IA, avisa si la llamada se graba y pasa la conversación a una persona. Con texto fijo, no generado.</li>
+        <li><strong>Pre-calificación, nunca pre-aprobación.</strong> El agente pregunta y registra lo que la persona declara. No evalúa ni promete crédito.</li>
+        <li><strong>Un lead, un registro.</strong> El teléfono es la llave para unir llamada, WhatsApp y formulario en una sola historia.</li>
+        <li><strong>Agenda con los horarios reales del equipo,</strong> revisados antes de confirmar.</li>
+        <li><strong>Consentimiento explícito antes de preguntar por datos financieros</strong> y una lista de "no contactar" que de verdad se guarda.</li>
+        <li><strong>El agente contacta a quien pidió que lo contactaran.</strong> Nada de llamadas en frío.</li>
+        <li><strong>Pruebas con llamantes simulados y por campo,</strong> antes de poner un agente delante de un cliente.</li>
+      </ol>
+
+      <h2>Qué sigue: medir en pilotos.</h2>
+
+      <p>Lo que vamos a probar en pilotos: un formulario web o QR con consentimiento explícito, un agente de voz con IA en español mexicano, pre-calificación, agenda de visitas en los horarios del equipo, confirmación por correo o SMS (y por WhatsApp cuando Meta apruebe nuestro número), un tablero en vivo para el equipo y traspaso a una persona.</p>
+
+      <p>Ahora medimos resultados con pilotos. Publicaremos números solo cuando existan, y solo con el consentimiento por escrito del cliente. Hasta entonces, desconfía de cualquier cifra nuestra que no tenga una fuente.</p>
+    </div>
+
+    
+    <div class="post-cta">
+      <span class="label">PILOTOS</span>
+      <h3>¿Quieres ser parte <em>de lo que medimos?</em></h3>
+      <p>Treinta minutos. Te contamos qué vamos a probar, qué te pediríamos y qué publicaremos solo con tu permiso por escrito. Si no encajamos, te lo decimos.</p>
+      <a href="/demo/" class="btn">Hablemos →</a>
+    </div>
+
+    <div class="related">
+      <h4>Lecturas relacionadas</h4>
+      <a href="/casos-de-exito/aprendizajes/">Versión corta de esta historia →</a>
+      <a href="/recursos/whatsapp-business-api-pipeline/">WhatsApp Business API en tu pipeline →</a>
+      <a href="/recursos/mercado-libre-inmuebles-integracion/">Mercado Libre Inmuebles: integración oficial vs scraping vs manual →</a>
+    </div>
+  </div>
+</article>
+</main>
+
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="wordmark">Innmobi<span class="period">.</span>ai</span>
+      
+      <p class="footer-tag">El sistema operativo para inmobiliarias que cierran de verdad.</p>
+      <p class="footer-meta">Operado por Andrés Islas Bravo, persona física con actividad empresarial (RESICO) · Ciudad de México, México</p>
+    </div>
+
+    <nav class="footer-col" aria-label="Producto">
+      <h4>Producto</h4>
+      <a href="/producto/">Cómo funciona</a>
+      <a href="/precios/">Precios</a>
+      <a href="/demo/">Reservar demo</a>
+      <a href="/assets/brochure.pdf">Brochure (PDF)</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Empresa">
+      <h4>Empresa</h4>
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+      <a href="/casos-de-exito/">Aprendizajes</a>
+      <a href="/seguridad/">Seguridad</a>
+      <a href="/recursos/">Recursos</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Legal">
+      <h4>Legal</h4>
+      <a href="/legal/terminos/">Términos</a>
+      <a href="/legal/privacidad/">Aviso de privacidad</a>
+      <a href="mailto:ventas@innmobi.ai">Contacto legal</a>
+    </nav>
+
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="https://wa.me/525620595320?text=Hola%20Innmobi.ai%2C%20quiero%20agendar%20demo">WhatsApp</a>
+      <a href="mailto:ventas@innmobi.ai">ventas@innmobi.ai</a>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/innmobi.ai" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/innmobi.ai" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© 2026 Andrés Islas Bravo · innmobi.ai</p>
+    <p><a href="https://innmobi.ai">innmobi.ai</a></p>
+  </div>
+</footer>
+<script>document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+(()=>{const t=document.querySelector('.nav-toggle'),d=document.querySelector('.mobile-drawer');if(!t||!d)return;t.addEventListener('click',()=>{const o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',!o);d.hidden=o;});})();</script>
+
+
+</body>
+</html>

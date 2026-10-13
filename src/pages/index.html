@@ -1,19 +1,184 @@
 <main id="main">
 
-<!-- Hero -->
-<section class="hero">
+<!-- La historia: seis escenas ilustrativas (frames en /assets/story/). Sin JS, con movimiento reducido o con conexión lenta
+     es una página estática: póster + texto por escena. story.js la convierte en escenas que avanzan con el scroll. -->
+<link rel="stylesheet" href="/assets/css/story.css"/>
+
+<section class="story" id="historia" data-story aria-labelledby="story-title">
+  <div class="story-stage">
+    <div class="story-media">
+      <picture class="story-poster">
+        <source media="(max-width: 800px)" srcset="/assets/story/v1/pide/m/0001.webp" width="720" height="900"/>
+        <img src="/assets/story/v1/pide/poster.webp" width="1600" height="900" fetchpriority="high" decoding="async" alt="Ilustración generada con IA: una mujer en su sala, de noche y con lluvia, lee en su teléfono sentada en un sofá verde."/>
+      </picture>
+      <canvas class="story-canvas" aria-hidden="true"></canvas>
+      <div class="story-scrim" aria-hidden="true"></div>
+    </div>
+    <div class="story-veil" aria-hidden="true"></div>
+
+    <p class="story-topline"><span>INNMOBI.AI · CDMX · 2026</span><span>SEGUIMIENTO DE VENTAS INMOBILIARIAS</span></p>
+    <a class="story-skip" href="#registro" data-story-evt="story_skip">Saltar la historia <span aria-hidden="true">↓</span></a>
+
+    <div class="story-hero">
+      <div class="story-hero-head">
+        <p class="story-marker">LA CAPA DE SEGUIMIENTO</p>
+        <h1 class="story-h1" id="story-title">Contesta, agenda y <em>deja todo registrado<span class="period">.</span></em></h1>
+      </div>
+      <div class="story-hero-body">
+        <p class="story-sub">Un asistente que dice desde su primera frase que es IA contesta a quien pidió que lo contactaran. Tu equipo se dedica a las visitas y a los cierres, y cada paso queda en un registro que es tuyo.</p>
+        <div class="story-ctas">
+          <a href="/piloto/" class="btn btn-primary" data-story-evt="story_pilot_cta">Ver el piloto de 30 días</a>
+          <a href="/demo/" class="btn btn-ghost">Reservar demo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-copy-layer"></div>
+
+    <nav class="story-rail" aria-label="Escenas de la historia">
+      <ol>
+        <li><a href="#escena-1" data-i="0" aria-label="Escena 1: Pide información"><span></span></a></li>
+        <li><a href="#escena-2" data-i="1" aria-label="Escena 2: Contesta por voz"><span></span></a></li>
+        <li><a href="#escena-3" data-i="2" aria-label="Escena 3: Visita reservada"><span></span></a></li>
+        <li><a href="#escena-4" data-i="3" aria-label="Escena 4: La visita"><span></span></a></li>
+        <li><a href="#escena-5" data-i="4" aria-label="Escena 5: El departamento"><span></span></a></li>
+        <li><a href="#escena-6" data-i="5" aria-label="Escena 6: El cierre"><span></span></a></li>
+      </ol>
+    </nav>
+    <p class="story-ai">Escenas ilustrativas generadas con IA. No son clientes ni proyectos reales.</p>
+    <p class="sr-only">Ilustración animada generada con IA: seis escenas del seguimiento de un lead, de la solicitud de información al cierre.</p>
+    <div class="story-end" aria-hidden="true"></div>
+  </div>
+
+  <div class="story-scenes">
+    <article class="story-scene" id="escena-1" data-scene="pide" aria-labelledby="escena-1-t">
+      <div class="story-copy">
+        <p class="story-kicker"><b>Escena 1 · Pide información</b><span>23:47 · CDMX</span></p>
+        <h2 id="escena-1-t">Pidió información a una hora en la que tu equipo ya cerró.</h2>
+        <p>Dejó sus datos en la página de un desarrollo y aceptó que la contactaran. Diseñado para que, sin ese consentimiento, no haya llamada.</p>
+      </div>
+    </article>
+
+    <article class="story-scene" id="escena-2" data-scene="voz" aria-labelledby="escena-2-t">
+      <figure class="story-fig">
+        <picture><img src="/assets/story/v1/voz/poster.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Ilustración generada con IA: sobre una mesa de nogal, un teléfono boca abajo deja escapar una luz cálida junto a un vaso de agua; al fondo, la mujer escucha con una sonrisa."/></picture>
+        <figcaption>Escenas ilustrativas generadas con IA. No son clientes ni proyectos reales.</figcaption>
+      </figure>
+      <div class="story-copy">
+        <p class="story-kicker"><b>Escena 2 · Contesta por voz</b><span>Llamada web</span></p>
+        <h2 id="escena-2-t">Alguien contesta, y lo primero que dice es que es una IA.</h2>
+        <p>Una conversación por voz en español mexicano, diseñada para responder solo con la ficha de datos que tu equipo verifica y firma. Si ella declara un rango de presupuesto, se registra, solo con su consentimiento expreso. Si pide hablar con una persona, entra tu equipo.</p>
+      </div>
+    </article>
+
+    <article class="story-scene" id="escena-3" data-scene="manana" aria-labelledby="escena-3-t">
+      <figure class="story-fig">
+        <picture><img src="/assets/story/v1/manana/poster.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Ilustración generada con IA: por la mañana, la misma mujer sostiene una taza de barro con vapor y mira por la ventana, entre plantas verdes."/></picture>
+        <figcaption>Escenas ilustrativas generadas con IA. No son clientes ni proyectos reales.</figcaption>
+      </figure>
+      <div class="story-copy">
+        <p class="story-kicker"><b>Escena 3 · Visita reservada</b><span>Al día siguiente · 08:12</span></p>
+        <h2 id="escena-3-t">Por la mañana, la visita ya está en la agenda.</h2>
+        <p>El asistente la reservó en los horarios que tu equipo definió y ella recibe la confirmación por correo. Tu equipo la ve en el tablero.</p>
+      </div>
+    </article>
+
+    <article class="story-scene" id="escena-4" data-scene="sala" aria-labelledby="escena-4-t">
+      <figure class="story-fig">
+        <picture><img src="/assets/story/v1/sala/poster.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Ilustración generada con IA: en una sala de ventas, un asesor con blazer azul marino recibe a una mujer con abrigo crema; detrás, una maqueta de un edificio."/></picture>
+        <figcaption>Escenas ilustrativas generadas con IA. No son clientes ni proyectos reales.</figcaption>
+      </figure>
+      <div class="story-copy">
+        <p class="story-kicker"><b>Escena 4 · La visita</b><span>Sala de ventas · CDMX</span></p>
+        <h2 id="escena-4-t">Tu asesor la recibe sabiendo qué aceptó compartir.</h2>
+        <p>Su visita está en el tablero, junto con lo que ella declaró y consintió. Tu equipo dedica su tiempo a lo suyo: enseñar el proyecto, escuchar y acompañar. Si tu anfitrión de sala marca su llegada, queda en el mismo registro.</p>
+      </div>
+    </article>
+
+    <article class="story-scene" id="escena-5" data-scene="terraza" aria-labelledby="escena-5-t">
+      <figure class="story-fig">
+        <picture><img src="/assets/story/v1/terraza/poster.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Ilustración generada con IA: la mujer y el asesor miran la ciudad desde la terraza de un departamento modelo, con luz dorada de la tarde."/></picture>
+        <figcaption>Escenas ilustrativas generadas con IA. No son clientes ni proyectos reales.</figcaption>
+      </figure>
+      <div class="story-copy">
+        <p class="story-kicker"><b>Escena 5 · El departamento</b><span>Departamento modelo · terraza</span></p>
+        <h2 id="escena-5-t">El primer contacto ya está resuelto. Tu equipo está donde se vende.</h2>
+        <p>Mientras el asistente atiende a quien pidió información, tus asesores recorren el departamento con quien ya agendó su visita.</p>
+      </div>
+    </article>
+
+    <article class="story-scene" id="escena-6" data-scene="firma" aria-labelledby="escena-6-t">
+      <figure class="story-fig">
+        <picture><img src="/assets/story/v1/firma/poster.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Ilustración generada con IA: en una sala de juntas con luz cálida, el asesor y la mujer sonríen a ambos lados de una mesa redonda de travertino."/></picture>
+        <figcaption>Escenas ilustrativas generadas con IA. No son clientes ni proyectos reales.</figcaption>
+      </figure>
+      <div class="story-copy">
+        <p class="story-kicker"><b>Escena 6 · El cierre</b><span>Cierre · lo lleva tu equipo</span></p>
+        <h2 id="escena-6-t">Las personas llevan la venta y el contrato.</h2>
+        <p>El asistente no aprueba crédito ni firma nada. Lo que sí hace: que, hasta ese día, cada paso quede escrito.</p>
+        <p class="story-more"><a href="#registro" class="story-more-alt">Ver el registro de pasos <span aria-hidden="true">→</span></a><a href="/piloto/" data-story-evt="story_pilot_cta">Ver el piloto de 30 días <span aria-hidden="true">→</span></a></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Registro de pasos (animado) -->
+<section class="section section-dark ledger-section" id="registro">
+  <div class="container ledger-grid">
+    <div class="ledger-intro">
+      <span class="eyebrow">№ 02 — EL REGISTRO</span>
+      <h2 class="section-title">Cada paso, escrito. <em>Con fecha y hora. En un registro que es tuyo<span class="period">.</span></em></h2>
+      <p class="ledger-lede">Innmobi.ai es la capa de seguimiento para equipos de ventas inmobiliarias en México. Un asistente que dice desde su primera frase que es IA contesta a quien pidió que lo contactaran, registra el rango de presupuesto que la persona declara (solo con su consentimiento expreso) y agenda la visita en los horarios de tu equipo. Está diseñado para contestar en minutos. Tu equipo se dedica a las visitas y a los cierres, y cada paso queda en un registro que es tuyo.</p>
+    </div>
+
+    <div class="ledger-card">
+      <div class="ledger-meta"><span>REGISTRO DE EJEMPLO · DATOS ILUSTRATIVOS</span></div>
+      <ol class="ledger" data-ledger>
+        <li class="ledger-row">
+          <span class="ledger-dot" aria-hidden="true"></span>
+          <div class="ledger-main">
+            <div class="ledger-head"><span class="ledger-num">01</span><h3>Consentimiento</h3><span class="chip chip-person">Persona</span><time class="ledger-time"><span class="ts" aria-hidden="true">23:47</span><span class="sr-only">23:47</span></time></div>
+            <p>Aceptó que la contactaran.</p>
+          </div>
+        </li>
+        <li class="ledger-row">
+          <span class="ledger-dot" aria-hidden="true"></span>
+          <div class="ledger-main">
+            <div class="ledger-head"><span class="ledger-num">02</span><h3>Llamada</h3><span class="chip chip-ai">Asistente IA</span><time class="ledger-time"><span class="ts" aria-hidden="true">23:52</span><span class="sr-only">23:52</span></time></div>
+            <p>Se identificó como IA. Registró el rango de presupuesto que ella declaró, con su consentimiento expreso.</p>
+          </div>
+        </li>
+        <li class="ledger-row">
+          <span class="ledger-dot" aria-hidden="true"></span>
+          <div class="ledger-main">
+            <div class="ledger-head"><span class="ledger-num">03</span><h3>Visita reservada</h3><span class="chip chip-ai">Asistente IA</span><time class="ledger-time"><span class="ts" aria-hidden="true">08:12</span><span class="sr-only">08:12</span></time></div>
+            <p>Reservada en los horarios de tu equipo; confirmación por correo.</p>
+          </div>
+        </li>
+        <li class="ledger-row">
+          <span class="ledger-dot" aria-hidden="true"></span>
+          <div class="ledger-main">
+            <div class="ledger-head"><span class="ledger-num">04</span><h3>Visita</h3><span class="chip chip-team">Tu equipo</span><time class="ledger-time"><span class="ts" aria-hidden="true">SÁB 11:00</span><span class="sr-only">SÁB 11:00</span></time></div>
+            <p>Si tu anfitrión de sala marca su llegada, queda en el mismo registro.</p>
+          </div>
+        </li>
+        <li class="ledger-row ledger-row--open">
+          <span class="ledger-dot" aria-hidden="true"></span>
+          <div class="ledger-main">
+            <div class="ledger-head"><span class="ledger-num">05</span><h3>Cierre</h3><span class="chip chip-team">Tu equipo</span><time class="ledger-time"><span class="ts" aria-hidden="true">—</span><span class="sr-only">sin fecha</span></time></div>
+            <p>Lo lleva tu gente. El asistente no registra el cierre.</p>
+          </div>
+        </li>
+      </ol>
+      <p class="ledger-foot">Tu inmobiliaria es la responsable de los datos y dueña del registro; te lo entregamos como archivo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Tablero + piloto -->
+<section class="section tablero" id="tablero">
   <div class="container">
-    <div class="hero-frame-top">
-      <span>INNMOBI.AI · CDMX · 2026</span>
-      <span>SEGUIMIENTO DE VENTAS INMOBILIARIAS</span>
-    </div>
-    <div class="hero-marker">№ 01 — POSICIONAMIENTO</div>
-    <h1 class="hero-title">Contesta, agenda y <em>deja todo registrado<span class="period">.</span></em></h1>
-    <p class="hero-sub">Innmobi.ai es la capa de seguimiento para equipos de ventas inmobiliarias en México. Un asistente que dice desde su primera frase que es IA contesta a quien pidió que lo contactaran, registra el rango de presupuesto que la persona declara (solo con su consentimiento expreso) y agenda la visita en los horarios de tu equipo. Está diseñado para contestar en minutos. Tu equipo se dedica a las visitas y a los cierres, y cada paso queda en un registro que es tuyo.</p>
-    <div class="hero-ctas">
-      <a href="/piloto/" class="btn btn-primary">Ver el piloto de 30 días</a>
-      <a href="/demo/" class="btn btn-ghost">Reservar demo</a>
-    </div>
+    <h2 class="section-title section-title--sm">Y así lo ve tu equipo <em>en el tablero<span class="period">.</span></em></h2>
 
     <div class="hero-mockup">
       <div class="mockup-meta">
@@ -43,13 +208,25 @@
         </div>
       </div>
     </div>
+
+    <div class="pilot-band">
+      <div class="pilot-band-copy">
+        <span class="eyebrow">EL PILOTO</span>
+        <h2>Treinta días, un proyecto. <em>MXN 10,000 + IVA, con factura CFDI<span class="period">.</span></em></h2>
+      </div>
+      <div class="pilot-band-actions">
+        <a href="/piloto/" class="btn btn-primary" data-story-evt="story_pilot_cta">Ver el piloto de 30 días</a>
+        <a href="https://wa.me/525620595320?text=Hola%20Innmobi.ai%2C%20quiero%20un%20piloto%20de%2030%20d%C3%ADas" class="btn btn-ghost" data-story-evt="story_pilot_cta">Pedir el piloto por WhatsApp</a>
+      </div>
+      <p class="pilot-band-note">No incluye WhatsApp hasta que Meta apruebe el número, llamadas en frío, integraciones con tu CRM, sincronización de calendario ni Mercado Libre.</p>
+    </div>
   </div>
 </section>
 
 <!-- Pillars -->
 <section class="section section-deep">
   <div class="container">
-    <span class="eyebrow">№ 02 — TRES PILARES</span>
+    <span class="eyebrow">№ 03 — TRES PILARES</span>
     <h2 class="section-title">El primer contacto y el seguimiento, <em>resueltos<span class="period">.</span></em><br/>Tu equipo se dedica a visitar y a cerrar.</h2>
     <div class="pillars">
       <div class="pillar">
@@ -77,7 +254,7 @@
 <!-- El flujo del piloto -->
 <section class="section section-deep" id="movimiento">
   <div class="container">
-    <span class="eyebrow">№ 03 — EL FLUJO</span>
+    <span class="eyebrow">№ 04 — EL FLUJO</span>
     <h2 class="section-title">Tres pasos. <em>Del formulario a la visita<span class="period">.</span></em></h2>
     <p class="product-lead">Así está diseñado el flujo que vamos a correr en los pilotos. La plataforma nueva se está construyendo ahora. Cada paso queda en el registro.</p>
 
@@ -86,7 +263,7 @@
         <figcaption>
           <span class="h">№ 01 — CAPTURA</span>
           <strong>Formulario web o QR, con consentimiento.</strong>
-          <p>La persona deja sus datos y acepta de forma explícita que la contactemos. Sin consentimiento no hay contacto. Nunca hacemos llamadas en frío.</p>
+          <p>La persona deja sus datos y acepta de forma explícita que la contactemos. Está diseñado para que, sin consentimiento, no haya contacto. Nunca hacemos llamadas en frío.</p>
         </figcaption>
       </figure>
       <figure class="motion">
@@ -110,11 +287,11 @@
 <!-- Capacidades -->
 <section class="section section-dark" id="capacidades">
   <div class="container">
-    <span class="eyebrow">№ 04 — CAPACIDADES</span>
+    <span class="eyebrow">№ 05 — CAPACIDADES</span>
     <h2 class="section-title">Lo que corre en el piloto <em>y lo que viene después<span class="period">.</span></em></h2>
     <p class="product-lead">La plataforma nueva se está construyendo ahora. Las primeras seis son lo que incluye el piloto; las dos últimas son módulos de CRM planeados para una segunda etapa: el piloto no los incluye y hoy no existen en la plataforma nueva.</p>
     <div class="features-grid">
-      <article class="feature"><img loading="lazy" decoding="async" src="/assets/images/feature-icons/01-ai-lead-qualification.svg" alt=""/><h3>Captura con consentimiento</h3><p>Formulario web o QR con consentimiento explícito. Sin consentimiento no hay contacto.</p></article>
+      <article class="feature"><img loading="lazy" decoding="async" src="/assets/images/feature-icons/01-ai-lead-qualification.svg" alt=""/><h3>Captura con consentimiento</h3><p>Formulario web o QR con consentimiento explícito. Diseñado para que, sin consentimiento, no haya contacto.</p></article>
       <article class="feature"><img loading="lazy" decoding="async" src="/assets/images/feature-icons/02-multi-channel.svg" alt=""/><h3>Agente de voz con IA</h3><p>Español mexicano. Se identifica como IA desde la primera frase, está diseñado para responder solo con la ficha de datos que tú firmas y registra el rango de presupuesto declarado por la persona, con su consentimiento expreso. No aprueba crédito.</p></article>
       <article class="feature"><img loading="lazy" decoding="async" src="/assets/images/feature-icons/07-calendar.svg" alt=""/><h3>Visitas en tus horarios</h3><p>El agente reserva en los espacios que tu equipo define.</p></article>
       <article class="feature"><img loading="lazy" decoding="async" src="/assets/images/feature-icons/05-whatsapp.svg" alt=""/><h3>Confirmación al cliente</h3><p>Por correo. WhatsApp Business cuando Meta apruebe el número.</p></article>
@@ -131,7 +308,7 @@
   <div class="container">
     <div class="case-card">
       <div class="case-meta">
-        <span class="eyebrow">№ 05 — LO QUE APRENDIMOS · CDMX</span>
+        <span class="eyebrow">№ 06 — LO QUE APRENDIMOS · CDMX</span>
         <h2>Aprendimos en una inmobiliaria <em>real<span class="period">.</span></em></h2>
         <p>Una inmobiliaria de remates bancarios en CDMX usó una versión anterior de nuestro sistema durante unos tres meses de 2026. De ahí salieron las reglas con las que diseñamos la plataforma nueva: qué le pregunta un buen asesor a un cliente, cuándo se pasa la llamada a una persona y qué debe registrarse siempre.</p>
         <p>También nos dejó una lista de fallas de voz y las reglas con las que diseñamos la plataforma nueva para no repetirlas:</p>
@@ -159,7 +336,7 @@
 <!-- Arranque de un piloto -->
 <section class="section section-deep" id="migracion">
   <div class="container">
-    <span class="eyebrow">№ 06 — EL PILOTO</span>
+    <span class="eyebrow">№ 07 — EL PILOTO</span>
     <h2 class="section-title">Treinta días, un proyecto, <em>reglas claras<span class="period">.</span></em></h2>
     <p class="product-lead">Piloto de 30 días por proyecto o desarrollo: MXN 10,000 + IVA, con factura CFDI. Corre junto a como trabajas hoy, sin cambiar de sistema de golpe. Incluye la página de consentimiento y el QR de un proyecto, el asistente de voz, la agenda de visitas, el tablero en vivo, el registro de cada paso, un reporte semanal y un reporte final contra tus propios números de los últimos 60 a 90 días. No incluye WhatsApp (hasta que Meta apruebe el número), llamadas en frío, integraciones con tu CRM, sincronización de calendario, Mercado Libre ni respuestas fuera de la hoja de datos firmada.</p>
 
@@ -222,7 +399,7 @@
 <!-- FAQ -->
 <section class="section" id="faq">
   <div class="container">
-    <span class="eyebrow">№ 07 — PREGUNTAS</span>
+    <span class="eyebrow">№ 08 — PREGUNTAS</span>
     <h2 class="section-title">Lo que <em>todo dueño de inmobiliaria<span class="period">.</span></em> nos pregunta primero.</h2>
 
     <div class="faq">
@@ -281,7 +458,7 @@
 <!-- Stack -->
 <section class="section section-dark" id="stack">
   <div class="container">
-    <span class="eyebrow">№ 08 — STACK</span>
+    <span class="eyebrow">№ 09 — STACK</span>
     <h2 class="section-title">Lo que hay <em>por dentro<span class="period">.</span></em></h2>
     <div class="stack-pills">
       <span>Backend en Python</span><span>PostgreSQL</span><span>Voz con ElevenLabs</span><span>Telefonía con Twilio</span>
@@ -295,7 +472,7 @@
 <section class="cta-section" id="reservar">
   <div class="container">
     <div>
-      <span class="eyebrow">№ 09 — RESERVAR DEMO</span>
+      <span class="eyebrow">№ 10 — RESERVAR DEMO</span>
       <h2>Treinta minutos,<br/>un proyecto, <em>un piloto<span class="period">.</span></em></h2>
       <p class="lead">Conversación de 30 minutos: te contamos cómo va a funcionar el piloto, qué vas a ver en el tablero y qué vamos a medir, y revisamos si tiene sentido para tu inmobiliaria. Piloto de 30 días por proyecto: MXN 10,000 + IVA, con factura CFDI (sin WhatsApp, llamadas en frío ni integraciones con tu CRM). Y sin lock-in: lo que pasa con tus datos si te vas queda por escrito antes de empezar.</p>
 
@@ -326,5 +503,7 @@
     </div>
   </div>
 </section>
+
+<script type="module" src="/assets/js/story.js"></script>
 
 </main>

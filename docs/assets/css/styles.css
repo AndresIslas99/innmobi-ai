@@ -52,22 +52,21 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 0;
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
 .brand {
   display: inline-flex;
-  align-items: baseline;
-  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
 }
-.wordmark {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 600;
-  font-variation-settings: 'opsz' 144;
-  font-size: 26px;
-  letter-spacing: -0.025em;
-  color: var(--ink-black);
+/* Logo = the innmobi lockup (mark B). Full lockup from 140 px wide; below that the small cut (dot instead of bubble). */
+.brand-logo { display: block; line-height: 0; flex-shrink: 0; }
+.brand-logo img { display: block; height: 30px; width: auto; }
+.brand-logo-on-dark { display: none; }
+@media (max-width: 640px) {
+  .brand-logo img { height: 24px; }
 }
-.wordmark .period { color: var(--brass); }
 
 .header-nav {
   display: flex;
@@ -112,7 +111,7 @@ img { display: block; max-width: 100%; }
   border-color: var(--ink-black);
 }
 
-@media (max-width: 800px) { .header-nav { display: none; } }
+@media (max-width: 1019px) { .header-nav { display: none; } }
 
 /* ======================== Common ======================== */
 .eyebrow {
@@ -873,7 +872,6 @@ img { display: block; max-width: 100%; }
   flex-wrap: wrap;
   gap: 16px;
 }
-.site-footer .wordmark { color: var(--bone); font-size: 20px; }
 .site-footer .meta {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
@@ -912,13 +910,14 @@ img { display: block; max-width: 100%; }
 }
 .mobile-drawer a { color: var(--ink-black); font-size: 18px; text-decoration: none; }
 
-@media (max-width: 800px) {
+/* Nav collapses to the drawer below 1020 px: the full lockup (162 px) plus nav and CTA need ~1013 px. */
+@media (max-width: 1019px) {
   .header-nav { display: none; }
   .nav-cta { display: none; }
   .nav-toggle { display: flex; }
   .mobile-drawer:not([hidden]) { display: flex; }
 }
-@media (min-width: 801px) {
+@media (min-width: 1020px) {
   .mobile-drawer { display: none !important; }
   .nav-toggle { display: none; }
 }
@@ -926,13 +925,17 @@ img { display: block; max-width: 100%; }
 /* Footer extended */
 .site-footer { padding: 64px 0 24px; background: var(--ink-black); color: var(--ink-300); border-top: 1px solid var(--ink-900); }
 .site-footer .container { display: block; }
+/* .footer-grid / .footer-bottom live on the same element as .container: restore their layout (specificity). */
+.site-footer .footer-grid { display: grid; align-items: start; }
+.site-footer .footer-bottom { display: flex; }
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
   gap: 48px;
   margin-bottom: 48px;
 }
-.footer-brand .wordmark { color: var(--bone); font-size: 22px; display: inline-block; margin-bottom: 16px; }
+.footer-brand .footer-logo { display: inline-block; margin-bottom: 18px; }
+.footer-brand .footer-logo img { height: 30px; }
 .footer-brand .footer-tag { color: var(--ink-300); font-size: 14px; line-height: 1.6; max-width: 280px; margin-bottom: 16px; }
 .footer-brand .footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-500); }
 .footer-col h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-soft); margin: 0 0 16px; }

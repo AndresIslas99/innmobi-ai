@@ -207,7 +207,8 @@ body.story-on .site-header {
   background: rgba(15,15,16,0.94);
   border-bottom-color: rgba(242,239,233,0.12);
 }
-body.story-on .wordmark { color: var(--bone); }
+body.story-on .brand-logo-on-light { display: none; }
+body.story-on .brand-logo-on-dark { display: block; }
 body.story-on .header-nav a,
 body.story-on .nav-dropdown summary { color: var(--ink-200); }
 body.story-on .header-nav a:hover,

@@ -1,5 +1,6 @@
 // Render per-page OG images (1200×630 PNG) into docs/og/<slug>.png
 // Uses Playwright to render an HTML template per page, then screenshots it.
+// The bottom-left signature is the innmobi lockup (mark B, horizontal, color) read from images/innmobi-lockup.svg.
 // Usage: PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers node scripts/render-og-images.mjs
 
 import { chromium } from 'playwright';
@@ -11,6 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const DATA = path.join(ROOT, 'data', 'pages.json');
 const OUT = path.join(ROOT, 'docs', 'og');
+const LOCKUP = path.join(ROOT, 'images', 'innmobi-lockup.svg');
 
 const TEMPLATES = {
   home:    { eyebrow: 'INNMOBI.AI · CDMX · 2026',        headline: 'Contesta, agenda<br/>y <em>deja todo registrado</em>.' },
@@ -31,28 +33,26 @@ const TEMPLATES = {
   'blog-voz':        { eyebrow: 'INNMOBI · APRENDIZAJES', headline: 'Lo que aprendimos con un<br/>agente de voz en <em>remates</em>.' },
 };
 
-const TEMPLATE_HTML = (eyebrow, headline) => `<!doctype html>
+const TEMPLATE_HTML = (eyebrow, headline, lockupUri) => `<!doctype html>
 <html><head><style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=JetBrains+Mono:wght@500&display=swap');
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1200px; height: 630px; background: #F2EFE9; font-family: 'Fraunces', serif; color: #0F0F10; overflow: hidden; }
 .frame { position: relative; width: 1200px; height: 630px; padding: 64px 80px; display: flex; flex-direction: column; justify-content: space-between; }
-.top, .bot { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.18em; color: #4A4A52; text-transform: uppercase; }
-.eyebrow { color: #A77E2B; }
+.top, .bot { display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.18em; color: #4A4A52; text-transform: uppercase; }
+.eyebrow { color: #4A4A52; } /* brass never carries text on cream (brand rule) */
 .head { font-size: 78px; font-weight: 600; font-variation-settings: 'opsz' 144; line-height: 1.05; letter-spacing: -1.6px; max-width: 1040px; }
 em { font-style: italic; color: #1F3A2D; }
-.wm { font-size: 32px; font-weight: 600; }
-.wm .p { color: #A77E2B; }
+.wm { display: block; height: 44px; width: auto; }
 .brassbar { position: absolute; left: 80px; right: 80px; height: 1px; background: #A77E2B; opacity: 0.4; }
 .brassbar.t { top: 100px; }
-.brassbar.b { bottom: 100px; }
+.brassbar.b { bottom: 122px; }
 </style></head>
 <body>
 <div class="frame">
   <div>
     <div class="top">
       <span class="eyebrow">${eyebrow}</span>
-      <span>1200 × 630</span>
     </div>
     <div class="brassbar t"></div>
   </div>
@@ -60,7 +60,7 @@ em { font-style: italic; color: #1F3A2D; }
   <div>
     <div class="brassbar b"></div>
     <div class="bot">
-      <span class="wm">Innmobi<span class="p">.</span>ai</span>
+      <img class="wm" src="${lockupUri}" alt="innmobi"/>
       <span>INNMOBI.AI · CDMX 🇲🇽</span>
     </div>
   </div>
@@ -71,12 +71,14 @@ async function main() {
   console.log('Innmobi.ai — Rendering OG images');
   await fs.mkdir(OUT, { recursive: true });
 
+  const lockupUri = `data:image/svg+xml;base64,${(await fs.readFile(LOCKUP)).toString('base64')}`;
+
   const browser = await chromium.launch();
   const ctx = await browser.newContext({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
   const page = await ctx.newPage();
 
   for (const [slug, tpl] of Object.entries(TEMPLATES)) {
-    await page.setContent(TEMPLATE_HTML(tpl.eyebrow, tpl.headline), { waitUntil: 'networkidle' });
+    await page.setContent(TEMPLATE_HTML(tpl.eyebrow, tpl.headline, lockupUri), { waitUntil: 'networkidle' });
     await page.waitForTimeout(400); // fonts
     const file = path.join(OUT, `${slug}.png`);
     await page.screenshot({ path: file, type: 'png', clip: { x: 0, y: 0, width: 1200, height: 630 } });

@@ -25,8 +25,8 @@
 <meta name="twitter:description" content="Llamada de prueba con Valeria, una asistente de IA, sobre un desarrollo de demostración. Mira en vivo lo que vería tu equipo."/>
 <meta name="twitter:image" content="https://innmobi.ai/og/demo.png"/>
 
-<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
-<link rel="icon" type="image/svg+xml" href="/assets/images/logo-innmobi-ai-icon.svg"/>
+<link rel="icon" href="/favicon.ico" sizes="32x32"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/manifest.webmanifest"/>
 
@@ -45,8 +45,15 @@
 
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/" class="brand" aria-label="Innmobi.ai — inicio">
-      <span class="wordmark">Innmobi<span class="period">.</span>ai</span>
+    <a href="/" class="brand">
+      <picture class="brand-logo brand-logo-on-light">
+        <source media="(max-width: 640px)" srcset="/assets/images/innmobi-lockup-small.svg"/>
+        <img src="/assets/images/innmobi-lockup.svg" alt="innmobi" width="162" height="30"/>
+      </picture>
+      <picture class="brand-logo brand-logo-on-dark">
+        <source media="(max-width: 640px)" srcset="/assets/images/innmobi-lockup-small-reversed.svg"/>
+        <img src="/assets/images/innmobi-lockup-reversed.svg" alt="innmobi" width="162" height="30"/>
+      </picture>
     </a>
     <nav class="header-nav" aria-label="Principal">
       <a href="/producto/">Producto</a>
@@ -232,7 +239,7 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <span class="wordmark">Innmobi<span class="period">.</span>ai</span>
+      <a href="/" class="brand-logo footer-logo"><img src="/assets/images/innmobi-lockup-reversed.svg" alt="innmobi" width="162" height="30" loading="lazy"/></a>
       <p class="footer-tag">La capa de seguimiento para la venta inmobiliaria en México.</p>
       <p class="footer-meta">Operado por Andrés Islas Bravo, persona física con actividad empresarial (RESICO) · Ciudad de México, México</p>
     </div>

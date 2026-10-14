@@ -10,9 +10,10 @@
 .tb-app { max-width: 1680px; margin: 0 auto; padding: 0 var(--tb-pad) 18px; display: flex; flex-direction: column; gap: 14px; }
 
 /* ----- PIN gate ----- */
-.tb-gate { min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; }
+.tb-gate { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; padding: 24px 16px; }
 .tb-gate-card { width: min(100%, 460px); padding: 36px 32px 32px; border-top: 4px solid var(--forest); }
-.tb-gate-brand { display: inline-block; margin-bottom: 22px; font-size: 22px; }
+.tb-gate-brand { display: block; line-height: 0; margin-bottom: 24px; }
+.tb-gate-brand img { height: 28px; width: auto; }
 .tb-gate-card .eyebrow { display: block; }
 .tb-gate-title { font-family: 'Fraunces', Georgia, serif; font-variation-settings: 'opsz' 72; font-weight: 600; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; margin: 10px 0 12px; color: var(--ink-black); }
 .tb-gate-title .period { color: var(--brass); }
@@ -34,7 +35,7 @@
 /* ----- Top bar ----- */
 .tb-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--ink-200); }
 .tb-bar-left { display: flex; align-items: baseline; gap: 18px; min-width: 0; }
-.tb-bar-brand { font-size: 20px; }
+.tb-bar-brand { display: block; height: 24px; width: auto; align-self: center; }
 .tb-bar-eyebrow { color: var(--ink-500); }
 .tb-bar-right { display: flex; align-items: center; gap: 12px; }
 .tb-conn {

@@ -1,6 +1,6 @@
 {
   "name": "Innmobi.ai — Seguimiento de ventas inmobiliarias",
-  "short_name": "Innmobi.ai",
+  "short_name": "Innmobi",
   "description": "La capa de seguimiento para la venta inmobiliaria en México: un asistente con IA atiende a quien pidió contacto y cada paso queda en un registro del cliente.",
   "start_url": "/",
   "scope": "/",

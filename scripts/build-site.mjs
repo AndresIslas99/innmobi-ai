@@ -162,7 +162,7 @@ function buildJsonLd(page, data, isPost) {
       '@type': 'Organization',
       name: 'Innmobi.ai',
       url: data.site.url,
-      logo: `${data.site.url}/assets/images/logo-innmobi-ai.svg`,
+      logo: `${data.site.url}/assets/images/innmobi-isotipo.svg`,
       sameAs: [data.site.social.facebook, data.site.social.instagram].filter(Boolean),
       contactPoint: {
         '@type': 'ContactPoint',
@@ -232,7 +232,7 @@ function buildJsonLd(page, data, isPost) {
       publisher: {
         '@type': 'Organization',
         name: 'Innmobi.ai',
-        logo: { '@type': 'ImageObject', url: `${data.site.url}/assets/images/logo-innmobi-ai.svg` },
+        logo: { '@type': 'ImageObject', url: `${data.site.url}/assets/images/innmobi-isotipo.svg` },
       },
       image: `${data.site.url}${page.ogImage || '/og/home.png'}`,
       mainEntityOfPage: { '@type': 'WebPage', '@id': url },

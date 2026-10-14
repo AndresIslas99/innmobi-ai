@@ -78,17 +78,11 @@ html, body {
 }
 
 /* Shared editorial typography ──────────────────────────────── */
-.wordmark {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 600;
-  font-variation-settings: 'opsz' 144;
-  letter-spacing: -0.025em;
-  color: var(--ink-black);
-  line-height: 1;
-}
-.wordmark .period { color: var(--brass); }
-.wordmark.lg { font-size: 44px; }
-.wordmark.sm { font-size: 24px; }
+/* Logo: the innmobi lockup (mark B). Full lockup from 140 px wide, so every size here stays at or above that. */
+.logo { display: block; line-height: 0; }
+.logo img { display: block; height: auto; }
+.logo.lg img { width: 220px; }
+.logo.sm img { width: 144px; }
 
 .marker {
   font-family: 'JetBrains Mono', monospace;
@@ -376,7 +370,7 @@ html, body {
 
   <div class="page-body">
     <div class="cover-head">
-      <div class="wordmark lg">Innmobi<span class="period">.</span>ai</div>
+      <div class="logo lg"><img src="../images/innmobi-lockup.svg" alt="innmobi"/></div>
       <div class="marker">№ 01 — POSICIONAMIENTO</div>
     </div>
 
@@ -422,7 +416,7 @@ html, body {
 
   <div class="page-body">
     <div class="cover-head">
-      <div class="wordmark sm">Innmobi<span class="period">.</span>ai</div>
+      <div class="logo sm"><img src="../images/innmobi-lockup.svg" alt="innmobi"/></div>
       <div class="marker">№ 02 — EL PILOTO</div>
     </div>
 
@@ -475,7 +469,7 @@ html, body {
 
   <div class="page-body">
     <div class="cover-head">
-      <div class="wordmark sm">Innmobi<span class="period">.</span>ai</div>
+      <div class="logo sm"><img src="../images/innmobi-lockup.svg" alt="innmobi"/></div>
       <div class="marker">№ 03 — QUÉ INCLUYE</div>
     </div>
 
@@ -548,7 +542,7 @@ html, body {
 
   <div class="page-body">
     <div class="cover-head">
-      <div class="wordmark sm">Innmobi<span class="period">.</span>ai</div>
+      <div class="logo sm"><img src="../images/innmobi-lockup.svg" alt="innmobi"/></div>
       <div class="marker">№ 05 — LO QUE APRENDIMOS</div>
     </div>
 

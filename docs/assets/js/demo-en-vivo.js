@@ -1,5 +1,5 @@
 // innmobi.ai · /demo-en-vivo/
-// Live voice demo: Sofía (ElevenLabs agent) + a simulated team dashboard fed by client tools.
+// Live voice demo: Valeria (ElevenLabs agent) + a simulated team dashboard fed by client tools.
 //
 // Privacy by construction: nothing here touches localStorage, sessionStorage, cookies or
 // IndexedDB, and the only network peer for the call is ElevenLabs (the SDK is served from this site). The agent id below is public
@@ -180,7 +180,7 @@ function addTranscript(who, text) {
   item.className = who === "user" ? "dl-line dl-line-user" : "dl-line dl-line-ai";
   const label = document.createElement("span");
   label.className = "dl-line-who";
-  label.textContent = who === "user" ? "Tú" : "Sofía · IA";
+  label.textContent = who === "user" ? "Tú" : "Valeria · IA";
   const body = document.createElement("p");
   body.textContent = clean;
   item.append(label, body);
@@ -486,7 +486,7 @@ async function startCall() {
         startTimer();
         startLevel();
         requestWakeLock();
-        addLedger("Llamada iniciada", "Sofía se presenta como asistente de IA.");
+        addLedger("Llamada iniciada", "Valeria se presenta como asistente de IA.");
       },
       onDisconnect: (details) => finishCall(details),
       onError: (error) => {
@@ -495,7 +495,7 @@ async function startCall() {
       },
       onModeChange: ({ mode: next }) => {
         if (!connected) return;
-        if (next === "speaking") setMode("speaking", "Sofía está hablando");
+        if (next === "speaking") setMode("speaking", "Valeria está hablando");
         else setMode("listening", "Escuchando");
       },
       onMessage: (message) => {
@@ -550,7 +550,7 @@ function finishCall(details) {
   state.endedAt = Date.now();
   flushPendingLedger();
   const timedOut = (state.endedAt - state.startedAt) / 1000 >= MAX_CALL_SECONDS - 6;
-  addLedger("Llamada terminada", timedOut ? "Se acabó el tiempo de la prueba (cinco minutos)." : details?.reason === "agent" ? "Sofía cerró la llamada." : details?.reason === "error" ? "La conexión se cortó." : "La persona colgó.");
+  addLedger("Llamada terminada", timedOut ? "Se acabó el tiempo de la prueba (cinco minutos)." : details?.reason === "agent" ? "Valeria cerró la llamada." : details?.reason === "error" ? "La conexión se cortó." : "La persona colgó.");
   setState("ended");
   setMode("idle", "Llamada terminada");
   $("dl-btn").textContent = "Hablar ahora";
@@ -573,7 +573,7 @@ function renderSummary() {
   const seconds = Math.max(0, Math.round((state.endedAt - state.startedAt) / 1000));
   const rows = [
     ["Duración", mmss(seconds)],
-    ["Turnos", `${state.turns.ai} de Sofía · ${state.turns.user} tuyos`],
+    ["Turnos", `${state.turns.ai} de Valeria · ${state.turns.user} tuyos`],
     ["Lead", [state.lead.nombre, state.lead.tipo_unidad, state.lead.proposito, state.lead.plazo].filter(Boolean).join(" · ") || "Sin datos registrados"],
     ["Presupuesto declarado", state.budget || "No registrado"],
     ["Visita", state.visit ? `${state.visit.day.label}, ${state.visit.slot} · ${SALA}` : "No se reservó"],
@@ -606,7 +606,7 @@ function resetAll() {
   setMode("idle", "Lista para llamar");
   clearError();
   $("dl-summary").hidden = true;
-  $("dl-transcript").replaceChildren(Object.assign(document.createElement("li"), { className: "dl-empty", id: "dl-transcript-empty", textContent: "Aquí aparece lo que digan Sofía y tú." }));
+  $("dl-transcript").replaceChildren(Object.assign(document.createElement("li"), { className: "dl-empty", id: "dl-transcript-empty", textContent: "Aquí aparece lo que digan Valeria y tú." }));
   $("dl-ledger").replaceChildren(Object.assign(document.createElement("li"), { className: "dl-empty", id: "dl-ledger-empty", textContent: "Cada paso aparecerá aquí con su hora." }));
   for (const [id, names] of [["dl-lead", ["nombre", "tipo_unidad", "proposito", "plazo"]], ["dl-visit", ["dia", "hora", "sala"]]]) {
     for (const name of names) {

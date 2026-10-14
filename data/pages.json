@@ -105,7 +105,7 @@
     {
       "slug": "demo-en-vivo",
       "title": "Demo en vivo · Innmobi.ai",
-      "description": "Llamada de prueba con Sofía, una asistente de IA, sobre un desarrollo de demostración. Mira en vivo lo que vería tu equipo.",
+      "description": "Llamada de prueba con Valeria, una asistente de IA, sobre un desarrollo de demostración. Mira en vivo lo que vería tu equipo.",
       "ogImage": "/og/demo.png",
       "extraHead": "<link rel=\"stylesheet\" href=\"/assets/css/demo-en-vivo.css\"/>",
       "noindex": true,
@@ -115,7 +115,7 @@
     {
       "slug": "demo-en-vivo/tablero",
       "title": "Tablero en vivo · Innmobi.ai",
-      "description": "Tablero interno de la demo telefónica: lo que ve el equipo mientras una persona habla con Sofía.",
+      "description": "Tablero interno de la demo telefónica: lo que ve el equipo mientras una persona habla con Valeria.",
       "ogImage": "/og/demo.png",
       "extraHead": "<link rel=\"stylesheet\" href=\"/assets/css/demo-en-vivo.css\"/>\n<link rel=\"stylesheet\" href=\"/assets/css/demo-tablero.css\"/>\n<meta name=\"referrer\" content=\"no-referrer\"/>",
       "noindex": true,

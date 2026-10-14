@@ -1,5 +1,5 @@
 // innmobi.ai · /demo-en-vivo/tablero/
-// Live panel for the phone demo: while a prospect talks with Sofía on the phone, this page fills in
+// Live panel for the phone demo: while a prospect talks with Valeria on the phone, this page fills in
 // from the backend (realestate-crm, module voice_demo) through a server-sent event stream.
 //
 // Contract (ADR 0035):
@@ -504,7 +504,7 @@
     const active = calls.filter((c) => c.status === "active").length;
     let mode = "idle";
     let kicker = "PRUEBE A SOFÍA AHORA";
-    let sub = "Desde cualquier teléfono. Sofía es una asistente de IA y atiende por Residencial Demo Narvarte, un desarrollo ficticio.";
+    let sub = "Desde cualquier teléfono. Valeria es una asistente de IA y atiende por Residencial Demo Narvarte, un desarrollo ficticio.";
     if (active) {
       mode = "live";
       kicker = "EN LLAMADA";
@@ -518,7 +518,7 @@
     root.dataset.calls = calls.length ? "1" : "0";
     $("tb-banner-kicker").textContent = kicker;
     $("tb-banner-sub").textContent = sub;
-    const number = root.dataset.phoneDisplay || "+1 956 225 2738";
+    const number = root.dataset.phoneDisplay || "+1 915 745 7187";
     const a = $("tb-banner-number");
     a.textContent = number;
     a.href = `tel:${number.replace(/[^+\d]/g, "")}`;

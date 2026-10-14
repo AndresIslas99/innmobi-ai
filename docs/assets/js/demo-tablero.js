@@ -7,6 +7,12 @@
 //   GET  {API}/v1/demo/panel/state    Authorization: Bearer -> {epoch, seq, server_time, calls[]}
 //   GET  {API}/v1/demo/panel/stream   Authorization: Bearer, Last-Event-ID -> text/event-stream
 //
+// Property events (brokerage catalog; every field is optional and read defensively):
+//   properties_suggested {call_ref, items:[{id, nombre, operacion, zona, precio_mxn | renta_mensual_mxn, m2, recamaras, imagen}]}
+//   property_viewed      {call_ref, id}
+//   visit_reserved       {..., propiedad_id, propiedad_nombre, modalidad}
+//   The state snapshot may carry per call: propiedades[] (same item shape) and propiedad_consultada (id).
+//
 // Privacy / safety by construction:
 //   - The PIN lives only in the input while it is typed; it is wiped on submit and never stored or put in a URL.
 //   - The session token (short-lived, 4 h) is kept in sessionStorage only, inside try/catch; the page works without it.
@@ -72,6 +78,107 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Properties (catalog of the fictional brokerage)
+  // ---------------------------------------------------------------------------
+
+  const OP_LABEL = {
+    preventa: "Preventa", reventa: "Reventa", remate: "Remate bancario", recuperada: "Recuperada",
+    renta: "Renta", renta_amueblada: "Renta amueblada", renta_comercial: "Renta comercial", terreno: "Terreno",
+    renta_opcion_compra: "Opción a compra",
+  };
+  const OP_BY_PREFIX = { PV: "preventa", RV: "reventa", RM: "remate", RCP: "recuperada", RN: "renta", RA: "renta_amueblada", CM: "renta_comercial", TE: "terreno", OC: "renta_opcion_compra" };
+  const MODALIDAD_LABEL = { sala: "Sala de ventas", propiedad: "En la propiedad", video: "Videollamada" };
+  const MAX_PROPS = 10;
+  const IMG_DIR = "/assets/demo/catalogo/";
+
+  const str = (v) => (typeof v === "string" && v.trim() ? v.trim() : (typeof v === "number" && Number.isFinite(v) ? String(v) : null));
+  const num = (v) => (typeof v === "number" && Number.isFinite(v) ? v : null);
+  const mxn = (n) => "$" + new Intl.NumberFormat("es-MX", { maximumFractionDigits: 0 }).format(n);
+  const safeId = (id) => (id && /^[A-Za-z0-9_-]{1,40}$/.test(id) ? id : null);
+
+  function opOf(raw, id) {
+    const op = str(raw && raw.operacion);
+    if (op && OP_LABEL[op]) return op;
+    const prefix = id && /^([A-Z]{2,3})-/.exec(id);
+    return (prefix && OP_BY_PREFIX[prefix[1]]) || null;
+  }
+
+  function normItem(raw) {
+    if (!raw || typeof raw !== "object") return null;
+    const id = str(raw.id);
+    const nombre = str(raw.nombre);
+    if (!id && !nombre) return null;
+    const operacion = opOf(raw, id);
+    return {
+      id, key: id || nombre, nombre, operacion, zona: str(raw.zona),
+      precio: num(raw.precio_mxn), renta: num(raw.renta_mensual_mxn), desde: raw.precio_es_desde === true || operacion === "preventa",
+      m2: num(raw.m2), recamaras: num(raw.recamaras), imagen: str(raw.imagen),
+    };
+  }
+
+  function normItems(list) {
+    const out = [];
+    for (const raw of Array.isArray(list) ? list : []) {
+      const it = normItem(raw);
+      if (it && !out.some((x) => x.key === it.key)) out.push(it);
+    }
+    return out.slice(0, MAX_PROPS);
+  }
+
+  // Only same-origin catalog images: the server's path if it looks right, else the one derived from the id.
+  function imageSrc(item) {
+    if (item.imagen && /^\/assets\/demo\/catalogo\/[\w.-]+\.webp$/.test(item.imagen)) return item.imagen;
+    const id = safeId(item.id);
+    return id ? `${IMG_DIR}${id}.webp` : null;
+  }
+
+  const findProp = (call, id) => (id ? call.propiedades.find((p) => p.id === id) || null : null);
+
+  // A property the caller asked about that was never listed (e.g. a replay gap): keep a minimal card so it can be highlighted.
+  function ensureProperty(call, id, raw) {
+    let it = findProp(call, id);
+    if (!it) {
+      it = normItem({ ...(raw || {}), id });
+      if (!it) return null;
+      call.propiedades.unshift(it);
+      call.propiedades.length = Math.min(call.propiedades.length, MAX_PROPS);
+    }
+    return it;
+  }
+
+  function mergeSuggested(call, items) {
+    const fresh = normItems(items);
+    const keys = new Set(fresh.map((x) => x.key));
+    call.propiedades = [...fresh, ...call.propiedades.filter((x) => !keys.has(x.key))].slice(0, MAX_PROPS);
+    return fresh;
+  }
+
+  function modalidadLabel(raw) {
+    const v = str(raw);
+    if (!v) return null;
+    const k = v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z]/g, "");
+    if (k.includes("video")) return MODALIDAD_LABEL.video;
+    if (k.includes("sala") || k.includes("showroom")) return MODALIDAD_LABEL.sala;
+    if (k.includes("propiedad") || k.includes("presencial") || k.includes("inmueble")) return MODALIDAD_LABEL.propiedad;
+    return v;
+  }
+
+  function normVisit(v) {
+    const out = {
+      dia: v.dia, hora: v.hora, iso: v.iso, sala: str(v.sala),
+      propiedad_id: str(v.propiedad_id), propiedad_nombre: str(v.propiedad_nombre), modalidad: modalidadLabel(v.modalidad),
+    };
+    // Older events (single presale development) only carried the sales room.
+    if (!out.modalidad && out.sala && !out.propiedad_id) out.modalidad = MODALIDAD_LABEL.sala;
+    return out;
+  }
+
+  function suggestedText(items) {
+    const names = items.map((x) => x.nombre || x.id).filter(Boolean);
+    return names.length ? `Propiedades sugeridas: ${names.join(", ")}` : "Propiedades sugeridas";
+  }
+
+  // ---------------------------------------------------------------------------
   // State (memory only)
   // ---------------------------------------------------------------------------
 
@@ -96,6 +203,7 @@
       started_at: null, started_ms: null, ended_at: null, ended_ms: null, end_reason: null, duration_s: null,
       lead: { nombre: null, tipo_unidad: null, proposito: null, plazo: null },
       presupuesto: null, visita: null, preguntas: [], traspaso: null, ledger: [],
+      propiedades: [], consultada: null,
     };
   }
 
@@ -115,6 +223,10 @@
     call.preguntas = Array.isArray(c.preguntas) ? c.preguntas.slice() : [];
     call.traspaso = c.traspaso || null;
     call.ledger = (Array.isArray(c.ledger) ? c.ledger : []).slice().sort((a, b) => a.seq - b.seq);
+    call.propiedades = normItems(c.propiedades || c.propiedades_sugeridas || c.items);
+    const viewed = str(c.propiedad_consultada) || str(c.consultada);
+    if (viewed) { call.consultada = viewed; ensureProperty(call, viewed); }
+    if (call.visita) call.visita = normVisit(call.visita);
     return call;
   }
 
@@ -403,7 +515,7 @@
   // Events
   // ---------------------------------------------------------------------------
 
-  const LEDGER_TYPES = new Set(["call_started", "interest", "budget", "slots_offered", "visit_reserved", "question", "handoff", "call_ended"]);
+  const LEDGER_TYPES = new Set(["call_started", "interest", "budget", "slots_offered", "properties_suggested", "property_viewed", "visit_reserved", "question", "handoff", "call_ended"]);
 
   function handleEvent(name, p, id) {
     if (name === "hello") {
@@ -444,7 +556,19 @@
     const call = callFor(e.call_ref, e.at);
     const known = new Set(call.ledger.map((x) => x.seq));
     if (known.has(e.seq)) return;
-    call.ledger.push({ seq: e.seq, at: e.at, type: e.type, text: e.text || "" });
+    let text = e.text || "";
+    let suggestedNow = [];
+    let viewedNow = null;
+    if (e.type === "properties_suggested") {
+      suggestedNow = mergeSuggested(call, e.items);
+      if (!text) text = suggestedText(suggestedNow);
+    } else if (e.type === "property_viewed") {
+      const id = str(e.id) || str(e.propiedad_id);
+      const it = id ? ensureProperty(call, id, e) : null;
+      if (id) { call.consultada = id; viewedNow = id; }
+      if (!text) text = `Pidió detalles de ${(it && (it.nombre || it.id)) || id || "una propiedad"}`;
+    }
+    call.ledger.push({ seq: e.seq, at: e.at, type: e.type, text });
 
     switch (e.type) {
       case "call_started":
@@ -461,7 +585,7 @@
         call.presupuesto = e.rango || null;
         break;
       case "visit_reserved":
-        call.visita = { dia: e.dia, hora: e.hora, iso: e.iso, sala: e.sala };
+        call.visita = normVisit(e);
         break;
       case "question":
         if (e.pregunta && !call.preguntas.some((q) => q.toLowerCase() === e.pregunta.toLowerCase())) call.preguntas.push(e.pregunta);
@@ -480,6 +604,9 @@
         break;
     }
     renderAll(e);
+    if (e.type === "visit_reserved" && call.visita && call.visita.propiedad_id) scrollToProperty(call.visita.propiedad_id);
+    else if (viewedNow) scrollToProperty(viewedNow);
+    else if (suggestedNow.length && call.call_ref === selectedRef) scrollStrip(0);
   }
 
   // ---------------------------------------------------------------------------
@@ -503,8 +630,8 @@
     const banner = $("tb-banner");
     const active = calls.filter((c) => c.status === "active").length;
     let mode = "idle";
-    let kicker = "PRUEBE A SOFÍA AHORA";
-    let sub = "Desde cualquier teléfono. Valeria es una asistente de IA y atiende por Residencial Demo Narvarte, un desarrollo ficticio.";
+    let kicker = "PRUEBE A VALERIA AHORA";
+    let sub = "Desde cualquier teléfono. Valeria es una asistente de IA y atiende por Inmobiliaria Demo Valle, una inmobiliaria ficticia con propiedades de ejemplo.";
     if (active) {
       mode = "live";
       kicker = "EN LLAMADA";
@@ -545,6 +672,7 @@
         btn.addEventListener("click", () => selectCall(c.call_ref));
         li.append(btn);
         li.classList.add("is-new");
+        settleOnEnd(li, "dl-in");
       }
       const btn = li.firstElementChild;
       btn.setAttribute("aria-pressed", String(c.call_ref === selectedRef));
@@ -553,7 +681,7 @@
       btn.children[1].textContent = c.caller;
       order.push(li);
     }
-    list.replaceChildren(...order);
+    syncChildren(list, order);
   }
 
   function selectCall(ref) {
@@ -582,6 +710,20 @@
     node.classList.add("is-new");
   }
 
+  // Make `list` hold exactly `nodes`, in order, without detaching the ones already in place
+  // (a detached node replays its CSS animation when it comes back).
+  function syncChildren(list, nodes) {
+    nodes.forEach((node, i) => { if (list.children[i] !== node) list.insertBefore(node, list.children[i] || null); });
+    while (list.children.length > nodes.length) list.lastElementChild.remove();
+  }
+
+  // Re-inserting a node restarts its CSS animation, so the "just arrived" class is dropped once it has played.
+  function settleOnEnd(node, name) {
+    node.addEventListener("animationend", (ev) => {
+      if (ev.target === node && ev.animationName === name) node.classList.remove("is-new");
+    });
+  }
+
   function renderDetail(event) {
     const call = selected();
     $("tb-detail").hidden = !call;
@@ -601,12 +743,115 @@
     setField("presupuesto", call.presupuesto, "Sin registrar. Solo aparece si la persona acepta y lo dice.", animate);
     setField("visita_dia", call.visita && call.visita.dia, "—", animate);
     setField("visita_hora", call.visita && call.visita.hora, "—", animate);
-    setField("visita_sala", call.visita && call.visita.sala, "—", animate);
+    const v = call.visita;
+    const vProp = v && (v.propiedad_nombre || (findProp(call, v.propiedad_id) || {}).nombre || v.propiedad_id);
+    setField("visita_modalidad", v && v.modalidad, "—", animate);
+    setField("visita_propiedad", vProp, "—", animate);
+    const place = $("tb-visit-place");
+    place.textContent = v && v.sala ? v.sala : "";
+    place.hidden = !(v && v.sala);
     setField("traspaso", call.traspaso && (call.traspaso.motivo || "Pidió hablar con una persona"), "No solicitado.", animate);
 
     renderQuestions(call, animate);
+    renderProperties(call, sameCall);
     renderLedger(call, sameCall);
     ledgerShown.ref = call.call_ref;
+  }
+
+  // ----- Suggested properties strip -----
+
+  function propertyCard(item, call) {
+    const li = el("li", "tb-prop");
+    li.dataset.key = item.key;
+    if (item.id) li.dataset.id = item.id;
+    li.dataset.op = item.operacion || "otro";
+
+    const photo = el("div", "tb-prop-photo");
+    const src = imageSrc(item);
+    if (src) {
+      const img = el("img", "tb-prop-img");
+      img.alt = item.nombre ? `Imagen ilustrativa de ${item.nombre}` : "Imagen ilustrativa de la propiedad";
+      img.decoding = "async";
+      img.loading = "lazy";
+      img.addEventListener("error", () => { photo.classList.add("is-missing"); img.remove(); }, { once: true });
+      img.src = src;
+      photo.append(img);
+    } else {
+      photo.classList.add("is-missing");
+    }
+    photo.append(el("span", "tb-prop-ill", "imagen ilustrativa"));
+
+    const body = el("div", "tb-prop-body");
+    body.append(el("span", "tb-prop-op", OP_LABEL[item.operacion] || "Propiedad"));
+    const name = el("span", "tb-prop-name", item.nombre || item.id || "Propiedad");
+    name.title = item.nombre || "";
+    body.append(name);
+    if (item.zona) body.append(el("span", "tb-prop-zona", item.zona));
+    const price = priceOf(item);
+    if (price.main) {
+      const p = el("span", "tb-prop-price", price.main);
+      if (price.unit) p.append(el("span", "tb-prop-unit", price.unit));
+      body.append(p);
+    }
+    if (price.sub) body.append(el("span", "tb-prop-sub", price.sub));
+    const meta = metaOf(item);
+    if (meta) body.append(el("span", "tb-prop-meta", meta));
+
+    const flags = el("div", "tb-prop-flags");
+    flags.append(el("span", "tb-prop-flag tb-flag-viewed", "Pidió detalles"), el("span", "tb-prop-flag tb-flag-visit", "Visita reservada"));
+    li.append(flags, photo, body);
+    return li;
+  }
+
+  function priceOf(item) {
+    if (item.renta !== null) return { main: mxn(item.renta), unit: " / mes", sub: item.precio !== null ? `Compra ${mxn(item.precio)}` : null };
+    if (item.precio !== null) return { main: `${item.desde ? "Desde " : ""}${mxn(item.precio)}`, unit: null, sub: null };
+    return { main: null, unit: null, sub: null };
+  }
+
+  function metaOf(item) {
+    const parts = [];
+    if (item.m2 !== null) parts.push(`${new Intl.NumberFormat("es-MX", { maximumFractionDigits: 1 }).format(item.m2)} m²`);
+    if (item.recamaras !== null && item.recamaras > 0) parts.push(`${item.recamaras} ${item.recamaras === 1 ? "recámara" : "recámaras"}`);
+    return parts.join(" · ");
+  }
+
+  function renderProperties(call, sameCall) {
+    const wrap = $("tb-props");
+    const list = $("tb-props-list");
+    const items = call.propiedades;
+    wrap.hidden = items.length === 0;
+    if (!items.length) root.dataset.props = "0";
+    $("tb-props-count").textContent = items.length ? String(items.length) : "";
+    const existing = new Map([...list.children].map((li) => [li.dataset.key, li]));
+    const order = items.map((item) => {
+      let li = existing.get(item.key);
+      if (!li || li.dataset.call !== call.call_ref) {
+        li = propertyCard(item, call);
+        li.dataset.call = call.call_ref;
+        if (sameCall) { li.classList.add("is-new"); settleOnEnd(li, "dl-flash"); }
+      }
+      const viewed = !!call.consultada && item.id === call.consultada;
+      const visit = !!(call.visita && call.visita.propiedad_id && item.id === call.visita.propiedad_id);
+      li.classList.toggle("is-viewed", viewed);
+      li.classList.toggle("is-visit", visit);
+      return li;
+    });
+    syncChildren(list, order);
+    root.dataset.props = items.length ? "1" : "0";
+  }
+
+  function scrollStrip(left) {
+    const strip = $("tb-props-list");
+    if (strip.scrollWidth <= strip.clientWidth) return;
+    strip.scrollTo({ left: Math.max(0, left), behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+
+  // The newest suggestions sit at the left edge; asking about one brings that card into view.
+  function scrollToProperty(id) {
+    const strip = $("tb-props-list");
+    const card = [...strip.children].find((li) => li.dataset.id === id);
+    if (card) scrollStrip(card.offsetLeft - strip.offsetLeft - 8);
   }
 
   function renderQuestions(call, animate) {

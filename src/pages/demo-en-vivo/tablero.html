@@ -47,10 +47,10 @@
     <!-- Banner para quien llama -->
     <section class="tb-banner" id="tb-banner" data-mode="idle" aria-label="Número para llamar">
       <div class="tb-banner-main">
-        <span class="tb-banner-kicker" id="tb-banner-kicker">PRUEBE A SOFÍA AHORA</span>
+        <span class="tb-banner-kicker" id="tb-banner-kicker">PRUEBE A VALERIA AHORA</span>
         <p class="tb-banner-call"><span class="tb-banner-verb">Marque al</span> <a class="tb-banner-number" id="tb-banner-number" href="tel:+19157457187">+1 915 745 7187</a></p>
       </div>
-      <p class="tb-banner-sub" id="tb-banner-sub">Desde cualquier teléfono. Valeria es una asistente de IA y atiende por Residencial Demo Narvarte, un desarrollo ficticio.</p>
+      <p class="tb-banner-sub" id="tb-banner-sub">Desde cualquier teléfono. Valeria es una asistente de IA y atiende por Inmobiliaria Demo Valle, una inmobiliaria ficticia con propiedades de ejemplo.</p>
     </section>
 
     <!-- Una tarjeta por llamada -->
@@ -73,6 +73,12 @@
           </div>
         </div>
 
+        <!-- Propiedades que Valeria sugirió en esta llamada -->
+        <section class="tb-props" id="tb-props" aria-labelledby="tb-props-h" hidden>
+          <h3 class="dl-h tb-props-h" id="tb-props-h">Propiedades sugeridas <span class="tb-props-count" id="tb-props-count"></span></h3>
+          <ul class="tb-props-list" id="tb-props-list"></ul>
+        </section>
+
         <div class="tb-team-grid">
           <div class="tb-fields-col">
             <div class="dl-block">
@@ -86,17 +92,19 @@
             </div>
 
             <div class="dl-block">
-              <h3 class="dl-h">Rango de presupuesto declarado por la persona</h3>
-              <p class="dl-value is-empty" data-f="presupuesto">Sin registrar. Solo aparece si la persona acepta y lo dice.</p>
-            </div>
-
-            <div class="dl-block">
               <h3 class="dl-h">Visita reservada</h3>
               <dl class="dl-fields tb-visit-fields">
                 <div class="dl-field"><dt>Día</dt><dd data-f="visita_dia" class="is-empty">—</dd></div>
                 <div class="dl-field"><dt>Hora</dt><dd data-f="visita_hora" class="is-empty">—</dd></div>
-                <div class="dl-field"><dt>Sala de ventas</dt><dd data-f="visita_sala" class="is-empty">—</dd></div>
+                <div class="dl-field"><dt>Modalidad</dt><dd data-f="visita_modalidad" class="is-empty">—</dd></div>
+                <div class="dl-field tb-visit-prop"><dt>Propiedad</dt><dd data-f="visita_propiedad" class="is-empty">—</dd></div>
               </dl>
+              <p class="tb-visit-place" id="tb-visit-place" hidden></p>
+            </div>
+
+            <div class="dl-block">
+              <h3 class="dl-h">Rango de presupuesto declarado por la persona</h3>
+              <p class="dl-value is-empty" data-f="presupuesto">Sin registrar. Solo aparece si la persona acepta y lo dice.</p>
             </div>
 
             <div class="tb-pair">
@@ -122,7 +130,7 @@
       </div>
     </section>
 
-    <p class="tb-foot">Demo en vivo: la llamada es real; el desarrollo, Residencial Demo Narvarte, es ficticio. El número de quien llama se muestra enmascarado.</p>
+    <p class="tb-foot">Demo en vivo: la llamada es real; la inmobiliaria, Inmobiliaria Demo Valle, y sus propiedades son ficticias, y las imágenes son ilustrativas. El número de quien llama se muestra enmascarado.</p>
   </div>
 
 </main>

@@ -134,6 +134,8 @@
 .tb-visit-fields .tb-visit-prop { grid-column: 1 / -1; }
 .tb-visit-fields .tb-visit-prop dd { font-size: 20px; overflow-wrap: anywhere; }
 .tb-visit-place { margin: 8px 0 0; font-size: 14px; line-height: 1.4; color: var(--ink-700); }
+.tb-visit-follow { margin: 6px 0 0; font-size: 14px; line-height: 1.4; color: var(--ink-700); overflow-wrap: anywhere; }
+.tb-visit-follow strong { font-weight: 600; color: var(--ink-900); }
 .tb-fields-col > .dl-block:first-child .dl-fields { grid-template-columns: minmax(0, .85fr) minmax(0, 1.8fr) minmax(0, 1fr) minmax(0, .85fr); }
 .tb-pair { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
 .tb-pair > .dl-block + .dl-block { border-left: 1px solid var(--ink-200); }

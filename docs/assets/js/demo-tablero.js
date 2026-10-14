@@ -10,7 +10,7 @@
 // Property events (brokerage catalog; every field is optional and read defensively):
 //   properties_suggested {call_ref, items:[{id, nombre, operacion, zona, precio_mxn | renta_mensual_mxn, m2, recamaras, imagen}]}
 //   property_viewed      {call_ref, id}
-//   visit_reserved       {..., propiedad_id, propiedad_nombre, modalidad}
+//   visit_reserved       {..., propiedad_id, propiedad_nombre, modalidad, seguimiento}
 //   The state snapshot may carry per call: propiedades[] (same item shape) and propiedad_consultada (id).
 //
 // Privacy / safety by construction:
@@ -165,7 +165,7 @@
 
   function normVisit(v) {
     const out = {
-      dia: v.dia, hora: v.hora, iso: v.iso, sala: str(v.sala),
+      dia: v.dia, hora: v.hora, iso: v.iso, sala: str(v.sala), seguimiento: str(v.seguimiento),
       propiedad_id: str(v.propiedad_id), propiedad_nombre: str(v.propiedad_nombre), modalidad: modalidadLabel(v.modalidad),
     };
     // Older events (single presale development) only carried the sales room.
@@ -750,6 +750,8 @@
     const place = $("tb-visit-place");
     place.textContent = v && v.sala ? v.sala : "";
     place.hidden = !(v && v.sala);
+    $("tb-visit-follow-text").textContent = v && v.seguimiento ? v.seguimiento : "";
+    $("tb-visit-follow").hidden = !(v && v.seguimiento);
     setField("traspaso", call.traspaso && (call.traspaso.motivo || "Pidió hablar con una persona"), "No solicitado.", animate);
 
     renderQuestions(call, animate);

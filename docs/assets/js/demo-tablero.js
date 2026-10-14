@@ -508,7 +508,7 @@
     if (active) {
       mode = "live";
       kicker = "EN LLAMADA";
-      sub = "Mire cómo se llena el panel mientras la persona habla con Sofía.";
+      sub = "Mire cómo se llena el panel mientras la persona habla con Valeria.";
     } else if (calls.length) {
       mode = "ended";
       kicker = "LLAMADA TERMINADA";

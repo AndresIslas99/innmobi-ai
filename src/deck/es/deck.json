@@ -1,20 +1,61 @@
 {
   "v": 4,
-  "createdOnFiles": { "v": 1, "at": "2026-10-15T01:55:00Z" },
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-15T01:55:00Z"
+  },
   "lists": "css",
   "title": "innmobi · Pitch deck pre-seed",
   "cover": "portada",
-  "order": ["portada", "problema", "apuesta", "demo", "panel", "como-funciona", "construido", "mercado", "piloto", "traccion", "competencia", "equipo", "ronda", "cierre"],
+  "order": [
+    "portada",
+    "problema",
+    "apuesta",
+    "demo",
+    "panel",
+    "plataforma",
+    "estrategia",
+    "como-funciona",
+    "construido",
+    "mercado",
+    "piloto",
+    "traccion",
+    "competencia",
+    "equipo",
+    "ronda",
+    "cierre"
+  ],
   "sections": {
-    "s1": { "description": "El problema y la apuesta", "start": "portada" },
-    "s2": { "description": "El producto que funciona hoy", "start": "demo" },
-    "s3": { "description": "Mercado, modelo de negocio y tracción", "start": "mercado" },
-    "s4": { "description": "Competencia, equipo y la ronda", "start": "competencia" }
+    "s1": {
+      "description": "El problema y la apuesta",
+      "start": "portada"
+    },
+    "s2": {
+      "description": "El producto que funciona hoy y la plataforma",
+      "start": "demo"
+    },
+    "s3": {
+      "description": "Mercado, modelo de negocio y tracción",
+      "start": "mercado"
+    },
+    "s4": {
+      "description": "Competencia, equipo y la ronda",
+      "start": "competencia"
+    }
   },
   "faces": {
-    "fraunces": { "family": "Fraunces", "href": "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&display=swap" },
-    "inter": { "family": "Inter", "href": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" },
-    "jetbrains-mono": { "family": "JetBrains Mono", "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" }
+    "fraunces": {
+      "family": "Fraunces",
+      "href": "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&display=swap"
+    },
+    "inter": {
+      "family": "Inter",
+      "href": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    },
+    "jetbrains-mono": {
+      "family": "JetBrains Mono",
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap"
+    }
   },
   "designSystems": []
 }

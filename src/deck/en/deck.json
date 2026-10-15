@@ -1,20 +1,61 @@
 {
   "v": 4,
-  "createdOnFiles": { "v": 1, "at": "2026-10-15T02:25:00Z" },
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-15T02:25:00Z"
+  },
   "lists": "css",
   "title": "innmobi · Pre-seed pitch deck",
   "cover": "cover",
-  "order": ["cover", "problem", "bet", "demo", "panel", "how-it-works", "status", "market", "pilot", "traction", "competition", "team", "round", "close"],
+  "order": [
+    "cover",
+    "problem",
+    "bet",
+    "demo",
+    "panel",
+    "platform",
+    "strategy",
+    "how-it-works",
+    "status",
+    "market",
+    "pilot",
+    "traction",
+    "competition",
+    "team",
+    "round",
+    "close"
+  ],
   "sections": {
-    "s1": { "description": "The problem and the bet", "start": "cover" },
-    "s2": { "description": "The product that works today", "start": "demo" },
-    "s3": { "description": "Market, business model and traction", "start": "market" },
-    "s4": { "description": "Competition, team and the round", "start": "competition" }
+    "s1": {
+      "description": "The problem and the bet",
+      "start": "cover"
+    },
+    "s2": {
+      "description": "The product that works today, and the platform",
+      "start": "demo"
+    },
+    "s3": {
+      "description": "Market, business model and traction",
+      "start": "market"
+    },
+    "s4": {
+      "description": "Competition, team and the round",
+      "start": "competition"
+    }
   },
   "faces": {
-    "fraunces": { "family": "Fraunces", "href": "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&display=swap" },
-    "inter": { "family": "Inter", "href": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" },
-    "jetbrains-mono": { "family": "JetBrains Mono", "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" }
+    "fraunces": {
+      "family": "Fraunces",
+      "href": "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&display=swap"
+    },
+    "inter": {
+      "family": "Inter",
+      "href": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    },
+    "jetbrains-mono": {
+      "family": "JetBrains Mono",
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap"
+    }
   },
   "designSystems": []
 }

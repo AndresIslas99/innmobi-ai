@@ -117,7 +117,7 @@ ${fonts}
   .foot a { color: var(--forest); }
   body.presenting { overflow: hidden; }
   body.presenting .frame.current { position: fixed; inset: 0; z-index: 20; width: 100vw; height: 100vh; aspect-ratio: auto; border-radius: 0; box-shadow: none; background: #0F0F10; cursor: zoom-out; }
-  @media (max-width: 640px) { .bar .kicker { display: none; } .bar { padding: 10px 12px; gap: 8px; } .bar a, .bar button { padding: 8px 10px; font-size: 13px; } }
+  @media (max-width: 760px) { .bar .kicker, #present { display: none; } .bar { padding: 10px 12px; gap: 8px; flex-wrap: wrap; } .bar img { height: 22px; } .bar a, .bar button { padding: 8px 10px; font-size: 13px; } }
   @media print {
     @page { size: 1920px 1080px; margin: 0; }
     html, body { background: none; }

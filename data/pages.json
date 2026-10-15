@@ -19,7 +19,10 @@
     }
   },
   "redirects": [
-    { "from": "recursos/por-que-60-leads-mueren-en-24-horas", "to": "recursos/velocidad-de-respuesta-a-leads" }
+    {
+      "from": "recursos/por-que-60-leads-mueren-en-24-horas",
+      "to": "recursos/velocidad-de-respuesta-a-leads"
+    }
   ],
   "pages": [
     {
@@ -137,6 +140,38 @@
       "description": "Aviso de privacidad de Innmobi.ai bajo la LFPDPPP vigente (DOF, 20 de marzo de 2025): qué datos recabamos en este sitio, para qué y cómo ejercer tus derechos.",
       "ogImage": "/og/legal.png",
       "priority": 0.3
+    },
+    {
+      "slug": "deck",
+      "title": "Pitch deck · Innmobi.ai",
+      "description": "Pitch deck pre-seed de innmobi.ai, en español e inglés.",
+      "ogImage": "/og/home.png",
+      "noindex": true,
+      "sitemap": false,
+      "navHide": true,
+      "priority": 0.1
+    },
+    {
+      "slug": "deck/es",
+      "title": "Pitch deck (español) · Innmobi.ai",
+      "description": "Pitch deck pre-seed de innmobi.ai en español.",
+      "extraHead": "<meta http-equiv=\"refresh\" content=\"0; url=https://claude.ai/artifact/BBL9Mi2GfGTjuUJJe3URv7\">",
+      "ogImage": "/og/home.png",
+      "noindex": true,
+      "sitemap": false,
+      "navHide": true,
+      "priority": 0.1
+    },
+    {
+      "slug": "deck/en",
+      "title": "Pitch deck (English) · Innmobi.ai",
+      "description": "innmobi.ai pre-seed pitch deck in English.",
+      "extraHead": "<meta http-equiv=\"refresh\" content=\"0; url=https://claude.ai/artifact/MsK1XpLFsYaVcNm6zfExsn\">",
+      "ogImage": "/og/home.png",
+      "noindex": true,
+      "sitemap": false,
+      "navHide": true,
+      "priority": 0.1
     }
   ],
   "posts": [

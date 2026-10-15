@@ -150,28 +150,6 @@
       "sitemap": false,
       "navHide": true,
       "priority": 0.1
-    },
-    {
-      "slug": "deck/es",
-      "title": "Pitch deck (español) · Innmobi.ai",
-      "description": "Pitch deck pre-seed de innmobi.ai en español.",
-      "extraHead": "<meta http-equiv=\"refresh\" content=\"0; url=https://claude.ai/artifact/BBL9Mi2GfGTjuUJJe3URv7\">",
-      "ogImage": "/og/home.png",
-      "noindex": true,
-      "sitemap": false,
-      "navHide": true,
-      "priority": 0.1
-    },
-    {
-      "slug": "deck/en",
-      "title": "Pitch deck (English) · Innmobi.ai",
-      "description": "innmobi.ai pre-seed pitch deck in English.",
-      "extraHead": "<meta http-equiv=\"refresh\" content=\"0; url=https://claude.ai/artifact/MsK1XpLFsYaVcNm6zfExsn\">",
-      "ogImage": "/og/home.png",
-      "noindex": true,
-      "sitemap": false,
-      "navHide": true,
-      "priority": 0.1
     }
   ],
   "posts": [

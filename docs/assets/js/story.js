@@ -13,7 +13,6 @@ const FIRST_FRAMES = 24;       // scene 1 frames that must arrive before going l
 const GATE_MS = 6000;          // ...within this time, or we stay static
 const MAX_PARALLEL = 6;        // simultaneous frame requests
 const MAX_BG_PARALLEL = 4;     // of those, how many may be background (non-visible) downloads
-const MIN_DOWNLINK = 8;        // Mbps (navigator.connection.downlink): below this the story stays static
 const DISSOLVE_FROM = 0.94;    // last 6% of a scene dips through black into the first frame of the next (no two faces overlap)
 const DAMPING = 9;             // playhead easing (higher = snappier)
 
@@ -110,7 +109,8 @@ function canGoLive() {
   const c = navigator.connection || {};
   if (c.saveData) return 'save-data';
   if (['slow-2g', '2g', '3g'].includes(c.effectiveType)) return 'slow-connection';
-  if (typeof c.downlink === 'number' && c.downlink > 0 && c.downlink < MIN_DOWNLINK) return 'slow-connection';
+  // No check on c.downlink: Chrome's estimate lags the real network and is capped at 10 Mbps, so it kept fast
+  // connections static (3.4 reported while the first frames arrived at 10-14). The frame gate measures the real speed.
   if (navigator.deviceMemory && navigator.deviceMemory <= 2) return 'low-memory';
   const cv = document.createElement('canvas');
   if (!(cv.getContext && cv.getContext('2d')) || !window.createImageBitmap || !window.fetch) return 'no-canvas';

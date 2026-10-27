@@ -83,6 +83,14 @@ for (const [n, conn] of [['savedata', '{saveData:true}'], ['3g', '{effectiveType
   await s.context.close();
 }
 
+// 3b. a fast network Chrome estimates as slow (4g, downlink 3.4): must go live, the frame gate decides
+{
+  const s = await open('lowestimate', { viewport: { width: 1440, height: 900 } }, `Object.defineProperty(navigator,'connection',{get:()=>({effectiveType:'4g',downlink:3.4})})`);
+  await goto(s, 2500);
+  out.lowestimate = { mode: await mode(s.page), errors: s.errors };
+  await s.context.close();
+}
+
 // 4. slow network: the gate (24 frames in 6 s) must fail and leave the static page
 {
   const s = await open('slow', { viewport: { width: 1440, height: 900 } }, `Object.defineProperty(navigator,'connection',{get:()=>({effectiveType:'4g'})})`);

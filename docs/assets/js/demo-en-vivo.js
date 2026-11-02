@@ -19,7 +19,9 @@ import { Conversation } from "./vendor/elevenlabs-client-1.26.0.js";
 
 // PLACEHOLDER: the web agent "innmobi · demo corretaje v6 (web)" does not exist yet. The lead replaces this value
 // with its id after creating it (apply_v6.py --channel=web), and check_routing.py verifies it. Never ship it as is: the
-// validate and deploy workflows fail while this line still holds the placeholder.
+// validate and deploy workflows fail while this line still holds the placeholder. Never roll the page back by changing
+// only this id: the older agent's tools run in the browser (clientTools) and this page registers none, so revert the
+// whole site commit instead. The release order is in README.md ("Releasing the live demo page").
 const AGENT_ID = "agent_PENDING_V6_WEB";
 const LIBSAMPLERATE_PATH = new URL("./vendor/libsamplerate.worklet-2.1.2.js", import.meta.url).href;
 const TZ = "America/Mexico_City";

@@ -18,8 +18,8 @@
 import { Conversation } from "./vendor/elevenlabs-client-1.26.0.js";
 
 // The web agent "innmobi · demo corretaje v6 (web)", created 2026-11-02 by apply_v6.py --channel=web; check_routing.py
-// verifies this value against the live platform. The validate and deploy workflows fail on the placeholder
-// "agent_PENDING_V6_WEB" this line held before. Never roll the page back by changing
+// verifies this value against the live platform. The validate and deploy workflows fail while this line holds the
+// placeholder it held before. Never roll the page back by changing
 // only this id: the older agent's tools run in the browser (clientTools) and this page registers none, so revert the
 // whole site commit instead. The release order is in README.md ("Releasing the live demo page").
 const AGENT_ID = "agent_9401m6edv6k8e3xbbm4g92y1q8yv";

@@ -51,7 +51,7 @@ let failures = 0;
 const step = async (name, fn) => { try { await fn(); console.log('ok  ', name); } catch (e) { failures++; console.log('FAIL', name, '\n    ', e.message.split('\n').slice(0, 8).join('\n     ')); } };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const shot = async (page, name, settleMs = 500) => { await page.waitForTimeout(settleMs); await page.screenshot({ path: path.join(SHOTS, name + '.png') }); };
-const text = (page, sel) => page.locator(sel).first().textContent().then((t) => t.replace(/\s+/g, ' ').trim());
+const text = (page, sel) => page.locator(sel).first().textContent().then((t) => t.replace(/\s+/g, ' ').trim()); // page may also be a Locator
 
 // A fresh browser context per scenario, with the outside world blocked (fonts, analytics) and the SDK stubbed.
 async function open(viewport, { convId, connectNoId = false } = {}) {
@@ -83,6 +83,37 @@ async function call(page) {
 const stateHits = (requests) => requests.filter((r) => r.url.includes('/v1/demo/web/state'));
 const CONV = 'conv_webtest0001';
 
+// The "imagen ilustrativa" caption says the photo is a look-alike, so it must be readable whole: inside its photo and not cut by it.
+async function captionsWhole(page) {
+  const caps = await page.evaluate(() => [...document.querySelectorAll('#dl-props-list .dl-prop-photo:not(.is-missing)')].map((photo) => {
+    const ill = photo.querySelector('.dl-prop-ill');
+    const range = document.createRange();
+    range.selectNodeContents(ill);
+    const t = range.getBoundingClientRect(), box = photo.getBoundingClientRect();
+    return {
+      text: ill.textContent,
+      fits: ill.scrollWidth <= ill.clientWidth + 0.5 && ill.scrollHeight <= ill.clientHeight + 0.5,
+      inside: t.left >= box.left - 0.5 && t.right <= box.right + 0.5 && t.top >= box.top - 0.5 && t.bottom <= box.bottom + 0.5,
+    };
+  }));
+  assert.ok(caps.length >= 1, 'no card with a photo to check');
+  for (const c of caps) assert.ok(c.fits && c.inside && c.text === 'imagen ilustrativa', `caption cut or changed: ${JSON.stringify(c)}`);
+}
+
+// The ribbon on a card ("Pidió detalles", "Visita agendada (demo)") stays inside the card.
+async function ribbonsInside(page) {
+  const out = await page.evaluate(() => [...document.querySelectorAll('#dl-props-list .dl-prop')].map((card) => {
+    const flags = card.querySelector('.dl-prop-flags').getBoundingClientRect(), box = card.getBoundingClientRect();
+    return { id: card.dataset.id, over: Math.max(0, flags.right - box.right) };
+  }));
+  for (const c of out) assert.ok(c.over <= 0.5, `ribbon of ${c.id} sticks out of its card by ${c.over}px`);
+}
+
+async function noPageOverflow(page, what) {
+  const over = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  assert.ok(over <= 0, `${what}: the page overflows by ${over}px`);
+}
+
 // ---------------------------------------------------------------------------
 console.log('--- desktop 1280x900');
 {
@@ -101,12 +132,14 @@ console.log('--- desktop 1280x900');
     await shot(page, 'desktop-1-idle');
   });
 
-  await step('the script has no client tools, the timeout text says quince minutos, the agent id is the marked placeholder', async () => {
+  await step('the script has no client tools, the timeout text says quince minutos, the agent id is the placeholder or a real id', async () => {
     const js = await (await fetch(`http://127.0.0.1:${sitePort}/assets/js/demo-en-vivo.js`)).text();
     assert.ok(!/clientTools/.test(js.replace(/\/\/.*$/gm, '')));
     assert.ok(js.includes('Se acabó el tiempo de la prueba (quince minutos).'));
     assert.ok(js.includes('const MAX_CALL_SECONDS = 900;'));
-    assert.ok(js.includes('const AGENT_ID = "agent_PENDING_V6_WEB";'));
+    // The placeholder until the lead creates the web agent; then its id. The CI guard (validate.yml and the deploy workflow) refuses the placeholder.
+    const agentId = /^const AGENT_ID = "([^"]*)";$/m.exec(js)?.[1];
+    assert.ok(agentId === 'agent_PENDING_V6_WEB' || /^agent_[a-z0-9]+$/.test(agentId ?? ''), `AGENT_ID is "${agentId}"`);
     assert.ok(js.includes('connectionType: "websocket"') && js.includes('dynamicVariables: dynamicVariables()'));
   });
 
@@ -173,6 +206,12 @@ console.log('--- desktop 1280x900');
     assert.ok(await cards.nth(1).evaluate((n) => n.classList.contains('is-viewed') && n.classList.contains('is-visit')));
     assert.ok(await cards.nth(0).evaluate((n) => !n.classList.contains('is-viewed') && !n.classList.contains('is-visit')));
 
+    // the booking is fictional and the panel says so where the visitor looks: the block title and the chip on the card
+    assert.equal(await text(page, '#dl-visit .dl-h'), 'Visita agendada (demo)');
+    assert.equal(await text(cards.nth(1), '.dl-flag-visit'), 'Visita agendada (demo)');
+    assert.ok(await cards.nth(1).locator('.dl-flag-visit').isVisible());
+    await captionsWhole(page);
+    await ribbonsInside(page);
     assert.equal(await text(page, '#dl-visit [data-field=dia]'), 'martes 3 de noviembre');
     assert.equal(await text(page, '#dl-visit [data-field=hora]'), '16:00');
     assert.equal(await text(page, '#dl-visit [data-field=modalidad]'), 'Videollamada');
@@ -273,13 +312,90 @@ console.log('--- model-controlled text is never markup');
     const last = page.locator('#dl-props-list .dl-prop').nth(4);
     assert.match(await last.innerText(), /<img src=x onerror="window.__pwned=1">Casa trampa/);
     assert.match(await last.innerText(), /<b>Zona<\/b>/);
-    // no municipality in the item, so no city is guessed
+    // no municipality in the item and a `ciudad` that is no known code, so no city is guessed (and the server's text is never the label)
     assert.equal(await last.locator('.dl-prop-zona').innerText(), '<b>Zona</b>');
+    // an unknown `ciudad` falls back to the municipality; a known one beats it
+    assert.equal(await page.locator('#dl-props-list .dl-prop').nth(5).locator('.dl-prop-zona').innerText(), 'Centro · Puebla');
+    assert.equal(await page.locator('#dl-props-list .dl-prop').nth(6).locator('.dl-prop-zona').innerText(), 'Centro · Ciudad de México');
     // the photo URL is derived from the id (and 404s here, so the placeholder shows), never the server's own URL
     await page.waitForFunction(() => document.querySelector('#dl-props-list .dl-prop:nth-child(5) .dl-prop-photo').classList.contains('is-missing'));
     assert.ok(requests.some((r) => r.url.endsWith('/assets/demo/catalogo/XX-1.webp')));
     assert.ok(requests.every((r) => !r.url.includes('evil.example')));
     await shot(page, 'hostile-1');
+    assert.deepEqual(errors, []);
+  });
+  await ctx.close();
+}
+
+// ---------------------------------------------------------------------------
+console.log('--- the server says "ended" while the call is still connected');
+{
+  const id = 'conv_webidle0001';
+  const { ctx, page, errors } = await open({ width: 1280, height: 900 }, { convId: id });
+  await step('the tag stays "En vivo" and the button "Colgar"; only the hang-up ends the call on screen', async () => {
+    await call(page);
+    await mock.playWeb({ id, gap: 40, end: true }); // ends with the server's own call_ended, as its idle timeout would
+    await page.waitForFunction(() => document.getElementById('dl-ledger').textContent.includes('(1 min 35 s)'), null, { timeout: 8000 }); // the server's row
+    assert.equal(await text(page, '#dl-team-tag'), 'En vivo');
+    assert.equal(await page.locator('#dl-team-tag').getAttribute('data-state'), 'live');
+    assert.equal(await text(page, '#dl-btn'), 'Colgar');
+    assert.equal(await text(page, '#dl-status-text'), 'Escuchando');
+    assert.equal(await page.locator('#dl').getAttribute('data-state'), 'live');
+    assert.ok(await page.locator('#dl-summary').isHidden());
+    await sleep(2500); // another poll with the same answer
+    assert.equal(await text(page, '#dl-team-tag'), 'En vivo');
+    await page.click('#dl-btn');
+    await page.waitForFunction(() => document.getElementById('dl').dataset.state === 'ended');
+    assert.equal(await text(page, '#dl-team-tag'), 'Llamada terminada');
+    assert.equal(await page.locator('#dl-team-tag').getAttribute('data-state'), 'ended');
+    assert.ok(await page.locator('#dl-summary').isVisible());
+    assert.deepEqual(errors, []);
+  });
+  await ctx.close();
+}
+
+// ---------------------------------------------------------------------------
+console.log('--- one long unbroken word from the server wraps, and the card captions are whole');
+const LONG = 'https://' + 'x'.repeat(970); // under the backend's 1000-character cap
+for (const [label, viewport, id] of [['desktop 1280', { width: 1280, height: 900 }, 'conv_weblong0001'], ['mobile 375', { width: 375, height: 812 }, 'conv_weblong0002']]) {
+  const { ctx, page, errors } = await open(viewport, { convId: id });
+  const mobile = viewport.width < 900;
+  await step(`${label}: question, hand-off reason and ledger rows wrap; so does the summary after the call`, async () => {
+    await call(page);
+    await mock.playWeb({ id, gap: 30 });
+    const ref = mock.refOf(id);
+    mock.emit(ref, 'question', { pregunta: LONG }, `Pregunta por confirmar: ${LONG}`);
+    mock.emit(ref, 'handoff', { motivo: LONG }, `Pidió hablar con una persona: ${LONG}`);
+    if (mobile) await page.click('#dl-tab-team');
+    await page.waitForFunction(() => document.getElementById('dl-handoff-value').textContent.includes('xxxxxxxxxx'), null, { timeout: 8000 });
+    await noPageOverflow(page, label);
+    for (const sel of ['#dl-questions-list li:last-child', '#dl-handoff-value', '#dl-ledger .dl-ledger-text']) {
+      const fits = await page.locator(sel).first().evaluate((n) => n.scrollWidth <= n.clientWidth + 1);
+      assert.ok(fits, `${sel} is wider than its box`);
+    }
+    // the cards at this width: whole caption, ribbons inside
+    await page.waitForFunction(() => document.querySelector('#dl-props-list .dl-prop:nth-child(4) .dl-prop-photo').classList.contains('is-missing'));
+    await captionsWhole(page);
+    await ribbonsInside(page);
+    await page.evaluate(() => document.getElementById('dl-props').scrollIntoView());
+    await shot(page, `long-1-${viewport.width}-cards`);
+    if (mobile) {
+      for (const width of [320, 360, 414]) { // the ribbons and the caption hold on the other phone widths too
+        await page.setViewportSize({ width, height: 812 });
+        await sleep(150);
+        await captionsWhole(page);
+        await ribbonsInside(page);
+        await noPageOverflow(page, `${width} px`);
+      }
+      await page.setViewportSize(viewport);
+    }
+    if (mobile) await page.click('#dl-tab-call');
+    await page.click('#dl-btn');
+    await page.waitForFunction(() => document.getElementById('dl').dataset.state === 'ended');
+    await noPageOverflow(page, `${label} summary`);
+    const dds = await page.locator('#dl-summary-list dd').evaluateAll((list) => list.filter((n) => n.textContent.includes('xxxxxxxxxx')).map((n) => n.scrollWidth <= n.clientWidth + 1));
+    assert.ok(dds.length >= 2 && dds.every(Boolean), `summary rows with the long word: ${JSON.stringify(dds)}`);
+    await shot(page, `long-2-${viewport.width}-summary`);
     assert.deepEqual(errors, []);
   });
   await ctx.close();
@@ -339,26 +455,71 @@ console.log('--- mobile 390x844');
 }
 
 // ---------------------------------------------------------------------------
-console.log('--- backoff (takes about 30 s)');
+console.log('--- backoff (takes about 70 s)');
 {
   const id = 'conv_webrate0001';
   const { ctx, page } = await open({ width: 1280, height: 900 }, { convId: id });
-  await step('429 backs off (4 s, then 8 s), a notice appears after three, and it clears when the route recovers', async () => {
+  const hitsAt = () => mock.webHits();
+  const waitHits = async (n, timeout) => {
+    const t0 = Date.now();
+    while (hitsAt().length < n) { if (Date.now() - t0 > timeout) throw new Error(`still ${hitsAt().length} polls after ${timeout} ms, wanted ${n}`); await sleep(50); }
+  };
+  const gap = (hits, i) => hits[i] - hits[i - 1];
+  await step('429 backs off 4 s then 8 s, each plus 20-30 percent; the notice comes with the third failure', async () => {
     await call(page);
     mock.playWeb({ id, gap: 100 });
     await page.waitForFunction(() => document.querySelector('#dl-lead [data-field=nombre]').textContent === 'Mariana', null, { timeout: 8000 });
-    mock.setWebMode('rate');
+    mock.setWebMode('rate'); // Retry-After 1 s: shorter than the steps, so the steps decide
     mock.clearWebHits();
-    await page.waitForFunction(() => !document.getElementById('dl-team-notice').hidden, null, { timeout: 25000 });
-    const hits = mock.webHits();
-    assert.ok(hits.length === 3, `three failed polls before the notice, got ${hits.length}`);
-    assert.ok(hits[1] - hits[0] >= 3800, `first back-off ${hits[1] - hits[0]} ms`);
-    assert.ok(hits[2] - hits[1] >= 7800, `second back-off ${hits[2] - hits[1]} ms`);
-    assert.match(await text(page, '#dl-team-notice'), /muchas consultas/);
+    await page.waitForFunction(() => !document.getElementById('dl-team-notice').hidden, null, { timeout: 30000 });
+    const hits = hitsAt();
+    assert.equal(hits.length, 3, `three failed polls before the notice, got ${hits.length}`);
+    assert.ok(gap(hits, 1) >= 4800 - 60 && gap(hits, 1) <= 5200 + 400, `first back-off ${gap(hits, 1)} ms, wanted 4800-5200`);
+    assert.ok(gap(hits, 2) >= 9600 - 60 && gap(hits, 2) <= 10400 + 400, `second back-off ${gap(hits, 2)} ms, wanted 9600-10400`);
+    const notice = await text(page, '#dl-team-notice');
+    assert.match(notice, /muchas consultas/);
+    assert.match(notice, /dentro de unos (20|25) segundos/, 'the notice says roughly how long the wait is');
+    assert.doesNotMatch(notice, /en unos segundos/);
     assert.equal(await text(page, '#dl-lead [data-field=nombre]'), 'Mariana', 'the last good data stays on screen');
     await shot(page, 'desktop-5-rate-limited');
+  });
+
+  await step('one good read only eases off one step (still slow, notice stays); the second returns to 2 s and clears the notice', async () => {
     mock.setWebMode('ok');
-    await page.waitForFunction(() => document.getElementById('dl-team-notice').hidden, null, { timeout: 20000 });
+    await waitHits(4, 30000); // the third back-off: 16 s plus 20-30 percent
+    const t4 = hitsAt()[3];
+    assert.ok(t4 - hitsAt()[2] >= 19200 - 60, `third back-off ${t4 - hitsAt()[2]} ms`);
+    await sleep(300);
+    assert.ok(await page.locator('#dl-team-notice').isVisible(), 'one good read does not clear the notice');
+    await waitHits(5, 15000); // one step shorter than the failure that put the page here: 8 s plus 20-30 percent
+    const h = hitsAt();
+    assert.ok(gap(h, 4) >= 9600 - 60 && gap(h, 4) <= 10400 + 400, `after the first good read the page waited ${gap(h, 4)} ms, wanted 9600-10400`);
+    await page.waitForFunction(() => document.getElementById('dl-team-notice').hidden, null, { timeout: 3000 });
+    await waitHits(6, 6000);
+    const after = hitsAt();
+    assert.ok(gap(after, 5) >= 1800 && gap(after, 5) <= 2800, `after two good reads the cadence is 2 s again, got ${gap(after, 5)} ms`);
+  });
+  await ctx.close();
+}
+
+{
+  const id = 'conv_webrate0002';
+  const { ctx, page } = await open({ width: 1280, height: 900 }, { convId: id });
+  await step('a Retry-After of 10 s or more shows the notice at once, says how long, and is never retried early', async () => {
+    mock.setWebMode('rate', 10);
+    mock.clearWebHits();
+    await call(page);
+    await page.waitForFunction(() => !document.getElementById('dl-team-notice').hidden, null, { timeout: 4000 });
+    assert.equal(mock.webHits().length, 1, 'the notice came with the very first refusal');
+    const notice = await text(page, '#dl-team-notice');
+    assert.match(notice, /muchas consultas/);
+    assert.match(notice, /dentro de unos 15 segundos/); // Retry-After 10 s plus 20-30 percent is 12 to 13 s
+    assert.doesNotMatch(notice, /en unos segundos/);
+    const t0 = Date.now();
+    while (mock.webHits().length < 2) { if (Date.now() - t0 > 20000) throw new Error('no retry within 20 s'); await sleep(50); }
+    const h = mock.webHits();
+    assert.ok(h[1] - h[0] >= 12000 - 60 && h[1] - h[0] <= 13000 + 400, `retry after ${h[1] - h[0]} ms, wanted 12000-13000 (Retry-After plus 20-30 percent)`);
+    mock.setWebMode('ok');
   });
   await ctx.close();
 }

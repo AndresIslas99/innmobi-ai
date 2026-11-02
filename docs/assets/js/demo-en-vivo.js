@@ -18,7 +18,8 @@
 import { Conversation } from "./vendor/elevenlabs-client-1.26.0.js";
 
 // PLACEHOLDER: the web agent "innmobi · demo corretaje v6 (web)" does not exist yet. The lead replaces this value
-// with its id after creating it (apply_v6.py --channel=web), and check_routing.py verifies it. Never ship it as is.
+// with its id after creating it (apply_v6.py --channel=web), and check_routing.py verifies it. Never ship it as is: the
+// validate and deploy workflows fail while this line still holds the placeholder.
 const AGENT_ID = "agent_PENDING_V6_WEB";
 const LIBSAMPLERATE_PATH = new URL("./vendor/libsamplerate.worklet-2.1.2.js", import.meta.url).href;
 const TZ = "America/Mexico_City";
@@ -28,7 +29,11 @@ const WARN_SECONDS = 30; // the timer turns red for the last 30 s
 const POLL_MS = 2000; // panel refresh while connected
 const FINAL_POLL_MS = 3000; // one last read after the call ends
 const BACKOFF_MS = [4000, 8000, 16000, 30000]; // after a 429, a server error or a network error
+const JITTER_MIN = 0.2; // every back-off wait gets 20 to 30 percent more, at random, so pages behind one address do not retry together
+const JITTER_MAX = 0.3;
+const CLEAN_READS_TO_RECOVER = 2; // answers in a row before the page goes back to POLL_MS
 const MAX_RETRY_AFTER_MS = 60000;
+const LONG_RETRY_MS = 10000; // a Retry-After this long shows the notice at once
 const REQUEST_TIMEOUT_MS = 8000;
 const FAILS_BEFORE_NOTICE = 3;
 const CONVERSATION_ID = /^[A-Za-z0-9_-]{8,80}$/; // the backend's pattern; the SDK id is checked before it goes in a URL
@@ -114,18 +119,23 @@ const num = (v) => (typeof v === "number" && Number.isFinite(v) ? v : null);
 const mxn = (n) => "$" + new Intl.NumberFormat("es-MX", { maximumFractionDigits: 0 }).format(n);
 const safeId = (id) => (id && /^[A-Za-z0-9_-]{1,40}$/.test(id) ? id : null);
 
-// The demo has two cities. The backend's panel item carries the municipality (`alcaldia_municipio`) but not the city, and a listing
-// is in Puebla exactly when its municipality is one of these (the backend's PUEBLA_MUNICIPALITIES); any other municipality is
-// Mexico City or its metro area. Keep this list in step with the backend. An item without a municipality gets no city.
+// The demo has two cities. A panel item names its city in `ciudad` ("cdmx" or "puebla"); that wins when it is there. Items without it
+// carry only the municipality (`alcaldia_municipio`), and a listing is in Puebla exactly when its municipality is one of these (the
+// backend's PUEBLA_MUNICIPALITIES); any other municipality is Mexico City or its metro area. Keep this list in step with the backend.
+// An item with neither gets no city. The label only ever comes from the two fixed strings below, never from server text.
 const CITY_CDMX = "Ciudad de México";
 const CITY_PUEBLA = "Puebla";
 const foldName = (v) => v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+const CITY_BY_CODE = new Map([["cdmx", CITY_CDMX], ["ciudad de mexico", CITY_CDMX], ["puebla", CITY_PUEBLA]]);
 const PUEBLA_MUNICIPIOS = new Set([
   "Puebla", "San Andrés Cholula", "San Pedro Cholula", "Cuautlancingo", "Coronango", "Amozoc",
   "Santa Clara Ocoyucan", "Juan C. Bonilla", "Tlaltenango", "San Gregorio Atzompa",
 ].map(foldName));
 
 function cityOf(raw) {
+  const code = str(raw && raw.ciudad);
+  const named = code && CITY_BY_CODE.get(foldName(code));
+  if (named) return named;
   const municipio = str(raw && raw.alcaldia_municipio);
   if (!municipio) return null;
   return PUEBLA_MUNICIPIOS.has(foldName(municipio)) ? CITY_PUEBLA : CITY_CDMX;
@@ -375,7 +385,7 @@ function propertyCard(item) {
   if (meta) body.append(el("span", "dl-prop-meta", meta));
 
   const flags = el("div", "dl-prop-flags");
-  flags.append(el("span", "dl-prop-flag dl-flag-viewed", "Pidió detalles"), el("span", "dl-prop-flag dl-flag-visit", "Visita reservada"));
+  flags.append(el("span", "dl-prop-flag dl-flag-viewed", "Pidió detalles"), el("span", "dl-prop-flag dl-flag-visit", "Visita agendada (demo)"));
   li.append(flags, photo, body);
   return li;
 }
@@ -503,10 +513,12 @@ function renderTeam(call, animate = true) {
 }
 
 // "Sin llamada" -> "Esperando" (connected, no tool called yet) -> "En vivo" -> "Llamada terminada".
+// Only this page ends the call on screen: the visitor's hang-up or the connection closing sets state.endedAt. The server's own
+// "ended" status (for example its idle timeout) says nothing about the audio session, so while that is open the tag stays "En vivo".
 function refreshTag() {
   let tag = "idle", text = "Sin llamada";
   if (state.endedAt) { tag = "ended"; text = "Llamada terminada"; }
-  else if (view.ref) { tag = view.status === "ended" ? "ended" : "live"; text = view.status === "ended" ? "Llamada terminada" : "En vivo"; }
+  else if (view.ref) { tag = "live"; text = "En vivo"; }
   else if (connected) { tag = "waiting"; text = "Esperando"; }
   const node = $("dl-team-tag");
   node.dataset.state = tag;
@@ -549,8 +561,10 @@ function resetTeam() {
 let pollGen = 0; // bumped to cancel the loop and any answer still in flight
 let pollTimer = null;
 let pollAbort = null;
-let pollFails = 0;
+let pollFails = 0; // failed reads since the last full recovery (it is not reset by a single good read)
+let cleanReads = 0; // good reads in a row while pollFails > 0
 let lastWasRate = false;
+let noticeUp = false; // the notice stays up until the page is back to POLL_MS
 
 function stopPolling() {
   pollGen++;
@@ -564,7 +578,9 @@ function startPolling() {
   if (!API_OK || !conversationId) return;
   stopPolling();
   pollFails = 0;
+  cleanReads = 0;
   lastWasRate = false;
+  noticeUp = false;
   const gen = pollGen;
   pollTimer = setTimeout(() => poll(gen, false), 0);
 }
@@ -580,6 +596,49 @@ function pollOnceMore() {
 function retryAfterMs(res) {
   const n = Number(res.headers.get("Retry-After"));
   return Number.isFinite(n) && n > 0 ? Math.min(n * 1000, MAX_RETRY_AFTER_MS) : 0;
+}
+
+// Back-off steps: the n-th failed read waits BACKOFF_MS[n - 1] (the last step repeats), plus the jitter.
+const backoffMs = (fails) => BACKOFF_MS[Math.min(Math.max(fails, 1), BACKOFF_MS.length) - 1];
+const withJitter = (ms) => Math.round(ms * (1 + JITTER_MIN + Math.random() * (JITTER_MAX - JITTER_MIN)));
+
+// Book-keeping of one finished read; each returns how long to wait before the next one.
+// A failed read backs off. A good read right after it only eases off one step: the page goes back to POLL_MS after
+// CLEAN_READS_TO_RECOVER good reads in a row, so a server that is just coming back is not hit at full speed by every page at once.
+function readFailed(rate, retryMs = 0) {
+  lastWasRate = rate;
+  cleanReads = 0;
+  pollFails++;
+  if (rate && retryMs >= LONG_RETRY_MS) noticeUp = true;
+  return withJitter(Math.max(retryMs, backoffMs(pollFails)));
+}
+
+function readSucceeded() {
+  if (pollFails === 0) return POLL_MS;
+  cleanReads++;
+  if (cleanReads < CLEAN_READS_TO_RECOVER) return withJitter(backoffMs(pollFails - 1));
+  pollFails = 0;
+  cleanReads = 0;
+  lastWasRate = false;
+  noticeUp = false;
+  setTeamNotice("");
+  return POLL_MS;
+}
+
+// "dentro de unos segundos" only for a short wait; a long one says roughly how long.
+function waitPhrase(ms) {
+  const s = Math.round(ms / 1000);
+  if (s < 10) return "en unos segundos";
+  if (s < 55) return `dentro de unos ${Math.ceil(s / 5) * 5} segundos`; // never less than the wait
+  return "dentro de aproximadamente un minuto";
+}
+
+// nextMs is the wait before the next read; null when no read follows (the last one after the call).
+function noticeText(nextMs) {
+  if (nextMs === null) return "No pudimos actualizar el panel al final de la llamada. Puede faltar lo último que pasó.";
+  return lastWasRate
+    ? `El panel está recibiendo muchas consultas. Se actualizará ${waitPhrase(nextMs)}; la llamada sigue igual.`
+    : "No podemos actualizar este panel por ahora. Lo seguimos intentando; la llamada no se ve afectada.";
 }
 
 function applyServerCall(body) {
@@ -599,6 +658,7 @@ async function poll(gen, last) {
   pollAbort = controller;
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
   let delay = POLL_MS;
+  let ok = false;
   try {
     const url = `${API}/v1/demo/web/state?conversation_id=${encodeURIComponent(conversationId)}`;
     const res = await fetch(url, {
@@ -609,35 +669,27 @@ async function poll(gen, last) {
     if (res.status === 200) {
       const body = await res.json();
       if (gen !== pollGen) return;
-      pollFails = 0;
-      lastWasRate = false;
-      setTeamNotice("");
       applyServerCall(body);
+      delay = readSucceeded();
+      ok = true;
     } else if (res.status === 404) {
-      pollFails = 0; // not created yet: it appears after Valeria's first tool call. Wait quietly.
-      lastWasRate = false;
-      setTeamNotice("");
+      delay = readSucceeded(); // not created yet: it appears after Valeria's first tool call. Wait quietly.
+      ok = true;
     } else if (res.status === 429) {
-      lastWasRate = true;
-      pollFails++;
-      delay = Math.max(retryAfterMs(res), BACKOFF_MS[Math.min(pollFails - 1, BACKOFF_MS.length - 1)]);
+      delay = readFailed(true, retryAfterMs(res));
     } else {
       throw new Error(`HTTP ${res.status}`);
     }
   } catch {
     if (gen !== pollGen) return;
-    lastWasRate = false;
-    pollFails++;
-    delay = BACKOFF_MS[Math.min(pollFails - 1, BACKOFF_MS.length - 1)];
+    delay = readFailed(false);
   } finally {
     clearTimeout(timeout);
   }
   if (gen !== pollGen) return;
-  if (pollFails >= FAILS_BEFORE_NOTICE) {
-    setTeamNotice(lastWasRate
-      ? "El panel está recibiendo muchas consultas. Se actualizará en unos segundos; la llamada sigue igual."
-      : "No podemos actualizar este panel por ahora. Lo seguimos intentando; la llamada no se ve afectada.");
-  }
+  if (last && ok) { setTeamNotice(""); return; } // the read after the hang-up worked: nothing is pending
+  if (pollFails >= FAILS_BEFORE_NOTICE) noticeUp = true;
+  if (noticeUp && pollFails > 0) setTeamNotice(noticeText(last ? null : delay));
   if (!last) pollTimer = setTimeout(() => poll(gen, false), delay);
 }
 
@@ -908,7 +960,7 @@ function renderSummary(scroll) {
     ["Lead", leadParts.join(" · ") || "Sin datos registrados"],
     ["Presupuesto declarado", call.presupuesto || "No registrado"],
     ["Propiedades sugeridas", names.length ? names.join(" · ") : "Ninguna"],
-    ["Visita", visit || "No se reservó"],
+    ["Visita", visit || "No se agendó"],
     ["Preguntas por confirmar", call.preguntas.length ? call.preguntas.join(" · ") : "Ninguna"],
     ["Traspaso a una persona", call.traspaso ? `Solicitado: ${call.traspaso.motivo || "la persona pidió hablar con alguien del equipo"}` : "No solicitado"],
     ["Pasos en el registro", String(ledgerRows(call).length)],

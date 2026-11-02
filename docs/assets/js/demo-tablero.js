@@ -8,7 +8,7 @@
 //   GET  {API}/v1/demo/panel/stream   Authorization: Bearer, Last-Event-ID -> text/event-stream
 //
 // Property events (brokerage catalog; every field is optional and read defensively):
-//   properties_suggested {call_ref, items:[{id, nombre, operacion, zona, precio_mxn | renta_mensual_mxn, m2, recamaras, imagen}]}
+//   properties_suggested {call_ref, items:[{id, nombre, operacion, zona, ciudad, alcaldia_municipio, precio_mxn | renta_mensual_mxn, m2, recamaras, imagen}]}
 //   property_viewed      {call_ref, id}
 //   visit_reserved       {..., propiedad_id, propiedad_nombre, modalidad, seguimiento}
 //   The state snapshot may carry per call: propiedades[] (same item shape) and propiedad_consultada (id).
@@ -96,6 +96,29 @@
   const mxn = (n) => "$" + new Intl.NumberFormat("es-MX", { maximumFractionDigits: 0 }).format(n);
   const safeId = (id) => (id && /^[A-Za-z0-9_-]{1,40}$/.test(id) ? id : null);
 
+  // The demo has two cities, and the phone line can offer listings in either. A panel item names its city in `ciudad` ("cdmx" or
+  // "puebla"); that wins when it is there. Items without it carry only the municipality (`alcaldia_municipio`), and a listing is in
+  // Puebla exactly when its municipality is one of these (the backend's PUEBLA_MUNICIPALITIES); any other municipality is Mexico City
+  // or its metro area. Keep this list in step with the backend and with demo-en-vivo.js. An item with neither gets no city. The
+  // label only ever comes from the two fixed strings below, never from server text.
+  const CITY_CDMX = "Ciudad de México";
+  const CITY_PUEBLA = "Puebla";
+  const foldName = (v) => v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const CITY_BY_CODE = new Map([["cdmx", CITY_CDMX], ["ciudad de mexico", CITY_CDMX], ["puebla", CITY_PUEBLA]]);
+  const PUEBLA_MUNICIPIOS = new Set([
+    "Puebla", "San Andrés Cholula", "San Pedro Cholula", "Cuautlancingo", "Coronango", "Amozoc",
+    "Santa Clara Ocoyucan", "Juan C. Bonilla", "Tlaltenango", "San Gregorio Atzompa",
+  ].map(foldName));
+
+  function cityOf(raw) {
+    const code = str(raw && raw.ciudad);
+    const named = code && CITY_BY_CODE.get(foldName(code));
+    if (named) return named;
+    const municipio = str(raw && raw.alcaldia_municipio);
+    if (!municipio) return null;
+    return PUEBLA_MUNICIPIOS.has(foldName(municipio)) ? CITY_PUEBLA : CITY_CDMX;
+  }
+
   function opOf(raw, id) {
     const op = str(raw && raw.operacion);
     if (op && OP_LABEL[op]) return op;
@@ -110,7 +133,7 @@
     if (!id && !nombre) return null;
     const operacion = opOf(raw, id);
     return {
-      id, key: id || nombre, nombre, operacion, zona: str(raw.zona),
+      id, key: id || nombre, nombre, operacion, zona: str(raw.zona), ciudad: cityOf(raw),
       precio: num(raw.precio_mxn), renta: num(raw.renta_mensual_mxn), desde: raw.precio_es_desde === true || operacion === "preventa",
       m2: num(raw.m2), recamaras: num(raw.recamaras), imagen: str(raw.imagen),
     };
@@ -788,7 +811,8 @@
     const name = el("span", "tb-prop-name", item.nombre || item.id || "Propiedad");
     name.title = item.nombre || "";
     body.append(name);
-    if (item.zona) body.append(el("span", "tb-prop-zona", item.zona));
+    const place = [item.zona, item.ciudad].filter(Boolean).join(" · ");
+    if (place) body.append(el("span", "tb-prop-zona", place));
     const price = priceOf(item);
     if (price.main) {
       const p = el("span", "tb-prop-price", price.main);

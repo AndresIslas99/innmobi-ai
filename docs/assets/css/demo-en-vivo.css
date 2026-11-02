@@ -120,17 +120,17 @@
 .dl-line-who { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 500; }
 .dl-line-ai .dl-line-who { color: var(--forest); }
 .dl-line-user .dl-line-who { color: var(--brass); }
-.dl-line p { font-size: 16px; line-height: 1.45; color: var(--ink-900); margin-top: 2px; }
+.dl-line p { font-size: 16px; line-height: 1.45; color: var(--ink-900); margin-top: 2px; overflow-wrap: anywhere; }
 .dl-line { animation: dl-in .35s ease-out both; }
 
 /* ----- Summary ----- */
 .dl-summary { border-left: 4px solid var(--brass); }
 .dl-summary-title { font-family: 'Fraunces', Georgia, serif; font-variation-settings: 'opsz' 72; font-weight: 600; font-size: 26px; line-height: 1.15; letter-spacing: -0.02em; margin: 8px 0 16px; color: var(--ink-black); }
 .dl-summary-title .period { color: var(--brass); }
-.dl-summary-list { display: grid; grid-template-columns: minmax(0, 11em) 1fr; gap: 0; border-top: 1px solid var(--ink-200); }
+.dl-summary-list { display: grid; grid-template-columns: minmax(0, 11em) minmax(0, 1fr); gap: 0; border-top: 1px solid var(--ink-200); }
 .dl-summary-list dt, .dl-summary-list dd { padding: 10px 0; border-bottom: 1px solid var(--ink-200); font-size: 14px; line-height: 1.45; }
 .dl-summary-list dt { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--ink-500); padding-right: 12px; padding-top: 12px; }
-.dl-summary-list dd { color: var(--ink-900); }
+.dl-summary-list dd { color: var(--ink-900); overflow-wrap: anywhere; }
 .dl-summary-note { margin: 14px 0 18px; font-size: 14px; color: var(--ink-700); line-height: 1.55; }
 .dl-summary-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .dl-summary-actions .btn { min-height: 48px; justify-content: center; }
@@ -151,13 +151,13 @@
 .dl-field dt { font-size: 12px; color: var(--ink-500); margin-bottom: 2px; }
 .dl-field dd { font-size: 16px; font-weight: 600; color: var(--ink-black); line-height: 1.3; overflow-wrap: anywhere; }
 .dl-field dd.is-empty, .dl-value.is-empty { color: var(--ink-300); font-weight: 400; }
-.dl-value { font-size: 16px; font-weight: 600; color: var(--ink-black); line-height: 1.4; }
+.dl-value { font-size: 16px; font-weight: 600; color: var(--ink-black); line-height: 1.4; overflow-wrap: anywhere; }
 .dl-value.is-empty { font-size: 14px; }
 .dl-value.is-alert { color: var(--terracota); }
 .dl-sub { margin-top: 10px; font-size: 14px; line-height: 1.4; color: var(--ink-700); overflow-wrap: anywhere; }
 .dl-sub + .dl-sub { margin-top: 4px; }
 .dl-list { list-style: none; display: grid; gap: 8px; }
-.dl-list li { position: relative; padding-left: 16px; font-size: 15px; line-height: 1.4; color: var(--ink-900); }
+.dl-list li { position: relative; padding-left: 16px; font-size: 15px; line-height: 1.4; color: var(--ink-900); overflow-wrap: anywhere; }
 .dl-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; background: var(--brass); }
 .dl-list li.is-new, .is-new { animation: dl-flash 1.4s ease-out; }
 #dl-questions-list:empty { display: none; }
@@ -188,9 +188,10 @@
   content: ''; position: absolute; inset: 0; opacity: .55;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%237C7C82' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M8 22 24 9l16 13v17H8z'/%3E%3Cpath d='M20 39V28h8v11'/%3E%3C/svg%3E") center / 40px no-repeat;
 }
+/* The photo is only a look-alike: this caption says so, so it must always be readable whole. It is as wide as the photo and wraps. */
 .dl-prop-ill {
-  position: absolute; left: 0; bottom: 0; padding: 2px 6px 3px; background: rgba(15, 15, 16, .66); color: #fff;
-  font: 500 9.5px/1.3 'JetBrains Mono', monospace; text-transform: lowercase; white-space: nowrap;
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 2px 6px 3px; background: rgba(15, 15, 16, .72); color: #fff;
+  font: 500 9.5px/1.3 'JetBrains Mono', monospace; text-transform: lowercase;
 }
 .dl-prop-photo.is-missing .dl-prop-ill { display: none; }
 .dl-prop-body { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; padding: 10px 14px; }
@@ -217,11 +218,11 @@
 .dl-ledger { list-style: none; display: grid; gap: 0; border-top: 1px solid var(--ink-200); }
 .dl-ledger .dl-empty { padding: 12px 0; border-bottom: none; }
 .dl-ledger-row {
-  display: grid; grid-template-columns: 76px 1fr; gap: 12px; padding: 10px 0;
+  display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px; padding: 10px 0;
   border-bottom: 1px solid var(--ink-200); animation: dl-in .45s ease-out both;
 }
 .dl-ledger-row time { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--brass); font-weight: 500; padding-top: 2px; font-variant-numeric: tabular-nums; }
-.dl-ledger-row strong { display: block; font-size: 15px; color: var(--ink-black); line-height: 1.3; }
+.dl-ledger-row strong { display: block; font-size: 15px; color: var(--ink-black); line-height: 1.3; overflow-wrap: anywhere; }
 .dl-ledger-row span { display: block; font-size: 13px; color: var(--ink-700); line-height: 1.4; margin-top: 2px; overflow-wrap: anywhere; }
 .dl-ledger-row.no-anim { animation: none; }
 .dl-ledger-text { font-size: 15px; line-height: 1.4; color: var(--ink-900); overflow-wrap: anywhere; }
@@ -267,12 +268,18 @@
   .dl-try-list { grid-template-columns: 1fr; gap: 8px; }
   .dl-transcript { height: 240px; }
   .dl-fields, #dl-visit .dl-fields { grid-template-columns: 1fr 1fr; }
-  .dl-summary-list { grid-template-columns: 1fr; }
+  .dl-summary-list { grid-template-columns: minmax(0, 1fr); }
   .dl-summary-list dt { padding-bottom: 0; border-bottom: none; padding-top: 12px; }
   .dl-summary-list dd { padding-top: 2px; }
   .dl-summary-actions .btn { flex: 1 1 100%; }
-  .dl-ledger-row { grid-template-columns: 68px 1fr; gap: 10px; }
+  .dl-ledger-row { grid-template-columns: 68px minmax(0, 1fr); gap: 10px; }
   .dl-prop { grid-template-columns: 88px minmax(0, 1fr); }
+  /* "Pidió detalles" and "Visita agendada (demo)" side by side must fit the card, so the ribbons get tighter here */
+  .dl-prop-flag { padding: 1px 7px; letter-spacing: .5px; }
+}
+
+@media (max-width: 359px) {
+  .dl-prop-flag { padding: 1px 5px; font-size: 9.5px; letter-spacing: .3px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

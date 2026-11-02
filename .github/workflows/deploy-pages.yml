@@ -32,6 +32,17 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - name: Refuse the placeholder agent id
+        run: |
+          set -e
+          f=docs/assets/js/demo-en-vivo.js
+          test -s "$f" || (echo "❌ Missing $f" && exit 1)
+          if grep -n "agent_PENDING" "$f"; then
+            echo "❌ $f still has the placeholder AGENT_ID. Put the id of the web agent there (apply_v6.py --channel=web) before the site can go out."
+            exit 1
+          fi
+          echo "✓ AGENT_ID is not the placeholder"
+
       - uses: actions/setup-node@v6
         with:
           node-version: '22'

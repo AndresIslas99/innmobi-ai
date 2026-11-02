@@ -149,11 +149,12 @@ for (const vp of [{ width: 1440, height: 900, tag: 'desktop-1440x900' }, { width
     const cards = page.locator('#tb-props-list .tb-prop');
     const first = (await cards.nth(0).innerText()).replace(/\s+/g, ' ');
     assert.match(first, /RENTA/i);
-    assert.match(first, /Narvarte Poniente/);
+    assert.match(first, /Narvarte Poniente · Ciudad de México/); // the item names its city (`ciudad: "cdmx"`)
     assert.match(first, /\$15,500 \/ mes/);
     assert.match(first, /60 m² · 2 recámaras/);
     assert.match(first, /imagen ilustrativa/);
     assert.match(await cards.nth(1).innerText(), /RENTA AMUEBLADA/i);
+    assert.equal(await cards.nth(1).locator('.tb-prop-zona').innerText(), 'Polanco'); // an item with no city (older backend) shows its zona alone
     assert.match(await cards.nth(1).innerText(), /\$36,000 \/ mes/);
     assert.match(await cards.nth(2).innerText(), /REMATE BANCARIO/i);
     assert.match(await cards.nth(2).innerText(), /\$1,250,000/);
@@ -173,7 +174,7 @@ for (const vp of [{ width: 1440, height: 900, tag: 'desktop-1440x900' }, { width
   });
 
   await step('a second round of suggestions goes first, keeps the highlight, and a missing photo falls back', async () => {
-    await page.waitForFunction(() => document.querySelectorAll('#tb-props-list .tb-prop').length === 9, null, { timeout: 8000 });
+    await page.waitForFunction(() => document.querySelectorAll('#tb-props-list .tb-prop').length === 10, null, { timeout: 8000 });
     assert.equal(await page.locator('#tb-props-list .tb-prop').first().getAttribute('data-id'), 'PV-NAR-01');
     assert.match(await page.locator('#tb-props-list .tb-prop').first().innerText(), /PREVENTA[\s\S]*Desde \$3,250,000[\s\S]*58 m² · 1 recámara\b/i);
     assert.equal(await page.locator('#tb-props-list .tb-prop.is-viewed').getAttribute('data-id'), 'RA-POL-01');
@@ -182,7 +183,9 @@ for (const vp of [{ width: 1440, height: 900, tag: 'desktop-1440x900' }, { width
     assert.doesNotMatch(await terreno.innerText(), /recámara/);
     assert.match(await page.locator('#tb-props-list .tb-prop[data-id="OC-SAT-01"]').innerText(), /\$18,000 \/ mes[\s\S]*Compra \$3,600,000/);
     await page.waitForFunction(() => document.querySelector('#tb-props-list .tb-prop[data-id="ZZ-DEMO-99"] .tb-prop-photo').classList.contains('is-missing'));
-    assert.ok(await page.evaluate(() => { const s = document.getElementById('tb-props-list'); return s.scrollWidth > s.clientWidth; }), 'strip should scroll with 9 cards');
+    // the phone line can offer Puebla: the city is on the card, so La Paz here and a colonia of Mexico City cannot be mistaken
+    assert.equal(await page.locator('#tb-props-list .tb-prop[data-id="RV-PUE-01"] .tb-prop-zona').innerText(), 'La Paz · Puebla');
+    assert.ok(await page.evaluate(() => { const s = document.getElementById('tb-props-list'); return s.scrollWidth > s.clientWidth; }), 'strip should scroll with 10 cards');
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), 'page must not overflow horizontally');
     await shot(page, `${vp.tag}-11-more-suggestions`, 2000);
   });
@@ -201,7 +204,7 @@ for (const vp of [{ width: 1440, height: 900, tag: 'desktop-1440x900' }, { width
 
   await step('page reload rebuilds the strip, highlight and visit from the state snapshot', async () => {
     await page.reload();
-    await page.waitForFunction(() => document.querySelectorAll('#tb-props-list .tb-prop').length === 9, null, { timeout: 8000 });
+    await page.waitForFunction(() => document.querySelectorAll('#tb-props-list .tb-prop').length === 10, null, { timeout: 8000 });
     assert.equal(await page.locator('#tb-props-list .tb-prop.is-viewed').getAttribute('data-id'), 'RA-POL-01');
     assert.equal(await page.locator('#tb-props-list .tb-prop.is-visit').getAttribute('data-id'), 'RA-POL-01');
     assert.equal(await text(page, '[data-f=visita_modalidad]'), 'Videollamada');
@@ -277,7 +280,7 @@ for (const vp of [{ width: 1440, height: 900, tag: 'desktop-1440x900' }, { width
     await shot(page, 'mobile-390');
     await new Promise((r) => setTimeout(r, 1100));
     await fetch(`http://127.0.0.1:${mock.port}/__props?gap=120`);
-    await page.waitForFunction(() => document.querySelectorAll('#tb-props-list .tb-prop').length === 9, null, { timeout: 8000 });
+    await page.waitForFunction(() => document.querySelectorAll('#tb-props-list .tb-prop').length === 10, null, { timeout: 8000 });
     await page.waitForFunction(() => document.getElementById('tb-banner').dataset.mode === 'ended', null, { timeout: 8000 });
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), 'horizontal overflow with the strip');
     await page.locator('#tb-props').scrollIntoViewIfNeeded();

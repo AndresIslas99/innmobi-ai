@@ -58,3 +58,14 @@ jobs:
           test -s docs/manifest.webmanifest || (echo "❌ Missing manifest" && exit 1)
           test -s docs/favicon.ico || (echo "❌ Missing favicon.ico" && exit 1)
           echo "✓ Infrastructure files present"
+
+      - name: Refuse the placeholder agent id
+        run: |
+          set -e
+          f=docs/assets/js/demo-en-vivo.js
+          test -s "$f" || (echo "❌ Missing $f" && exit 1)
+          if grep -n "agent_PENDING" "$f"; then
+            echo "❌ $f still has the placeholder AGENT_ID. Put the id of the web agent there (apply_v6.py --channel=web) before the site can go out."
+            exit 1
+          fi
+          echo "✓ AGENT_ID is not the placeholder"

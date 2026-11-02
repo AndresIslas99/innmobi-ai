@@ -36,7 +36,7 @@
     {
       "slug": "producto",
       "title": "Producto · Innmobi.ai",
-      "description": "Qué correrá el piloto: formulario web o QR con consentimiento, agente de voz con IA, rango de presupuesto declarado por la persona, agenda de visitas, confirmación y tablero en vivo.",
+      "description": "Valeria contesta a quien pidió información, agenda la visita en los horarios de tu equipo y deja cada paso en un registro que es tuyo. Pruébala en vivo.",
       "ogImage": "/og/producto.png",
       "navLabel": "Producto",
       "priority": 0.9
@@ -59,16 +59,16 @@
     },
     {
       "slug": "casos-de-exito",
-      "title": "Aprendizajes · Innmobi.ai",
-      "description": "Una inmobiliaria de remates bancarios en CDMX usó una versión anterior de nuestro sistema durante unos tres meses de 2026. Esto es lo que aprendimos y cómo medimos ahora.",
+      "title": "Casos · Innmobi.ai",
+      "description": "Una inmobiliaria de remates bancarios en CDMX operó con la primera versión de nuestro sistema unos tres meses de 2026. Las cinco reglas que salieron de ahí y el primer sprint.",
       "ogImage": "/og/casos.png",
-      "navLabel": "Aprendizajes",
+      "navLabel": "Casos",
       "priority": 0.8
     },
     {
       "slug": "casos-de-exito/aprendizajes",
-      "title": "Lo que aprendimos con una inmobiliaria de remates · Innmobi.ai",
-      "description": "Una versión anterior de nuestro sistema, usada unos tres meses de 2026 por una inmobiliaria de remates bancarios en CDMX, y las lecciones técnicas que dejó.",
+      "title": "Tres meses en una inmobiliaria real · Innmobi.ai",
+      "description": "Un CRM con agente de voz, unos tres meses de 2026 en una inmobiliaria de remates bancarios en CDMX, y las cinco reglas con las que construimos Valeria.",
       "ogImage": "/og/caso-aprendizajes.png",
       "priority": 0.8
     },

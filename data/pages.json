@@ -108,7 +108,7 @@
     {
       "slug": "demo-en-vivo",
       "title": "Demo en vivo · Innmobi.ai",
-      "description": "Llamada de prueba con Valeria, una asistente de IA, sobre un desarrollo de demostración. Mira en vivo lo que vería tu equipo.",
+      "description": "Llamada de prueba con Valeria, una asistente de IA de una inmobiliaria ficticia con propiedades en la Ciudad de México y en Puebla. Mira en vivo lo que vería tu equipo.",
       "ogImage": "/og/demo.png",
       "extraHead": "<link rel=\"stylesheet\" href=\"/assets/css/demo-en-vivo.css\"/>",
       "noindex": true,

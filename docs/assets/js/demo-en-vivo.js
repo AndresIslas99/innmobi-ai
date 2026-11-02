@@ -1,26 +1,62 @@
 // innmobi.ai · /demo-en-vivo/
-// Live voice demo: Valeria (ElevenLabs agent) + a simulated team dashboard fed by client tools.
+// Live voice demo: Valeria (an ElevenLabs agent on the same v6 pipeline as the phone line) + the team panel
+// for this conversation, read from the backend.
 //
-// Privacy by construction: nothing here touches localStorage, sessionStorage, cookies or
-// IndexedDB, and the only network peer for the call is ElevenLabs (the SDK is served from this site). The agent id below is public
-// (the agent is protected by an origin allowlist, call limits and a 300 s cap); no secret lives here.
+// The tools run on the server (api.innmobi.ai), not in the browser. While the call is connected this page asks
+//   GET {API}/v1/demo/web/state?conversation_id=<id>   -> 200 {server_time, call} | 404 | 429
+// every 2 seconds and paints `call` (the Call.as_json shape of the realestate-crm voice_demo module, the same
+// one the team's panel shows). 404 means "not created yet" (the call exists after Valeria's first tool call)
+// and is not an error. The route is public, covers only web conversations and needs no credential, so the
+// request carries no cookie, no header beyond Accept and no referrer.
+//
+// Privacy by construction: nothing here touches localStorage, sessionStorage, cookies or IndexedDB. The
+// network peers are ElevenLabs (the call; the SDK itself is served from this site) and api.innmobi.ai (the
+// panel). The agent id below is public (the agent is protected by an origin allowlist and call limits); no
+// secret lives here. The conversation is recorded (audio and transcript, 30 days): the page says so.
 
 // The SDK is vendored (no third-party script on a microphone page). See assets/js/vendor/README.md.
 import { Conversation } from "./vendor/elevenlabs-client-1.26.0.js";
 
-const AGENT_ID = "agent_1101m4ta3tvaf5c9wd0gp6q8z7xj";
+// PLACEHOLDER: the web agent "innmobi · demo corretaje v6 (web)" does not exist yet. The lead replaces this value
+// with its id after creating it (apply_v6.py --channel=web), and check_routing.py verifies it. Never ship it as is.
+const AGENT_ID = "agent_PENDING_V6_WEB";
 const LIBSAMPLERATE_PATH = new URL("./vendor/libsamplerate.worklet-2.1.2.js", import.meta.url).href;
 const TZ = "America/Mexico_City";
-const MAX_CALL_SECONDS = 300;
-const SALA = "Residencial Demo Narvarte";
-const SLOT_HOURS = [10, 11, 12, 13, 14, 15, 16, 17];
-const DAYS_AHEAD = 14; // today plus 13 days (Sundays skipped)
+const MAX_CALL_SECONDS = 900; // the agent's max_duration_seconds
+const WARN_SECONDS = 30; // the timer turns red for the last 30 s
+
+const POLL_MS = 2000; // panel refresh while connected
+const FINAL_POLL_MS = 3000; // one last read after the call ends
+const BACKOFF_MS = [4000, 8000, 16000, 30000]; // after a 429, a server error or a network error
+const MAX_RETRY_AFTER_MS = 60000;
+const REQUEST_TIMEOUT_MS = 8000;
+const FAILS_BEFORE_NOTICE = 3;
+const CONVERSATION_ID = /^[A-Za-z0-9_-]{8,80}$/; // the backend's pattern; the SDK id is checked before it goes in a URL
 
 const WEEKDAYS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
 const MONTHS = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
 
 const $ = (id) => document.getElementById(id);
 const root = $("dl");
+
+// ---------------------------------------------------------------------------
+// API base: the data-api-base attribute. A ?api= override works only on localhost (tests), so a crafted
+// link can never point this page at another host.
+// ---------------------------------------------------------------------------
+
+const IS_LOCAL = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+
+function resolveApiBase() {
+  let base = root.dataset.apiBase || "";
+  if (IS_LOCAL) {
+    const override = new URLSearchParams(location.search).get("api");
+    if (override && /^http:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/.test(override)) base = override;
+  }
+  return base.replace(/\/+$/, "");
+}
+
+const API = resolveApiBase();
+const API_OK = /^https:\/\//.test(API) || (IS_LOCAL && /^http:\/\//.test(API));
 
 // ---------------------------------------------------------------------------
 // Dates (always Mexico City time, whatever the phone's timezone is)
@@ -45,6 +81,7 @@ const pad = (n) => String(n).padStart(2, "0");
 const dayLabel = (wd, d, m) => `${WEEKDAYS[wd]} ${d} de ${MONTHS[m - 1]}`;
 const clock = (date) => { const n = mxNow(date); return `${pad(n.h)}:${pad(n.min)}:${pad(n.s)}`; };
 
+// The agent reads these two as {{fecha_hoy}} and {{hora_actual}}: "domingo 1 de noviembre de 2026" and "23:38".
 function dynamicVariables() {
   const n = mxNow();
   return {
@@ -53,63 +90,113 @@ function dynamicVariables() {
   };
 }
 
-const strip = (s) => String(s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[,.]/g, " ").replace(/\s+/g, " ").trim();
+// "2026-10-13T14:05:12-06:00" is already Mexico City time: read the clock straight from the string.
+const clockOf = (iso) => (/T(\d{2}:\d{2}:\d{2})/.exec(iso || "") || [])[1] || "";
+const msOf = (iso) => { const t = Date.parse(iso || ""); return Number.isFinite(t) ? t : null; };
 
 // ---------------------------------------------------------------------------
-// Simulated agenda: next 14 days, no Sundays, 10:00-17:00 hourly, 2 random slots taken per day
+// Reading the server's call defensively (every field is optional; text only ever goes in via textContent)
 // ---------------------------------------------------------------------------
 
-function buildAgenda() {
-  const now = mxNow();
-  const days = [];
-  for (let offset = 0; offset < DAYS_AHEAD; offset++) {
-    const dt = new Date(Date.UTC(now.y, now.m - 1, now.d + offset));
-    const wd = dt.getUTCDay();
-    if (wd === 0) continue; // Sundays: sales room closed
-    const y = dt.getUTCFullYear(), m = dt.getUTCMonth() + 1, d = dt.getUTCDate();
-    let hours = SLOT_HOURS.slice();
-    if (offset === 0) hours = hours.filter((h) => h * 60 > now.h * 60 + now.min + 30); // skip past hours today
-    // Two random slots are already taken by other prospects.
-    const takenCount = Math.min(2, Math.floor(hours.length / 2));
-    for (let i = 0; i < takenCount; i++) hours.splice(Math.floor(Math.random() * hours.length), 1);
-    days.push({
-      offset, wd, y, m, d,
-      label: dayLabel(wd, d, m),
-      free: hours.map((h) => `${pad(h)}:00`),
-    });
-  }
-  return days;
+const OP_LABEL = {
+  preventa: "Preventa", reventa: "Reventa", remate: "Remate bancario", recuperada: "Recuperada",
+  renta: "Renta", renta_amueblada: "Renta amueblada", renta_comercial: "Renta comercial", terreno: "Terreno",
+  renta_opcion_compra: "Opción a compra",
+};
+const OP_BY_PREFIX = { PV: "preventa", RV: "reventa", RM: "remate", RCP: "recuperada", RN: "renta", RA: "renta_amueblada", CM: "renta_comercial", TE: "terreno", OC: "renta_opcion_compra" };
+const MODALIDAD_LABEL = { sala: "Sala de ventas", propiedad: "En la propiedad", video: "Videollamada" };
+const MAX_PROPS = 8; // what the backend remembers per call
+const MAX_LEDGER = 200;
+const IMG_DIR = "/assets/demo/catalogo/";
+
+const str = (v) => (typeof v === "string" && v.trim() ? v.trim() : (typeof v === "number" && Number.isFinite(v) ? String(v) : null));
+const num = (v) => (typeof v === "number" && Number.isFinite(v) ? v : null);
+const mxn = (n) => "$" + new Intl.NumberFormat("es-MX", { maximumFractionDigits: 0 }).format(n);
+const safeId = (id) => (id && /^[A-Za-z0-9_-]{1,40}$/.test(id) ? id : null);
+
+function opOf(raw, id) {
+  const op = str(raw && raw.operacion);
+  if (op && OP_LABEL[op]) return op;
+  const prefix = id && /^([A-Z]{2,3})-/.exec(id);
+  return (prefix && OP_BY_PREFIX[prefix[1]]) || null;
 }
 
-function findDay(agenda, raw) {
-  const text = strip(raw);
-  const today = mxNow();
-  const dateMatch = text.match(/(\d{1,2})\s*(?:de\s+)?([a-z]+)/);
-  if (dateMatch) {
-    const month = MONTHS.findIndex((name) => strip(name) === dateMatch[2]) + 1;
-    if (month) {
-      const hit = agenda.find((x) => x.d === +dateMatch[1] && x.m === month);
-      if (hit) return { day: hit };
-      // A real date that is not bookable (Sunday or outside the window)?
-      const year = today.y + (month < today.m ? 1 : 0);
-      const wd = new Date(Date.UTC(year, month - 1, +dateMatch[1])).getUTCDay();
-      return { day: null, sunday: wd === 0 };
-    }
-  }
-  if (/\bhoy\b/.test(text)) return { day: agenda.find((x) => x.offset === 0) ?? null, sunday: today.wd === 0 };
-  if (/\bmanana\b/.test(text)) {
-    const tomorrow = agenda.find((x) => x.offset === 1) ?? null;
-    return { day: tomorrow, sunday: (today.wd + 1) % 7 === 0 };
-  }
-  const wdIndex = WEEKDAYS.findIndex((name) => strip(name) === text.split(" ")[0]);
-  if (wdIndex === 0) return { day: null, sunday: true };
-  if (wdIndex > 0) return { day: agenda.find((x) => x.wd === wdIndex) ?? null };
-  return { day: null };
+function normItem(raw) {
+  if (!raw || typeof raw !== "object") return null;
+  const id = str(raw.id);
+  const nombre = str(raw.nombre);
+  if (!id && !nombre) return null;
+  const operacion = opOf(raw, id);
+  return {
+    id, key: id || nombre, nombre, operacion, zona: str(raw.zona),
+    precio: num(raw.precio_mxn), renta: num(raw.renta_mensual_mxn), desde: raw.precio_es_desde === true || operacion === "preventa",
+    m2: num(raw.m2), recamaras: num(raw.recamaras), imagen: str(raw.imagen),
+  };
 }
 
-function normalizeHour(raw) {
-  const m = String(raw ?? "").trim().match(/^(\d{1,2})(?::(\d{2}))?/);
-  return m ? `${pad(+m[1])}:${m[2] ?? "00"}` : "";
+function normItems(list) {
+  const out = [];
+  for (const raw of Array.isArray(list) ? list : []) {
+    const it = normItem(raw);
+    if (it && !out.some((x) => x.key === it.key)) out.push(it);
+  }
+  return out.slice(0, MAX_PROPS);
+}
+
+// Only same-origin catalog images: the server's path if it looks right, else the one derived from the id.
+function imageSrc(item) {
+  if (item.imagen && /^\/assets\/demo\/catalogo\/[\w.-]+\.webp$/.test(item.imagen)) return item.imagen;
+  const id = safeId(item.id);
+  return id ? `${IMG_DIR}${id}.webp` : null;
+}
+
+function modalidadLabel(raw) {
+  const v = str(raw);
+  if (!v) return null;
+  const k = v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z]/g, "");
+  if (k.includes("video")) return MODALIDAD_LABEL.video;
+  if (k.includes("sala") || k.includes("showroom")) return MODALIDAD_LABEL.sala;
+  if (k.includes("propiedad") || k.includes("presencial") || k.includes("inmueble")) return MODALIDAD_LABEL.propiedad;
+  return v;
+}
+
+function normVisit(v) {
+  if (!v || typeof v !== "object") return null;
+  const out = {
+    dia: str(v.dia), hora: str(v.hora), sala: str(v.sala), seguimiento: str(v.seguimiento),
+    propiedad_id: str(v.propiedad_id), propiedad_nombre: str(v.propiedad_nombre), modalidad: modalidadLabel(v.modalidad),
+  };
+  return out.dia || out.hora ? out : null;
+}
+
+const EMPTY_CALL = Object.freeze({
+  ref: null, status: "active",
+  lead: Object.freeze({ nombre: null, tipo_unidad: null, proposito: null, plazo: null }),
+  presupuesto: null, propiedades: [], consultada: null, visita: null, preguntas: [], traspaso: null, ledger: [],
+});
+
+// `Call.as_json` of the backend, reduced to what this page draws.
+function normCall(raw) {
+  if (!raw || typeof raw !== "object") return null;
+  const lead = raw.lead && typeof raw.lead === "object" ? raw.lead : {};
+  const traspaso = raw.traspaso && typeof raw.traspaso === "object" ? raw.traspaso : null;
+  const ledger = (Array.isArray(raw.ledger) ? raw.ledger : [])
+    .filter((x) => x && typeof x === "object" && str(x.text))
+    .map((x) => ({ seq: num(x.seq) ?? 0, at: str(x.at) || "", text: str(x.text) }))
+    .sort((a, b) => a.seq - b.seq)
+    .slice(-MAX_LEDGER);
+  return {
+    ref: str(raw.call_ref),
+    status: raw.status === "ended" ? "ended" : "active",
+    lead: { nombre: str(lead.nombre), tipo_unidad: str(lead.tipo_unidad), proposito: str(lead.proposito), plazo: str(lead.plazo) },
+    presupuesto: str(raw.presupuesto),
+    propiedades: normItems(raw.propiedades),
+    consultada: str(raw.propiedad_consultada),
+    visita: normVisit(raw.visita),
+    preguntas: (Array.isArray(raw.preguntas) ? raw.preguntas : []).map(str).filter(Boolean),
+    traspaso: traspaso ? { motivo: str(traspaso.motivo) } : null,
+    ledger,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -120,29 +207,24 @@ const fresh = () => ({
   consentAt: null,
   startedAt: null,
   endedAt: null,
-  agenda: null,
-  lead: { nombre: "", tipo_unidad: "", proposito: "", plazo: "" },
-  budget: "",
-  visit: null,
-  questions: [],
-  handoff: "",
-  ledger: [],
   turns: { ai: 0, user: 0 },
 });
 
 let state = fresh();
+let view = EMPTY_CALL; // the last call read from the server (normalised)
+let localRows = []; // page-side ledger rows: consent, start, end. {at: Date, label, detail}
+let skewMs = 0; // server clock minus this device's clock, to order page rows among the server's
 let conversation = null;
+let conversationId = null;
 let connected = false;
 let finishing = false;
 let mode = "idle";
 let timerId = null;
 let rafId = null;
 let wakeLock = null;
-let pendingLedger = [];
-const pendingTimers = new Set();
 
 // ---------------------------------------------------------------------------
-// UI helpers (everything is written with textContent: transcript and tool arguments are
+// UI helpers (everything is written with textContent: transcript and server fields are
 // untrusted input from the model and from the person)
 // ---------------------------------------------------------------------------
 
@@ -154,22 +236,21 @@ function setMode(next, text) {
   $("dl-status-text").textContent = text;
 }
 
-function flash(el) {
-  el.classList.remove("is-new");
-  void el.offsetWidth; // restart the animation
-  el.classList.add("is-new");
+const el = (tag, cls, text) => {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text !== undefined) n.textContent = text;
+  return n;
+};
+
+function flash(node) {
+  node.classList.remove("is-new");
+  void node.offsetWidth; // restart the animation
+  node.classList.add("is-new");
 }
 
 function noteTeamUpdate() {
   if (root.dataset.view !== "team") $("dl-tab-team").classList.add("has-news");
-}
-
-function setField(container, name, value) {
-  const el = container.querySelector(`[data-field="${name}"]`);
-  const text = String(value ?? "").trim();
-  el.textContent = text || "—";
-  el.classList.toggle("is-empty", !text);
-  if (text) flash(el);
 }
 
 function addTranscript(who, text) {
@@ -189,142 +270,365 @@ function addTranscript(who, text) {
   list.scrollTop = list.scrollHeight;
 }
 
-function addLedger(label, detail = "", at = new Date()) {
-  state.ledger.push({ at, label, detail });
-  $("dl-ledger-empty")?.remove();
-  const item = document.createElement("li");
-  item.className = "dl-ledger-row";
-  const time = document.createElement("time");
-  time.dateTime = at.toISOString();
-  time.textContent = clock(at);
-  const what = document.createElement("div");
-  const strong = document.createElement("strong");
-  strong.textContent = label;
-  what.append(strong);
-  if (detail) {
-    const small = document.createElement("span");
-    small.textContent = detail;
-    what.append(small);
+// ---------------------------------------------------------------------------
+// The team panel: one function paints a normalised call. Every paint helper returns true when
+// something the person would notice changed, which lights the news dot on the mobile tab.
+// ---------------------------------------------------------------------------
+
+// Writes `value` (or the empty text) into `node`; flashes when a real value changed.
+function paint(node, value, empty, animate) {
+  const text = str(value);
+  const next = text ?? empty;
+  const changed = node.textContent !== next;
+  if (changed) {
+    node.textContent = next;
+    if (text && animate) flash(node);
   }
-  item.append(time, what);
-  const list = $("dl-ledger");
-  list.append(item);
-  noteTeamUpdate();
+  node.classList.toggle("is-empty", !text);
+  return changed && !!text;
 }
 
-function queueLedger(delayMs, label, detail) {
-  const entry = { label, detail };
-  pendingLedger.push(entry);
-  const timer = setTimeout(() => {
-    pendingTimers.delete(timer);
-    pendingLedger = pendingLedger.filter((x) => x !== entry);
-    addLedger(label, detail);
-  }, delayMs);
-  pendingTimers.add(timer);
+const field = (container, name) => container.querySelector(`[data-field="${name}"]`);
+
+// Make `list` hold exactly `nodes`, in order, without detaching the ones already in place
+// (a detached node replays its CSS animation when it comes back).
+function syncChildren(list, nodes) {
+  nodes.forEach((node, i) => { if (list.children[i] !== node) list.insertBefore(node, list.children[i] || null); });
+  while (list.children.length > nodes.length) list.lastElementChild.remove();
 }
 
-function flushPendingLedger() {
-  pendingTimers.forEach(clearTimeout);
-  pendingTimers.clear();
-  pendingLedger.forEach((x) => addLedger(x.label, x.detail));
-  pendingLedger = [];
+// Re-inserting a node restarts its CSS animation, so the "just arrived" class is dropped once it has played.
+function settleOnEnd(node, name) {
+  node.addEventListener("animationend", (ev) => {
+    if (ev.target === node && ev.animationName === name) node.classList.remove("is-new");
+  });
 }
 
-function renderQuestions() {
+const propNodes = new Map(); // item.key -> <li>
+const ledgerNodes = new Map(); // row key -> <li>
+const findProp = (call, id) => (id ? call.propiedades.find((p) => p.id === id) || null : null);
+
+function priceOf(item) {
+  if (item.renta !== null) return { main: mxn(item.renta), unit: " / mes", sub: item.precio !== null ? `Compra ${mxn(item.precio)}` : null };
+  if (item.precio !== null) return { main: `${item.desde ? "Desde " : ""}${mxn(item.precio)}`, unit: null, sub: null };
+  return { main: null, unit: null, sub: null };
+}
+
+function metaOf(item) {
+  const parts = [];
+  if (item.m2 !== null) parts.push(`${new Intl.NumberFormat("es-MX", { maximumFractionDigits: 1 }).format(item.m2)} m²`);
+  if (item.recamaras !== null && item.recamaras > 0) parts.push(`${item.recamaras} ${item.recamaras === 1 ? "recámara" : "recámaras"}`);
+  return parts.join(" · ");
+}
+
+function propertyCard(item) {
+  const li = el("li", "dl-prop");
+  li.dataset.key = item.key;
+  if (item.id) li.dataset.id = item.id;
+  li.dataset.op = item.operacion || "otro";
+
+  const photo = el("div", "dl-prop-photo");
+  const src = imageSrc(item);
+  if (src) {
+    const img = el("img", "dl-prop-img");
+    img.alt = item.nombre ? `Imagen ilustrativa de ${item.nombre}` : "Imagen ilustrativa de la propiedad";
+    img.decoding = "async";
+    img.loading = "lazy";
+    img.addEventListener("error", () => { photo.classList.add("is-missing"); img.remove(); }, { once: true });
+    img.src = src;
+    photo.append(img);
+  } else {
+    photo.classList.add("is-missing");
+  }
+  photo.append(el("span", "dl-prop-ill", "imagen ilustrativa"));
+
+  const body = el("div", "dl-prop-body");
+  body.append(el("span", "dl-prop-op", OP_LABEL[item.operacion] || "Propiedad"));
+  body.append(el("span", "dl-prop-name", item.nombre || item.id || "Propiedad"));
+  if (item.zona) body.append(el("span", "dl-prop-zona", item.zona));
+  const price = priceOf(item);
+  if (price.main) {
+    const p = el("span", "dl-prop-price", price.main);
+    if (price.unit) p.append(el("span", "dl-prop-unit", price.unit));
+    body.append(p);
+  }
+  if (price.sub) body.append(el("span", "dl-prop-sub", price.sub));
+  const meta = metaOf(item);
+  if (meta) body.append(el("span", "dl-prop-meta", meta));
+
+  const flags = el("div", "dl-prop-flags");
+  flags.append(el("span", "dl-prop-flag dl-flag-viewed", "Pidió detalles"), el("span", "dl-prop-flag dl-flag-visit", "Visita reservada"));
+  li.append(flags, photo, body);
+  return li;
+}
+
+function renderProps(call, animate) {
+  const items = call.propiedades;
+  let news = false;
+  const order = items.map((item) => {
+    let li = propNodes.get(item.key);
+    if (!li) {
+      li = propertyCard(item);
+      propNodes.set(item.key, li);
+      if (animate) { li.classList.add("is-new"); settleOnEnd(li, "dl-flash"); news = true; }
+    }
+    li.classList.toggle("is-viewed", !!call.consultada && item.id === call.consultada);
+    li.classList.toggle("is-visit", !!(call.visita && call.visita.propiedad_id && item.id === call.visita.propiedad_id));
+    return li;
+  });
+  const keys = new Set(items.map((x) => x.key));
+  for (const key of [...propNodes.keys()]) if (!keys.has(key)) propNodes.delete(key);
+  syncChildren($("dl-props-list"), order);
+  $("dl-props-empty").hidden = items.length > 0;
+  $("dl-props-count").textContent = items.length ? String(items.length) : "";
+  return news;
+}
+
+function renderQuestions(call, animate) {
   const list = $("dl-questions-list");
-  list.replaceChildren(...state.questions.map((q) => {
-    const li = document.createElement("li");
-    li.textContent = q;
-    li.className = "is-new";
+  const had = list.children.length;
+  list.replaceChildren(...call.preguntas.map((q, i) => {
+    const li = el("li", "", q);
+    if (animate && i >= had) li.classList.add("is-new");
     return li;
   }));
-  $("dl-questions-empty").hidden = state.questions.length > 0;
+  $("dl-questions-empty").hidden = call.preguntas.length > 0;
+  return animate && call.preguntas.length > had;
+}
+
+function renderVisit(call, animate) {
+  const box = $("dl-visit");
+  const v = call.visita;
+  let news = false;
+  news = paint(field(box, "dia"), v && v.dia, "—", animate) || news;
+  news = paint(field(box, "hora"), v && v.hora, "—", animate) || news;
+  news = paint(field(box, "modalidad"), v && v.modalidad, "—", animate) || news;
+  const propName = v && (v.propiedad_nombre || (findProp(call, v.propiedad_id) || {}).nombre || v.propiedad_id);
+  for (const [id, text] of [["dl-visit-prop", propName ? `Propiedad: ${propName}` : ""], ["dl-visit-place", v && v.sala ? `Lugar: ${v.sala}` : ""], ["dl-visit-follow", v && v.seguimiento ? v.seguimiento : ""]]) {
+    const node = $(id);
+    node.textContent = text;
+    node.hidden = !text;
+  }
+  return news;
+}
+
+// Server rows keep the sentence the backend wrote; page rows (consent, start, end) have a label and a detail.
+function ledgerRows(call) {
+  const rows = call.ledger.map((e) => ({
+    key: `s${e.seq}`, ms: msOf(e.at) ?? 0, time: clockOf(e.at), iso: e.at, label: e.text, detail: "", page: false,
+  }));
+  localRows.forEach((r, i) => {
+    const at = new Date(r.at.getTime() + skewMs);
+    rows.push({ key: `p${i}`, ms: at.getTime(), time: clock(at), iso: at.toISOString(), label: r.label, detail: r.detail, page: true });
+  });
+  rows.sort((a, b) => a.ms - b.ms || (a.key < b.key ? -1 : 1));
+  return rows.reverse(); // newest first
+}
+
+function ledgerRow(row, animate) {
+  const li = el("li", "dl-ledger-row");
+  if (!animate) li.classList.add("no-anim");
+  const time = el("time", "", row.time);
+  time.dateTime = row.iso;
+  const what = el("div");
+  if (row.page) {
+    what.append(el("strong", "", row.label));
+    if (row.detail) what.append(el("span", "", row.detail));
+  } else {
+    what.append(el("div", "dl-ledger-text", row.label));
+  }
+  li.append(time, what);
+  return li;
+}
+
+function renderLedger(call, animate) {
+  const rows = ledgerRows(call);
+  let news = false;
+  const order = rows.map((row) => {
+    let li = ledgerNodes.get(row.key);
+    if (!li) {
+      li = ledgerRow(row, animate);
+      ledgerNodes.set(row.key, li);
+      if (animate) news = true;
+    } else {
+      const t = li.firstElementChild; // page rows move with the clock skew
+      if (t.textContent !== row.time) t.textContent = row.time;
+    }
+    return li;
+  });
+  const keys = new Set(rows.map((x) => x.key));
+  for (const key of [...ledgerNodes.keys()]) if (!keys.has(key)) ledgerNodes.delete(key);
+  const empty = $("dl-ledger-empty");
+  empty.hidden = rows.length > 0;
+  syncChildren($("dl-ledger"), [...order, empty]);
+  return news;
+}
+
+function renderTeam(call, animate = true) {
+  const lead = $("dl-lead");
+  let news = false;
+  news = paint(field(lead, "nombre"), call.lead.nombre, "—", animate) || news;
+  news = paint(field(lead, "tipo_unidad"), call.lead.tipo_unidad, "—", animate) || news;
+  news = paint(field(lead, "proposito"), call.lead.proposito, "—", animate) || news;
+  news = paint(field(lead, "plazo"), call.lead.plazo, "—", animate) || news;
+  news = paint($("dl-budget-value"), call.presupuesto, "Sin registrar. Solo se guarda si la persona lo acepta y lo dice.", animate) || news;
+  news = renderProps(call, animate) || news;
+  news = renderVisit(call, animate) || news;
+  news = renderQuestions(call, animate) || news;
+  const handoff = $("dl-handoff-value");
+  const asked = !!call.traspaso;
+  news = paint(handoff, asked ? `Solicitado. Motivo: ${call.traspaso.motivo || "la persona pidió hablar con alguien del equipo"}` : null, "No solicitado.", animate) || news;
+  handoff.classList.toggle("is-alert", asked);
+  news = renderLedger(call, animate) || news;
+  refreshTag();
+  if (news && animate) noteTeamUpdate();
+}
+
+// "Sin llamada" -> "Esperando" (connected, no tool called yet) -> "En vivo" -> "Llamada terminada".
+function refreshTag() {
+  let tag = "idle", text = "Sin llamada";
+  if (state.endedAt) { tag = "ended"; text = "Llamada terminada"; }
+  else if (view.ref) { tag = view.status === "ended" ? "ended" : "live"; text = view.status === "ended" ? "Llamada terminada" : "En vivo"; }
+  else if (connected) { tag = "waiting"; text = "Esperando"; }
+  const node = $("dl-team-tag");
+  node.dataset.state = tag;
+  node.textContent = text;
+}
+
+function setTeamNotice(text) {
+  const n = $("dl-team-notice");
+  n.textContent = text || "";
+  n.hidden = !text;
+}
+
+function addPageRow(label, detail = "", at = new Date()) {
+  localRows.push({ at, label, detail });
+  renderTeam(view);
+}
+
+function clearTeamNodes() {
+  propNodes.clear();
+  ledgerNodes.clear();
+  $("dl-props-list").replaceChildren();
+  $("dl-ledger").replaceChildren($("dl-ledger-empty"));
+}
+
+function resetTeam() {
+  view = EMPTY_CALL;
+  localRows = [];
+  skewMs = 0;
+  clearTeamNodes();
+  $("dl-questions-list").replaceChildren();
+  setTeamNotice("");
+  renderTeam(EMPTY_CALL, false);
+  $("dl-tab-team").classList.remove("has-news");
 }
 
 // ---------------------------------------------------------------------------
-// Client tools: names and parameters exactly as configured on the agent
+// Polling the panel of this conversation
 // ---------------------------------------------------------------------------
 
-const clientTools = {
-  registrar_interes: async ({ tipo_unidad, proposito, plazo } = {}) => {
-    state.lead.tipo_unidad = String(tipo_unidad ?? "").trim();
-    state.lead.proposito = String(proposito ?? "").trim();
-    state.lead.plazo = String(plazo ?? "").trim();
-    const lead = $("dl-lead");
-    setField(lead, "tipo_unidad", state.lead.tipo_unidad);
-    setField(lead, "proposito", state.lead.proposito);
-    setField(lead, "plazo", state.lead.plazo);
-    addLedger("Interés registrado", [state.lead.tipo_unidad, state.lead.proposito, state.lead.plazo].filter(Boolean).join(" · "));
-  },
+let pollGen = 0; // bumped to cancel the loop and any answer still in flight
+let pollTimer = null;
+let pollAbort = null;
+let pollFails = 0;
+let lastWasRate = false;
 
-  registrar_presupuesto: async ({ rango } = {}) => {
-    state.budget = String(rango ?? "").trim();
-    const el = $("dl-budget-value");
-    el.textContent = state.budget || "Sin registrar.";
-    el.classList.toggle("is-empty", !state.budget);
-    if (state.budget) flash(el);
-    addLedger("Presupuesto declarado", `${state.budget} · dicho por la persona, tras su sí`);
-  },
+function stopPolling() {
+  pollGen++;
+  clearTimeout(pollTimer);
+  pollTimer = null;
+  try { pollAbort?.abort(); } catch { /* ignore */ }
+  pollAbort = null;
+}
 
-  consultar_horarios: async ({ dia } = {}) => {
-    state.agenda ??= buildAgenda();
-    const { day, sunday } = findDay(state.agenda, dia);
-    if (sunday) return "La sala de ventas está cerrada los domingos. Horarios libres: ninguno ese día.";
-    if (!day) {
-      const options = state.agenda.map((x) => x.label).join(", ");
-      return `Solo se agenda dentro de los próximos catorce días. Días con horarios: ${options}.`;
+function startPolling() {
+  if (!API_OK || !conversationId) return;
+  stopPolling();
+  pollFails = 0;
+  lastWasRate = false;
+  const gen = pollGen;
+  pollTimer = setTimeout(() => poll(gen, false), 0);
+}
+
+// Once the call is over: one more read a few seconds later (the last tool call may land just after the hang-up).
+function pollOnceMore() {
+  if (!API_OK || !conversationId) return;
+  stopPolling();
+  const gen = pollGen;
+  pollTimer = setTimeout(() => poll(gen, true), FINAL_POLL_MS);
+}
+
+function retryAfterMs(res) {
+  const n = Number(res.headers.get("Retry-After"));
+  return Number.isFinite(n) && n > 0 ? Math.min(n * 1000, MAX_RETRY_AFTER_MS) : 0;
+}
+
+function applyServerCall(body) {
+  const t = msOf(body && body.server_time);
+  if (t !== null) skewMs = t - Date.now();
+  const call = normCall(body && body.call);
+  if (!call) return;
+  if (view.ref && call.ref && view.ref !== call.ref) clearTeamNodes(); // another call under the same id: start over
+  view = call;
+  renderTeam(call, true);
+  if (root.dataset.state === "ended") renderSummary(false);
+}
+
+async function poll(gen, last) {
+  if (gen !== pollGen) return;
+  const controller = new AbortController();
+  pollAbort = controller;
+  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  let delay = POLL_MS;
+  try {
+    const url = `${API}/v1/demo/web/state?conversation_id=${encodeURIComponent(conversationId)}`;
+    const res = await fetch(url, {
+      method: "GET", cache: "no-store", credentials: "omit", referrerPolicy: "no-referrer",
+      headers: { Accept: "application/json" }, signal: controller.signal,
+    });
+    if (gen !== pollGen) return;
+    if (res.status === 200) {
+      const body = await res.json();
+      if (gen !== pollGen) return;
+      pollFails = 0;
+      lastWasRate = false;
+      setTeamNotice("");
+      applyServerCall(body);
+    } else if (res.status === 404) {
+      pollFails = 0; // not created yet: it appears after Valeria's first tool call. Wait quietly.
+      lastWasRate = false;
+      setTeamNotice("");
+    } else if (res.status === 429) {
+      lastWasRate = true;
+      pollFails++;
+      delay = Math.max(retryAfterMs(res), BACKOFF_MS[Math.min(pollFails - 1, BACKOFF_MS.length - 1)]);
+    } else {
+      throw new Error(`HTTP ${res.status}`);
     }
-    if (!day.free.length) return `No quedan horarios libres para ${day.label}.`;
-    return `Horarios libres: ${day.free.join(", ")}`;
-  },
+  } catch {
+    if (gen !== pollGen) return;
+    lastWasRate = false;
+    pollFails++;
+    delay = BACKOFF_MS[Math.min(pollFails - 1, BACKOFF_MS.length - 1)];
+  } finally {
+    clearTimeout(timeout);
+  }
+  if (gen !== pollGen) return;
+  if (pollFails >= FAILS_BEFORE_NOTICE) {
+    setTeamNotice(lastWasRate
+      ? "El panel está recibiendo muchas consultas. Se actualizará en unos segundos; la llamada sigue igual."
+      : "No podemos actualizar este panel por ahora. Lo seguimos intentando; la llamada no se ve afectada.");
+  }
+  if (!last) pollTimer = setTimeout(() => poll(gen, false), delay);
+}
 
-  agendar_visita: async ({ nombre, dia, hora } = {}) => {
-    state.agenda ??= buildAgenda();
-    const { day } = findDay(state.agenda, dia);
-    const slot = normalizeHour(hora);
-    if (!day) return "No pude reservar: ese día no tiene horarios disponibles. Ofrezca otro día.";
-    if (!day.free.includes(slot)) {
-      return day.free.length
-        ? `Ese horario no está libre. Horarios libres: ${day.free.join(", ")}`
-        : `No quedan horarios libres para ${day.label}.`;
-    }
-    if (state.visit) state.visit.day.free = [...state.visit.day.free, state.visit.slot].sort(); // re-booking frees the old slot
-    day.free = day.free.filter((x) => x !== slot);
-    state.visit = { day, slot };
-
-    const person = String(nombre ?? "").trim();
-    if (person) {
-      state.lead.nombre = person;
-      setField($("dl-lead"), "nombre", person);
-    }
-    const visit = $("dl-visit");
-    setField(visit, "dia", day.label);
-    setField(visit, "hora", slot);
-    setField(visit, "sala", SALA);
-    $("dl-visit-note").hidden = false;
-    addLedger("Visita reservada", `${day.label}, ${slot} · ${SALA}`);
-    queueLedger(1100, "Confirmación por correo (simulada)", "No se envía ningún correo real: es una simulación.");
-    return `Visita simulada registrada para ${day.label} a las ${slot} en la sala de ventas de Residencial Demo Narvarte.`;
-  },
-
-  registrar_pregunta: async ({ pregunta } = {}) => {
-    const q = String(pregunta ?? "").trim();
-    if (!q) return;
-    state.questions.push(q);
-    renderQuestions();
-    addLedger("Pregunta anotada para el asesor", q);
-  },
-
-  pedir_humano: async ({ motivo } = {}) => {
-    state.handoff = String(motivo ?? "").trim() || "La persona pidió hablar con alguien del equipo.";
-    const el = $("dl-handoff-value");
-    el.textContent = `Solicitado. Motivo: ${state.handoff}`;
-    el.classList.remove("is-empty");
-    el.classList.add("is-alert");
-    flash(el);
-    addLedger("Traspaso a una persona solicitado", state.handoff);
-  },
-};
+// The id comes from the SDK (onConnect, or session.getId()). Only an id with the backend's shape goes into a URL.
+function adoptConversation(id) {
+  if (conversationId || typeof id !== "string" || !CONVERSATION_ID.test(id)) return;
+  conversationId = id;
+  startPolling();
+}
 
 // ---------------------------------------------------------------------------
 // Audio level visual
@@ -374,7 +678,7 @@ function startTimer() {
   const tick = () => {
     const seconds = Math.min(MAX_CALL_SECONDS, Math.floor((Date.now() - state.startedAt) / 1000));
     $("dl-timer").textContent = `${mmss(seconds)} / ${mmss(MAX_CALL_SECONDS)}`;
-    $("dl-timer").dataset.warn = seconds >= MAX_CALL_SECONDS - 30 ? "1" : ""; // last 30 s
+    $("dl-timer").dataset.warn = seconds >= MAX_CALL_SECONDS - WARN_SECONDS ? "1" : ""; // last 30 s
   };
   tick();
   timerId = setInterval(tick, 500);
@@ -452,6 +756,7 @@ async function startCall() {
   state.consentAt ??= new Date();
   connected = false;
   finishing = false;
+  conversationId = null;
   setState("connecting");
   $("dl-btn").disabled = true;
   $("dl-btn").textContent = "Conectando…";
@@ -466,17 +771,16 @@ async function startCall() {
     const probe = await navigator.mediaDevices.getUserMedia({ audio: true });
     probe.getTracks().forEach((t) => t.stop());
 
-    state.agenda = null;
     state.startedAt = Date.now();
-    addLedger("Consentimiento aceptado", "La persona marcó la casilla antes de hablar.", state.consentAt);
+    state.endedAt = null;
+    addPageRow("Consentimiento aceptado", "La persona marcó la casilla antes de hablar.", state.consentAt);
 
     const session = await Conversation.startSession({
       agentId: AGENT_ID,
       connectionType: "websocket",
       libsampleratePath: LIBSAMPLERATE_PATH, // Safari/iOS resample worklet, served from this site (not a CDN)
       dynamicVariables: dynamicVariables(),
-      clientTools,
-      onConnect: () => {
+      onConnect: (info) => {
         connected = true;
         setState("live");
         $("dl-btn").disabled = false;
@@ -486,7 +790,8 @@ async function startCall() {
         startTimer();
         startLevel();
         requestWakeLock();
-        addLedger("Llamada iniciada", "Valeria se presenta como asistente de IA.");
+        addPageRow("Llamada iniciada", "Valeria se presenta como asistente de IA y avisa que la demostración se graba.");
+        adoptConversation(info?.conversationId);
       },
       onDisconnect: (details) => finishCall(details),
       onError: (error) => {
@@ -506,6 +811,7 @@ async function startCall() {
       },
     });
     conversation = session;
+    try { adoptConversation(session.getId?.()); } catch { /* the id also arrives through onConnect */ }
     // The connection may have dropped while startSession was resolving.
     if (finishing) { try { await session.endSession(); } catch { /* ignore */ } conversation = null; }
   } catch (error) {
@@ -517,9 +823,10 @@ function failCall(error) {
   if (error && error.name !== "NotAllowedError") console.error("demo-en-vivo:", error?.message ?? error);
   const message = describeError(error);
   teardown();
+  stopPolling();
+  conversationId = null;
   // Nothing real happened: drop the rows of a call that never started.
-  state.ledger = [];
-  $("dl-ledger").replaceChildren(Object.assign(document.createElement("li"), { className: "dl-empty", id: "dl-ledger-empty", textContent: "Cada paso aparecerá aquí con su hora." }));
+  resetTeam();
   state.startedAt = null;
   setState("error");
   showError(message);
@@ -548,15 +855,15 @@ function finishCall(details) {
     return;
   }
   state.endedAt = Date.now();
-  flushPendingLedger();
   const timedOut = (state.endedAt - state.startedAt) / 1000 >= MAX_CALL_SECONDS - 6;
-  addLedger("Llamada terminada", timedOut ? "Se acabó el tiempo de la prueba (cinco minutos)." : details?.reason === "agent" ? "Valeria cerró la llamada." : details?.reason === "error" ? "La conexión se cortó." : "La persona colgó.");
+  addPageRow("Llamada terminada", timedOut ? "Se acabó el tiempo de la prueba (quince minutos)." : details?.reason === "agent" ? "Valeria cerró la llamada." : details?.reason === "error" ? "La conexión se cortó." : "La persona colgó.");
   setState("ended");
   setMode("idle", "Llamada terminada");
   $("dl-btn").textContent = "Hablar ahora";
   $("dl-btn").disabled = true;
   if (details?.reason === "error") showError("Se cortó la conexión durante la llamada. Puedes volver a probar.");
-  renderSummary();
+  renderSummary(true);
+  pollOnceMore();
 }
 
 async function hangUp() {
@@ -569,32 +876,39 @@ async function hangUp() {
 // Summary + reset
 // ---------------------------------------------------------------------------
 
-function renderSummary() {
+function renderSummary(scroll) {
+  const call = view;
   const seconds = Math.max(0, Math.round((state.endedAt - state.startedAt) / 1000));
+  const leadParts = [call.lead.nombre, call.lead.tipo_unidad, call.lead.proposito, call.lead.plazo].filter(Boolean);
+  const v = call.visita;
+  const visitProp = v && (v.propiedad_nombre || (findProp(call, v.propiedad_id) || {}).nombre);
+  const visit = v ? [[v.dia, v.hora].filter(Boolean).join(", "), v.modalidad, visitProp].filter(Boolean).join(" · ") : "";
+  const names = call.propiedades.map((p) => p.nombre || p.id).filter(Boolean);
   const rows = [
     ["Duración", mmss(seconds)],
     ["Turnos", `${state.turns.ai} de Valeria · ${state.turns.user} tuyos`],
-    ["Lead", [state.lead.nombre, state.lead.tipo_unidad, state.lead.proposito, state.lead.plazo].filter(Boolean).join(" · ") || "Sin datos registrados"],
-    ["Presupuesto declarado", state.budget || "No registrado"],
-    ["Visita", state.visit ? `${state.visit.day.label}, ${state.visit.slot} · ${SALA}` : "No se reservó"],
-    ["Preguntas por confirmar", state.questions.length ? state.questions.join(" · ") : "Ninguna"],
-    ["Traspaso a una persona", state.handoff ? `Solicitado: ${state.handoff}` : "No solicitado"],
-    ["Pasos en el registro", String(state.ledger.length)],
+    ["Lead", leadParts.join(" · ") || "Sin datos registrados"],
+    ["Presupuesto declarado", call.presupuesto || "No registrado"],
+    ["Propiedades sugeridas", names.length ? names.join(" · ") : "Ninguna"],
+    ["Visita", visit || "No se reservó"],
+    ["Preguntas por confirmar", call.preguntas.length ? call.preguntas.join(" · ") : "Ninguna"],
+    ["Traspaso a una persona", call.traspaso ? `Solicitado: ${call.traspaso.motivo || "la persona pidió hablar con alguien del equipo"}` : "No solicitado"],
+    ["Pasos en el registro", String(ledgerRows(call).length)],
   ];
   const list = $("dl-summary-list");
-  list.replaceChildren(...rows.flatMap(([k, v]) => {
+  list.replaceChildren(...rows.flatMap(([k, val]) => {
     const dt = document.createElement("dt"); dt.textContent = k;
-    const dd = document.createElement("dd"); dd.textContent = v;
+    const dd = document.createElement("dd"); dd.textContent = val;
     return [dt, dd];
   }));
+  const wasHidden = $("dl-summary").hidden;
   $("dl-summary").hidden = false;
-  $("dl-summary").scrollIntoView({ block: "nearest", behavior: "smooth" });
+  if (scroll && wasHidden) $("dl-summary").scrollIntoView({ block: "nearest", behavior: "smooth" });
 }
 
 function resetAll() {
-  pendingTimers.forEach(clearTimeout);
-  pendingTimers.clear();
-  pendingLedger = [];
+  stopPolling();
+  conversationId = null;
   teardown();
   state = fresh();
   finishing = false;
@@ -607,25 +921,7 @@ function resetAll() {
   clearError();
   $("dl-summary").hidden = true;
   $("dl-transcript").replaceChildren(Object.assign(document.createElement("li"), { className: "dl-empty", id: "dl-transcript-empty", textContent: "Aquí aparece lo que digan Valeria y tú." }));
-  $("dl-ledger").replaceChildren(Object.assign(document.createElement("li"), { className: "dl-empty", id: "dl-ledger-empty", textContent: "Cada paso aparecerá aquí con su hora." }));
-  for (const [id, names] of [["dl-lead", ["nombre", "tipo_unidad", "proposito", "plazo"]], ["dl-visit", ["dia", "hora", "sala"]]]) {
-    for (const name of names) {
-      const el = $(id).querySelector(`[data-field="${name}"]`);
-      el.textContent = "—";
-      el.classList.add("is-empty");
-      el.classList.remove("is-new");
-    }
-  }
-  const budget = $("dl-budget-value");
-  budget.textContent = "Sin registrar. Solo se guarda si la persona lo acepta y lo dice.";
-  budget.classList.add("is-empty");
-  $("dl-visit-note").hidden = true;
-  renderQuestions();
-  const handoff = $("dl-handoff-value");
-  handoff.textContent = "No solicitado.";
-  handoff.classList.add("is-empty");
-  handoff.classList.remove("is-alert");
-  $("dl-tab-team").classList.remove("has-news");
+  resetTeam();
   setView("call");
   setState("idle");
   window.scrollTo({ top: $("dl").offsetTop - 80, behavior: "smooth" });
@@ -635,11 +931,11 @@ function resetAll() {
 // Wiring
 // ---------------------------------------------------------------------------
 
-function setView(view) {
-  root.dataset.view = view;
-  $("dl-tab-call").setAttribute("aria-pressed", String(view === "call"));
-  $("dl-tab-team").setAttribute("aria-pressed", String(view === "team"));
-  if (view === "team") $("dl-tab-team").classList.remove("has-news");
+function setView(next) {
+  root.dataset.view = next;
+  $("dl-tab-call").setAttribute("aria-pressed", String(next === "call"));
+  $("dl-tab-team").setAttribute("aria-pressed", String(next === "team"));
+  if (next === "team") $("dl-tab-team").classList.remove("has-news");
 }
 
 $("dl-consent").addEventListener("change", (event) => {
@@ -662,8 +958,8 @@ $("dl-retry").addEventListener("click", () => {
 $("dl-reset").addEventListener("click", resetAll);
 document.querySelectorAll(".dl-tab").forEach((tab) => tab.addEventListener("click", () => setView(tab.dataset.view)));
 
-// Leaving the page hangs up (no orphan sessions eating the daily limit).
-window.addEventListener("pagehide", () => { try { conversation?.endSession(); } catch { /* ignore */ } });
+// Leaving the page hangs up (no orphan sessions eating the daily limit) and stops asking for the panel.
+window.addEventListener("pagehide", () => { stopPolling(); try { conversation?.endSession(); } catch { /* ignore */ } });
 document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && connected && !wakeLock) requestWakeLock(); });
 
 // A browser may restore a ticked checkbox after a reload or back navigation: honour what is on screen.

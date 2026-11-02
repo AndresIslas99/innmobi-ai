@@ -1,6 +1,8 @@
-// Mock of the realestate-crm voice_demo panel API (ADR 0035) for developing and testing /demo-en-vivo/tablero/.
+// Mock of the realestate-crm voice_demo panel API (ADR 0035) for developing and testing /demo-en-vivo/tablero/,
+// and of the public per-conversation web state route (ADR 0040) that /demo-en-vivo/ polls.
 // Usage: node scripts/tablero-mock/mock-server.mjs [port]      (PIN: ABCD2345)
-// Test controls (not part of the contract): /__play, /__play2, /__props, /__kill, /__restart, /__down, /__up, /__expire, /__emit
+// Test controls (not part of the contract): /__play, /__play2, /__props, /__playweb, /__kill, /__restart, /__down, /__up, /__expire, /__emit
+//   GET /v1/demo/web/state?conversation_id=<id>  -> 200 {server_time, call} for a web call, 404 otherwise (no oracle), 429/500 when told to
 import http from 'node:http';
 import crypto from 'node:crypto';
 
@@ -115,6 +117,15 @@ export const CATALOG = Object.fromEntries([
 CATALOG['ZZ-DEMO-99'] = { id: 'ZZ-DEMO-99', nombre: 'Casa sin foto en Tlalpan', operacion: 'reventa', zona: 'Tlalpan Centro', precio_mxn: 5800000, m2: 210, recamaras: 3 };
 const pick = (...ids) => ids.map((i) => CATALOG[i]);
 
+// What `Listing.panel_item()` of the backend carries, for the web conversation: CDMX and Puebla, a borrowed photo, a missing photo.
+const WEB_ITEMS = [
+  { id: 'RN-ANZ-03', nombre: 'Departamento de dos recámaras en Anzures', operacion: 'renta', tipo: 'departamento', zona: 'Anzures', alcaldia_municipio: 'Miguel Hidalgo', precio_mxn: null, precio_es_desde: false, renta_mensual_mxn: 28500, m2: 72, recamaras: 2, imagen: '/assets/demo/catalogo/RN-NAR-01.webp' },
+  { id: 'RN-ANG-02', nombre: 'Departamento en Lomas de Angelópolis', operacion: 'renta', tipo: 'departamento', zona: 'Lomas de Angelópolis', alcaldia_municipio: 'San Andrés Cholula', precio_mxn: null, precio_es_desde: false, renta_mensual_mxn: 21000, m2: 88, recamaras: 2, imagen: '/assets/demo/catalogo/RN-NAR-01.webp' },
+  { ...CATALOG['PV-NAR-01'], tipo: 'departamento', alcaldia_municipio: 'Benito Juárez', precio_es_desde: true, renta_mensual_mxn: null },
+  { id: 'RV-PUE-01', nombre: 'Casa en La Paz, Puebla', operacion: 'reventa', tipo: 'casa', zona: 'La Paz', alcaldia_municipio: 'Puebla', precio_mxn: 4200000, precio_es_desde: false, renta_mensual_mxn: null, m2: 160, recamaras: 3, imagen: '/assets/demo/catalogo/RV-PUE-01.webp' },
+];
+const WEB_HOSTILE = { id: 'XX-1', nombre: '<img src=x onerror="window.__pwned=1">Casa trampa', operacion: 'renta', zona: '<b>Zona</b>', renta_mensual_mxn: 1000, imagen: 'https://evil.example/x.webp' };
+
 
 export function createMock(port = 0) {
   let epoch = crypto.randomBytes(4).toString('hex');
@@ -124,6 +135,9 @@ export function createMock(port = 0) {
   const streams = new Set();
   let down = false;
   let token = null;
+  const webRefs = new Map(); // conversation id -> call_ref of a call whose source is web
+  let webMode = 'ok'; // ok | rate | error
+  const webHits = []; // timestamps (ms) of every request to the web state route
 
   const fmtAt = (d = new Date()) => {
     const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone: TZ, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(d).map((x) => [x.type, x.value]));
@@ -152,7 +166,7 @@ export function createMock(port = 0) {
     if (e.type === 'budget') c.presupuesto = e.rango;
     if (e.type === 'properties_suggested') { const items = Array.isArray(e.items) ? e.items : []; const keys = new Set(items.map((x) => x && x.id)); c.propiedades = [...items, ...c.propiedades.filter((x) => !keys.has(x && x.id))]; } // tolerant on purpose: the tests send malformed items
     if (e.type === 'property_viewed') c.propiedad_consultada = e.id;
-    if (e.type === 'visit_reserved') c.visita = { dia: e.dia, hora: e.hora, iso: e.iso, sala: e.sala, propiedad_id: e.propiedad_id, propiedad_nombre: e.propiedad_nombre, modalidad: e.modalidad };
+    if (e.type === 'visit_reserved') c.visita = { dia: e.dia, hora: e.hora, iso: e.iso, sala: e.sala, propiedad_id: e.propiedad_id, propiedad_nombre: e.propiedad_nombre, modalidad: e.modalidad, seguimiento: e.seguimiento ?? null };
     if (e.type === 'question') c.preguntas.push(e.pregunta);
     if (e.type === 'handoff') c.traspaso = { motivo: e.motivo, at: e.at };
     if (e.type === 'call_ended') { c.status = 'ended'; c.ended_at = e.at; c.end_reason = e.reason; }
@@ -210,6 +224,36 @@ export function createMock(port = 0) {
     return r;
   }
 
+
+  // A web conversation as the backend shows it (ADR 0040): the panel's Call JSON, source web, caller "Demo web".
+  // `hostile` puts markup in the model-controlled fields to prove the page only ever writes text.
+  async function playWeb({ id, gap = 500, name = 'Mariana', hostile = false, end = false } = {}) {
+    const r = ref();
+    webRefs.set(id, r);
+    emit(r, 'call_started', { caller: 'Demo web', source: 'web' }, 'Conversación web');
+    await wait(gap);
+    const shown = hostile ? '<script>window.__pwned=2</script>' + name : name;
+    emit(r, 'interest', { nombre: shown, tipo_unidad: 'departamento de dos recámaras en Anzures', proposito: 'para rentar', plazo: 'por definir' }, `Interés: departamento de dos recámaras en Anzures, para rentar, por definir`);
+    await wait(gap);
+    emit(r, 'budget', { rango: 'hasta treinta mil pesos al mes' }, 'Presupuesto declarado por la persona: hasta treinta mil pesos al mes');
+    await wait(gap);
+    const items = [...WEB_ITEMS, ...(hostile ? [WEB_HOSTILE] : [])];
+    emit(r, 'properties_suggested', { items }, `Propiedades sugeridas: ${items.map((x) => x.nombre).join(', ')}`);
+    await wait(gap);
+    emit(r, 'property_viewed', { id: 'RN-ANG-02' }, 'Pidió detalles de Departamento en Lomas de Angelópolis');
+    await wait(gap);
+    emit(r, 'slots_offered', { dia: null, opciones: [{ dia: 'martes 3 de noviembre', hora: '16:00' }, { dia: 'martes 3 de noviembre', hora: '17:00' }] }, 'Horarios ofrecidos: martes 3 de noviembre a las 16:00, 17:00');
+    await wait(gap);
+    emit(r, 'visit_reserved', { dia: 'martes 3 de noviembre', hora: '16:00', iso: '2026-11-03T16:00:00-06:00', sala: 'Videollamada con un asesor', propiedad_id: 'RN-ANG-02', propiedad_nombre: 'Departamento en Lomas de Angelópolis', modalidad: 'videollamada', seguimiento: null, replaces: null },
+      'Visita reservada: martes 3 de noviembre a las 16:00, por videollamada: Departamento en Lomas de Angelópolis');
+    await wait(gap);
+    emit(r, 'question', { pregunta: hostile ? '<img src=x onerror="window.__pwned=3">¿Piden aval?' : '¿Piden aval o fiador para rentar?' }, 'Pregunta por confirmar: ¿Piden aval o fiador para rentar?');
+    await wait(gap);
+    emit(r, 'handoff', { motivo: 'quiere hablar con un asesor sobre el depósito' }, 'Pidió hablar con una persona: quiere hablar con un asesor sobre el depósito');
+    if (end) { await wait(gap); emit(r, 'call_ended', { reason: 'post_call', duration_s: 95 }, 'Llamada terminada (1 min 35 s)'); }
+    return r;
+  }
+
   const server = http.createServer(async (req, res) => {
     const url = new URL(req.url, 'http://x');
     const origin = req.headers.origin;
@@ -225,14 +269,25 @@ export function createMock(port = 0) {
       playProps({ gap: Number(q.get('gap') || 900), modalidad: q.get('modalidad') || 'Videollamada', visitId: q.get('visit') || 'RA-POL-01' });
       return json(200, { ok: true });
     }
+    if (url.pathname === '/__playweb') { playWeb({ id: url.searchParams.get('id') || 'conv_webdemo0001', gap: Number(url.searchParams.get('gap') || 900) }); return json(200, { ok: true }); }
     if (url.pathname === '/__kill') { for (const s of streams) s.destroy(); streams.clear(); return json(200, { ok: true }); }
-    if (url.pathname === '/__restart') { epoch = crypto.randomBytes(4).toString('hex'); seq = 0; ring = []; calls = new Map(); for (const s of streams) s.destroy(); streams.clear(); return json(200, { ok: true }); }
+    if (url.pathname === '/__restart') { epoch = crypto.randomBytes(4).toString('hex'); seq = 0; ring = []; calls = new Map(); webRefs.clear(); for (const s of streams) s.destroy(); streams.clear(); return json(200, { ok: true }); }
     if (url.pathname === '/__down') { down = true; for (const s of streams) s.destroy(); streams.clear(); return json(200, { ok: true }); }
     if (url.pathname === '/__up') { down = false; return json(200, { ok: true }); }
     if (url.pathname === '/__expire') { for (const s of streams) { s.write(`event: auth_expired\ndata: {}\n\n`); s.end(); } streams.clear(); token = null; return json(200, { ok: true }); }
     if (url.pathname === '/__emit') { const r = url.searchParams.get('ref'); emit(r, 'question', { pregunta: url.searchParams.get('q') || 'otra pregunta' }, `Pregunta por confirmar: ${url.searchParams.get('q') || 'otra pregunta'}`); return json(200, { ok: true }); }
 
     if (down) { res.writeHead(503, { ...cors }); return res.end(); }
+
+    if (url.pathname === '/v1/demo/web/state' && req.method === 'GET') {
+      webHits.push(Date.now());
+      if (webMode === 'rate') return json(429, { type: 'about:blank', title: 'Too Many Requests', status: 429 }, { 'Retry-After': '1' });
+      if (webMode === 'error') return json(500, { type: 'about:blank', title: 'Internal Server Error', status: 500 });
+      const id = url.searchParams.get('conversation_id') || '';
+      const call = /^[A-Za-z0-9_-]{8,80}$/.test(id) ? calls.get(webRefs.get(id)) : undefined;
+      if (!call) return json(404, { type: 'about:blank', title: 'Not Found', status: 404 }); // same body for unknown, not web and invalid
+      return json(200, { server_time: fmtAt(), call });
+    }
 
     if (url.pathname === '/v1/demo/panel/session' && req.method === 'POST') {
       let body = '';
@@ -271,7 +326,7 @@ export function createMock(port = 0) {
     json(404, { type: 'about:blank', title: 'Not Found', status: 404 });
   });
 
-  return new Promise((resolve) => server.listen(port, '127.0.0.1', () => resolve({ server, port: server.address().port, close: () => { for (const s of streams) s.destroy(); server.close(); }, emit, playCall, playProps })));
+  return new Promise((resolve) => server.listen(port, '127.0.0.1', () => resolve({ server, port: server.address().port, close: () => { for (const s of streams) s.destroy(); server.close(); }, emit, playCall, playProps, playWeb, setWebMode: (m) => { webMode = m; }, refOf: (id) => webRefs.get(id), webHits: () => webHits.slice(), clearWebHits: () => { webHits.length = 0; } })));
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

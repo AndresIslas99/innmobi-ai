@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
 <title>Demo en vivo · Innmobi.ai</title>
-<meta name="description" content="Llamada de prueba con Valeria, una asistente de IA, sobre un desarrollo de demostración. Mira en vivo lo que vería tu equipo."/>
+<meta name="description" content="Llamada de prueba con Valeria, una asistente de IA de una inmobiliaria ficticia con propiedades en la Ciudad de México y en Puebla. Mira en vivo lo que vería tu equipo."/>
 <meta name="theme-color" content="#0F0F10"/>
 <meta name="color-scheme" content="light"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -12,7 +12,7 @@
 
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Demo en vivo · Innmobi.ai"/>
-<meta property="og:description" content="Llamada de prueba con Valeria, una asistente de IA, sobre un desarrollo de demostración. Mira en vivo lo que vería tu equipo."/>
+<meta property="og:description" content="Llamada de prueba con Valeria, una asistente de IA de una inmobiliaria ficticia con propiedades en la Ciudad de México y en Puebla. Mira en vivo lo que vería tu equipo."/>
 <meta property="og:image" content="https://innmobi.ai/og/demo.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -22,7 +22,7 @@
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Demo en vivo · Innmobi.ai"/>
-<meta name="twitter:description" content="Llamada de prueba con Valeria, una asistente de IA, sobre un desarrollo de demostración. Mira en vivo lo que vería tu equipo."/>
+<meta name="twitter:description" content="Llamada de prueba con Valeria, una asistente de IA de una inmobiliaria ficticia con propiedades en la Ciudad de México y en Puebla. Mira en vivo lo que vería tu equipo."/>
 <meta name="twitter:image" content="https://innmobi.ai/og/demo.png"/>
 
 <link rel="icon" href="/favicon.ico" sizes="32x32"/>
@@ -92,22 +92,22 @@
 <section class="page-hero dl-hero">
   <div class="container">
     <span class="eyebrow">№ 01 — DEMO EN VIVO</span>
-    <h1 class="page-title">Habla con Valeria, <em>una asistente de IA,</em> sobre un desarrollo de demostración<span class="period">.</span></h1>
-    <p class="page-lead">Es una llamada de prueba, por voz, desde tu navegador. Valeria atiende en nombre de Residencial Demo Narvarte, un desarrollo ficticio, y dice desde su primera frase que es una IA. Mientras hablan, el panel «Lo que ve tu equipo» se llena en tiempo real.</p>
+    <h1 class="page-title">Habla con Valeria, <em>una asistente de IA,</em> de una inmobiliaria de demostración<span class="period">.</span></h1>
+    <p class="page-lead">Es una llamada de prueba, por voz, desde tu navegador. Valeria atiende en nombre de Inmobiliaria Demo Valle, una inmobiliaria ficticia con casas y departamentos en renta y en venta en la Ciudad de México y en Puebla, y dice desde su primera frase que es una IA. Mientras hablan, el panel «Lo que ve tu equipo» se llena en tiempo real con lo que el sistema va registrando de tu conversación.</p>
     <div class="dl-try">
       <span class="dl-try-title">Qué probar</span>
       <ol class="dl-try-list">
-        <li><span class="dl-try-n">1</span> <span>Pregúntale por las <strong>mascotas</strong>.</span></li>
-        <li><span class="dl-try-n">2</span> <span>Pregúntale por el <strong>enganche</strong>.</span></li>
-        <li><span class="dl-try-n">3</span> <span>Intenta <strong>sacarla del tema</strong>.</span></li>
-        <li><span class="dl-try-n">4</span> <span>Pide <strong>una visita</strong>.</span></li>
+        <li><span class="dl-try-n">1</span> <span>Busca por <strong>zona</strong> o por un lugar conocido: el Museo Soumaya, Angelópolis, cerca de la BUAP.</span></li>
+        <li><span class="dl-try-n">2</span> <span>Pídele algo <strong>más barato</strong>.</span></li>
+        <li><span class="dl-try-n">3</span> <span>Pregunta los <strong>requisitos para rentar</strong>.</span></li>
+        <li><span class="dl-try-n">4</span> <span>Agenda <strong>una visita o una videollamada</strong> a la hora que te acomode.</span></li>
       </ol>
     </div>
     <p class="dl-jump"><a class="btn btn-primary" href="#dl">Ir a la llamada ↓</a></p>
   </div>
 </section>
 
-<section class="section dl-section" id="dl" data-state="idle" data-view="call">
+<section class="section dl-section" id="dl" data-state="idle" data-view="call" data-api-base="https://api.innmobi.ai">
   <div class="container">
 
     <div class="dl-tabs" role="group" aria-label="Vista">
@@ -127,9 +127,9 @@
             <label class="dl-consent" for="dl-consent">
               <input type="checkbox" id="dl-consent">
               <span class="dl-consent-box" aria-hidden="true"></span>
-              <span class="dl-consent-text">Entiendo que hablaré con una asistente de inteligencia artificial de demostración, que la conversación se procesa para operar esta prueba y que no debo compartir datos personales reales.</span>
+              <span class="dl-consent-text">Entiendo que hablaré con una asistente de inteligencia artificial de demostración, que la conversación se graba (audio y transcripción) para operar esta prueba y que no debo compartir datos personales reales.</span>
             </label>
-            <p class="dl-gate-note"><strong>La transcripción se conserva 90 días en la cuenta de ElevenLabs (Estados Unidos) de innmobi.ai; el audio no se graba.</strong> <a href="/legal/privacidad/" target="_blank" rel="noopener">Aviso de privacidad</a> · Te pediremos permiso para usar el micrófono. Con audífonos se escucha mejor.</p>
+            <p class="dl-gate-note"><strong>La conversación se graba: el audio y la transcripción se conservan 30 días en la cuenta de ElevenLabs (Estados Unidos) de innmobi.ai.</strong> La búsqueda de propiedades y la agenda corren en el servidor de innmobi.ai con datos ficticios: no se reserva ni se envía nada real. <a href="/legal/privacidad/" target="_blank" rel="noopener">Aviso de privacidad</a> · Te pediremos permiso para usar el micrófono. Con audífonos se escucha mejor.</p>
           </div>
 
           <div class="dl-error" id="dl-error" role="alert" hidden>
@@ -141,7 +141,7 @@
             <div class="dl-status" id="dl-status" data-mode="idle" role="status" aria-live="polite">
               <span class="dl-dot" aria-hidden="true"></span>
               <span class="dl-status-text" id="dl-status-text">Lista para llamar</span>
-              <span class="dl-timer" id="dl-timer" aria-hidden="true">0:00 / 5:00</span>
+              <span class="dl-timer" id="dl-timer" aria-hidden="true">0:00 / 15:00</span>
             </div>
             <div class="dl-level" id="dl-level" aria-hidden="true"></div>
           </div>
@@ -161,7 +161,7 @@
           <span class="dl-card-eyebrow">RESUMEN DE LA LLAMADA</span>
           <h2 class="dl-summary-title">Esto es lo que se llevaría tu equipo<span class="period">.</span></h2>
           <dl class="dl-summary-list" id="dl-summary-list"></dl>
-          <p class="dl-summary-note">Todo es una simulación con un desarrollo ficticio. En un piloto real, cada paso queda en un registro que es de tu inmobiliaria.</p>
+          <p class="dl-summary-note">Las propiedades y la agenda son ficticias: no se reservó ni se envió nada real. En un piloto real, cada paso queda en un registro que es de tu inmobiliaria.</p>
           <div class="dl-summary-actions">
             <button type="button" class="btn btn-primary" id="dl-reset">Volver a probar</button>
             <a class="btn btn-ghost" href="/demo/">Reservar demo de 30 min</a>
@@ -170,20 +170,23 @@
       </div>
 
       
+      
       <div class="dl-col dl-team" id="dl-team">
         <span class="eyebrow">№ 03 — LO QUE VE TU EQUIPO</span>
 
         <div class="dl-card dl-card-team">
           <div class="dl-team-head">
             <h2 class="dl-team-title">Lo que ve tu equipo<span class="period">.</span></h2>
-            <span class="dl-sim-tag">SIMULACIÓN</span>
+            <span class="dl-team-tag" id="dl-team-tag" data-state="idle">Sin llamada</span>
           </div>
+
+          <p class="dl-team-notice" id="dl-team-notice" role="status" hidden></p>
 
           <div class="dl-block" id="dl-lead">
             <h3 class="dl-h">Lead</h3>
             <dl class="dl-fields">
               <div class="dl-field"><dt>Nombre</dt><dd data-field="nombre" class="is-empty">—</dd></div>
-              <div class="dl-field"><dt>Tipo de unidad</dt><dd data-field="tipo_unidad" class="is-empty">—</dd></div>
+              <div class="dl-field"><dt>Busca</dt><dd data-field="tipo_unidad" class="is-empty">—</dd></div>
               <div class="dl-field"><dt>Propósito</dt><dd data-field="proposito" class="is-empty">—</dd></div>
               <div class="dl-field"><dt>Plazo</dt><dd data-field="plazo" class="is-empty">—</dd></div>
             </dl>
@@ -194,14 +197,22 @@
             <p class="dl-value is-empty" id="dl-budget-value">Sin registrar. Solo se guarda si la persona lo acepta y lo dice.</p>
           </div>
 
+          <div class="dl-block" id="dl-props">
+            <h3 class="dl-h">Propiedades sugeridas <span class="dl-props-count" id="dl-props-count"></span></h3>
+            <ul class="dl-props" id="dl-props-list"></ul>
+            <p class="dl-value is-empty" id="dl-props-empty">Ninguna por ahora.</p>
+          </div>
+
           <div class="dl-block" id="dl-visit">
             <h3 class="dl-h">Visita reservada</h3>
             <dl class="dl-fields">
               <div class="dl-field"><dt>Día</dt><dd data-field="dia" class="is-empty">—</dd></div>
               <div class="dl-field"><dt>Hora</dt><dd data-field="hora" class="is-empty">—</dd></div>
-              <div class="dl-field"><dt>Sala de ventas</dt><dd data-field="sala" class="is-empty">—</dd></div>
+              <div class="dl-field"><dt>Cómo</dt><dd data-field="modalidad" class="is-empty">—</dd></div>
             </dl>
-            <p class="dl-sub" id="dl-visit-note" hidden>Visita simulada.</p>
+            <p class="dl-sub" id="dl-visit-prop" hidden></p>
+            <p class="dl-sub" id="dl-visit-place" hidden></p>
+            <p class="dl-sub" id="dl-visit-follow" hidden></p>
           </div>
 
           <div class="dl-block" id="dl-questions">
@@ -217,7 +228,7 @@
 
           <div class="dl-block dl-block-ledger">
             <h3 class="dl-h">Registro</h3>
-            <ol class="dl-ledger" id="dl-ledger" aria-label="Registro de pasos">
+            <ol class="dl-ledger" id="dl-ledger" aria-label="Registro de pasos, el más reciente primero">
               <li class="dl-empty" id="dl-ledger-empty">Cada paso aparecerá aquí con su hora.</li>
             </ol>
           </div>
@@ -227,7 +238,7 @@
     </div>
 
     <p class="dl-footnote" id="dl-footnote">
-      <strong>Demo:</strong> esta página no guarda nada en tu navegador (sin cookies ni almacenamiento local) ni en servidores propios. La conversación la procesa ElevenLabs (Estados Unidos): el audio no se graba y la transcripción se conserva 90 días en la cuenta de ElevenLabs de innmobi.ai, que el equipo puede consultar. Como el resto del sitio, medimos visitas con Plausible, sin cookies y sin el contenido de la llamada. El panel y el registro son una simulación: no se envía ningún correo ni se reserva nada real.
+      <strong>Demo:</strong> esta página no guarda nada en tu navegador (sin cookies ni almacenamiento local). La conversación se graba: ElevenLabs (Estados Unidos) procesa el audio y conserva el audio y la transcripción 30 días en la cuenta de innmobi.ai, que el equipo puede consultar. La búsqueda de propiedades y la agenda corren en el servidor de innmobi.ai con datos ficticios, y mientras hablas esta página le pide cada pocos segundos el panel de tu propia conversación. Como el resto del sitio, medimos visitas con Plausible, sin cookies y sin el contenido de la llamada. Nada real se reserva ni se envía, y no debes compartir datos personales reales.
     </p>
   </div>
 </section>

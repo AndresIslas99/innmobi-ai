@@ -161,6 +161,9 @@ console.log('--- desktop 1280x900');
     assert.match(c2, /PREVENTA/i); assert.match(c2, /Desde \$3,250,000/); assert.match(c2, /58 m² · 1 recámara\b/);
     const c3 = (await cards.nth(3).innerText()).replace(/\s+/g, ' ');
     assert.match(c3, /Casa en La Paz, Puebla/); assert.match(c3, /\$4,200,000/); assert.ok(!/Desde/.test(c3));
+    // the city is on every card, so La Paz (Puebla) and a colonia of Mexico City cannot be mistaken for each other
+    assert.deepEqual(await page.locator('#dl-props-list .dl-prop .dl-prop-zona').allInnerTexts(),
+      ['Anzures · Ciudad de México', 'Lomas de Angelópolis · Puebla', 'Narvarte Poniente · Ciudad de México', 'La Paz · Puebla']);
     // photos: the site's own images, with a placeholder when the file is missing
     assert.equal(await cards.nth(0).locator('img').getAttribute('src'), '/assets/demo/catalogo/RN-NAR-01.webp');
     await page.waitForFunction(() => document.querySelector('#dl-props-list .dl-prop:nth-child(4) .dl-prop-photo').classList.contains('is-missing'));
@@ -270,6 +273,8 @@ console.log('--- model-controlled text is never markup');
     const last = page.locator('#dl-props-list .dl-prop').nth(4);
     assert.match(await last.innerText(), /<img src=x onerror="window.__pwned=1">Casa trampa/);
     assert.match(await last.innerText(), /<b>Zona<\/b>/);
+    // no municipality in the item, so no city is guessed
+    assert.equal(await last.locator('.dl-prop-zona').innerText(), '<b>Zona</b>');
     // the photo URL is derived from the id (and 404s here, so the placeholder shows), never the server's own URL
     await page.waitForFunction(() => document.querySelector('#dl-props-list .dl-prop:nth-child(5) .dl-prop-photo').classList.contains('is-missing'));
     assert.ok(requests.some((r) => r.url.endsWith('/assets/demo/catalogo/XX-1.webp')));
@@ -319,6 +324,8 @@ console.log('--- mobile 390x844');
     assert.ok(await page.locator('#dl-team').isVisible());
     assert.ok(!(await page.locator('#dl-tab-team').evaluate((n) => n.classList.contains('has-news'))));
     assert.equal(await page.locator('#dl-props-list .dl-prop').count(), 4);
+    assert.deepEqual(await page.locator('#dl-props-list .dl-prop .dl-prop-zona').allInnerTexts().then((a) => a.map((t) => t.replace(/\s+/g, ' '))),
+      ['Anzures · Ciudad de México', 'Lomas de Angelópolis · Puebla', 'Narvarte Poniente · Ciudad de México', 'La Paz · Puebla']);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     assert.ok(overflow <= 0, `horizontal overflow ${overflow}px`);
     await page.locator('#dl-team').scrollIntoViewIfNeeded();

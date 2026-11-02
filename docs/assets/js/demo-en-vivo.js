@@ -114,6 +114,23 @@ const num = (v) => (typeof v === "number" && Number.isFinite(v) ? v : null);
 const mxn = (n) => "$" + new Intl.NumberFormat("es-MX", { maximumFractionDigits: 0 }).format(n);
 const safeId = (id) => (id && /^[A-Za-z0-9_-]{1,40}$/.test(id) ? id : null);
 
+// The demo has two cities. The backend's panel item carries the municipality (`alcaldia_municipio`) but not the city, and a listing
+// is in Puebla exactly when its municipality is one of these (the backend's PUEBLA_MUNICIPALITIES); any other municipality is
+// Mexico City or its metro area. Keep this list in step with the backend. An item without a municipality gets no city.
+const CITY_CDMX = "Ciudad de México";
+const CITY_PUEBLA = "Puebla";
+const foldName = (v) => v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+const PUEBLA_MUNICIPIOS = new Set([
+  "Puebla", "San Andrés Cholula", "San Pedro Cholula", "Cuautlancingo", "Coronango", "Amozoc",
+  "Santa Clara Ocoyucan", "Juan C. Bonilla", "Tlaltenango", "San Gregorio Atzompa",
+].map(foldName));
+
+function cityOf(raw) {
+  const municipio = str(raw && raw.alcaldia_municipio);
+  if (!municipio) return null;
+  return PUEBLA_MUNICIPIOS.has(foldName(municipio)) ? CITY_PUEBLA : CITY_CDMX;
+}
+
 function opOf(raw, id) {
   const op = str(raw && raw.operacion);
   if (op && OP_LABEL[op]) return op;
@@ -128,7 +145,7 @@ function normItem(raw) {
   if (!id && !nombre) return null;
   const operacion = opOf(raw, id);
   return {
-    id, key: id || nombre, nombre, operacion, zona: str(raw.zona),
+    id, key: id || nombre, nombre, operacion, zona: str(raw.zona), ciudad: cityOf(raw),
     precio: num(raw.precio_mxn), renta: num(raw.renta_mensual_mxn), desde: raw.precio_es_desde === true || operacion === "preventa",
     m2: num(raw.m2), recamaras: num(raw.recamaras), imagen: str(raw.imagen),
   };
@@ -345,7 +362,8 @@ function propertyCard(item) {
   const body = el("div", "dl-prop-body");
   body.append(el("span", "dl-prop-op", OP_LABEL[item.operacion] || "Propiedad"));
   body.append(el("span", "dl-prop-name", item.nombre || item.id || "Propiedad"));
-  if (item.zona) body.append(el("span", "dl-prop-zona", item.zona));
+  const place = [item.zona, item.ciudad].filter(Boolean).join(" · ");
+  if (place) body.append(el("span", "dl-prop-zona", place));
   const price = priceOf(item);
   if (price.main) {
     const p = el("span", "dl-prop-price", price.main);
